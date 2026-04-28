@@ -4,6 +4,7 @@ import { base44 } from "@/api/base44Client";
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", organization: "", message: "" });
+  const [honeypot, setHoneypot] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,7 @@ export default function ContactSection() {
     e.preventDefault();
     setLoading(true);
     setError(false);
-    const response = await base44.functions.invoke("sendContactEmail", form);
+    const response = await base44.functions.invoke("sendContactEmail", { ...form, honeypot });
     setLoading(false);
     if (response.data?.success) {
       setSubmitted(true);
@@ -68,6 +69,17 @@ export default function ContactSection() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
+                {/* Honeypot — hidden from real users, bots will fill it */}
+                <input
+                  type="text"
+                  name="website"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                  style={{ position: "absolute", left: "-9999px", opacity: 0, height: 0 }}
+                  aria-hidden="true"
+                />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[0.75rem] font-semibold tracking-wide uppercase text-muted-foreground mb-1.5">
