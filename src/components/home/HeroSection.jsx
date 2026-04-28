@@ -21,10 +21,8 @@ export default function HeroSection() {
               Shaping Africa's Web3 Policy, Education & Digital Future
             </h1>
 
-            <p className="mt-7 text-[1rem] text-muted-foreground leading-[1.8] max-w-[30rem]">
-              Africa Web3 Institute is a pan-African public policy and
-              educational think tank advancing blockchain innovation through
-              research, regulation, education, and ecosystem building.
+            <p className="mt-7 text-[1rem] text-muted-foreground leading-[1.8] max-w-[30rem] font-normal">
+              A pan-African public policy think tank advancing blockchain through policy, research, education, and ecosystem development.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
