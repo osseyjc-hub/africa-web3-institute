@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import SectionHeader from "@/components/ui/SectionHeader";
+import { base44 } from "@/api/base44Client";
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", organization: "", message: "" });
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError(false);
+    const response = await base44.functions.invoke("sendContactEmail", form);
+    setLoading(false);
+    if (response.data?.success) {
+      setSubmitted(true);
+    } else {
+      setError(true);
+    }
   };
 
   const inputClass =
@@ -112,12 +123,21 @@ export default function ContactSection() {
                     className={`${inputClass} resize-none`}
                   />
                 </div>
+                {error && (
+                  <p className="text-[0.875rem] text-destructive">
+                    Something went wrong. Please try again or contact us directly at{" "}
+                    <a href="mailto:info@africaweb3institute.org" className="underline">
+                      info@africaweb3institute.org
+                    </a>.
+                  </p>
+                )}
                 <div className="pt-1">
                   <button
                     type="submit"
-                    className="text-sm font-semibold px-8 py-3 bg-primary text-white hover:bg-primary/90 transition-colors"
+                    disabled={loading}
+                    className="text-sm font-semibold px-8 py-3 bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-60"
                   >
-                    Send Inquiry
+                    {loading ? "Sending…" : "Send Inquiry"}
                   </button>
                 </div>
               </form>
