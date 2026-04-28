@@ -7,6 +7,7 @@ import Programs from "../components/home/Programs";
 import Publications from "../components/home/Publications";
 import Events from "../components/home/Events";
 import Community from "../components/home/Community";
+import ContactSection from "../components/home/ContactSection";
 import FinalCTA from "../components/home/FinalCTA";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <Publications />
       <Events />
       <Community />
+      <ContactSection />
       <FinalCTA />
     </>
   );

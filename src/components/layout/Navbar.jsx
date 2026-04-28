@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { label: "Publications", href: "#publications" },
   { label: "Events", href: "#events" },
   { label: "Community", href: "#community" },
+  { label: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -56,7 +57,7 @@ export default function Navbar() {
               onClick={() => scrollTo("#community")}
               className="text-[0.8125rem] font-semibold px-5 py-2 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors"
             >
-              Join the Institute
+              Join the Community
             </button>
           </div>
 
@@ -88,7 +89,7 @@ export default function Navbar() {
               onClick={() => scrollTo("#community")}
               className="w-full text-sm font-semibold px-5 py-2.5 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors"
             >
-              Join the Institute
+              Join the Community
             </button>
           </div>
         </div>
