@@ -1,12 +1,13 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const PUBLICATIONS = [
   {
-    tag: "Report",
+    tag: "Annual Report",
     title: "State of Web3 Africa 2026",
     description:
-      "A comprehensive annual review of blockchain adoption, policy developments, and ecosystem growth across 54 African nations.",
+      "A comprehensive review of blockchain adoption, policy developments, and ecosystem growth across 54 African nations.",
     year: "2026",
   },
   {
@@ -17,51 +18,56 @@ const PUBLICATIONS = [
     year: "2025",
   },
   {
-    tag: "Briefing",
+    tag: "Policy Brief",
     title: "Regulatory Frameworks for Digital Assets",
     description:
-      "A policy briefing on emerging regulatory approaches to digital assets and decentralised finance across the continent.",
+      "Emerging regulatory approaches to digital assets and decentralised finance across the continent.",
     year: "2025",
   },
 ];
 
 export default function Publications() {
   return (
-    <section id="publications" className="py-24 lg:py-32">
+    <section id="publications" className="py-28 lg:py-36 border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="mb-16">
-          <span className="text-xs font-semibold tracking-widest uppercase text-accent">
-            Publications
-          </span>
-          <h2 className="mt-4 text-3xl lg:text-4xl font-bold text-secondary">
-            Research & insights
-          </h2>
+
+        <div className="mb-14">
+          <SectionHeader eyebrow="Publications" heading="Research & insights" />
         </div>
 
-        <div className="space-y-0 divide-y divide-border">
+        <div className="divide-y divide-border">
           {PUBLICATIONS.map((pub) => (
             <div
               key={pub.title}
-              className="py-8 flex flex-col md:flex-row md:items-center gap-4 md:gap-8 group cursor-pointer"
+              className="py-8 grid grid-cols-1 md:grid-cols-[10rem_1fr_2rem] gap-4 md:gap-10 items-start group cursor-pointer"
             >
-              <div className="flex items-center gap-4 md:w-48 shrink-0">
-                <span className="text-xs font-semibold tracking-wider uppercase text-accent bg-accent/10 px-3 py-1 rounded">
+              {/* Meta */}
+              <div className="flex md:flex-col gap-3">
+                <span
+                  className="text-[0.6875rem] font-semibold tracking-wider uppercase px-2.5 py-1 border self-start"
+                  style={{ color: "#C9961A", borderColor: "#C9961A" }}
+                >
                   {pub.tag}
                 </span>
                 <span className="text-sm text-muted-foreground">{pub.year}</span>
               </div>
-              <div className="flex-1">
-                <h3 className="text-lg font-semibold text-secondary group-hover:text-primary transition-colors">
+
+              {/* Content */}
+              <div>
+                <h3 className="text-[1rem] font-semibold text-secondary group-hover:text-primary transition-colors">
                   {pub.title}
                 </h3>
-                <p className="mt-1 text-sm text-muted-foreground leading-relaxed">
+                <p className="mt-1.5 text-[0.875rem] text-muted-foreground leading-[1.75]">
                   {pub.description}
                 </p>
               </div>
-              <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors shrink-0 hidden md:block" />
+
+              {/* Arrow */}
+              <ArrowRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary mt-1 hidden md:block transition-colors" />
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

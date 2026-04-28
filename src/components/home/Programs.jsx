@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Scale, BookOpen, Lightbulb } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const PROGRAMS = [
   {
@@ -25,41 +25,36 @@ const PROGRAMS = [
 
 export default function Programs() {
   return (
-    <section id="programs" className="py-24 lg:py-32 bg-muted/50">
+    <section id="programs" className="py-28 lg:py-36 bg-[#F7F8FA] border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="text-xs font-semibold tracking-widest uppercase text-accent">
-            Programs
-          </span>
-          <h2 className="mt-4 text-3xl lg:text-4xl font-bold text-secondary">
-            Our core programs
-          </h2>
+
+        <div className="mb-14">
+          <SectionHeader eyebrow="Programs" heading="Our core programs" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
           {PROGRAMS.map((program) => (
             <div
               key={program.title}
-              className="bg-card border border-border rounded-lg p-8 flex flex-col"
+              className="bg-white p-8 flex flex-col"
             >
-              <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-5">
-                <program.icon className="w-5 h-5 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold text-secondary mb-3">
+              <program.icon className="w-5 h-5 text-primary mb-6 shrink-0" />
+              <h3 className="text-[0.9375rem] font-semibold text-secondary mb-3">
                 {program.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed flex-1">
+              <p className="text-[0.875rem] text-muted-foreground leading-[1.75] flex-1">
                 {program.description}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-8">
+        <div className="mt-10">
+          <button className="text-sm font-semibold px-6 py-3 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors">
             Explore Programs
-          </Button>
+          </button>
         </div>
+
       </div>
     </section>
   );

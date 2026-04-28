@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 
 export default function HeroSection() {
   const scrollTo = (id) => {
@@ -8,62 +7,56 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-24 lg:py-36 border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
           {/* Text */}
           <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
-              <span className="text-xs font-semibold tracking-wide text-accent uppercase">
-                Pan-African Think Tank
-              </span>
-            </div>
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-6">
+              Pan-African Think Tank
+            </p>
 
-            <h1 className="text-4xl lg:text-5xl xl:text-[3.4rem] font-bold text-secondary leading-[1.15] tracking-tight">
+            <h1 className="text-[2.25rem] lg:text-[2.875rem] font-bold text-secondary leading-[1.12] tracking-tight">
               Shaping Africa's Web3 Policy, Education & Digital Future
             </h1>
 
-            <p className="mt-6 text-base lg:text-lg text-muted-foreground leading-relaxed max-w-lg">
+            <p className="mt-7 text-[1rem] text-muted-foreground leading-[1.8] max-w-[30rem]">
               Africa Web3 Institute is a pan-African public policy and
               educational think tank advancing blockchain innovation through
               research, regulation, education, and ecosystem building.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-3">
-              <Button
-                className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 h-11"
+              <button
                 onClick={() => scrollTo("#publications")}
+                className="inline-flex items-center justify-center text-sm font-semibold px-6 py-3 bg-primary text-white hover:bg-primary/90 transition-colors"
               >
                 Explore Our Research
-              </Button>
-              <Button
-                variant="outline"
-                className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground px-6 h-11"
+              </button>
+              <button
                 onClick={() => scrollTo("#community")}
+                className="inline-flex items-center justify-center text-sm font-semibold px-6 py-3 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors"
               >
                 Join the Community
-              </Button>
-              <Button
-                variant="ghost"
-                className="text-muted-foreground hover:text-secondary px-6 h-11"
+              </button>
+              <button
+                className="inline-flex items-center justify-center text-sm font-medium px-6 py-3 text-muted-foreground hover:text-secondary transition-colors underline-offset-4 hover:underline"
               >
                 Partner With Us
-              </Button>
+              </button>
             </div>
           </div>
 
           {/* Visual */}
-          <div className="hidden lg:flex justify-center">
-            <div className="relative w-full max-w-md">
-              <div className="absolute inset-0 bg-secondary/5 rounded-2xl -rotate-3" />
-              <img
-                src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/3064f0acc_generated_d1507269.png"
-                alt="Abstract illustration of Africa and Web3 technology — blockchain nodes forming the African continent"
-                className="relative rounded-2xl w-full h-auto"
-              />
-            </div>
+          <div className="hidden lg:block">
+            <img
+              src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/3064f0acc_generated_d1507269.png"
+              alt="Blockchain nodes forming the outline of the African continent"
+              className="w-full h-auto max-w-[420px] ml-auto"
+            />
           </div>
+
         </div>
       </div>
     </section>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Landmark, GraduationCap, FileText, Rocket } from "lucide-react";
+import SectionHeader from "@/components/ui/SectionHeader";
 
 const PILLARS = [
   {
@@ -30,35 +31,30 @@ const PILLARS = [
 
 export default function WhatWeDo() {
   return (
-    <section className="py-24 lg:py-32 bg-muted/50">
+    <section className="py-28 lg:py-36 bg-[#F7F8FA] border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="text-xs font-semibold tracking-widest uppercase text-accent">
-            What We Do
-          </span>
-          <h2 className="mt-4 text-3xl lg:text-4xl font-bold text-secondary">
-            Four pillars of impact
-          </h2>
+
+        <div className="mb-14">
+          <SectionHeader eyebrow="What We Do" heading="Four pillars of impact" />
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
           {PILLARS.map((pillar) => (
             <div
               key={pillar.title}
-              className="bg-card border border-border rounded-lg p-8 hover:shadow-md hover:border-secondary/20 transition-all duration-200"
+              className="bg-white p-8 flex flex-col"
             >
-              <div className="w-11 h-11 rounded-lg bg-secondary/10 flex items-center justify-center mb-5">
-                <pillar.icon className="w-5 h-5 text-secondary" />
-              </div>
-              <h3 className="text-lg font-semibold text-secondary mb-3">
+              <pillar.icon className="w-5 h-5 text-secondary mb-6 shrink-0" />
+              <h3 className="text-[0.9375rem] font-semibold text-secondary mb-3">
                 {pillar.title}
               </h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-[0.875rem] text-muted-foreground leading-[1.75] flex-1">
                 {pillar.description}
               </p>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );
