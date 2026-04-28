@@ -29,7 +29,7 @@ export default function FinalCTA() {
             <button
               className="inline-flex items-center justify-center text-sm font-semibold px-6 py-3 border border-white/30 text-white hover:bg-white/10 transition-colors"
             >
-              Partner With Us
+              Partner With Us (Coming Soon)
             </button>
           </div>
         </div>

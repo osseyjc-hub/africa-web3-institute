@@ -51,7 +51,7 @@ export default function Events() {
 
         <div className="mt-10">
           <button className="text-sm font-semibold px-6 py-3 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors">
-            View All Events
+            View All Events (Coming Soon)
           </button>
         </div>
 

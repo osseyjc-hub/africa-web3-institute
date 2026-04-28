@@ -7,21 +7,21 @@ const PATHS = [
     title: "Join as Member",
     description:
       "Access research, events, and a growing network of Web3 practitioners, policymakers, and thought leaders across Africa.",
-    cta: "Apply for Membership",
+    cta: "Apply for Membership (Coming Soon)",
   },
   {
     label: "02",
     title: "Apply as Fellow",
     description:
       "Join a selective cohort of researchers, builders, and policy professionals contributing to Africa's Web3 future.",
-    cta: "Apply for Fellowship",
+    cta: "Apply for Fellowship (Coming Soon)",
   },
   {
     label: "03",
     title: "Become a Partner",
     description:
       "Collaborate with the Institute on research, programs, and initiatives that advance Web3 adoption and governance.",
-    cta: "Explore Partnerships",
+    cta: "Explore Partnerships (Coming Soon)",
   },
 ];
 

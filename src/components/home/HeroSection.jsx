@@ -43,7 +43,7 @@ export default function HeroSection() {
               <button
                 className="inline-flex items-center justify-center text-sm font-medium px-6 py-3 text-muted-foreground hover:text-secondary transition-colors underline-offset-4 hover:underline"
               >
-                Partner With Us
+                Partner With Us (Coming Soon)
               </button>
             </div>
           </div>

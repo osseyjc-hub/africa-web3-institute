@@ -51,7 +51,7 @@ export default function Programs() {
 
         <div className="mt-10">
           <button className="text-sm font-semibold px-6 py-3 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors">
-            Explore Programs
+            Explore Programs (Coming Soon)
           </button>
         </div>
 
