@@ -51,11 +51,8 @@ export default function ContactSection() {
                 <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-3">
                   Received
                 </p>
-                <p className="text-[1rem] font-semibold text-secondary">
-                  Thank you for reaching out.
-                </p>
-                <p className="mt-2 text-[0.875rem] text-muted-foreground leading-[1.75]">
-                  A member of our team will be in touch shortly.
+                <p className="text-[1rem] font-semibold text-secondary leading-snug">
+                  Thank you. Your message has been received. We will get back to you shortly.
                 </p>
               </div>
             ) : (
