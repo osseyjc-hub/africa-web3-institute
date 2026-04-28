@@ -17,16 +17,12 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-3 mb-5">
-              <div
-                className="w-8 h-8 flex items-center justify-center"
-                style={{ background: "#0D2C7D" }}
-              >
-                <span className="font-bold text-[11px] tracking-wide text-white">AW3</span>
-              </div>
-              <span className="font-bold text-[0.9375rem] tracking-tight" style={{ color: "#0D2C7D" }}>
-                Africa Web3 Institute
-              </span>
+            <div className="mb-5">
+              <img
+                src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/80f640b57_Logo.png"
+                alt="Africa Web3 Institute"
+                className="h-14 w-auto object-contain"
+              />
             </div>
             <p className="text-[0.8125rem] leading-[1.8] max-w-xs" style={{ color: "#6B7280" }}>
               A pan-African public policy and educational think tank advancing
