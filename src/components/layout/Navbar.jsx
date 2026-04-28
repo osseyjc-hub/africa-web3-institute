@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const NAV_LINKS = [
+  { label: "Home", href: "#" },
   { label: "About", href: "#who-we-are" },
   { label: "Programs", href: "#programs" },
   { label: "Publications", href: "#publications" },
@@ -16,6 +17,7 @@ export default function Navbar() {
 
   const scrollTo = (id) => {
     setOpen(false);
+    if (id === "#") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
     const el = document.querySelector(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };

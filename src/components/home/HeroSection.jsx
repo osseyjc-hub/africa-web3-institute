@@ -7,7 +7,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="py-24 lg:py-36 border-b border-border">
+    <section className="py-24 lg:py-36">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
@@ -17,7 +17,7 @@ export default function HeroSection() {
               Pan-African Think Tank
             </p>
 
-            <h1 className="text-[2.25rem] lg:text-[2.875rem] font-bold text-secondary leading-[1.12] tracking-tight">
+            <h1 className="text-[2.5rem] lg:text-[3.25rem] font-bold text-secondary leading-[1.1] tracking-tight">
               Shaping Africa's Web3 Policy, Education & Digital Future
             </h1>
 
@@ -59,6 +59,27 @@ export default function HeroSection() {
 
         </div>
       </div>
+
+      {/* Trust strip */}
+      <div className="border-t border-b border-border bg-[#F9FAFB] mt-16">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-border">
+            {[
+              "Policy Research",
+              "Education & Capacity",
+              "Ecosystem Building",
+              "Startup Incubation",
+            ].map((item) => (
+              <div key={item} className="py-5 px-6 text-center">
+                <span className="text-[0.8125rem] font-semibold tracking-wide text-secondary">
+                  {item}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }
