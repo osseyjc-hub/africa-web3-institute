@@ -13,10 +13,6 @@ export default function HeroSection() {
 
           {/* Text */}
           <div>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-6">
-              Pan-African Think Tank
-            </p>
-
             <h1 className="text-[2.5rem] lg:text-[3.25rem] font-bold text-secondary leading-[1.1] tracking-tight">
               Shaping Africa's Web3 Policy, Education & Digital Future
             </h1>
