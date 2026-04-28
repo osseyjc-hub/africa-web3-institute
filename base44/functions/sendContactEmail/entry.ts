@@ -4,21 +4,33 @@ Deno.serve(async (req) => {
   const base44 = createClientFromRequest(req);
   const { name, email, organization, message, honeypot } = await req.json();
 
-  // Spam protection: reject if honeypot field is filled
+  // Spam protection: silently ignore bots
   if (honeypot) {
-    return Response.json({ success: true }); // silently ignore bots
+    return Response.json({ success: true });
   }
 
-  const body = `Name: ${name}
+  // Get admin user to send to (SendEmail only works for registered app users)
+  const users = await base44.asServiceRole.entities.User.filter({ role: "admin" });
+  const adminEmail = users?.[0]?.email;
+
+  if (!adminEmail) {
+    return Response.json({ success: false, error: "No admin found" }, { status: 500 });
+  }
+
+  const body = `New contact form submission from the Africa Web3 Institute website.
+
+Name: ${name}
 Email: ${email}
 Organization: ${organization || "N/A"}
 
 Message:
-${message}`;
+${message}
+
+---
+Reply directly to the sender at: ${email}`;
 
   await base44.asServiceRole.integrations.Core.SendEmail({
-    to: "info@africaweb3institute.org",
-    from_name: "Africa Web3 Institute Website",
+    to: adminEmail,
     subject: "New Website Inquiry — Africa Web3 Institute",
     body,
   });
