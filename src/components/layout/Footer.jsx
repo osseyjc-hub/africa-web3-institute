@@ -56,12 +56,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 {items.map((item) => (
                   <li key={item}>
-                    <span
-                      className="text-[0.8125rem] cursor-pointer transition-colors"
-                      style={{ color: "#6B7280" }}
-                      onMouseEnter={e => e.target.style.color = "#111827"}
-                      onMouseLeave={e => e.target.style.color = "#6B7280"}
-                    >
+                    <span className="text-[0.8125rem]" style={{ color: "#9CA3AF" }}>
                       {item}
                     </span>
                   </li>
@@ -77,13 +72,7 @@ export default function Footer() {
           </p>
           <div className="flex gap-6">
             {["Privacy Policy", "Terms of Use"].map((item) => (
-              <span
-                key={item}
-                className="text-[0.75rem] cursor-pointer transition-colors"
-                style={{ color: "#9CA3AF" }}
-                onMouseEnter={e => e.target.style.color = "#111827"}
-                onMouseLeave={e => e.target.style.color = "#9CA3AF"}
-              >
+              <span key={item} className="text-[0.75rem]" style={{ color: "#9CA3AF" }}>
                 {item}
               </span>
             ))}
