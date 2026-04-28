@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 
@@ -27,6 +27,8 @@ const PUBLICATIONS = [
 ];
 
 export default function Publications() {
+  const [active, setActive] = useState(null);
+
   return (
     <section id="publications" className="py-28 lg:py-36 border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -37,33 +39,44 @@ export default function Publications() {
 
         <div className="divide-y divide-border">
           {PUBLICATIONS.map((pub) => (
-            <div
-              key={pub.title}
-              className="py-8 grid grid-cols-1 md:grid-cols-[10rem_1fr_2rem] gap-4 md:gap-10 items-start group cursor-pointer"
-            >
-              {/* Meta */}
-              <div className="flex md:flex-col gap-3">
-                <span
-                  className="text-[0.6875rem] font-semibold tracking-wider uppercase px-2.5 py-1 border self-start"
-                  style={{ color: "#C9961A", borderColor: "#C9961A" }}
-                >
-                  {pub.tag}
-                </span>
-                <span className="text-sm text-muted-foreground">{pub.year}</span>
+            <div key={pub.title}>
+              <div
+                onClick={() => setActive(active === pub.title ? null : pub.title)}
+                className="py-8 grid grid-cols-1 md:grid-cols-[10rem_1fr_2rem] gap-4 md:gap-10 items-start group cursor-pointer"
+              >
+                {/* Meta */}
+                <div className="flex md:flex-col gap-3">
+                  <span
+                    className="text-[0.6875rem] font-semibold tracking-wider uppercase px-2.5 py-1 border self-start"
+                    style={{ color: "#C9961A", borderColor: "#C9961A" }}
+                  >
+                    {pub.tag}
+                  </span>
+                  <span className="text-sm text-muted-foreground">{pub.year}</span>
+                </div>
+
+                {/* Content */}
+                <div>
+                  <h3 className="text-[1rem] font-semibold text-secondary group-hover:text-primary transition-colors">
+                    {pub.title}
+                  </h3>
+                  <p className="mt-1.5 text-[0.875rem] text-muted-foreground leading-[1.75]">
+                    {pub.description}
+                  </p>
+                </div>
+
+                {/* Arrow */}
+                <ArrowRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary mt-1 hidden md:block transition-colors" />
               </div>
 
-              {/* Content */}
-              <div>
-                <h3 className="text-[1rem] font-semibold text-secondary group-hover:text-primary transition-colors">
-                  {pub.title}
-                </h3>
-                <p className="mt-1.5 text-[0.875rem] text-muted-foreground leading-[1.75]">
-                  {pub.description}
-                </p>
-              </div>
-
-              {/* Arrow */}
-              <ArrowRight className="w-4 h-4 text-muted-foreground/40 group-hover:text-primary mt-1 hidden md:block transition-colors" />
+              {/* Inline placeholder */}
+              {active === pub.title && (
+                <div className="pb-8 pl-0 md:pl-[calc(10rem+2.5rem)]">
+                  <p className="text-[0.8125rem] font-medium text-muted-foreground border-l-2 pl-4" style={{ borderColor: "#C9961A" }}>
+                    Full report coming soon.
+                  </p>
+                </div>
+              )}
             </div>
           ))}
         </div>
