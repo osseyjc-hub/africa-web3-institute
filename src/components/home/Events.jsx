@@ -79,12 +79,18 @@ const policyEvents = [
   },
 ];
 
-function MetaTag({ icon: Icon, text }) {
+function EventMeta({ date, location }) {
   return (
-    <span className="inline-flex items-center gap-1.5 text-[0.8125rem] text-muted-foreground">
-      <Icon className="w-3.5 h-3.5 flex-shrink-0" />
-      {text}
-    </span>
+    <div className="flex flex-col gap-1.5">
+      <span className="inline-flex items-center gap-2 text-[0.8125rem] font-medium text-secondary">
+        <Calendar className="w-3.5 h-3.5 flex-shrink-0 text-accent" />
+        {date}
+      </span>
+      <span className="inline-flex items-center gap-2 text-[0.8125rem] text-muted-foreground">
+        <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+        {location}
+      </span>
+    </div>
   );
 }
 
@@ -112,7 +118,7 @@ function OutlineBtn({ children }) {
 
 function SubSectionLabel({ label }) {
   return (
-    <p className="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-accent mb-6">
+    <p className="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-accent mb-6 pb-4 border-b border-border">
       {label}
     </p>
   );
@@ -121,7 +127,7 @@ function SubSectionLabel({ label }) {
 export default function Events() {
   return (
     <section id="events" className="py-28 lg:py-36 border-b border-border">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-24">
 
         {/* Intro */}
         <div className="max-w-2xl">
@@ -143,39 +149,37 @@ export default function Events() {
         <div>
           <SubSectionLabel label="Flagship Initiative" />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-border">
-            {/* Left: Title + Meta */}
-            <div className="bg-white p-8 flex flex-col justify-between gap-8">
+            {/* Left */}
+            <div className="bg-white p-8 lg:p-10 flex flex-col gap-8">
               <div>
-                <h3 className="text-[1.25rem] font-bold text-secondary leading-snug mb-4">
+                <h3 className="text-[1.25rem] font-bold text-secondary leading-snug mb-5">
                   {flagship.title}
                 </h3>
-                <p className="text-[1rem] text-muted-foreground leading-[1.8]">
+                <p className="text-[0.9375rem] text-muted-foreground leading-[1.8]">
                   {flagship.description}
                 </p>
               </div>
-              <div className="space-y-2">
-                <MetaTag icon={Calendar} text={flagship.date} />
-                <br />
-                <MetaTag icon={MapPin} text={flagship.coverage} />
-              </div>
+              <EventMeta date={flagship.date} location={flagship.coverage} />
             </div>
 
-            {/* Right: Outcomes + CTA */}
-            <div className="bg-white p-8 flex flex-col justify-between gap-8">
+            {/* Right */}
+            <div className="bg-white p-8 lg:p-10 flex flex-col gap-8">
               <div>
-                <p className="text-[0.75rem] font-semibold tracking-wider uppercase text-muted-foreground mb-4">
+                <p className="text-[0.6875rem] font-semibold tracking-wider uppercase text-muted-foreground mb-5">
                   Key Outcomes
                 </p>
                 <ul className="space-y-3">
                   {flagship.outcomes.map((o) => (
                     <li key={o} className="flex items-start gap-3">
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
-                      <span className="text-[0.9375rem] text-foreground">{o}</span>
+                      <span className="mt-[0.45rem] w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                      <span className="text-[0.9375rem] text-foreground leading-snug">{o}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <PrimaryBtn>Partner With Us →</PrimaryBtn>
+              <div>
+                <PrimaryBtn>Partner With Us →</PrimaryBtn>
+              </div>
             </div>
           </div>
         </div>
@@ -185,19 +189,15 @@ export default function Events() {
           <SubSectionLabel label="Research & Intelligence Launches" />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
             {researchEvents.map((ev) => (
-              <div key={ev.title} className="bg-white p-8 flex flex-col justify-between gap-6">
-                <div className="space-y-4">
+              <div key={ev.title} className="bg-white p-8 lg:p-10 flex flex-col gap-6">
+                <div className="flex-1 space-y-5">
                   <h3 className="text-[1rem] font-bold text-secondary leading-snug">{ev.title}</h3>
-                  <div className="space-y-1.5">
-                    <MetaTag icon={Calendar} text={ev.date} />
-                    <br />
-                    <MetaTag icon={MapPin} text={ev.location} />
-                  </div>
+                  <EventMeta date={ev.date} location={ev.location} />
                   <p className="text-[0.875rem] text-muted-foreground leading-[1.75]">
                     {ev.description}
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-3 pt-2 border-t border-border">
                   {ev.ctas.map((cta) =>
                     cta.variant === "primary" ? (
                       <PrimaryBtn key={cta.label}>{cta.label} →</PrimaryBtn>
@@ -216,31 +216,27 @@ export default function Events() {
           <SubSectionLabel label="Policy & Regulatory Engagements" />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {policyEvents.map((ev) => (
-              <div key={ev.title} className="bg-white p-7 flex flex-col justify-between gap-5">
-                <div className="space-y-3">
-                  <div>
-                    <span
-                      className="text-[0.6875rem] font-semibold tracking-wider uppercase px-2 py-0.5 border"
-                      style={{ color: "#C9961A", borderColor: "#C9961A" }}
-                    >
-                      {ev.country}
-                    </span>
-                  </div>
+              <div key={ev.title} className="bg-white p-7 flex flex-col gap-5">
+                <div className="flex-1 space-y-4">
+                  <span
+                    className="inline-block text-[0.6875rem] font-semibold tracking-wider uppercase px-2 py-0.5 border"
+                    style={{ color: "#C9961A", borderColor: "#C9961A" }}
+                  >
+                    {ev.country}
+                  </span>
                   <h3 className="text-[0.9375rem] font-semibold text-secondary leading-snug">
                     {ev.title}
                   </h3>
-                  <div className="space-y-1.5">
-                    <MetaTag icon={Calendar} text={ev.date} />
-                    <br />
-                    <MetaTag icon={MapPin} text={ev.location} />
-                  </div>
+                  <EventMeta date={ev.date} location={ev.location} />
                 </div>
-                <button
-                  onClick={() => scrollTo("#contact")}
-                  className="self-start text-[0.8125rem] font-semibold text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
-                >
-                  {ev.cta} →
-                </button>
+                <div className="pt-4 border-t border-border">
+                  <button
+                    onClick={() => scrollTo("#contact")}
+                    className="text-[0.8125rem] font-semibold text-primary underline underline-offset-4 hover:text-primary/80 transition-colors"
+                  >
+                    {ev.cta} →
+                  </button>
+                </div>
               </div>
             ))}
           </div>
@@ -252,7 +248,7 @@ export default function Events() {
             <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-3">
               Partner With Us
             </p>
-            <h3 className="text-[1.375rem] font-bold text-secondary leading-snug">
+            <h3 className="text-[1.375rem] font-bold text-secondary leading-snug max-w-lg">
               Governments, institutions, builders, and capital partners shaping Africa's digital future.
             </h3>
           </div>
