@@ -34,7 +34,7 @@ export default function Navbar() {
               alt="Africa Web3 Institute"
               className="h-10 sm:h-12 w-auto object-contain"
             />
-            <span className="hidden sm:block text-[0.875rem] font-semibold text-secondary leading-tight">
+            <span className="text-[0.875rem] font-semibold text-secondary leading-tight">
               Africa Web3 Institute
             </span>
           </Link>
