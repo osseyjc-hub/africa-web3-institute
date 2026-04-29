@@ -28,15 +28,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-[4.5rem]">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center">
             <img
               src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/80f640b57_Logo.png"
               alt="Africa Web3 Institute"
-              className="h-10 sm:h-11 w-auto object-contain"
+              className="h-10 sm:h-12 w-auto object-contain"
             />
-            <span className="hidden sm:block text-[0.875rem] font-semibold text-secondary leading-tight">
-              Africa Web3 Institute
-            </span>
           </Link>
 
           {/* Desktop links */}
