@@ -1,6 +1,5 @@
 import React from "react";
 import { MapPin, Calendar } from "lucide-react";
-import SectionHeader from "@/components/ui/SectionHeader";
 
 const scrollTo = (id) => {
   const el = document.querySelector(id);
@@ -124,8 +123,21 @@ export default function Events() {
     <section id="events" className="py-28 lg:py-36 border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-20">
 
-        {/* Section Header */}
-        <SectionHeader eyebrow="Events & Engagements" heading="Where Africa's Web3 Future Takes Shape" />
+        {/* Intro */}
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">
+            Events & Convenings
+          </p>
+          <h2 className="text-[1.75rem] lg:text-[2.25rem] font-bold text-secondary leading-snug tracking-tight mb-6">
+            Events & Convenings
+          </h2>
+          <p className="text-[1rem] text-muted-foreground leading-[1.8] mb-4">
+            Africa Web3 Institute sits at the intersection of policy, education, and market infrastructure, curating high-impact gatherings that shape Africa's digital asset future.
+          </p>
+          <p className="text-[1rem] text-muted-foreground leading-[1.8]">
+            From campus activations to closed-door policy rooms, each event is intentional: to inform, to align, to unlock.
+          </p>
+        </div>
 
         {/* ── SECTION 1: Flagship ── */}
         <div>
