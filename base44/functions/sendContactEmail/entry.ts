@@ -17,17 +17,25 @@ Deno.serve(async (req) => {
     return Response.json({ success: false, error: "No admin found" }, { status: 500 });
   }
 
-  const body = `New contact form submission from the Africa Web3 Institute website.
+  const body = `You have received a new inquiry via the Africa Web3 Institute website.
 
-Name: ${name}
-Email: ${email}
-Organization: ${organization || "N/A"}
+────────────────────────────────────
+  CONTACT DETAILS
+────────────────────────────────────
 
-Message:
+  Name:           ${name}
+  Email:          ${email}
+  Organization:   ${organization || "N/A"}
+
+────────────────────────────────────
+  MESSAGE
+────────────────────────────────────
+
 ${message}
 
----
-Reply directly to the sender at: ${email}`;
+────────────────────────────────────
+
+To reply, email: ${email}`;
 
   await base44.asServiceRole.integrations.Core.SendEmail({
     to: adminEmail,
