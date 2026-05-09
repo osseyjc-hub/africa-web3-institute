@@ -147,7 +147,7 @@ export const t = {
       joinCommunity: "Rejoindre la Communauté",
     },
     hero: {
-      h1: "Façonner les politiques Web3, l'éducation numérique et l'avenir digital de l'Afrique",
+      h1: "Transformer les politiques Web3, l'éducation numérique et l'avenir digital de l'Afrique",
       tagline: "Promouvoir les politiques des actifs numériques, les cadres réglementaires et les infrastructures de marché pour l'économie Web3 africaine",
       intro: "Un think tank panafricain de politique publique dédié à l'avancement de la blockchain à travers la recherche, l'élaboration de politiques, l'éducation et le développement de l'écosystème.",
       cta1: "Explorer nos recherches",
