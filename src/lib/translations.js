@@ -159,7 +159,7 @@ export const t = {
       eyebrow: "Qui sommes-nous",
       heading: "À l'intersection de la technologie, de la politique et de la société",
       p1: "L'Africa Web3 Institute opère à l'intersection de la technologie, de la politique et de la société. Il traduit les technologies émergentes complexes en orientations politiques claires, en formations pratiques et en cadres opérationnels pour l'économie numérique africaine.",
-      p2: "Nos travaux comblent le fossé entre innovateurs, régulateurs et communautés — pour que la transformation numérique de l'Afrique soit inclusive, éclairée et souveraine.",
+      p2: "Nos travaux rapprochent les innovateurs, les régulateurs et les communautés afin de bâtir une transformation numérique africaine inclusive, maîtrisée et souveraine.",
     },
     whatWeDo: {
       eyebrow: "Ce que nous faisons",
