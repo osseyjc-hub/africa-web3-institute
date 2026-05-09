@@ -252,7 +252,7 @@ export const t = {
       errorMsg: "Une erreur s'est produite. Veuillez réessayer ou nous contacter directement à",
     },
     finalCTA: {
-      heading: "Construisez avec nous. Façonnez les politiques.\nDéfinissez l'avenir.",
+      heading: "Construisez avec nous. Transformons les politiques.\nDéfinissez l'avenir.",
       body: "Rejoignez un réseau croissant de gouvernements, d'innovateurs et d'institutions faisant avancer l'agenda Web3 africain.",
       cta1: "Rejoindre la Communauté",
       cta2: "Devenir partenaire (à venir)",
