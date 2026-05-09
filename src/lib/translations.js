@@ -11,7 +11,7 @@ export const t = {
       joinCommunity: "Join the Community",
     },
     hero: {
-      h1: "Shaping Africa's Web3 Policy, Education & Digital Future",
+      h1: "Driving Digital Asset Policy, Regulatory Frameworks, and Market Infrastructure for Africa's Web3 Economy",
       tagline: "Driving Digital Asset Policy, Regulatory Frameworks, and Market Infrastructure for Africa's Web3 Economy",
       intro: "A pan-African public policy think tank advancing blockchain through policy, research, education, and ecosystem development.",
       cta1: "Explore Our Research",
