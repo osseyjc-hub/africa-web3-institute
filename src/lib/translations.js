@@ -178,7 +178,7 @@ export const t = {
     },
     programs: {
       eyebrow: "Programmes",
-      heading: "Nos programmes phares",
+      heading: "Nos Programmes",
       cta: "Explorer les programmes (à venir)",
       items: [
         { title: "Politique & Réglementation", description: "Élaboration de cadres réglementaires via des conseils techniques, des concertations multipartites et la rédaction de modèles de politiques avec les gouvernements africains." },
