@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import { base44 } from "@/api/base44Client";
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function ContactSection() {
+  const { lang } = useLang();
+  const T = t[lang].contact;
+
   const [form, setForm] = useState({ name: "", email: "", organization: "", message: "" });
   const [honeypot, setHoneypot] = useState("");
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,20 +35,15 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-28 lg:py-36 border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
 
-          {/* Left — description */}
+          {/* Left */}
           <div>
-            <SectionHeader eyebrow="Work With Us" heading="Partnerships & Collaboration" />
-            <p className="mt-6 text-[1rem] text-muted-foreground leading-[1.8]">
-              We welcome collaboration with governments, regulators, development
-              organizations, academic institutions, media, civil society, and
-              private sector partners.
-            </p>
+            <SectionHeader eyebrow={T.eyebrow} heading={T.heading} />
+            <p className="mt-6 text-[1rem] text-muted-foreground leading-[1.8]">{T.body}</p>
             <div className="mt-10 pt-8 border-t border-border">
               <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-3">
-                General Enquiries
+                {T.enquiriesLabel}
               </p>
               <a
                 href="mailto:info@africaweb3institute.org"
@@ -56,20 +54,18 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right — form */}
+          {/* Right */}
           <div>
             {submitted ? (
               <div className="border border-border p-10 flex flex-col items-start justify-center h-full">
                 <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-3">
-                  Received
+                  {T.successEyebrow}
                 </p>
-                <p className="text-[1rem] font-semibold text-secondary leading-snug">
-                  Thank you. Your message has been received. We will get back to you shortly.
-                </p>
+                <p className="text-[1rem] font-semibold text-secondary leading-snug">{T.successMsg}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Honeypot — hidden from real users, bots will fill it */}
+                {/* Honeypot */}
                 <input
                   type="text"
                   name="website"
@@ -83,61 +79,32 @@ export default function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-[0.75rem] font-semibold tracking-wide uppercase text-muted-foreground mb-1.5">
-                      Name
+                      {T.labels.name}
                     </label>
-                    <input
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      required
-                      placeholder="Your full name"
-                      className={inputClass}
-                    />
+                    <input name="name" value={form.name} onChange={handleChange} required placeholder={T.placeholders.name} className={inputClass} />
                   </div>
                   <div>
                     <label className="block text-[0.75rem] font-semibold tracking-wide uppercase text-muted-foreground mb-1.5">
-                      Email
+                      {T.labels.email}
                     </label>
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      required
-                      placeholder="your@email.com"
-                      className={inputClass}
-                    />
+                    <input type="email" name="email" value={form.email} onChange={handleChange} required placeholder={T.placeholders.email} className={inputClass} />
                   </div>
                 </div>
                 <div>
                   <label className="block text-[0.75rem] font-semibold tracking-wide uppercase text-muted-foreground mb-1.5">
-                    Organization
+                    {T.labels.organization}
                   </label>
-                  <input
-                    name="organization"
-                    value={form.organization}
-                    onChange={handleChange}
-                    placeholder="Institution or company"
-                    className={inputClass}
-                  />
+                  <input name="organization" value={form.organization} onChange={handleChange} placeholder={T.placeholders.organization} className={inputClass} />
                 </div>
                 <div>
                   <label className="block text-[0.75rem] font-semibold tracking-wide uppercase text-muted-foreground mb-1.5">
-                    Message
+                    {T.labels.message}
                   </label>
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    required
-                    rows={5}
-                    placeholder="Briefly describe your inquiry or partnership interest."
-                    className={`${inputClass} resize-none`}
-                  />
+                  <textarea name="message" value={form.message} onChange={handleChange} required rows={5} placeholder={T.placeholders.message} className={`${inputClass} resize-none`} />
                 </div>
                 {error && (
                   <p className="text-[0.875rem] text-destructive">
-                    Something went wrong. Please try again or contact us directly at{" "}
+                    {T.errorMsg}{" "}
                     <a href="mailto:info@africaweb3institute.org" className="underline">
                       info@africaweb3institute.org
                     </a>.
@@ -149,7 +116,7 @@ export default function ContactSection() {
                     disabled={loading}
                     className="text-sm font-semibold px-8 py-3 bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-60"
                   >
-                    {loading ? "Sending…" : "Send Inquiry"}
+                    {loading ? T.sending : T.submit}
                   </button>
                 </div>
               </form>

@@ -1,19 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-
-const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#who-we-are" },
-  { label: "Programs", href: "#programs" },
-  { label: "Publications", href: "#publications" },
-  { label: "Events", href: "#events" },
-  { label: "Community", href: "#community" },
-  { label: "Contact", href: "#contact" },
-];
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang } = useLang();
+  const T = t[lang].nav;
+
+  const NAV_LINKS = [
+    { label: T.home, href: "#" },
+    { label: T.about, href: "#who-we-are" },
+    { label: T.programs, href: "#programs" },
+    { label: T.publications, href: "#publications" },
+    { label: T.events, href: "#events" },
+    { label: T.community, href: "#community" },
+    { label: T.contact, href: "#contact" },
+  ];
 
   const scrollTo = (id) => {
     setOpen(false);
@@ -52,24 +56,59 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA */}
-          <div className="hidden lg:block">
+          {/* Right side: language switcher + CTA */}
+          <div className="hidden lg:flex items-center gap-4">
+            {/* Language switcher */}
+            <div className="flex items-center gap-0 border border-border rounded-sm overflow-hidden text-[0.75rem] font-semibold">
+              <button
+                onClick={() => setLang("en")}
+                className={`px-3 py-1.5 transition-colors ${lang === "en" ? "bg-secondary text-white" : "text-muted-foreground hover:text-secondary"}`}
+              >
+                EN
+              </button>
+              <span className="w-px h-full bg-border" />
+              <button
+                onClick={() => setLang("fr")}
+                className={`px-3 py-1.5 transition-colors ${lang === "fr" ? "bg-secondary text-white" : "text-muted-foreground hover:text-secondary"}`}
+              >
+                FR
+              </button>
+            </div>
+
+            {/* CTA */}
             <button
               onClick={() => scrollTo("#community")}
               className="text-[0.8125rem] font-semibold px-5 py-2 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors"
             >
-              Join the Community
+              {T.joinCommunity}
             </button>
           </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="lg:hidden p-2 text-foreground"
-            aria-label="Toggle menu"
-          >
-            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          {/* Mobile: language switcher + hamburger */}
+          <div className="flex lg:hidden items-center gap-3">
+            <div className="flex items-center border border-border rounded-sm overflow-hidden text-[0.75rem] font-semibold">
+              <button
+                onClick={() => setLang("en")}
+                className={`px-2.5 py-1 transition-colors ${lang === "en" ? "bg-secondary text-white" : "text-muted-foreground"}`}
+              >
+                EN
+              </button>
+              <span className="w-px bg-border self-stretch" />
+              <button
+                onClick={() => setLang("fr")}
+                className={`px-2.5 py-1 transition-colors ${lang === "fr" ? "bg-secondary text-white" : "text-muted-foreground"}`}
+              >
+                FR
+              </button>
+            </div>
+            <button
+              onClick={() => setOpen(!open)}
+              className="p-2 text-foreground"
+              aria-label="Toggle menu"
+            >
+              {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -90,7 +129,7 @@ export default function Navbar() {
               onClick={() => scrollTo("#community")}
               className="w-full text-sm font-semibold px-5 py-2.5 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors"
             >
-              Join the Community
+              {T.joinCommunity}
             </button>
           </div>
         </div>

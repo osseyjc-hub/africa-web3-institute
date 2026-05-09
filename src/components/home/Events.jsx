@@ -1,83 +1,12 @@
 import React from "react";
 import { MapPin, Calendar } from "lucide-react";
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 const scrollTo = (id) => {
   const el = document.querySelector(id);
   if (el) el.scrollIntoView({ behavior: "smooth" });
 };
-
-const flagship = {
-  title: "Stablecoin Africa Campus Tour 2026",
-  coverage: "9 Universities · 6 Cities · Ghana, Nigeria, Kenya",
-  date: "26 June – 7 July 2026",
-  description:
-    "A continental university roadshow activating the next wave of Web3 talent. Moving city to city, connecting students to stablecoins, policy developments, and real career pathways.",
-  outcomes: [
-    "Student onboarding into Web3 ecosystems",
-    "Campus ambassador recruitment",
-    "Talent pipeline creation",
-  ],
-};
-
-const researchEvents = [
-  {
-    title: "State of Web3 Africa 2026 — Q2 Launch",
-    date: "10 July 2026",
-    location: "Golden Tulip Dar, Dar es Salaam, Tanzania",
-    description:
-      "A data-driven convening of policymakers, investors, and builders to decode stablecoins, regulation, and capital flows.",
-    ctas: [
-      { label: "Download Previous Report", variant: "outline" },
-      { label: "Attend Launch Event", variant: "primary" },
-    ],
-  },
-  {
-    title: "State of Web3 Africa 2026 — Q3 Launch",
-    date: "25 September 2026",
-    location: "Marriott Bonvoy, Johannesburg, South Africa",
-    description:
-      "Tracking what's scaling, what's stalling, and where Africa captures value next.",
-    ctas: [{ label: "Get Early Access", variant: "primary" }],
-  },
-];
-
-const policyEvents = [
-  {
-    title: "VASP Policy Workshop for Journalists",
-    country: "Ghana",
-    date: "22–23 July 2026",
-    location: "Alisa Hotel, Accra",
-    cta: "Request Invitation",
-  },
-  {
-    title: "VASP Strategy Workshop for Banks",
-    country: "Ghana",
-    date: "5 August 2026",
-    location: "Kempinski, Accra",
-    cta: "Institutional Participation",
-  },
-  {
-    title: "Web3 Policy Sensitization Workshop",
-    country: "Congo DRC",
-    date: "10 September 2026",
-    location: "Hilton, Kinshasa",
-    cta: "Join Policy Dialogue",
-  },
-  {
-    title: "Web3 Policy Roundtable",
-    country: "Tanzania",
-    date: "4 October 2026",
-    location: "Hyatt, Dar es Salaam",
-    cta: "Request Seat at the Table",
-  },
-  {
-    title: "Web3 Policy Breakfast",
-    country: "South Sudan",
-    date: "3 December 2026",
-    location: "Radisson Blu, Juba",
-    cta: "Engage as Stakeholder",
-  },
-];
 
 function EventMeta({ date, location }) {
   return (
@@ -125,6 +54,10 @@ function SubSectionLabel({ label }) {
 }
 
 export default function Events() {
+  const { lang } = useLang();
+  const T = t[lang].events;
+  const flagship = T.flagship;
+
   return (
     <section id="events" className="py-28 lg:py-36 border-b border-border">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 space-y-24">
@@ -132,41 +65,30 @@ export default function Events() {
         {/* Intro */}
         <div className="max-w-2xl">
           <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">
-            Events & Convenings
+            {T.eyebrow}
           </p>
           <h2 className="text-[1.75rem] lg:text-[2.25rem] font-bold text-secondary leading-snug tracking-tight mb-6">
-            Events & Convenings
+            {T.heading}
           </h2>
-          <p className="text-[1rem] text-muted-foreground leading-[1.8] mb-4">
-            Africa Web3 Institute sits at the intersection of policy, education, and market infrastructure, curating high-impact gatherings that shape Africa's digital asset future.
-          </p>
-          <p className="text-[1rem] text-muted-foreground leading-[1.8]">
-            From campus activations to closed-door policy rooms, each event is intentional: to inform, to align, to unlock.
-          </p>
+          <p className="text-[1rem] text-muted-foreground leading-[1.8] mb-4">{T.intro1}</p>
+          <p className="text-[1rem] text-muted-foreground leading-[1.8]">{T.intro2}</p>
         </div>
 
-        {/* ── SECTION 1: Flagship ── */}
+        {/* Flagship */}
         <div>
-          <SubSectionLabel label="Flagship Initiative" />
+          <SubSectionLabel label={T.flagshipLabel} />
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-border">
-            {/* Left */}
             <div className="bg-white p-8 lg:p-10 flex flex-col gap-8">
               <div>
-                <h3 className="text-[1.25rem] font-bold text-secondary leading-snug mb-5">
-                  {flagship.title}
-                </h3>
-                <p className="text-[0.9375rem] text-muted-foreground leading-[1.8]">
-                  {flagship.description}
-                </p>
+                <h3 className="text-[1.25rem] font-bold text-secondary leading-snug mb-5">{flagship.title}</h3>
+                <p className="text-[0.9375rem] text-muted-foreground leading-[1.8]">{flagship.description}</p>
               </div>
               <EventMeta date={flagship.date} location={flagship.coverage} />
             </div>
-
-            {/* Right */}
             <div className="bg-white p-8 lg:p-10 flex flex-col gap-8">
               <div>
                 <p className="text-[0.6875rem] font-semibold tracking-wider uppercase text-muted-foreground mb-5">
-                  Key Outcomes
+                  {T.keyOutcomes}
                 </p>
                 <ul className="space-y-3">
                   {flagship.outcomes.map((o) => (
@@ -177,25 +99,21 @@ export default function Events() {
                   ))}
                 </ul>
               </div>
-              <div>
-                <PrimaryBtn>Partner With Us →</PrimaryBtn>
-              </div>
+              <div><PrimaryBtn>{flagship.cta}</PrimaryBtn></div>
             </div>
           </div>
         </div>
 
-        {/* ── SECTION 2: Research Launches ── */}
+        {/* Research Launches */}
         <div>
-          <SubSectionLabel label="Research & Intelligence Launches" />
+          <SubSectionLabel label={T.researchLabel} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
-            {researchEvents.map((ev) => (
+            {T.researchEvents.map((ev) => (
               <div key={ev.title} className="bg-white p-8 lg:p-10 flex flex-col gap-6">
                 <div className="flex-1 space-y-5">
                   <h3 className="text-[1rem] font-bold text-secondary leading-snug">{ev.title}</h3>
                   <EventMeta date={ev.date} location={ev.location} />
-                  <p className="text-[0.875rem] text-muted-foreground leading-[1.75]">
-                    {ev.description}
-                  </p>
+                  <p className="text-[0.875rem] text-muted-foreground leading-[1.75]">{ev.description}</p>
                 </div>
                 <div className="flex flex-wrap gap-3 pt-2 border-t border-border">
                   {ev.ctas.map((cta) =>
@@ -211,11 +129,11 @@ export default function Events() {
           </div>
         </div>
 
-        {/* ── SECTION 3: Policy Events ── */}
+        {/* Policy Events */}
         <div>
-          <SubSectionLabel label="Policy & Regulatory Engagements" />
+          <SubSectionLabel label={T.policyLabel} />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-            {policyEvents.map((ev) => (
+            {T.policyEvents.map((ev) => (
               <div key={ev.title} className="bg-white p-7 flex flex-col gap-5">
                 <div className="flex-1 space-y-4">
                   <span
@@ -224,9 +142,7 @@ export default function Events() {
                   >
                     {ev.country}
                   </span>
-                  <h3 className="text-[0.9375rem] font-semibold text-secondary leading-snug">
-                    {ev.title}
-                  </h3>
+                  <h3 className="text-[0.9375rem] font-semibold text-secondary leading-snug">{ev.title}</h3>
                   <EventMeta date={ev.date} location={ev.location} />
                 </div>
                 <div className="pt-4 border-t border-border">
@@ -242,19 +158,19 @@ export default function Events() {
           </div>
         </div>
 
-        {/* ── Partnership CTA ── */}
+        {/* Partnership CTA */}
         <div className="border border-border p-10 lg:p-14 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
           <div>
             <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-3">
-              Partner With Us
+              {T.partnerLabel}
             </p>
             <h3 className="text-[1.375rem] font-bold text-secondary leading-snug max-w-lg">
-              Governments, institutions, builders, and capital partners shaping Africa's digital future.
+              {T.partnerHeading}
             </h3>
           </div>
           <div className="flex flex-wrap gap-3 flex-shrink-0">
-            <PrimaryBtn>Become a Partner →</PrimaryBtn>
-            <OutlineBtn>Sponsor an Event</OutlineBtn>
+            <PrimaryBtn>{T.partnerCta1}</PrimaryBtn>
+            <OutlineBtn>{T.partnerCta2}</OutlineBtn>
           </div>
         </div>
 
