@@ -12,7 +12,7 @@ export const t = {
     },
     hero: {
       h1: "Driving Digital Asset Policy, Regulatory Frameworks, and Market Infrastructure for Africa's Web3 Economy",
-      tagline: "Driving Digital Asset Policy, Regulatory Frameworks, and Market Infrastructure for Africa's Web3 Economy",
+      tagline: "",
       intro: "A pan-African public policy think tank advancing blockchain through policy, research, education, and ecosystem development.",
       cta1: "Explore Our Research",
       cta2: "Join the Community",
