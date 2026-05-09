@@ -149,7 +149,7 @@ export const t = {
     hero: {
       h1: "Piloter les politiques des actifs numériques, les cadres réglementaires et les infrastructures de marché pour l'économie Web3 africaine.",
       tagline: "",
-      intro: "Un think tank panafricain de politique publique dédié à l'avancement de la blockchain à travers la recherche, l'élaboration de politiques, l'éducation et le développement de l'écosystème.",
+      intro: "Un think tank panafricain de politiques publiques qui fait progresser l'innovation blockchain à travers la recherche, l'éducation, le développement des politiques et la croissance de l'écosystème.",
       cta1: "Explorer nos recherches",
       cta2: "Rejoindre la Communauté",
       cta3: "Devenir partenaire (à venir)",
