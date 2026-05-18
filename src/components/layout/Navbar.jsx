@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
@@ -54,6 +54,12 @@ export default function Navbar() {
                 {link.label}
               </button>
             ))}
+            <Link
+              to="/awpii"
+              className="text-[0.8125rem] font-semibold text-accent hover:text-accent/80 transition-colors"
+            >
+              AWPII Index
+            </Link>
           </div>
 
           {/* Right side: language switcher + CTA */}
@@ -124,6 +130,15 @@ export default function Navbar() {
               {link.label}
             </button>
           ))}
+          <div className="pt-2">
+            <Link
+              to="/awpii"
+              onClick={() => setOpen(false)}
+              className="block w-full text-left text-sm font-semibold text-accent py-2.5 border-b border-border/50"
+            >
+              AWPII Index
+            </Link>
+          </div>
           <div className="pt-4">
             <button
               onClick={() => scrollTo("#community")}
