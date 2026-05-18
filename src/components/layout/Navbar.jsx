@@ -73,11 +73,17 @@ export default function Navbar() {
             >
               Africa Web3 Policy &amp; Innovation Index
             </Link>
+            <Link
+              to="/africa-blockchain-awards"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-[0.8125rem] font-semibold text-accent hover:text-accent/80 border-b border-accent/40 pb-px"
+            >
+              Africa Blockchain Awards
+            </Link>
           </div>
 
-          {/* Right side: language switcher + CTA */}
+          {/* Right side: language switcher */}
           <div className="hidden lg:flex items-center gap-4">
-            {/* Language switcher */}
             <div className="flex items-center gap-0 border border-border rounded-sm overflow-hidden text-[0.75rem] font-semibold">
               <button
                 onClick={() => setLang("en")}
@@ -93,14 +99,6 @@ export default function Navbar() {
                 FR
               </button>
             </div>
-
-            {/* CTA */}
-            <button
-              onClick={() => scrollTo("#community")}
-              className="text-[0.8125rem] font-semibold px-5 py-2 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors"
-            >
-              {T.joinCommunity}
-            </button>
           </div>
 
           {/* Mobile: language switcher + hamburger */}
@@ -150,14 +148,14 @@ export default function Navbar() {
           >
             Africa Web3 Policy &amp; Innovation Index
           </Link>
-          <div className="pt-4">
-            <button
-              onClick={() => scrollTo("#community")}
-              className="w-full text-sm font-semibold px-5 py-2.5 border border-secondary text-secondary hover:bg-secondary hover:text-white transition-colors"
-            >
-              {T.joinCommunity}
-            </button>
-          </div>
+          <Link
+            to="/africa-blockchain-awards"
+            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="block w-full text-left text-sm font-semibold text-accent py-2.5 border-b border-border/50"
+          >
+            Africa Blockchain Awards
+          </Link>
+          <div className="pt-2" />
         </div>
       )}
     </nav>

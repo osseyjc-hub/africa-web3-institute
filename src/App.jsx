@@ -8,6 +8,7 @@ import { LanguageProvider } from '@/lib/LanguageContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Home from './pages/Home';
 import AWPII from './pages/AWPII';
+import AfricaBlockchainAwards from './pages/AfricaBlockchainAwards';
 import SiteLayout from './components/layout/SiteLayout';
 
 const AuthenticatedApp = () => {
@@ -39,6 +40,7 @@ const AuthenticatedApp = () => {
       <Route element={<SiteLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/awpii" element={<AWPII />} />
+        <Route path="/africa-blockchain-awards" element={<AfricaBlockchainAwards />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
