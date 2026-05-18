@@ -82,7 +82,7 @@ export default function AWPII() {
       <section className="relative bg-secondary overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-28 lg:py-36">
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
           <div className="max-w-3xl">
             <h1 className="text-[2.5rem] lg:text-[3.5rem] font-bold text-white leading-[1.1] tracking-tight mb-4">
               Africa Web3 Policy &amp; Innovation Index
