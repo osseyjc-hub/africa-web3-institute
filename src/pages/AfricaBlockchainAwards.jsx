@@ -40,15 +40,11 @@ export default function AfricaBlockchainAwards() {
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-60" />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 lg:py-32">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 border border-accent/30 bg-accent/10 px-4 py-1.5 mb-8">
-              <Trophy className="w-3.5 h-3.5 text-accent" />
-              <span className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase text-accent">{T.heroBadge}</span>
-            </div>
             <h1 className="text-[2.5rem] lg:text-[3.75rem] font-bold text-white leading-[1.05] tracking-tight mb-5">
               {T.heroTitle}<br />
               <span style={{ color: "hsl(40 78% 50%)" }}>{T.heroTitleAccent}</span>
             </h1>
-            <p className="text-[1.1rem] lg:text-[1.25rem] font-medium text-white/60 leading-snug mb-8 max-w-xl">
+            <p className="text-[1.1rem] lg:text-[1.25rem] font-semibold leading-snug mb-8 max-w-xl" style={{ color: "hsl(40 78% 50%)" }}>
               {T.heroSubtitle}
             </p>
             <div className="w-16 h-px mb-8" style={{ background: "hsl(40 78% 50%)" }} />
