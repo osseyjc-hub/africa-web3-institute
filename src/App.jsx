@@ -7,7 +7,6 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import { LanguageProvider } from '@/lib/LanguageContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Home from './pages/Home';
-import AWPII from './pages/AWPII';
 import SiteLayout from './components/layout/SiteLayout';
 
 const AuthenticatedApp = () => {
@@ -39,7 +38,6 @@ const AuthenticatedApp = () => {
       <Route element={<SiteLayout />}>
         <Route path="/" element={<Home />} />
       </Route>
-      <Route path="/awpii" element={<AWPII />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
