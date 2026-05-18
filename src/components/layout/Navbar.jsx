@@ -68,6 +68,7 @@ export default function Navbar() {
             ))}
             <Link
               to="/awpii"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-[0.8125rem] font-semibold text-accent hover:text-accent/80 border-b border-accent/40 pb-px"
             >
               AWPII Index
@@ -144,7 +145,7 @@ export default function Navbar() {
           ))}
           <Link
             to="/awpii"
-            onClick={() => setOpen(false)}
+            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             className="block w-full text-left text-sm font-semibold text-accent py-2.5 border-b border-border/50"
           >
             AWPII Index
