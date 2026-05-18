@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
@@ -8,6 +8,9 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const { lang, setLang } = useLang();
   const T = t[lang].nav;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const NAV_LINKS = [
     { label: T.home, href: "#" },
@@ -21,6 +24,15 @@ export default function Navbar() {
 
   const scrollTo = (id) => {
     setOpen(false);
+    if (!isHome) {
+      navigate("/");
+      setTimeout(() => {
+        if (id === "#") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
+        const el = document.querySelector(id);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+      return;
+    }
     if (id === "#") { window.scrollTo({ top: 0, behavior: "smooth" }); return; }
     const el = document.querySelector(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -54,6 +66,12 @@ export default function Navbar() {
                 {link.label}
               </button>
             ))}
+            <Link
+              to="/awpii"
+              className="text-[0.8125rem] font-semibold text-accent hover:text-accent/80 border-b border-accent/40 pb-px"
+            >
+              AWPII Index
+            </Link>
           </div>
 
           {/* Right side: language switcher + CTA */}
@@ -119,11 +137,18 @@ export default function Navbar() {
             <button
               key={link.label}
               onClick={() => scrollTo(link.href)}
-              className="block w-full text-left text-sm text-muted-foreground hover:text-secondary py-2.5 border-b border-border/50 last:border-0"
+              className="block w-full text-left text-sm text-muted-foreground hover:text-secondary py-2.5 border-b border-border/50"
             >
               {link.label}
             </button>
           ))}
+          <Link
+            to="/awpii"
+            onClick={() => setOpen(false)}
+            className="block w-full text-left text-sm font-semibold text-accent py-2.5 border-b border-border/50"
+          >
+            AWPII Index
+          </Link>
           <div className="pt-4">
             <button
               onClick={() => scrollTo("#community")}
