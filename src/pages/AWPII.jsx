@@ -84,15 +84,10 @@ export default function AWPII() {
           style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-28 lg:py-36">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="text-[0.6875rem] font-semibold tracking-[0.18em] uppercase text-accent border border-accent/40 px-3 py-1">
-                Flagship Initiative — Africa Web3 Institute
-              </span>
-            </div>
             <h1 className="text-[2.5rem] lg:text-[3.5rem] font-bold text-white leading-[1.1] tracking-tight mb-4">
               Africa Web3 Policy &amp; Innovation Index
             </h1>
-            <p className="text-[1.25rem] lg:text-[1.5rem] font-medium text-white/60 mb-8 leading-snug">
+            <p className="text-[1.25rem] lg:text-[1.5rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
               Benchmarking Regulatory Clarity and Market Readiness Across the Continent
             </p>
             <div className="w-16 h-px bg-accent mb-8" />
