@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import JoinModal from "@/components/home/JoinModal";
 
 export default function FinalCTA() {
   const { lang } = useLang();
   const T = t[lang].finalCTA;
-
-  const scrollTo = (id) => {
-    const el = document.querySelector(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  const [showJoin, setShowJoin] = useState(false);
 
   return (
     <section className="py-28 lg:py-36 relative overflow-hidden" style={{ backgroundColor: "#0B1437" }}>
@@ -23,7 +20,7 @@ export default function FinalCTA() {
         <p className="text-[1rem] mb-12 max-w-lg mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>{T.body}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
-            onClick={() => scrollTo("#community")}
+            onClick={() => setShowJoin(true)}
             className="inline-flex items-center justify-center gap-2 text-[0.875rem] font-semibold px-8 py-4 transition-all"
             style={{ backgroundColor: "#D4A017", color: "#0B1437" }}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
@@ -31,15 +28,17 @@ export default function FinalCTA() {
           >
             {T.cta1}
           </button>
-          <button className="inline-flex items-center justify-center gap-2 text-[0.875rem] font-semibold px-8 py-4 transition-all"
+          <a href="mailto:info@africaweb3institute.org?subject=Partnership Enquiry"
+            className="inline-flex items-center justify-center gap-2 text-[0.875rem] font-semibold px-8 py-4 transition-all"
             style={{ border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.8)" }}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.08)"}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = "transparent"}
           >
             {T.cta2}
-          </button>
+          </a>
         </div>
       </div>
+      {showJoin && <JoinModal onClose={() => setShowJoin(false)} />}
     </section>
   );
 }

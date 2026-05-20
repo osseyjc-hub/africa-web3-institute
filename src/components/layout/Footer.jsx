@@ -17,9 +17,10 @@ export default function Footer() {
           <div className="lg:col-span-2">
             <Link to="/">
               <img
-                src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/80f640b57_Logo.png"
+                src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/23d3c088d_80f640b57_Logo1.png"
                 alt="Africa Web3 Institute"
-                className="h-12 w-auto object-contain mb-5"
+                style={{ height: "36px", width: "auto", objectFit: "contain" }}
+                className="mb-5"
               />
             </Link>
             <p className="text-[0.8125rem] leading-[1.85] max-w-xs mb-6" style={{ color: "rgba(255,255,255,0.45)" }}>
@@ -36,18 +37,27 @@ export default function Footer() {
             </a>
             {/* Social icons */}
             <div className="flex gap-3">
-              {[Twitter, Linkedin, Facebook].map((SocialIcon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-9 h-9 flex items-center justify-center rounded transition-colors"
-                  style={{ border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.4)" }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}
-                >
-                  <SocialIcon className="w-4 h-4" />
-                </a>
-              ))}
+              <a href="https://x.com/AfricaWeb3_Inst" target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 flex items-center justify-center rounded transition-colors"
+                style={{ border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.4)" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}>
+                <Twitter className="w-4 h-4" />
+              </a>
+              <a href="https://www.linkedin.com/company/africa-web3-institute/" target="_blank" rel="noopener noreferrer"
+                className="w-9 h-9 flex items-center justify-center rounded transition-colors"
+                style={{ border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.4)" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}>
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a href="#"
+                className="w-9 h-9 flex items-center justify-center rounded transition-colors"
+                style={{ border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.4)" }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}>
+                <Facebook className="w-4 h-4" />
+              </a>
             </div>
           </div>
 

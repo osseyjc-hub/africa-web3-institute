@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Mail, Award, Star, Shield, Globe, Zap, Building2, Leaf, ChevronRight, Trophy } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
@@ -25,10 +25,36 @@ function CTAButtonLight({ children, primary, onClick }) {
 export default function AfricaBlockchainAwards() {
   const { lang } = useLang();
   const T = t[lang].awards;
+  const [nomForm, setNomForm] = useState({ name: "", org: "", email: "", category: "", description: "" });
+  const [nomErrors, setNomErrors] = useState({});
+  const [nomSubmitted, setNomSubmitted] = useState(false);
 
   const scrollToContact = () => {
     document.querySelector("#awards-contact")?.scrollIntoView({ behavior: "smooth" });
   };
+  const scrollToNomination = () => {
+    document.querySelector("#nomination-form")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const validateNom = () => {
+    const e = {};
+    if (!nomForm.name.trim()) e.name = true;
+    if (!nomForm.org.trim()) e.org = true;
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(nomForm.email)) e.email = true;
+    if (!nomForm.category) e.category = true;
+    if (!nomForm.description.trim()) e.description = true;
+    return e;
+  };
+
+  const handleNomSubmit = (e) => {
+    e.preventDefault();
+    const errs = validateNom();
+    if (Object.keys(errs).length) { setNomErrors(errs); return; }
+    setNomSubmitted(true);
+    setNomForm({ name: "", org: "", email: "", category: "", description: "" });
+  };
+
+  const inputCls = (field) => `w-full text-[0.875rem] px-3 py-2.5 border outline-none transition-colors bg-white ${nomErrors[field] ? "border-red-400" : "border-border focus:border-accent"}`;
 
   return (
     <div className="bg-background text-foreground">
@@ -52,10 +78,10 @@ export default function AfricaBlockchainAwards() {
             <p className="text-[1rem] text-white/60 leading-[1.9] mb-5 max-w-2xl">{T.heroPara2}</p>
             <p className="text-[1rem] text-white/60 leading-[1.9] mb-10 max-w-2xl">{T.heroPara3}</p>
             <div className="flex flex-wrap gap-4">
-              <CTAButton primary onClick={scrollToContact}>
+              <CTAButton primary onClick={() => window.open("mailto:info@africaweb3institute.org?subject=Sponsorship Enquiry — Africa Blockchain Awards 2025", "_blank")}>
                 {T.heroCta1} <ArrowRight className="w-4 h-4" />
               </CTAButton>
-              <CTAButton onClick={scrollToContact}>{T.heroCta2}</CTAButton>
+              <CTAButton onClick={scrollToNomination}>{T.heroCta2}</CTAButton>
             </div>
           </div>
         </div>
@@ -159,7 +185,7 @@ export default function AfricaBlockchainAwards() {
               <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">{T.nominationEyebrow}</p>
               <h2 className="text-[1.75rem] lg:text-[2rem] font-bold text-white leading-snug mb-6">{T.nominationHeading}</h2>
               <p className="text-[1rem] text-white/70 leading-[1.85] mb-6">{T.nominationPara}</p>
-              <CTAButton primary onClick={scrollToContact}>
+              <CTAButton primary onClick={scrollToNomination}>
                 {T.nominationCta} <ArrowRight className="w-4 h-4" />
               </CTAButton>
             </div>
@@ -202,6 +228,70 @@ export default function AfricaBlockchainAwards() {
         </div>
       </section>
 
+      {/* ── Nomination Form ── */}
+      <section id="nomination-form" className="py-24 lg:py-32 border-b border-border bg-background">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8">
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">{T.nominationEyebrow}</p>
+          <h2 className="text-[1.75rem] lg:text-[2rem] font-bold text-secondary leading-snug mb-8">{T.nominationHeading}</h2>
+          {nomSubmitted ? (
+            <div className="border border-accent/40 p-10 text-center">
+              <p className="text-[1.125rem] font-bold text-secondary mb-2">
+                {lang === "fr" ? "Votre candidature a été soumise. Merci !" : "Your nomination has been submitted. Thank you!"}
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handleNomSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-[0.75rem] font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">
+                    {lang === "fr" ? "Nom complet" : "Full Name"}
+                  </label>
+                  <input className={inputCls("name")} value={nomForm.name}
+                    onChange={e => { setNomForm({...nomForm, name: e.target.value}); setNomErrors({...nomErrors, name: false}); }}
+                    placeholder={lang === "fr" ? "Votre nom" : "Your name"} />
+                </div>
+                <div>
+                  <label className="block text-[0.75rem] font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">
+                    {lang === "fr" ? "Organisation" : "Organisation"}
+                  </label>
+                  <input className={inputCls("org")} value={nomForm.org}
+                    onChange={e => { setNomForm({...nomForm, org: e.target.value}); setNomErrors({...nomErrors, org: false}); }}
+                    placeholder={lang === "fr" ? "Votre organisation" : "Your organisation"} />
+                </div>
+              </div>
+              <div>
+                <label className="block text-[0.75rem] font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">Email</label>
+                <input type="email" className={inputCls("email")} value={nomForm.email}
+                  onChange={e => { setNomForm({...nomForm, email: e.target.value}); setNomErrors({...nomErrors, email: false}); }}
+                  placeholder="your@email.com" />
+              </div>
+              <div>
+                <label className="block text-[0.75rem] font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">
+                  {lang === "fr" ? "Catégorie" : "Award Category"}
+                </label>
+                <select className={inputCls("category")} value={nomForm.category}
+                  onChange={e => { setNomForm({...nomForm, category: e.target.value}); setNomErrors({...nomErrors, category: false}); }}>
+                  <option value="">— {lang === "fr" ? "Sélectionner" : "Select category"} —</option>
+                  {T.categories.map(c => <option key={c.number} value={c.title}>{c.title}</option>)}
+                </select>
+              </div>
+              <div>
+                <label className="block text-[0.75rem] font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">
+                  {lang === "fr" ? "Description" : "Description of Impact"}
+                </label>
+                <textarea rows={4} className={`${inputCls("description")} resize-none`} value={nomForm.description}
+                  onChange={e => { setNomForm({...nomForm, description: e.target.value}); setNomErrors({...nomErrors, description: false}); }}
+                  placeholder={lang === "fr" ? "Décrivez l'impact..." : "Describe the impact and achievements..."} />
+              </div>
+              <button type="submit"
+                className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 transition-colors bg-accent text-white hover:bg-accent/90">
+                {lang === "fr" ? "Soumettre la nomination" : "Submit Nomination"} <ArrowRight className="w-4 h-4" />
+              </button>
+            </form>
+          )}
+        </div>
+      </section>
+
       {/* ── Institutional Engagement ── */}
       <section id="awards-contact" className="py-24 lg:py-32 relative overflow-hidden" style={{ background: "linear-gradient(135deg, hsl(220 20% 7%) 0%, hsl(224 82% 13%) 60%, hsl(40 30% 8%) 100%)" }}>
         <div className="absolute inset-0 opacity-[0.05]"
@@ -213,15 +303,15 @@ export default function AfricaBlockchainAwards() {
           <h2 className="text-[1.75rem] lg:text-[2.5rem] font-bold text-white leading-snug mb-5 max-w-2xl mx-auto">{T.engagementHeading}</h2>
           <p className="text-[1rem] text-white/60 leading-[1.85] mb-10 max-w-xl mx-auto">{T.engagementPara}</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            <a href="mailto:info@africaweb3institute.org"
+            <button onClick={scrollToNomination}
               className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 bg-accent text-white hover:bg-accent/90 transition-colors">
               {T.engagementCta1} <ArrowRight className="w-4 h-4" />
-            </a>
+            </button>
             <a href="mailto:info@africaweb3institute.org"
               className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 border border-white/30 text-white hover:bg-white/10 transition-colors">
               {T.engagementCta2}
             </a>
-            <a href="mailto:info@africaweb3institute.org"
+            <a href="mailto:info@africaweb3institute.org?subject=Sponsorship Enquiry — Africa Blockchain Awards 2025"
               className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 border border-white/30 text-white hover:bg-white/10 transition-colors">
               {T.engagementCta3}
             </a>

@@ -59,13 +59,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-[3.75rem]">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 flex-shrink-0" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-            <div className="w-7 h-7 rounded-md flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#D4A017" }}>
-              <span className="text-white font-bold text-[11px]">AW</span>
-            </div>
-            <span className="text-[0.875rem] font-medium hidden sm:block" style={{ color: "#111827" }}>
-              Africa Web3 Institute
-            </span>
+          <Link to="/" className="flex items-center flex-shrink-0" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+            <img
+              src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/23d3c088d_80f640b57_Logo1.png"
+              alt="Africa Web3 Institute"
+              style={{ height: "40px", width: "auto", objectFit: "contain" }}
+            />
           </Link>
 
           {/* Desktop nav */}
@@ -134,15 +133,16 @@ export default function Navbar() {
               {T.joinCommunity}
             </button>
 
-            <button
-              onClick={() => scrollTo("#publications")}
+            <Link
+              to="/awpii"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-[0.75rem] font-semibold px-3.5 py-1.5 rounded-md transition-all"
               style={{ backgroundColor: "#D4A017", color: "#fff" }}
               onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}
             >
               Get Reports
-            </button>
+            </Link>
           </div>
 
           {/* Mobile controls */}

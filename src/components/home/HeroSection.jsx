@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import JoinModal from "@/components/home/JoinModal";
 
 export default function HeroSection() {
   const { lang } = useLang();
   const T = t[lang].hero;
+  const navigate = useNavigate();
+  const [showJoin, setShowJoin] = useState(false);
 
   const scrollTo = (id) => {
     const el = document.querySelector(id);
@@ -13,6 +17,7 @@ export default function HeroSection() {
   };
 
   return (
+    <>
     <section style={{ backgroundColor: "#0B1437" }} className="relative overflow-hidden">
       {/* Subtle radial glow accents */}
       <div className="absolute top-[-60px] right-[-60px] w-[340px] h-[340px] rounded-full pointer-events-none"
@@ -51,7 +56,7 @@ export default function HeroSection() {
 
         <div className="flex flex-wrap gap-3">
           <button
-            onClick={() => scrollTo("#publications")}
+            onClick={() => navigate("/awpii")}
             className="inline-flex items-center gap-2 text-[0.875rem] font-semibold px-6 py-2.5 rounded-lg transition-all"
             style={{ backgroundColor: "#D4A017", color: "#fff" }}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
@@ -60,7 +65,7 @@ export default function HeroSection() {
             {T.cta1} <ArrowRight className="w-3.5 h-3.5" />
           </button>
           <button
-            onClick={() => scrollTo("#community")}
+            onClick={() => setShowJoin(true)}
             className="inline-flex items-center gap-2 text-[0.875rem] px-6 py-2.5 rounded-lg transition-all"
             style={{ border: "0.5px solid rgba(255,255,255,0.3)", color: "#fff" }}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.07)"}
@@ -71,5 +76,7 @@ export default function HeroSection() {
         </div>
       </div>
     </section>
+    {showJoin && <JoinModal onClose={() => setShowJoin(false)} />}
+  </>
   );
 }
