@@ -1,36 +1,38 @@
 import React from "react";
-import { Landmark, GraduationCap, FileText, Rocket } from "lucide-react";
-import SectionHeader from "@/components/ui/SectionHeader";
+import { Landmark, FileText, GraduationCap, Rocket } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
-const ICONS = [Landmark, GraduationCap, FileText, Rocket];
+const PILLAR_STYLES = [
+  { bg: "#FAEEDA", color: "#633806", Icon: Landmark },
+  { bg: "#E1F5EE", color: "#085041", Icon: FileText },
+  { bg: "#E6F1FB", color: "#0C447C", Icon: GraduationCap },
+  { bg: "#F0EEFF", color: "#3B1FA8", Icon: Rocket },
+];
 
 export default function WhatWeDo() {
   const { lang } = useLang();
   const T = t[lang].whatWeDo;
 
   return (
-    <section className="py-24 lg:py-36 bg-background border-b border-border">
+    <section id="programs" className="py-12 lg:py-16 border-b border-border bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="text-center mb-16 max-w-xl mx-auto">
-          <p className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase mb-4" style={{ color: "#D4A017" }}>
-            {T.eyebrow}
-          </p>
-          <h2 className="font-display text-[2rem] lg:text-[2.5rem] font-bold text-secondary leading-snug">
-            {T.heading}
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+        <p className="text-[0.6875rem] font-semibold tracking-[0.15em] uppercase mb-3" style={{ color: "#9CA3AF" }}>
+          {T.eyebrow}
+        </p>
+        <h2 className="text-[1.125rem] font-semibold mb-8" style={{ color: "#111827" }}>
+          {T.heading}
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {T.pillars.map((pillar, i) => {
-            const Icon = ICONS[i];
+            const { bg, color, Icon } = PILLAR_STYLES[i] || PILLAR_STYLES[0];
             return (
-              <div key={pillar.title} className="bg-white p-8 flex flex-col group hover:shadow-md transition-shadow">
-                <div className="w-10 h-10 flex items-center justify-center mb-7" style={{ backgroundColor: "rgba(11,20,55,0.06)", border: "1px solid rgba(11,20,55,0.08)" }}>
-                  <Icon className="w-4 h-4" style={{ color: "#0B1437" }} />
+              <div key={pillar.title} className="rounded-xl border border-border p-5 flex flex-col gap-3 bg-white hover:shadow-sm transition-shadow">
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: bg }}>
+                  <Icon className="w-[18px] h-[18px]" style={{ color }} />
                 </div>
-                <h3 className="font-display text-[1rem] font-bold text-secondary mb-3">{pillar.title}</h3>
-                <p className="text-[0.875rem] text-muted-foreground leading-[1.75] flex-1">{pillar.description}</p>
+                <p className="text-[0.875rem] font-medium" style={{ color: "#111827" }}>{pillar.title}</p>
+                <p className="text-[0.75rem] leading-[1.65]" style={{ color: "#6B7280" }}>{pillar.description}</p>
               </div>
             );
           })}

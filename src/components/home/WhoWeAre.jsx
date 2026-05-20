@@ -7,7 +7,7 @@ export default function WhoWeAre() {
   const T = t[lang].whoWeAre;
 
   return (
-    <section id="who-we-are" className="py-24 lg:py-36 border-b border-border bg-background">
+    <section id="who-we-are" className="py-16 lg:py-24 border-b border-border bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div>
