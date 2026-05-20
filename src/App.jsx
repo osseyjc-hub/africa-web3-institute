@@ -10,6 +10,9 @@ import Home from './pages/Home';
 import AWPII from './pages/AWPII';
 import AfricaBlockchainAwards from './pages/AfricaBlockchainAwards';
 import SiteLayout from './components/layout/SiteLayout';
+import About from './pages/About';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfUse from './pages/TermsOfUse';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -41,6 +44,9 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<Home />} />
         <Route path="/awpii" element={<AWPII />} />
         <Route path="/africa-blockchain-awards" element={<AfricaBlockchainAwards />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

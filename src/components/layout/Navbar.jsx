@@ -58,13 +58,16 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-[3.75rem]">
 
-          {/* Logo */}
-          <Link to="/" className="flex items-center flex-shrink-0" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          {/* Logo + Name */}
+          <Link to="/" className="flex items-center gap-2.5 flex-shrink-0" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
             <img
               src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/23d3c088d_80f640b57_Logo1.png"
-              alt="Africa Web3 Institute"
+              alt="Africa Web3 Institute logo"
               style={{ height: "40px", width: "auto", objectFit: "contain" }}
             />
+            <span className="font-bold text-[0.875rem] leading-tight" style={{ color: "#111827" }}>
+              Africa Web3<br className="hidden sm:block" /> Institute
+            </span>
           </Link>
 
           {/* Desktop nav */}

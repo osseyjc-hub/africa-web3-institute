@@ -11,14 +11,14 @@ export default function Footer() {
   return (
     <footer style={{ backgroundColor: "#0B1437", borderTop: "1px solid rgba(212,160,23,0.15)" }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-10 pb-12" style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
 
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link to="/">
               <img
                 src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/23d3c088d_80f640b57_Logo1.png"
-                alt="Africa Web3 Institute"
+                alt="Africa Web3 Institute logo"
                 style={{ height: "36px", width: "auto", objectFit: "contain" }}
                 className="mb-5"
               />
@@ -38,6 +38,7 @@ export default function Footer() {
             {/* Social icons */}
             <div className="flex gap-3">
               <a href="https://x.com/AfricaWeb3_Inst" target="_blank" rel="noopener noreferrer"
+                aria-label="Africa Web3 Institute on X (Twitter)"
                 className="w-9 h-9 flex items-center justify-center rounded transition-colors"
                 style={{ border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.4)" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
@@ -45,13 +46,15 @@ export default function Footer() {
                 <Twitter className="w-4 h-4" />
               </a>
               <a href="https://www.linkedin.com/company/africa-web3-institute/" target="_blank" rel="noopener noreferrer"
+                aria-label="Africa Web3 Institute on LinkedIn"
                 className="w-9 h-9 flex items-center justify-center rounded transition-colors"
                 style={{ border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.4)" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)"; e.currentTarget.style.color = "rgba(255,255,255,0.4)"; }}>
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="#"
+              <a href="https://www.facebook.com/share/1GPDn5xK8G/" target="_blank" rel="noopener noreferrer"
+                aria-label="Africa Web3 Institute on Facebook"
                 className="w-9 h-9 flex items-center justify-center rounded transition-colors"
                 style={{ border: "1px solid rgba(255,255,255,0.12)", color: "rgba(255,255,255,0.4)" }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
@@ -61,7 +64,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Link columns */}
+          {/* Dynamic link columns from translations */}
           {Object.entries(T.links).map(([heading, items]) => (
             <div key={heading}>
               <h4
@@ -86,6 +89,55 @@ export default function Footer() {
               </ul>
             </div>
           ))}
+
+          {/* Company column */}
+          <div>
+            <h4 className="text-[0.6875rem] font-bold tracking-[0.18em] uppercase mb-5" style={{ color: "#D4A017" }}>
+              Company
+            </h4>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/about"
+                  className="text-[0.8125rem] transition-colors"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                  onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
+                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
+                >
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy-policy"
+                  className="text-[0.8125rem] transition-colors"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                  onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
+                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms-of-use"
+                  className="text-[0.8125rem] transition-colors"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                  onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
+                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
+                >
+                  Terms of Use
+                </Link>
+              </li>
+              <li>
+                <a href="mailto:info@africaweb3institute.org"
+                  className="text-[0.8125rem] transition-colors"
+                  style={{ color: "rgba(255,255,255,0.4)" }}
+                  onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
+                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
+                >
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
         <div className="pt-7 flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -101,14 +153,14 @@ export default function Footer() {
             </span>
           </div>
           <div className="flex gap-6">
-            <span className="text-[0.75rem] cursor-pointer transition-colors" style={{ color: "rgba(255,255,255,0.3)" }}
+            <Link to="/privacy-policy" className="text-[0.75rem] transition-colors" style={{ color: "rgba(255,255,255,0.3)" }}
               onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.6)"}
               onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.3)"}
-            >{T.privacy}</span>
-            <span className="text-[0.75rem] cursor-pointer transition-colors" style={{ color: "rgba(255,255,255,0.3)" }}
+            >{T.privacy}</Link>
+            <Link to="/terms-of-use" className="text-[0.75rem] transition-colors" style={{ color: "rgba(255,255,255,0.3)" }}
               onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.6)"}
               onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.3)"}
-            >{T.terms}</span>
+            >{T.terms}</Link>
           </div>
         </div>
       </div>
