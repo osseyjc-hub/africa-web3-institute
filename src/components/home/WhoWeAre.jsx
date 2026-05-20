@@ -20,33 +20,33 @@ export default function WhoWeAre() {
             <p className="text-[1rem] text-muted-foreground leading-[1.85] mb-5">{T.p1}</p>
             <p className="text-[1rem] text-muted-foreground leading-[1.85]">{T.p2}</p>
             <div className="mt-10 flex flex-wrap gap-6">
-              {["Policy Research", "Blockchain Education", "Ecosystem Incubation"].map((tag) => (
-                <div key={tag} className="flex items-center gap-2">
+              {["Policy Research", "Blockchain Education", "Ecosystem Incubation"].map((tag) =>
+              <div key={tag} className="flex items-center gap-2">
                   <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#D4A017" }} />
                   <span className="text-[0.8125rem] font-medium text-muted-foreground">{tag}</span>
                 </div>
-              ))}
+              )}
             </div>
           </div>
           <div className="relative">
             <div
               className="w-full aspect-[4/3] overflow-hidden"
-              style={{ border: "1px solid hsl(var(--border))" }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80"
-                alt="Africa Web3 Institute team"
-                className="w-full h-full object-cover"
-              />
+              style={{ border: "1px solid hsl(var(--border))" }}>
+              
+              <img src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/1d0e1310d_African_Web3_Think_Tank.png"
+
+              alt="Africa Web3 Institute team"
+              className="w-full h-full object-cover" />
+              
             </div>
             {/* Gold accent corner */}
             <div
               className="absolute -bottom-4 -right-4 w-24 h-24 hidden lg:block"
-              style={{ border: "2px solid #D4A017", opacity: 0.4 }}
-            />
+              style={{ border: "2px solid #D4A017", opacity: 0.4 }} />
+            
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>);
+
 }
