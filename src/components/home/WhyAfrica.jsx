@@ -7,18 +7,19 @@ export default function WhyAfrica() {
   const T = t[lang].whyAfrica;
 
   return (
-    <section className="py-28 lg:py-36 border-b border-border">
+    <section className="py-24 lg:py-36 border-b border-border" style={{ backgroundColor: "#F5F5F0" }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto">
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-8">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase mb-8" style={{ color: "#D4A017" }}>
             {T.eyebrow}
           </p>
-          <blockquote className="border-l-4 pl-8" style={{ borderColor: "#C9961A" }}>
-            <p className="text-[1.625rem] lg:text-[2rem] font-bold text-secondary leading-snug tracking-tight">
+          <blockquote className="mb-8">
+            <p className="font-display text-[1.75rem] lg:text-[2.25rem] font-bold text-secondary leading-snug tracking-tight">
               {T.quote}
             </p>
           </blockquote>
-          <p className="mt-8 text-[1rem] text-muted-foreground leading-[1.8] pl-8 border-l border-border">
+          <div className="w-12 h-px mx-auto mb-8" style={{ backgroundColor: "#D4A017" }} />
+          <p className="text-[1rem] text-muted-foreground leading-[1.85]">
             {T.body}
           </p>
         </div>

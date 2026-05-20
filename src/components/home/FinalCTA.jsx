@@ -12,24 +12,32 @@ export default function FinalCTA() {
   };
 
   return (
-    <section className="py-28 lg:py-36 bg-secondary">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="max-w-2xl">
-          <h2 className="text-[1.75rem] lg:text-[2.25rem] font-bold text-white leading-snug tracking-tight whitespace-pre-line">
-            {T.heading}
-          </h2>
-          <p className="mt-6 text-[1rem] text-white/65 leading-[1.8] max-w-lg">{T.body}</p>
-          <div className="mt-10 flex flex-col sm:flex-row gap-3">
-            <button
-              onClick={() => scrollTo("#community")}
-              className="inline-flex items-center justify-center text-sm font-semibold px-6 py-3 bg-primary text-white hover:bg-primary/90 transition-colors"
-            >
-              {T.cta1}
-            </button>
-            <button className="inline-flex items-center justify-center text-sm font-semibold px-6 py-3 border border-white/30 text-white hover:bg-white/10 transition-colors">
-              {T.cta2}
-            </button>
-          </div>
+    <section className="py-28 lg:py-36 relative overflow-hidden" style={{ backgroundColor: "#0B1437" }}>
+      <div className="absolute inset-0 opacity-[0.04]"
+        style={{ backgroundImage: "radial-gradient(circle at 1px 1px, #D4A017 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+      <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, #D4A017, transparent)" }} />
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 text-center">
+        <h2 className="font-display text-[2rem] lg:text-[3rem] font-bold text-white leading-snug tracking-tight whitespace-pre-line mb-6 max-w-2xl mx-auto">
+          {T.heading}
+        </h2>
+        <p className="text-[1rem] mb-12 max-w-lg mx-auto" style={{ color: "rgba(255,255,255,0.55)" }}>{T.body}</p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <button
+            onClick={() => scrollTo("#community")}
+            className="inline-flex items-center justify-center gap-2 text-[0.875rem] font-semibold px-8 py-4 transition-all"
+            style={{ backgroundColor: "#D4A017", color: "#0B1437" }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
+            onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}
+          >
+            {T.cta1}
+          </button>
+          <button className="inline-flex items-center justify-center gap-2 text-[0.875rem] font-semibold px-8 py-4 transition-all"
+            style={{ border: "1px solid rgba(255,255,255,0.25)", color: "rgba(255,255,255,0.8)" }}
+            onMouseEnter={e => e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.08)"}
+            onMouseLeave={e => e.currentTarget.style.backgroundColor = "transparent"}
+          >
+            {T.cta2}
+          </button>
         </div>
       </div>
     </section>

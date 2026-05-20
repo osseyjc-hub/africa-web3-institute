@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import SectionHeader from "@/components/ui/SectionHeader";
 import { base44 } from "@/api/base44Client";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
@@ -39,10 +38,11 @@ export default function ContactSection() {
 
           {/* Left */}
           <div>
-            <SectionHeader eyebrow={T.eyebrow} heading={T.heading} />
-            <p className="mt-6 text-[1rem] text-muted-foreground leading-[1.8]">{T.body}</p>
+            <p className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase mb-4" style={{ color: "#D4A017" }}>{T.eyebrow}</p>
+            <h2 className="font-display text-[2rem] lg:text-[2.5rem] font-bold text-secondary leading-snug mb-6">{T.heading}</h2>
+            <p className="text-[1rem] text-muted-foreground leading-[1.85]">{T.body}</p>
             <div className="mt-10 pt-8 border-t border-border">
-              <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-3">
+              <p className="text-[0.6875rem] font-bold tracking-[0.2em] uppercase mb-3" style={{ color: "#D4A017" }}>
                 {T.enquiriesLabel}
               </p>
               <a
@@ -114,7 +114,8 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="text-sm font-semibold px-8 py-3 bg-primary text-white hover:bg-primary/90 transition-colors disabled:opacity-60"
+                    className="text-[0.875rem] font-semibold px-8 py-3.5 transition-all disabled:opacity-60"
+                    style={{ backgroundColor: "#D4A017", color: "#0B1437" }}
                   >
                     {loading ? T.sending : T.submit}
                   </button>

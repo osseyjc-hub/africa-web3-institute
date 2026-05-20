@@ -1,5 +1,4 @@
 import React from "react";
-import SectionHeader from "@/components/ui/SectionHeader";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
@@ -8,13 +7,43 @@ export default function WhoWeAre() {
   const T = t[lang].whoWeAre;
 
   return (
-    <section id="who-we-are" className="py-28 lg:py-36 border-b border-border">
+    <section id="who-we-are" className="py-24 lg:py-36 border-b border-border bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
-          <SectionHeader eyebrow={T.eyebrow} heading={T.heading} />
-          <div className="space-y-5">
-            <p className="text-[1rem] text-muted-foreground leading-[1.8]">{T.p1}</p>
-            <p className="text-[1rem] text-muted-foreground leading-[1.8]">{T.p2}</p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div>
+            <p className="text-[0.6875rem] font-semibold tracking-[0.2em] uppercase mb-5" style={{ color: "#D4A017" }}>
+              {T.eyebrow}
+            </p>
+            <h2 className="font-display text-[2rem] lg:text-[2.75rem] font-bold leading-snug text-secondary mb-8">
+              {T.heading}
+            </h2>
+            <p className="text-[1rem] text-muted-foreground leading-[1.85] mb-5">{T.p1}</p>
+            <p className="text-[1rem] text-muted-foreground leading-[1.85]">{T.p2}</p>
+            <div className="mt-10 flex flex-wrap gap-6">
+              {["Policy Research", "Blockchain Education", "Ecosystem Incubation"].map((tag) => (
+                <div key={tag} className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#D4A017" }} />
+                  <span className="text-[0.8125rem] font-medium text-muted-foreground">{tag}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="relative">
+            <div
+              className="w-full aspect-[4/3] overflow-hidden"
+              style={{ border: "1px solid hsl(var(--border))" }}
+            >
+              <img
+                src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80"
+                alt="Africa Web3 Institute team"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            {/* Gold accent corner */}
+            <div
+              className="absolute -bottom-4 -right-4 w-24 h-24 hidden lg:block"
+              style={{ border: "2px solid #D4A017", opacity: 0.4 }}
+            />
           </div>
         </div>
       </div>
