@@ -22,11 +22,11 @@ export default function WhoWeAre() {
             <p className="text-[1rem] text-muted-foreground leading-[1.85]">{T.p2}</p>
             <div className="mt-8">
               <Link to="/about"
-                className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-5 py-2.5 transition-colors"
-                style={{ backgroundColor: "#0B1437", color: "#fff" }}
-                onMouseEnter={e => e.currentTarget.style.backgroundColor = "#1a2a5e"}
-                onMouseLeave={e => e.currentTarget.style.backgroundColor = "#0B1437"}
-              >
+              className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-5 py-2.5 transition-colors"
+              style={{ backgroundColor: "#0B1437", color: "#fff" }}
+              onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#1a2a5e"}
+              onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#0B1437"}>
+                
                 Learn more about Africa Web3 Institute →
               </Link>
             </div>
@@ -44,7 +44,7 @@ export default function WhoWeAre() {
               className="w-full aspect-[4/3] overflow-hidden"
               style={{ border: "1px solid hsl(var(--border))" }}>
               
-              <img src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/1d0e1310d_African_Web3_Think_Tank.png"
+              <img src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/97ec84da4_African_Web3_Think_Tank__1_.png"
 
               alt="Africa Web3 Institute team"
               className="w-full h-full object-cover" />
