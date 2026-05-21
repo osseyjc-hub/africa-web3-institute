@@ -1,106 +1,219 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Globe, BookOpen, Users, Shield } from "lucide-react";
+import { Linkedin, Twitter, Globe, BookOpen, GraduationCap, Scale, Mail } from "lucide-react";
+
+const TEAM = [
+  {
+    name: "Afrikanus Kofi Akosah Adusei",
+    role: "Executive Director",
+    country: "🇬🇭 Ghana",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/5b37f2043_9edbdc2d-86b7-4581-bb79-f31189960de2.jpg",
+    bio: "A Web3 policy architect at the intersection of emerging technology and African economic policy. He works with governments and institutional partners on stablecoin policy, RWA tokenization, and VASP regulatory frameworks — including the AWPII.",
+    linkedin: "https://linkedin.com/in/afrikanus-kofi-akosah-adusei-ba25aa88",
+    twitter: null,
+  },
+  {
+    name: "Asang Nehemiah Forgwe",
+    role: "Events and Programs Manager",
+    country: "🇨🇲 Cameroon",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/dd836029e_ChatGPTImageMay21202607_53_59AM.png",
+    bio: "From falling into a crypto Ponzi in 2020 to becoming a purpose-driven Web3 educator. He specialises in making crypto relatable for young Africans through storytelling and grassroots community building.",
+    linkedin: "https://www.linkedin.com/in/asang-nehemiah-forgwe-094067193",
+    twitter: null,
+  },
+  {
+    name: "Jean Cedric Ossey",
+    role: "Francophone Lead",
+    country: "🇨🇮 Côte d'Ivoire",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/a15daee7d_IMG_3255.png",
+    bio: "A commercial ATR72 pilot and commodity trader who bridges the gap between the French-speaking African world and blockchain innovation, driving Web3 adoption across Francophone Africa.",
+    linkedin: "https://linkedin.com/in/osseyjc",
+    twitter: null,
+  },
+];
 
 const PILLARS = [
   {
-    icon: BookOpen,
-    title: "Policy Research",
-    desc: "Producing rigorous, evidence-based research on blockchain governance, digital assets regulation, and Web3 policy frameworks tailored to the African context.",
-  },
-  {
     icon: Globe,
-    title: "Blockchain Education",
-    desc: "Building capacity across government, civil society, and industry through training programs, workshops, and the Africa Web3 Policy & Innovation Index (AWPII).",
+    title: "Policy & Governance",
+    desc: "Engaging African governments and regulators to build progressive, innovation-friendly Web3 frameworks that protect citizens while enabling economic growth.",
   },
   {
-    icon: Users,
-    title: "Ecosystem Incubation",
-    desc: "Connecting innovators, policymakers, and investors to accelerate the growth of a responsible and inclusive Web3 economy across all 54 African nations.",
+    icon: BookOpen,
+    title: "Research & Publications",
+    desc: "Producing the AWPII index, country reports, and data-driven insights on blockchain adoption and digital economy trends across the continent.",
+  },
+  {
+    icon: GraduationCap,
+    title: "Education & Capacity Building",
+    desc: "Training developers, entrepreneurs, and policymakers to lead Africa's decentralised economy through workshops, programs, and accessible resources.",
   },
 ];
 
-const TEAM = [
-  { name: "Executive Director", role: "Leadership & Strategy" },
-  { name: "Head of Research", role: "Policy & Publications" },
-  { name: "Director of Partnerships", role: "Institutional Relations" },
-  { name: "Communications Lead", role: "Media & Outreach" },
+const IMPACT_STATS = [
+  { icon: "🌍", stat: "Fastest-growing", label: "Crypto adoption rate globally" },
+  { icon: "📱", stat: "12%+", label: "Of Africans use crypto as of 2025" },
+  { icon: "💸", stat: "$48.2M", label: "Daily stablecoin P2P volume in Nigeria alone" },
 ];
 
-const STATS = [
-  { value: "2023", label: "Year Founded" },
-  { value: "54", label: "African Nations Covered" },
-  { value: "10+", label: "Reports Published" },
-  { value: "500+", label: "Stakeholders Engaged" },
+const PARTNER_SLOTS = Array(6).fill(null);
+
+const CONTACTS = [
+  { icon: "📧", label: "General Enquiries", email: "info@africaweb3institute.org" },
+  { icon: "🤝", label: "Partnerships", email: "partnerships@africaweb3institute.org" },
+  { icon: "📰", label: "Media & Press", email: "media@africaweb3institute.org" },
 ];
+
+function TeamCard({ member }) {
+  const [hovered, setHovered] = React.useState(false);
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      className="bg-white p-6 flex flex-col items-center text-center transition-all duration-200"
+      style={{
+        border: hovered ? "1.5px solid #D4A017" : "1.5px solid hsl(var(--border))",
+        transform: hovered ? "translateY(-4px)" : "none",
+        boxShadow: hovered ? "0 8px 24px rgba(0,0,0,0.08)" : "none",
+      }}
+    >
+      <div className="w-20 h-20 rounded-full overflow-hidden mb-4 flex-shrink-0"
+        style={{ border: "2px solid #D4A017" }}>
+        <img src={member.photo} alt={`${member.name} — ${member.role} at Africa Web3 Institute`}
+          className="w-full h-full object-cover" />
+      </div>
+      <p className="text-[0.9375rem] font-bold text-secondary mb-1">{member.name}</p>
+      <p className="text-[0.8125rem] text-muted-foreground mb-1">{member.role}</p>
+      <p className="text-[0.8125rem] mb-3" style={{ color: "#D4A017" }}>{member.country}</p>
+      <p className="text-[0.75rem] text-muted-foreground leading-[1.7] mb-4">{member.bio}</p>
+      <div className="flex gap-3 mt-auto">
+        {member.linkedin && (
+          <a href={member.linkedin.startsWith("http") ? member.linkedin : `https://${member.linkedin}`}
+            target="_blank" rel="noopener noreferrer"
+            aria-label={`${member.name} on LinkedIn`}
+            className="w-8 h-8 flex items-center justify-center rounded-full transition-colors"
+            style={{ border: "1px solid hsl(var(--border))", color: "hsl(var(--muted-foreground))" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(var(--border))"; e.currentTarget.style.color = "hsl(var(--muted-foreground))"; }}>
+            <Linkedin className="w-3.5 h-3.5" />
+          </a>
+        )}
+        {member.twitter && (
+          <a href={member.twitter} target="_blank" rel="noopener noreferrer"
+            aria-label={`${member.name} on X (Twitter)`}
+            className="w-8 h-8 flex items-center justify-center rounded-full transition-colors"
+            style={{ border: "1px solid hsl(var(--border))", color: "hsl(var(--muted-foreground))" }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = "#D4A017"; e.currentTarget.style.color = "#D4A017"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = "hsl(var(--border))"; e.currentTarget.style.color = "hsl(var(--muted-foreground))"; }}>
+            <Twitter className="w-3.5 h-3.5" />
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function About() {
   return (
     <div className="bg-background text-foreground">
       <title>About Us | Africa Web3 Institute</title>
 
-      {/* Hero */}
-      <section className="py-20 lg:py-28 border-b border-border" style={{ background: "linear-gradient(135deg, hsl(220 20% 8%) 0%, hsl(224 82% 14%) 100%)" }}>
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>Who We Are</p>
-          <h1 className="text-[2rem] lg:text-[3rem] font-bold text-white leading-snug mb-6">
+      {/* A. HERO */}
+      <section className="py-20 lg:py-28" style={{ backgroundColor: "#0B1437" }}>
+        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>About Us</p>
+          <h1 className="text-[2.25rem] lg:text-[3.25rem] font-bold text-white leading-snug mb-5">
             About Africa Web3 Institute
           </h1>
-          <p className="text-[1.1rem] leading-[1.85]" style={{ color: "rgba(255,255,255,0.65)" }}>
-            Africa Web3 Institute (AWI) is the continent's leading independent think tank for Web3 policy, blockchain governance, and digital economy research.
+          <p className="text-[1.1rem] leading-[1.85] max-w-2xl" style={{ color: "rgba(255,255,255,0.6)" }}>
+            Building the policy, research, and education infrastructure for Africa's decentralised future.
           </p>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-y lg:divide-y-0 divide-border">
-            {STATS.map((s) => (
-              <div key={s.label} className="py-10 px-8 text-center">
-                <p className="text-[2rem] font-bold text-secondary mb-1">{s.value}</p>
-                <p className="text-[0.8125rem] text-muted-foreground">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Mission & Vision */}
+      {/* B. WHO WE ARE */}
       <section className="py-20 border-b border-border">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16">
-          <div>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>Our Mission</p>
-            <h2 className="text-[1.5rem] font-bold text-secondary leading-snug mb-5">
-              Shaping Africa's Digital Future Through Evidence-Based Policy
-            </h2>
-            <p className="text-muted-foreground leading-[1.85]">
-              Africa Web3 Institute exists to bridge the gap between emerging blockchain technology and the regulatory and policy frameworks needed to harness it responsibly. We equip African governments, institutions, and entrepreneurs with the knowledge and tools to build inclusive, innovation-friendly digital economies.
-            </p>
-          </div>
-          <div>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>Our Vision</p>
-            <h2 className="text-[1.5rem] font-bold text-secondary leading-snug mb-5">
-              An Africa Where Web3 Drives Equitable Growth
-            </h2>
-            <p className="text-muted-foreground leading-[1.85]">
-              We envision a continent where Web3 technologies — from decentralised finance to tokenised assets and digital identity — are harnessed to reduce inequality, increase financial inclusion, and position Africa as a global leader in the next digital era.
-            </p>
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>Who We Are</p>
+              <h2 className="text-[1.75rem] font-bold text-secondary leading-snug mb-5">
+                Africa's Dedicated Web3 Think Tank
+              </h2>
+              <p className="text-muted-foreground leading-[1.85] mb-4">
+                Founded in 2023, Africa Web3 Institute (AWI) is the continent's leading independent research and policy organisation dedicated to blockchain governance, Web3 policy, and digital economy development across all 54 African nations.
+              </p>
+              <p className="text-muted-foreground leading-[1.85] mb-8">
+                Africa is home to the world's fastest-growing crypto adoption rates, yet African voices remain underrepresented in global Web3 policy conversations. AWI exists to change that — equipping governments, institutions, and communities with the knowledge and frameworks needed to harness blockchain technology responsibly.
+              </p>
+              {/* Inline stats */}
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  { value: "2023", label: "Founded" },
+                  { value: "54", label: "Countries Covered" },
+                  { value: "200+", label: "Policy Reports" },
+                  { value: "3,000+", label: "Members" },
+                ].map((s) => (
+                  <div key={s.label} className="p-4 border border-border">
+                    <p className="text-[1.75rem] font-bold text-secondary">{s.value}</p>
+                    <p className="text-[0.8125rem] text-muted-foreground">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-[4/3] overflow-hidden" style={{ border: "1px solid hsl(var(--border))" }}>
+                <img
+                  src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/1d0e1310d_African_Web3_Think_Tank.png"
+                  alt="Africa Web3 Institute team working on policy research"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 hidden lg:block"
+                style={{ border: "2px solid #D4A017", opacity: 0.4 }} />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Three Pillars */}
+      {/* C. MISSION & VISION */}
       <section className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>What We Do</p>
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Our Purpose</p>
+            <h2 className="text-[1.75rem] font-bold text-secondary">Mission &amp; Vision</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="bg-white p-8" style={{ borderLeft: "4px solid #D4A017" }}>
+              <p className="text-[1.5rem] mb-4">🎯</p>
+              <h3 className="text-[1rem] font-bold text-secondary mb-3 uppercase tracking-wide">Mission</h3>
+              <p className="text-muted-foreground leading-[1.85]">
+                To shape evidence-based Web3 policy, foster blockchain innovation, and build digital economy capacity across Africa — ensuring the continent leads rather than follows in the global decentralised economy.
+              </p>
+            </div>
+            <div className="bg-white p-8" style={{ borderLeft: "4px solid #D4A017" }}>
+              <p className="text-[1.5rem] mb-4">🔭</p>
+              <h3 className="text-[1rem] font-bold text-secondary mb-3 uppercase tracking-wide">Vision</h3>
+              <p className="text-muted-foreground leading-[1.85]">
+                A digitally sovereign Africa where blockchain technology drives inclusive economic growth and financial freedom for all — underpinned by robust policy, trusted research, and a thriving ecosystem of informed builders and leaders.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* D. THREE PILLARS */}
+      <section className="py-20 border-b border-border">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>What We Do</p>
             <h2 className="text-[1.75rem] font-bold text-secondary">Three Core Pillars</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
             {PILLARS.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-white p-8">
-                <div className="w-10 h-10 flex items-center justify-center rounded-lg mb-5" style={{ backgroundColor: "hsl(220 20% 8%)" }}>
+                <div className="w-10 h-10 flex items-center justify-center rounded-lg mb-5"
+                  style={{ backgroundColor: "#0B1437" }}>
                   <Icon className="w-5 h-5" style={{ color: "#D4A017" }} />
                 </div>
                 <h3 className="text-[1rem] font-bold text-secondary mb-3">{title}</h3>
@@ -111,54 +224,99 @@ export default function About() {
         </div>
       </section>
 
-      {/* Why It Matters */}
+      {/* E. WHY IT MATTERS */}
+      <section className="py-20 border-b border-border" style={{ backgroundColor: "#0B1437" }}>
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Context</p>
+            <h2 className="text-[1.75rem] font-bold text-white">Why It Matters</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            {IMPACT_STATS.map((s) => (
+              <div key={s.label} className="p-8 text-center"
+                style={{ border: "1px solid rgba(212,160,23,0.2)", background: "rgba(255,255,255,0.03)" }}>
+                <p className="text-[2rem] mb-3">{s.icon}</p>
+                <p className="text-[1.75rem] font-bold mb-2" style={{ color: "#D4A017" }}>{s.stat}</p>
+                <p className="text-[0.875rem]" style={{ color: "rgba(255,255,255,0.6)" }}>{s.label}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-[1rem] leading-[1.85] text-center max-w-3xl mx-auto" style={{ color: "rgba(255,255,255,0.6)" }}>
+            Africa's Web3 revolution is already underway. Without strong policy frameworks, credible research, and educated leadership, the continent risks repeating the mistakes of previous digital waves — where adoption outpaced governance and ordinary citizens bore the cost. Africa Web3 Institute is here to ensure that doesn't happen.
+          </p>
+        </div>
+      </section>
+
+      {/* F. MEET THE TEAM */}
       <section className="py-20 border-b border-border">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8">
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>Why It Matters</p>
-          <h2 className="text-[1.75rem] font-bold text-secondary leading-snug mb-6">
-            Africa Cannot Afford to Be Left Behind
-          </h2>
-          <div className="space-y-4 text-muted-foreground leading-[1.85]">
-            <p>
-              Africa is home to the world's youngest population and some of its fastest-growing digital economies. Yet African nations remain underrepresented in global Web3 policy conversations, often importing frameworks designed for entirely different contexts.
-            </p>
-            <p>
-              Africa Web3 Institute changes this by generating Africa-first research, building local expertise, and creating platforms — such as the AWPII and Africa Blockchain Awards — that elevate the continent's voice in global digital governance.
-            </p>
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Our People</p>
+            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">Meet the Team</h2>
+            <p className="text-muted-foreground">The people driving Africa's Web3 policy and research agenda</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {TEAM.map((member) => (
+              <TeamCard key={member.name} member={member} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Team */}
+      {/* G. PARTNERS */}
       <section className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>Our Team</p>
-            <h2 className="text-[1.75rem] font-bold text-secondary">The People Behind AWI</h2>
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Ecosystem</p>
+            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">Our Partners &amp; Affiliates</h2>
+            <p className="text-muted-foreground">Working with leading organisations across Africa and globally</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {TEAM.map((member) => (
-              <div key={member.name} className="bg-white p-6 flex flex-col items-center text-center border border-border">
-                <div className="w-16 h-16 rounded-full mb-4 flex items-center justify-center"
-                  style={{ backgroundColor: "hsl(220 20% 8%)", border: "2px solid #D4A017" }}>
-                  <Users className="w-7 h-7" style={{ color: "#D4A017" }} />
-                </div>
-                <p className="text-[0.9375rem] font-bold text-secondary mb-1">{member.name}</p>
-                <p className="text-[0.8125rem] text-muted-foreground">{member.role}</p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {PARTNER_SLOTS.map((_, i) => (
+              <div key={i} className="aspect-[3/2] flex items-center justify-center bg-white border border-border">
+                <p className="text-[0.75rem] text-muted-foreground/50 text-center px-2">Partner Logo</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Independent Statement */}
-      <section className="py-16 border-b border-border" style={{ background: "linear-gradient(135deg, hsl(220 20% 8%) 0%, hsl(224 82% 14%) 100%)" }}>
-        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <Shield className="w-10 h-10 mx-auto mb-5" style={{ color: "#D4A017" }} />
-          <h2 className="text-[1.5rem] font-bold text-white mb-4">Independent &amp; Non-Partisan</h2>
-          <p className="text-[1rem] leading-[1.85]" style={{ color: "rgba(255,255,255,0.65)" }}>
-            Africa Web3 Institute is an independent research organisation with no political, commercial, or governmental affiliation. Our research and positions are driven solely by evidence, rigorous analysis, and the public interest of African communities.
+      {/* H. INDEPENDENT STATEMENT */}
+      <section className="py-16 border-b border-border" style={{ background: "hsl(220 14% 96%)" }}>
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <p className="text-[2rem] mb-5">⚖️</p>
+          <h2 className="text-[1.25rem] font-bold text-secondary mb-4">Independent &amp; Non-Partisan</h2>
+          <p className="text-muted-foreground leading-[1.85] max-w-2xl mx-auto">
+            Africa Web3 Institute is an independent, non-partisan organisation. Our research, rankings, and policy recommendations are not influenced by any government, corporation, or political body.
           </p>
+        </div>
+      </section>
+
+      {/* I. CONTACT CTA */}
+      <section className="py-20 border-b border-border">
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Contact</p>
+            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">Get in Touch</h2>
+            <p className="text-muted-foreground">For research partnerships, media enquiries, or membership information</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {CONTACTS.map((c) => (
+              <div key={c.email} className="p-8 border border-border bg-white flex flex-col items-center text-center">
+                <p className="text-[1.75rem] mb-4">{c.icon}</p>
+                <p className="text-[0.875rem] font-bold text-secondary mb-2">{c.label}</p>
+                <p className="text-[0.8125rem] text-muted-foreground mb-5 break-all">{c.email}</p>
+                <a href={`mailto:${c.email}`}
+                  className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-5 py-2.5 transition-colors"
+                  style={{ backgroundColor: "#0B1437", color: "#fff" }}
+                  onMouseEnter={e => e.currentTarget.style.backgroundColor = "#D4A017"}
+                  onMouseLeave={e => e.currentTarget.style.backgroundColor = "#0B1437"}
+                >
+                  <Mail className="w-3.5 h-3.5" /> Send Email
+                </a>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

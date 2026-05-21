@@ -22,7 +22,7 @@ export default function Navbar() {
   }, []);
 
   const NAV_LINKS = [
-    { label: T.about, href: "#who-we-are" },
+    { label: T.about, href: "/about", isPage: true },
     { label: T.programs, href: "#programs" },
     { label: T.publications, href: "#publications" },
     { label: T.events, href: "#events" },
@@ -75,7 +75,7 @@ export default function Navbar() {
             {NAV_LINKS.map((link) => (
               <button
                 key={link.label}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => link.isPage ? navigate(link.href) : scrollTo(link.href)}
                 className="text-[0.75rem] transition-colors"
                 style={{ color: "#6B7280" }}
                 onMouseEnter={e => e.target.style.color = "#111827"}
@@ -184,7 +184,7 @@ export default function Navbar() {
           {NAV_LINKS.map((link) => (
             <button
               key={link.label}
-              onClick={() => scrollTo(link.href)}
+              onClick={() => link.isPage ? (setOpen(false), navigate(link.href)) : scrollTo(link.href)}
               className="block w-full text-left text-[0.875rem] py-3 border-b transition-colors"
               style={{ color: "#374151", borderColor: "#F3F4F6" }}
             >
