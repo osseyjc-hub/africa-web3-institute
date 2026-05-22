@@ -34,7 +34,7 @@ export default function Publications() {
                 Africa Web3 Policy &amp; Innovation Index
               </h3>
               <p className="text-[0.8125rem] text-muted-foreground leading-snug mb-5">
-                An annual definitive benchmark for regulatory clarity across 54 African nations. 2026 Index coming in January, 2027.
+                A quarterly definitive benchmark for regulatory clarity across 54 African nations. 2026 Index coming in January, 2027.
               </p>
               <Link
                 to="/awpii"
