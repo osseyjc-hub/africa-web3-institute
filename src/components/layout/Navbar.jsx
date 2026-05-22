@@ -92,7 +92,7 @@ export default function Navbar() {
               onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
               onMouseLeave={e => e.currentTarget.style.color = isAwpii ? "#D4A017" : "#6B7280"}
             >
-              AWPII
+              Africa Web3 Policy & Innovation Index
             </Link>
             <Link
               to="/africa-blockchain-awards"
@@ -197,7 +197,7 @@ export default function Navbar() {
             className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
             style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
           >
-            AWPII
+            Africa Web3 Policy & Innovation Index
           </Link>
           <Link
             to="/africa-blockchain-awards"
