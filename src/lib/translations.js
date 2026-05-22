@@ -55,7 +55,7 @@ export const t = {
       heading: "Research & insights",
       comingSoon: "Full report coming soon.",
       items: [
-        { tag: "Annual Report", title: "State of Web3 Africa 2026", description: "A comprehensive review of blockchain adoption, policy developments, and ecosystem growth across 18+ African nations.", year: "2026" },
+        { tag: "Quarterly Report", title: "State of Web3 Africa 2026", description: "A comprehensive review of blockchain adoption, policy developments, and ecosystem growth across 18+ African nations.", year: "2026", downloadLabel: "Download Q1 Report", downloadUrl: "#" },
 
         { tag: "Policy Brief", title: "Policy Brief Dashboard", description: "Access all our policy briefs here.", year: "2025", isDashboard: true, dashboardCta: "Access Policy Briefs →", dashboardUrl: "#" },
       ],
@@ -370,7 +370,7 @@ export const t = {
       heading: "Recherches & analyses",
       comingSoon: "Rapport complet à venir.",
       items: [
-        { tag: "Rapport annuel", title: "État du Web3 en Afrique 2026", description: "Un bilan approfondi de l'adoption de la blockchain, des évolutions réglementaires et de la croissance de l'écosystème dans 18+ nations africaines.", year: "2026" },
+        { tag: "Rapport trimestriel", title: "État du Web3 en Afrique 2026", description: "Un bilan approfondi de l'adoption de la blockchain, des évolutions réglementaires et de la croissance de l'écosystème dans 18+ nations africaines.", year: "2026", downloadLabel: "Télécharger le rapport T1", downloadUrl: "#" },
 
         { tag: "Note de politique", title: "Tableau de bord des notes de politique", description: "Accédez à toutes nos notes de politique ici.", year: "2025", isDashboard: true, dashboardCta: "Accéder aux notes de politique →", dashboardUrl: "#" },
       ],

@@ -98,6 +98,16 @@ export default function Publications() {
                         <p className="mt-2 text-[0.875rem] text-muted-foreground leading-[1.75]">
                           {pub.description}
                         </p>
+                        {pub.downloadLabel && (
+                          <a
+                            href={pub.downloadUrl}
+                            onClick={(e) => e.stopPropagation()}
+                            className="mt-4 inline-flex items-center gap-2 text-[0.8125rem] font-semibold py-2 px-4 transition-all"
+                            style={{ backgroundColor: "#D4A017", color: "#0B1437" }}
+                          >
+                            <Download className="w-3.5 h-3.5" /> {pub.downloadLabel}
+                          </a>
+                        )}
                       </div>
                       <ArrowRight
                         className="w-4 h-4 mt-1 flex-shrink-0 transition-transform group-hover:translate-x-1"
