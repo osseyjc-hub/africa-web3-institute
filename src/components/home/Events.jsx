@@ -134,7 +134,7 @@ export default function Events() {
           <SubSectionLabel label={T.policyLabel} />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
             {T.policyEvents.map((ev) => (
-              <div key={ev.title} className="bg-white p-7 flex flex-col gap-5">
+              <div key={ev.title} className={`bg-white p-7 flex flex-col gap-5 ${ev.topics ? "sm:col-span-2 lg:col-span-3" : ""}`}>
                 <div className="flex-1 space-y-4">
                   <span
                     className="inline-block text-[0.6875rem] font-semibold tracking-wider uppercase px-2 py-0.5 border"
@@ -144,6 +144,22 @@ export default function Events() {
                   </span>
                   <h3 className="text-[0.9375rem] font-semibold text-secondary leading-snug">{ev.title}</h3>
                   <EventMeta date={ev.date} location={ev.location} />
+                  {ev.description && (
+                    <p className="text-[0.875rem] text-muted-foreground leading-[1.75]">{ev.description}</p>
+                  )}
+                  {ev.topics && (
+                    <div>
+                      <p className="text-[0.6875rem] font-semibold tracking-wider uppercase text-muted-foreground mb-3">Key Topics</p>
+                      <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+                        {ev.topics.map((topic) => (
+                          <li key={topic} className="flex items-start gap-2 text-[0.8125rem] text-foreground leading-snug">
+                            <span className="mt-[0.45rem] w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
+                            {topic}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
                 <div className="pt-4 border-t border-border">
                   <button
