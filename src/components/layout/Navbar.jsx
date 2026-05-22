@@ -14,6 +14,7 @@ export default function Navbar() {
   const isHome = location.pathname === "/";
   const isAwards = location.pathname === "/africa-blockchain-awards";
   const isAwpii = location.pathname === "/awpii";
+  const isFrNetwork = location.pathname === "/francophone-network";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -104,6 +105,16 @@ export default function Navbar() {
             >
               Awards
             </Link>
+            <Link
+  to="/francophone-network"
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+  className="text-[0.75rem] font-semibold transition-colors"
+  style={{ color: location.pathname === "/francophone-network" ? "#D4A017" : "#6B7280" }}
+  onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
+  onMouseLeave={e => e.currentTarget.style.color = location.pathname === "/francophone-network" ? "#D4A017" : "#6B7280"}
+>
+ Francophone Web3 <br />& Students Network
+</Link>
           </div>
 
           {/* Right controls */}
@@ -197,6 +208,14 @@ export default function Navbar() {
           >
             Africa Blockchain Awards
           </Link>
+          <Link
+  to="/francophone-network"
+  onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+  className="block w-full text-left text-[0.875rem] font-semibold py-3"
+  style={{ color: "#D4A017" }}
+>
+  Francophone Web3 <br />& Students Network
+</Link>
         </div>
       )}
     </nav>
