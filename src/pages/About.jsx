@@ -46,7 +46,7 @@ const PILLARS = [
   {
     icon: GraduationCap,
     title: "Education & Capacity Building",
-    desc: "Training developers, entrepreneurs, and policymakers to lead Africa's decentralised economy through workshops, programs, and accessible resources.",
+    desc: "Training developers, students, entrepreneurs, and policymakers to lead Africa's decentralised economy through workshops, programs, and accessible resources.",
   },
 ];
 
@@ -141,7 +141,7 @@ export default function About() {
                 Africa's Dedicated Web3 Think Tank
               </h2>
               <p className="text-muted-foreground leading-[1.85] mb-4">
-                Founded in 2023, Africa Web3 Institute (AWI) is the continent's leading independent research and policy organisation dedicated to blockchain governance, Web3 policy, and digital economy development across all 54 African nations.
+                Founded in 2017 as Africa Blockchain University, Africa Web3 Institute (AWI) is the continent's leading independent research and policy organization dedicated to blockchain governance, Web3 policy, and digital economy development across all 54 African nations.
               </p>
               <p className="text-muted-foreground leading-[1.85] mb-8">
                 Africa is home to the world's fastest-growing crypto adoption rates, yet African voices remain underrepresented in global Web3 policy conversations. AWI exists to change that — equipping governments, institutions, and communities with the knowledge and frameworks needed to harness blockchain technology responsibly.
@@ -149,9 +149,9 @@ export default function About() {
               {/* Inline stats */}
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { value: "2023", label: "Founded" },
+                  { value: "2017", label: "Founded" },
                   { value: "18+", label: "Countries Covered" },
-                  { value: "200+", label: "Policy Reports" },
+                  { value: "10+", label: "Policy Reports Published" },
                   { value: "3,000+", label: "Members" },
                 ].map((s) => (
                   <div key={s.label} className="p-4 border border-border">
