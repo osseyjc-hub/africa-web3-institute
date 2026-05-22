@@ -44,16 +44,7 @@ export default function Programs() {
           })}
         </div>
 
-        <div className="mt-12 text-center">
-          <button
-            className="text-[0.875rem] font-semibold px-8 py-4 transition-all"
-            style={{ border: "1px solid #0B1437", color: "#0B1437" }}
-            onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#0B1437"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#0B1437"; }}
-          >
-            {T.cta}
-          </button>
-        </div>
+
       </div>
     </section>
   );
