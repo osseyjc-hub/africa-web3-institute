@@ -34,7 +34,7 @@ export default function Publications() {
                 Africa Web3 Policy &amp; Innovation Index 2025
               </h3>
               <p className="text-[0.8125rem] text-muted-foreground leading-snug mb-5">
-                The definitive benchmark for regulatory clarity across 54 African nations.
+                The definitive benchmark for regulatory clarity across 18+ African nations.
               </p>
               <Link
                 to="/awpii"
