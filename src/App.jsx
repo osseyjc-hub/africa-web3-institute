@@ -12,6 +12,7 @@ import AfricaBlockchainAwards from './pages/AfricaBlockchainAwards';
 import SiteLayout from './components/layout/SiteLayout';
 import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
+import FrancophopeNetwork from './pages/FrancophopeNetwork';
 import TermsOfUse from './pages/TermsOfUse';
 
 const AuthenticatedApp = () => {
@@ -47,6 +48,7 @@ const AuthenticatedApp = () => {
         <Route path="/about" element={<About />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
+        <Route path="/francophone-network" element={<FrancophopeNetwork />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
