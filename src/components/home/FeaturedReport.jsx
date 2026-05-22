@@ -6,12 +6,12 @@ import { useLang } from "@/lib/LanguageContext";
 const COPY = {
   en: {
     title: "Africa Web3 Policy & Innovation Index (AWPII) 2025",
-    desc: "Our flagship annual ranking of 18+ African nations across policy, innovation, and adoption metrics.",
+    desc: "Our flagship annual ranking of 54 African nations across policy, innovation, and adoption metrics. 2026 report coming in January 2027.",
     cta: "Download May 2026 Snapshot",
   },
   fr: {
     title: "Indice africain des politiques et de l'innovation Web3 (AWPII) 2025",
-    desc: "Notre classement annuel phare de 18+ nations africaines sur les métriques de politique, d'innovation et d'adoption.",
+    desc: "Notre classement annuel phare de 54 nations africaines sur les métriques de politique, d'innovation et d'adoption. Le rapport 2026 arrive en janvier 2027.",
     cta: "Télécharger le Snapshot de mai 2026",
   },
 };
