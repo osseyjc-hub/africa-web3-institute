@@ -150,7 +150,7 @@ export default function About() {
               <div className="grid grid-cols-2 gap-4">
                 {[
                   { value: "2023", label: "Founded" },
-                  { value: "54", label: "Countries Covered" },
+                  { value: "18+", label: "Countries Covered" },
                   { value: "200+", label: "Policy Reports" },
                   { value: "3,000+", label: "Members" },
                 ].map((s) => (

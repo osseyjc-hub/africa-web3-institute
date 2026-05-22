@@ -55,7 +55,7 @@ export const t = {
       heading: "Research & insights",
       comingSoon: "Full report coming soon.",
       items: [
-        { tag: "Annual Report", title: "State of Web3 Africa 2026", description: "A comprehensive review of blockchain adoption, policy developments, and ecosystem growth across 54 African nations.", year: "2026" },
+        { tag: "Annual Report", title: "State of Web3 Africa 2026", description: "A comprehensive review of blockchain adoption, policy developments, and ecosystem growth across 18+ African nations.", year: "2026" },
         { tag: "Index", title: "Africa Web3 Policy Index", description: "Ranking African countries by regulatory readiness, institutional capacity, and Web3 policy maturity.", year: "2025" },
         { tag: "Policy Brief", title: "Regulatory Frameworks for Digital Assets", description: "Emerging regulatory approaches to digital assets and decentralised finance across the continent.", year: "2025" },
       ],
@@ -142,7 +142,7 @@ export const t = {
       heroCtaPrimary: "Explore the Interactive Index",
       heroCtaSecondary: "Download May 2026 Snapshot",
       stats: [
-        { value: "54", label: "African Nations Tracked" },
+        { value: "18+", label: "African Nations Tracked" },
         { value: "4", label: "Assessment Pillars" },
         { value: "Annual", label: "Index Editions" },
         { value: "Real-Time", label: "Policy Snapshots" },
@@ -164,7 +164,7 @@ export const t = {
         { title: "Legal & Banking Entities", description: "Monitoring compliance, cross-border settlement shifts, and counterparty risks." },
       ],
       whyEyebrow: "Why It Matters",
-      whyHeading: "Eliminating regulatory opacity across 54 nations",
+      whyHeading: "Eliminating regulatory opacity across 18+ nations",
       whyPara1: "While digital asset adoption continues to rise across Africa, regulatory approaches remain highly fragmented.",
       whyPara2: "Some nations are actively codifying clear legal structures to attract capital, while others rely on restrictive measures or maintaining ambiguous enforcement positions. In a market that operates continuously and across borders, regulatory opacity creates substantial friction.",
       whyQuestionsLabel: "The AWPII addresses core structural questions",
@@ -350,7 +350,7 @@ export const t = {
       heading: "Recherches & analyses",
       comingSoon: "Rapport complet à venir.",
       items: [
-        { tag: "Rapport annuel", title: "État du Web3 en Afrique 2026", description: "Un bilan approfondi de l'adoption de la blockchain, des évolutions réglementaires et de la croissance de l'écosystème dans les 54 nations africaines.", year: "2026" },
+        { tag: "Rapport annuel", title: "État du Web3 en Afrique 2026", description: "Un bilan approfondi de l'adoption de la blockchain, des évolutions réglementaires et de la croissance de l'écosystème dans 18+ nations africaines.", year: "2026" },
         { tag: "Indice", title: "Indice des politiques Web3 africaines", description: "Classement des pays africains selon leur maturité réglementaire, leur capacité institutionnelle et l'avancement de leurs politiques Web3.", year: "2025" },
         { tag: "Note de politique", title: "Cadres réglementaires pour les actifs numériques", description: "Analyse des approches réglementaires émergentes pour les actifs numériques et la finance décentralisée à travers le continent.", year: "2025" },
       ],
@@ -437,7 +437,7 @@ export const t = {
       heroCtaPrimary: "Explorer l'index interactif",
       heroCtaSecondary: "Télécharger le Snapshot de mai 2026",
       stats: [
-        { value: "54", label: "Nations africaines suivies" },
+        { value: "18+", label: "Nations africaines suivies" },
         { value: "4", label: "Piliers d'évaluation" },
         { value: "Annuel", label: "Éditions de l'index" },
         { value: "Temps réel", label: "Snapshots de politiques" },
@@ -459,7 +459,7 @@ export const t = {
         { title: "Entités juridiques & Bancaires", description: "Suivi de la conformité, des évolutions de règlement transfrontalier et des risques de contrepartie." },
       ],
       whyEyebrow: "Pourquoi c'est important",
-      whyHeading: "Éliminer l'opacité réglementaire dans 54 nations",
+      whyHeading: "Éliminer l'opacité réglementaire dans 18+ nations",
       whyPara1: "Alors que l'adoption des actifs numériques continue de progresser en Afrique, les approches réglementaires restent très fragmentées.",
       whyPara2: "Certaines nations codifient activement des structures juridiques claires pour attirer les capitaux, tandis que d'autres s'appuient sur des mesures restrictives ou maintiennent des positions d'application ambiguës. Dans un marché qui fonctionne en continu et au-delà des frontières, l'opacité réglementaire crée des frictions substantielles.",
       whyQuestionsLabel: "L'AWPII aborde les questions structurelles fondamentales",
