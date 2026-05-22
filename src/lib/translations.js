@@ -139,7 +139,7 @@ export const t = {
       heading: "Build with us. Shape policy.\nDefine the future.",
       body: "Join a growing network of governments, innovators, and institutions advancing Africa's Web3 agenda.",
       cta1: "Join the Community",
-      cta2: "Partner With Us (Coming Soon)",
+      cta2: "Partner With Us",
     },
     footer: {
       description: "A pan-African public policy and educational think tank advancing blockchain innovation through research, regulation, education, and ecosystem building.",
@@ -434,7 +434,7 @@ export const t = {
       heading: "Construisez avec nous. Transformons les politiques.\nDéfinissez l'avenir.",
       body: "Rejoignez un réseau croissant de gouvernements, d'innovateurs et d'institutions faisant avancer l'agenda Web3 africain.",
       cta1: "Rejoindre la Communauté",
-      cta2: "Devenir partenaire (à venir)",
+      cta2: "Devenir partenaire",
     },
     footer: {
       description: "Un think tank panafricain de politique publique et d'éducation, dédié à l'avancement de l'innovation blockchain par la recherche, la réglementation, l'éducation et le développement de l'écosystème.",
