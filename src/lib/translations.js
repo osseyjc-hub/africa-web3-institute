@@ -57,7 +57,7 @@ export const t = {
       items: [
         { tag: "Annual Report", title: "State of Web3 Africa 2026", description: "A comprehensive review of blockchain adoption, policy developments, and ecosystem growth across 18+ African nations.", year: "2026" },
         { tag: "Index", title: "Africa Web3 Policy Index", description: "Ranking African countries by regulatory readiness, institutional capacity, and Web3 policy maturity.", year: "2025" },
-        { tag: "Policy Brief", title: "Regulatory Frameworks for Digital Assets", description: "Emerging regulatory approaches to digital assets and decentralised finance across the continent.", year: "2025" },
+        { tag: "Policy Brief", title: "Policy Brief Dashboard", description: "Access all our policy briefs here.", year: "2025", isDashboard: true, dashboardCta: "Access Policy Briefs →", dashboardUrl: "#" },
       ],
     },
     events: {
@@ -372,7 +372,7 @@ export const t = {
       items: [
         { tag: "Rapport annuel", title: "État du Web3 en Afrique 2026", description: "Un bilan approfondi de l'adoption de la blockchain, des évolutions réglementaires et de la croissance de l'écosystème dans 18+ nations africaines.", year: "2026" },
         { tag: "Indice", title: "Indice des politiques Web3 africaines", description: "Classement des pays africains selon leur maturité réglementaire, leur capacité institutionnelle et l'avancement de leurs politiques Web3.", year: "2025" },
-        { tag: "Note de politique", title: "Cadres réglementaires pour les actifs numériques", description: "Analyse des approches réglementaires émergentes pour les actifs numériques et la finance décentralisée à travers le continent.", year: "2025" },
+        { tag: "Note de politique", title: "Tableau de bord des notes de politique", description: "Accédez à toutes nos notes de politique ici.", year: "2025", isDashboard: true, dashboardCta: "Accéder aux notes de politique →", dashboardUrl: "#" },
       ],
     },
     events: {
