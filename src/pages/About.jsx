@@ -8,7 +8,6 @@ const TEAM = [
     role: "Executive Director",
     country: "🇬🇭 Ghana",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/5b37f2043_9edbdc2d-86b7-4581-bb79-f31189960de2.jpg",
-    bio: "A Web3 policy architect at the intersection of emerging technology and African economic policy. He works with governments and institutional partners on stablecoin policy, RWA tokenization, and VASP regulatory frameworks — including the AWPII.",
     linkedin: "https://linkedin.com/in/afrikanus-kofi-akosah-adusei-ba25aa88",
     twitter: null,
   },
@@ -17,7 +16,6 @@ const TEAM = [
     role: "Events and Programs Manager",
     country: "🇨🇲 Cameroon",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/dd836029e_ChatGPTImageMay21202607_53_59AM.png",
-    bio: "From falling into a crypto Ponzi in 2020 to becoming a purpose-driven Web3 educator. He specialises in making crypto relatable for young Africans through storytelling and grassroots community building.",
     linkedin: "https://www.linkedin.com/in/asang-nehemiah-forgwe-094067193",
     twitter: null,
   },
@@ -26,8 +24,16 @@ const TEAM = [
     role: "Francophone Lead",
     country: "🇨🇮 Côte d'Ivoire",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/a15daee7d_IMG_3255.png",
-    bio: "A commercial ATR72 pilot and commodity trader who bridges the gap between the French-speaking African world and blockchain innovation, driving Web3 adoption across Francophone Africa.",
     linkedin: "https://linkedin.com/in/osseyjc",
+    twitter: null,
+  },
+  {
+    name: "Abdul Raman",
+    role: "Comms and Partnerships Lead",
+    country: "",
+    photo: null,
+    initials: "AR",
+    linkedin: "https://linkedin.com/in/abdulganiwu",
     twitter: null,
   },
 ];
@@ -77,15 +83,18 @@ function TeamCard({ member }) {
         boxShadow: hovered ? "0 8px 24px rgba(0,0,0,0.08)" : "none",
       }}
     >
-      <div className="w-20 h-20 rounded-full overflow-hidden mb-4 flex-shrink-0"
-        style={{ border: "2px solid #D4A017" }}>
-        <img src={member.photo} alt={`${member.name} — ${member.role} at Africa Web3 Institute`}
-          className="w-full h-full object-cover" />
+      <div className="w-20 h-20 rounded-full overflow-hidden mb-4 flex-shrink-0 flex items-center justify-center"
+        style={{ border: "2px solid #D4A017", backgroundColor: member.photo ? "transparent" : "#0B1437" }}>
+        {member.photo ? (
+          <img src={member.photo} alt={`${member.name} — ${member.role} at Africa Web3 Institute`}
+            className="w-full h-full object-cover" />
+        ) : (
+          <span className="text-[1.25rem] font-bold" style={{ color: "#D4A017" }}>{member.initials}</span>
+        )}
       </div>
       <p className="text-[0.9375rem] font-bold text-secondary mb-1">{member.name}</p>
       <p className="text-[0.8125rem] text-muted-foreground mb-1">{member.role}</p>
-      <p className="text-[0.8125rem] mb-3" style={{ color: "#D4A017" }}>{member.country}</p>
-      <p className="text-[0.75rem] text-muted-foreground leading-[1.7] mb-4">{member.bio}</p>
+      {member.country ? <p className="text-[0.8125rem] mb-3" style={{ color: "#D4A017" }}>{member.country}</p> : <div className="mb-3" />}
       <div className="flex gap-3 mt-auto">
         {member.linkedin && (
           <a href={member.linkedin.startsWith("http") ? member.linkedin : `https://${member.linkedin}`}
