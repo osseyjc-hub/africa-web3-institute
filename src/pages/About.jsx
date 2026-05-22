@@ -28,10 +28,10 @@ const TEAM = [
     twitter: null,
   },
   {
-    name: "Abdul Raman",
+    name: "Abdul Rahaman",
     role: "Comms and Partnerships Lead",
     country: "",
-    photo: null,
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/71ba35058_IMG_8862.jpg",
     initials: "AR",
     linkedin: "https://linkedin.com/in/abdulganiwu",
     twitter: null,
