@@ -46,7 +46,7 @@ export const t = {
       cta: "Explore Programs (Coming Soon)",
       items: [
         { title: "Policy & Regulation", description: "Shaping regulatory frameworks through technical advisory, stakeholder convenings, and model policy drafting with governments across Africa." },
-        { title: "Education & Capacity Building", description: "Delivering structured training programs, executive workshops, and certification pathways for policymakers, developers, and institutional leaders." },
+        { title: "Education & Capacity Building", description: "Delivering structured training programs, executive workshops, and certification pathways for policymakers, developers, students, and institutional leaders." },
         { title: "Startup Incubation", description: "Providing early-stage Web3 ventures with mentorship, regulatory guidance, funding pathways, and access to the pan-African ecosystem." },
       ],
     },
