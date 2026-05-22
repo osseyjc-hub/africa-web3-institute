@@ -126,16 +126,6 @@ export default function Navbar() {
               </button>
             </div>
 
-            <button
-              onClick={() => scrollTo("#community")}
-              className="text-[0.75rem] px-3.5 py-1.5 rounded-md border transition-all"
-              style={{ borderColor: "#E5E7EB", color: "#374151", backgroundColor: "transparent" }}
-              onMouseEnter={e => e.currentTarget.style.backgroundColor = "#F9FAFB"}
-              onMouseLeave={e => e.currentTarget.style.backgroundColor = "transparent"}
-            >
-              {T.joinCommunity}
-            </button>
-
             <Link
               to="/awpii"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
