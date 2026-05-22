@@ -30,7 +30,7 @@ const TEAM = [
   {
     name: "Abdul Rahaman",
     role: "Comms and Partnerships Lead",
-    country: "",
+    country: "🇬🇭 Ghana",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/71ba35058_IMG_8862.jpg",
     initials: "AR",
     linkedin: "https://linkedin.com/in/abdulganiwu",
