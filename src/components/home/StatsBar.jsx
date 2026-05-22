@@ -18,14 +18,14 @@ function useCountUp(target, duration = 1800, start = false) {
 }
 
 const STATS_EN = [
-  { value: 54, label: "Countries covered", suffix: "" },
-  { value: 200, label: "Policy reports", suffix: "+" },
+  { value: 18, label: "Countries", suffix: "+" },
+  { value: 10, label: "Policy reports", suffix: "+" },
   { value: 3000, label: "Members", suffix: "+" },
   { value: 12, label: "Partner governments", suffix: "" },
 ];
 const STATS_FR = [
-  { value: 54, label: "Pays couverts", suffix: "" },
-  { value: 200, label: "Rapports politiques", suffix: "+" },
+  { value: 18, label: "Pays", suffix: "+" },
+  { value: 10, label: "Rapports politiques", suffix: "+" },
   { value: 3000, label: "Membres", suffix: "+" },
   { value: 12, label: "Gouvernements partenaires", suffix: "" },
 ];

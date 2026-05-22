@@ -30,7 +30,7 @@ export const t = {
       heading: "Four pillars of impact",
       pillars: [
         { title: "Policy", description: "Advising governments and institutions on digital asset policy, regulation, and governance frameworks across Africa." },
-        { title: "Education", description: "Training stakeholders across Africa's Web3 ecosystem — from policymakers and regulators to developers and entrepreneurs." },
+        { title: "Education", description: "Training stakeholders across Africa's Web3 ecosystem — from policymakers and regulators to developers, students, and entrepreneurs." },
         { title: "Research", description: "Publishing rigorous insights that inform regulation, innovation, and investment decisions across the continent." },
         { title: "Incubation", description: "Supporting African Web3 startups with mentorship, resources, and pathways to scale across local and global markets." },
       ],
@@ -140,7 +140,7 @@ export const t = {
       heroPara2: "Regulatory frameworks will determine which markets scale—and which stall.",
       heroPara3: "The AWPII is the definitive benchmark evaluating how African jurisdictions regulate, restrict, or enable decentralised technologies. Through rigorous annual analysis and real-time Snapshot updates, we provide clear, data-driven comparisons of continental policy environments.",
       heroCtaPrimary: "Explore the Interactive Index",
-      heroCtaSecondary: "Download the 2026 Annual Report",
+      heroCtaSecondary: "Download May 2026 Snapshot",
       stats: [
         { value: "54", label: "African Nations Tracked" },
         { value: "4", label: "Assessment Pillars" },
@@ -325,7 +325,7 @@ export const t = {
       heading: "Quatre piliers d'impact",
       pillars: [
         { title: "Politique", description: "Conseiller les gouvernements et institutions sur les politiques d'actifs numériques, la réglementation et les cadres de gouvernance à travers l'Afrique." },
-        { title: "Éducation", description: "Former les acteurs de l'écosystème Web3 africain — des décideurs politiques et régulateurs aux développeurs et entrepreneurs." },
+        { title: "Éducation", description: "Former les acteurs de l'écosystème Web3 africain — des décideurs politiques et régulateurs aux développeurs, étudiants et entrepreneurs." },
         { title: "Recherche", description: "Produire des analyses rigoureuses qui orientent les décisions réglementaires, d'innovation et d'investissement à l'échelle du continent." },
         { title: "Incubation", description: "Accompagner les startups Web3 africaines par le mentorat, les ressources et des voies de développement sur les marchés locaux et internationaux." },
       ],
@@ -435,7 +435,7 @@ export const t = {
       heroPara2: "Les cadres réglementaires détermineront quels marchés prendront de l'ampleur — et lesquels stagneront.",
       heroPara3: "L'AWPII est la référence définitive évaluant la façon dont les juridictions africaines réglementent, restreignent ou permettent les technologies décentralisées. Grâce à une analyse annuelle rigoureuse et à des mises à jour Snapshot en temps réel, nous fournissons des comparaisons claires et fondées sur des données des environnements politiques continentaux.",
       heroCtaPrimary: "Explorer l'index interactif",
-      heroCtaSecondary: "Télécharger le rapport annuel 2026",
+      heroCtaSecondary: "Télécharger le Snapshot de mai 2026",
       stats: [
         { value: "54", label: "Nations africaines suivies" },
         { value: "4", label: "Piliers d'évaluation" },

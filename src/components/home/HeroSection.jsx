@@ -38,7 +38,7 @@ export default function HeroSection() {
         <div className="flex items-center gap-3 mb-6">
           <span className="inline-flex items-center gap-1.5 text-[0.6875rem] font-semibold px-3 py-1 rounded-full"
             style={{ backgroundColor: "#FAEEDA", color: "#633806" }}>
-            ✦ Est. 2023
+            ✦ Est. 2017
           </span>
           <span className="text-[0.6875rem]" style={{ color: "rgba(255,255,255,0.45)" }}>
             Africa's leading Web3 think tank
