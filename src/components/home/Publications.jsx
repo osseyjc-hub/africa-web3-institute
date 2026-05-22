@@ -31,10 +31,10 @@ export default function Publications() {
                 Featured Report
               </p>
               <h3 className="font-display text-[1rem] font-bold text-secondary mb-3 leading-snug">
-                Africa Web3 Policy &amp; Innovation Index 2025
+                Africa Web3 Policy &amp; Innovation Index
               </h3>
               <p className="text-[0.8125rem] text-muted-foreground leading-snug mb-5">
-                The definitive benchmark for regulatory clarity across 18+ African nations.
+                An annual definitive benchmark for regulatory clarity across 54 African nations. 2026 Index coming in January, 2027.
               </p>
               <Link
                 to="/awpii"
