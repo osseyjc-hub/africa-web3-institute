@@ -117,9 +117,9 @@ export const t = {
       eyebrow: "Community",
       heading: "Be part of the movement",
       paths: [
-        { label: "01", title: "Join as Member", description: "Access research, events, and a growing network of Web3 practitioners, policymakers, and thought leaders across Africa.", cta: "Apply for Membership (Coming Soon)" },
-        { label: "02", title: "Apply as Fellow", description: "Join a selective cohort of researchers, builders, and policy professionals contributing to Africa's Web3 future.", cta: "Apply for Fellowship (Coming Soon)" },
-        { label: "03", title: "Become a Partner", description: "Collaborate with the Institute on research, programs, and initiatives that advance Web3 adoption and governance.", cta: "Explore Partnerships (Coming Soon)" },
+        { label: "01", title: "Join as Member", description: "Access research, events, and a growing network of Web3 practitioners, policymakers, and thought leaders across Africa.", cta: "Apply for Membership" },
+        { label: "02", title: "Apply as Fellow", description: "Join a selective cohort of researchers, builders, and policy professionals contributing to Africa's Web3 future.", cta: "Apply for Fellowship" },
+        { label: "03", title: "Become a Partner", description: "Collaborate with the Institute on research, programs, and initiatives that advance Web3 adoption and governance.", cta: "Explore Partnerships" },
       ],
     },
     contact: {
@@ -412,9 +412,9 @@ export const t = {
       eyebrow: "Communauté",
       heading: "Rejoignez le mouvement",
       paths: [
-        { label: "01", title: "Devenir membre", description: "Accédez aux recherches, événements et à un réseau croissant de praticiens Web3, décideurs et leaders d'opinion à travers l'Afrique.", cta: "Candidater comme membre (à venir)" },
-        { label: "02", title: "Postuler comme Fellow", description: "Rejoignez une cohorte sélective de chercheurs, bâtisseurs et professionnels de la politique contribuant à l'avenir Web3 de l'Afrique.", cta: "Postuler pour une bourse (à venir)" },
-        { label: "03", title: "Devenir partenaire", description: "Collaborez avec l'Institut sur des recherches, programmes et initiatives favorisant l'adoption et la gouvernance du Web3.", cta: "Explorer les partenariats (à venir)" },
+        { label: "01", title: "Devenir membre", description: "Accédez aux recherches, événements et à un réseau croissant de praticiens Web3, décideurs et leaders d'opinion à travers l'Afrique.", cta: "Candidater comme membre" },
+        { label: "02", title: "Postuler comme Fellow", description: "Rejoignez une cohorte sélective de chercheurs, bâtisseurs et professionnels de la politique contribuant à l'avenir Web3 de l'Afrique.", cta: "Postuler pour une bourse" },
+        { label: "03", title: "Devenir partenaire", description: "Collaborez avec l'Institut sur des recherches, programmes et initiatives favorisant l'adoption et la gouvernance du Web3.", cta: "Explorer les partenariats" },
       ],
     },
     contact: {
