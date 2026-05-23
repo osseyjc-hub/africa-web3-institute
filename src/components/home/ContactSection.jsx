@@ -17,14 +17,20 @@ export default function ContactSection() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (honeypot) return; // bot trap
     setLoading(true);
     setError(false);
-    const response = await base44.functions.invoke("sendContactEmail", { ...form, honeypot });
-    setLoading(false);
-    if (response.data?.success) {
+    try {
+      await base44.integrations.Core.SendEmail({
+        to: "info@africaweb3institute.org",
+        subject: `New Inquiry from ${form.name} — ${form.organization || "No org"}`,
+        body: `Name: ${form.name}\nEmail: ${form.email}\nOrganization: ${form.organization || "—"}\n\nMessage:\n${form.message}`,
+      });
       setSubmitted(true);
-    } else {
+    } catch {
       setError(true);
+    } finally {
+      setLoading(false);
     }
   };
 
