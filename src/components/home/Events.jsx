@@ -15,10 +15,12 @@ function EventMeta({ date, location }) {
         <Calendar className="w-3.5 h-3.5 flex-shrink-0 text-accent" />
         {date}
       </span>
-      <span className="inline-flex items-center gap-2 text-[0.8125rem] text-muted-foreground">
-        <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
-        {location}
-      </span>
+      {location && (
+        <span className="inline-flex items-center gap-2 text-[0.8125rem] text-muted-foreground">
+          <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+          {location}
+        </span>
+      )}
     </div>
   );
 }

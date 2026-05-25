@@ -80,7 +80,7 @@ export const t = {
         cta: "Partner With Us →",
       },
       researchEvents: [
-        { title: "State of Web3 Africa 2026 — Q2 Launch", date: "10 July 2026", location: "Golden Tulip Dar, Dar es Salaam, Tanzania", description: "A data-driven convening of policymakers, investors, and builders to decode stablecoins, regulation, and capital flows.", ctas: [{ label: "Download Previous Report", variant: "outline" }, { label: "Attend Launch Event", variant: "primary" }] },
+        { title: "State of Web3 Africa 2026 — Q2 Launch", date: "10 July 2026", location: "", description: "A data-driven convening of policymakers, investors, and builders to decode stablecoins, regulation, and capital flows.", ctas: [{ label: "Download Previous Report", variant: "outline" }, { label: "Attend Launch Event", variant: "primary" }] },
         { title: "State of Web3 Africa 2026 — Q3 Launch", date: "25 September 2026", location: "Marriott Bonvoy, Johannesburg, South Africa", description: "Tracking what's scaling, what's stalling, and where Africa captures value next.", ctas: [{ label: "Get Early Access", variant: "primary" }] },
       ],
       policyEvents: [
@@ -431,7 +431,7 @@ export const t = {
         cta: "Devenir partenaire →",
       },
       researchEvents: [
-        { title: "État du Web3 en Afrique 2026 — Lancement T2", date: "10 juillet 2026", location: "Golden Tulip Dar, Dar es Salaam, Tanzanie", description: "Une rencontre axée sur les données, réunissant décideurs, investisseurs et bâtisseurs pour décrypter stablecoins, réglementation et flux de capitaux.", ctas: [{ label: "Télécharger le rapport précédent", variant: "outline" }, { label: "Assister au lancement", variant: "primary" }] },
+        { title: "État du Web3 en Afrique 2026 — Lancement T2", date: "10 juillet 2026", location: "", description: "Une rencontre axée sur les données, réunissant décideurs, investisseurs et bâtisseurs pour décrypter stablecoins, réglementation et flux de capitaux.", ctas: [{ label: "Télécharger le rapport précédent", variant: "outline" }, { label: "Assister au lancement", variant: "primary" }] },
         { title: "État du Web3 en Afrique 2026 — Lancement T3", date: "25 septembre 2026", location: "Marriott Bonvoy, Johannesburg, Afrique du Sud", description: "Suivre ce qui se développe, ce qui stagne et où l'Afrique capte la valeur ensuite.", ctas: [{ label: "Accès anticipé", variant: "primary" }] },
       ],
       policyEvents: [
