@@ -84,7 +84,7 @@ export const t = {
         { title: "State of Web3 Africa 2026 — Q3 Launch", date: "25 September 2026", location: "Marriott Bonvoy, Johannesburg, South Africa", description: "Tracking what's scaling, what's stalling, and where Africa captures value next.", ctas: [{ label: "Get Early Access", variant: "primary" }] },
       ],
       policyEvents: [
-        { title: "VASP Policy Workshop for Journalists", country: "Ghana", date: "22–23 July 2026", location: "Alisa Hotel, Accra", cta: "Request Invitation" },
+        { title: "VASP Policy Workshop for Journalists", country: "Ghana", date: "29–30 July 2026", location: "Alisa Hotel, Accra", cta: "Request Invitation" },
         { title: "VASP Strategy Workshop for Banks", country: "Ghana", date: "5 August 2026", location: "Kempinski, Accra", cta: "Institutional Participation" },
         { title: "Web3 Policy Sensitization Workshop", country: "Congo DRC", date: "10 September 2026", location: "Hilton, Kinshasa", cta: "Join Policy Dialogue" },
         { title: "Web3 Policy Roundtable", country: "Tanzania", date: "4 October 2026", location: "Hyatt, Dar es Salaam", cta: "Request Seat at the Table" },
@@ -435,7 +435,7 @@ export const t = {
         { title: "État du Web3 en Afrique 2026 — Lancement T3", date: "25 septembre 2026", location: "Marriott Bonvoy, Johannesburg, Afrique du Sud", description: "Suivre ce qui se développe, ce qui stagne et où l'Afrique capte la valeur ensuite.", ctas: [{ label: "Accès anticipé", variant: "primary" }] },
       ],
       policyEvents: [
-        { title: "Atelier politique VASP pour journalistes", country: "Ghana", date: "22–23 juillet 2026", location: "Alisa Hotel, Accra", cta: "Demander une invitation" },
+        { title: "Atelier politique VASP pour journalistes", country: "Ghana", date: "29–30 juillet 2026", location: "Alisa Hotel, Accra", cta: "Demander une invitation" },
         { title: "Atelier stratégique VASP pour les banques", country: "Ghana", date: "5 août 2026", location: "Kempinski, Accra", cta: "Participation institutionnelle" },
         { title: "Atelier de sensibilisation politique Web3", country: "Congo RDC", date: "10 septembre 2026", location: "Hilton, Kinshasa", cta: "Rejoindre le dialogue politique" },
         { title: "Table ronde politique Web3", country: "Tanzanie", date: "4 octobre 2026", location: "Hyatt, Dar es Salaam", cta: "Demander une place à la table" },
