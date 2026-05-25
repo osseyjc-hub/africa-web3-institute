@@ -51,6 +51,22 @@ const TEAM = [
     linkedin: null,
     twitter: null,
   },
+   {
+    name: "Jarau Moses",
+    role: "Content & Social Mdea Lead",
+    country: null,
+    photo: null,
+    linkedin: null,
+    twitter: null,
+  },
+   {
+    name: "Carlos Juan",
+    role: "CTO",
+    country: null,
+    photo: null,
+    linkedin: null,
+    twitter: null,
+  },
 ];
 
 const PILLARS = [
