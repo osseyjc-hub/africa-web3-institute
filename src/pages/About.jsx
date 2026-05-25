@@ -43,6 +43,14 @@ const TEAM = [
     linkedin: "https://linkedin.com/in/gloria-achieng-74388b108",
     twitter: "https://x.com/gloriaachieng14",
   },
+    {
+    name: "Adusei Akwasi",
+    role: "Director of Policy & Research",
+    country: "🇬🇭 Ghana",
+    photo: null,
+    linkedin: null,
+    twitter: null,
+  },
 ];
 
 const PILLARS = [
