@@ -25,7 +25,7 @@ const TEAM = [
     country: "🇨🇮 Côte d'Ivoire",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/a15daee7d_IMG_3255.png",
     linkedin: "https://linkedin.com/in/osseyjc",
-    twitter: "https://t.co/twDQNioUEu",
+    twitter: "https://x.com/osseyjc",
   },
   {
     name: "Abdul Rahaman",
