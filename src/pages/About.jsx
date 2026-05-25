@@ -17,7 +17,7 @@ const TEAM = [
     country: "🇨🇲 Cameroon",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/dd836029e_ChatGPTImageMay21202607_53_59AM.png",
     linkedin: "https://www.linkedin.com/in/asang-nehemiah-forgwe-094067193",
-    twitter: null,
+    twitter: "https://x.com/asangnehemiah?s=21",
   },
   {
     name: "Jean Cedric Ossey",
@@ -32,9 +32,16 @@ const TEAM = [
     role: "Comms and Partnerships Lead",
     country: "🇬🇭 Ghana",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/71ba35058_IMG_8862.jpg",
-    initials: "AR",
     linkedin: "https://linkedin.com/in/abdulganiwu",
-    twitter: null,
+    twitter: "https://x.com/phrozendon?s=21",
+  },
+  {
+    name: "Gloria Achieng",
+    role: "Operations Lead",
+    country: "🇰🇪 Kenya",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/fbf4dc09c_ChatGPTImageMay25202611_07_17AM.png",
+    linkedin: "https://linkedin.com/in/gloria-achieng-74388b108",
+    twitter: "https://x.com/gloriaachieng14",
   },
 ];
 
