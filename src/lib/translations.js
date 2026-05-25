@@ -105,7 +105,7 @@ export const t = {
             {
               title: "VASP Strategy Workshop for Banks",
               country: "Ghana",
-              date: "5 August 2026",
+              date: "20 August 2026",
               location: "Kempinski, Accra",
               ctas: [{ label: "Institutional Participation", variant: "primary" }],
             },
@@ -519,7 +519,7 @@ export const t = {
             {
               title: "Atelier stratégique VASP pour les banques",
               country: "Ghana",
-              date: "5 août 2026",
+              date: "20 août 2026",
               location: "Kempinski, Accra",
               ctas: [{ label: "Participation institutionnelle", variant: "primary" }],
             },
