@@ -38,7 +38,7 @@ const TEAM = [
   {
     name: "Gloria Achieng",
     role: "Operations Lead",
-    country: "🇰🇪 Kenya",
+    country: "🇺🇬 Uganda",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/fbf4dc09c_ChatGPTImageMay25202611_07_17AM.png",
     linkedin: "https://linkedin.com/in/gloria-achieng-74388b108",
     twitter: "https://x.com/gloriaachieng14",
