@@ -87,6 +87,8 @@ export const t = {
         { title: "VASP Policy Workshop for Journalists", country: "Ghana", date: "29–30 July 2026", location: "Alisa Hotel, Accra", cta: "Request Invitation" },
         { title: "VASP Strategy Workshop for Banks", country: "Ghana", date: "5 August 2026", location: "Kempinski, Accra", cta: "Institutional Participation" },
         { title: "Web3 Policy Sensitization Workshop", country: "Congo DRC", date: "10 September 2026", location: "Hilton, Kinshasa", cta: "Join Policy Dialogue" },
+        { title: "Web3 Policy Roundtable", country: "Tanzania", date: "4 October 2026", location: "Hyatt, Dar es Salaam", cta: "Request Seat at the Table" },
+        { title: "Web3 Policy Breakfast", country: "South Sudan", date: "3 December 2026", location: "Radisson Blu, Juba", cta: "Engage as Stakeholder" },
         {
           title: "Blockchain, Cryptocurrency Financial Crime Enforcement Workshop",
           country: "Zambia",
@@ -107,8 +109,6 @@ export const t = {
           ],
           cta: "Register Interest",
         },
-        { title: "Web3 Policy Roundtable", country: "Tanzania", date: "4 October 2026", location: "Hyatt, Dar es Salaam", cta: "Request Seat at the Table" },
-        { title: "Web3 Policy Breakfast", country: "South Sudan", date: "3 December 2026", location: "Radisson Blu, Juba", cta: "Engage as Stakeholder" },
       ],
       partnerCta1: "Become a Partner →",
       partnerCta2: "Sponsor an Event",
