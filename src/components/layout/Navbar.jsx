@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Download } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
@@ -115,6 +115,17 @@ export default function Navbar() {
 >
  Francophone Web3 <br />& Students Network
 </Link>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-[0.75rem] font-semibold transition-colors"
+              style={{ color: "#6B7280" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#111827"}
+              onMouseLeave={e => e.currentTarget.style.color = "#6B7280"}
+            >
+              <Download className="w-3 h-3" /> Media Kit
+            </a>
           </div>
 
           {/* Right controls */}
@@ -211,11 +222,21 @@ export default function Navbar() {
           <Link
   to="/francophone-network"
   onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-  className="block w-full text-left text-[0.875rem] font-semibold py-3"
-  style={{ color: "#D4A017" }}
+  className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
+  style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
 >
-  Francophone Web3 <br />& Students Network
+  Francophone Web3 & Students Network
 </Link>
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 w-full text-left text-[0.875rem] font-semibold py-3"
+            style={{ color: "#374151" }}
+          >
+            <Download className="w-4 h-4" style={{ color: "#D4A017" }} /> Media Kit
+          </a>
         </div>
       )}
     </nav>
