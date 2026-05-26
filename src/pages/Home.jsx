@@ -19,11 +19,12 @@ export default function Home() {
     <>
       <HeroSection />
       <StatsBar />
-      <AfricaMapTeaser />
+     
       <WhatWeDo />
       <FeaturedReport />
       <WhoWeAre />
       <WhyAfrica />
+       <AfricaMapTeaser />
       <Programs />
       <Publications />
       <Events />
