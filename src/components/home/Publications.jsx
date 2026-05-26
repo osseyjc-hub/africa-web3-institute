@@ -101,6 +101,8 @@ export default function Publications() {
                         {pub.downloadLabel && (
                           <a
                             href={pub.downloadUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}
                             className="mt-4 inline-flex items-center gap-2 text-[0.8125rem] font-semibold py-2 px-4 transition-all"
                             style={{ backgroundColor: "#D4A017", color: "#0B1437" }}
@@ -114,16 +116,7 @@ export default function Publications() {
                         style={{ color: "rgba(212,160,23,0.5)" }}
                       />
                     </div>
-                    {active === pub.title && (
-                      <div className="pb-8">
-                        <p
-                          className="text-[0.8125rem] font-medium text-muted-foreground border-l-2 pl-4"
-                          style={{ borderColor: "#D4A017" }}
-                        >
-                          {T.comingSoon}
-                        </p>
-                      </div>
-                    )}
+
                   </div>
                 )}
               </div>
