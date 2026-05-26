@@ -53,7 +53,7 @@ const TEAM = [
   },
    {
     name: "Jarau Moses",
-    role: "Content & Social Mdea Lead",
+    role: "Content & Social Media Lead",
     country: null,
     photo: null,
     linkedin: null,
