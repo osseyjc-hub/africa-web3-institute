@@ -12,12 +12,20 @@ const TEAM = [
     twitter: null,
   },
   {
-    name: "Asang Nehemiah Forgwe",
-    role: "Events and Programs Manager",
-    country: "🇨🇲 Cameroon",
-    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/dd836029e_ChatGPTImageMay21202607_53_59AM.png",
-    linkedin: "https://www.linkedin.com/in/asang-nehemiah-forgwe-094067193",
-    twitter: "https://x.com/asangnehemiah?s=21",
+    name: "Adusei Akwasi",
+    role: "Director of Policy & Research",
+    country: "🇬🇭 Ghana",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/347e90ce2_FB_IMG_1779722196696.jpg",
+    linkedin: "linkedin.com/in/adusei-akwasi-4b29419a",
+    twitter: null,
+  },
+  {
+    name: "Gloria Achieng",
+    role: "Operations Lead",
+    country: "🇺🇬 Uganda",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/fbf4dc09c_ChatGPTImageMay25202611_07_17AM.png",
+    linkedin: "https://linkedin.com/in/gloria-achieng-74388b108",
+    twitter: "https://x.com/gloriaachieng14",
   },
   {
     name: "Jean Cedric Ossey",
@@ -28,6 +36,14 @@ const TEAM = [
     twitter: "https://x.com/osseyjc",
   },
   {
+    name: "Asang Nehemiah Forgwe",
+    role: "Events and Programs Manager",
+    country: "🇨🇲 Cameroon",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/dd836029e_ChatGPTImageMay21202607_53_59AM.png",
+    linkedin: "https://www.linkedin.com/in/asang-nehemiah-forgwe-094067193",
+    twitter: "https://x.com/asangnehemiah?s=21",
+  },
+  {
     name: "Abdul Rahaman",
     role: "Comms and Partnerships Lead",
     country: "🇬🇭 Ghana",
@@ -36,22 +52,6 @@ const TEAM = [
     twitter: "https://x.com/phrozendon?s=21",
   },
   {
-    name: "Gloria Achieng",
-    role: "Operations Lead",
-    country: "🇺🇬 Uganda",
-    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/fbf4dc09c_ChatGPTImageMay25202611_07_17AM.png",
-    linkedin: "https://linkedin.com/in/gloria-achieng-74388b108",
-    twitter: "https://x.com/gloriaachieng14",
-  },
-    {
-    name: "Adusei Akwasi",
-    role: "Director of Policy & Research",
-    country: "🇬🇭 Ghana",
-    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/347e90ce2_FB_IMG_1779722196696.jpg",
-    linkedin: "linkedin.com/in/adusei-akwasi-4b29419a",
-    twitter: null,
-  },
-   {
     name: "Jarau Moses",
     role: "Content & Social Media Lead",
     country: null,
@@ -59,7 +59,7 @@ const TEAM = [
     linkedin: null,
     twitter: null,
   },
-   {
+  {
     name: "Carlos Juan",
     role: "CTO",
     country: "🇦🇷 Argentina",
