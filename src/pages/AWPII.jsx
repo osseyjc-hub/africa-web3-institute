@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download, BarChart3, Globe, Zap, Users, Building2, Mail, ChevronRight } from "lucide-react";
+import AfricaMapInteractive from "../components/map/AfricaMapInteractive";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
@@ -73,6 +74,8 @@ export default function AWPII() {
           </div>
         </div>
       </section>
+
+      <AfricaMapInteractive />
 
       {/* Overview */}
       <section className="py-24 lg:py-32 border-b border-border">

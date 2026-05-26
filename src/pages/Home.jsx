@@ -12,12 +12,14 @@ import Community from "../components/home/Community";
 import NewsletterStrip from "../components/home/NewsletterStrip";
 import ContactSection from "../components/home/ContactSection";
 import FinalCTA from "../components/home/FinalCTA";
+import AfricaMapTeaser from "../components/map/AfricaMapTeaser";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
       <StatsBar />
+      <AfricaMapTeaser />
       <WhatWeDo />
       <FeaturedReport />
       <WhoWeAre />
