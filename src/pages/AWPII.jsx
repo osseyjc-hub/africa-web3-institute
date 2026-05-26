@@ -4,6 +4,7 @@ import { ArrowRight, Download, BarChart3, Globe, Zap, Users, Building2, Mail, Ch
 import AfricaMapInteractive from "../components/map/AfricaMapInteractive";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import { COUNTRY_DATA, STATUS_COLORS, STATUS_LABELS, STATUS } from "../components/map/africaCountryData";
 
 const PILLAR_ICONS = [Building2, BarChart3, Users, Globe];
 
@@ -76,6 +77,104 @@ export default function AWPII() {
       </section>
 
       <AfricaMapInteractive />
+
+      {/* Rankings Table */}
+      <section id="rankings" className="py-24 lg:py-32 border-b border-border bg-muted/20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">
+              {lang === "fr" ? "Classements" : "Rankings"}
+            </p>
+            <h2 className="text-[1.75rem] lg:text-[2rem] font-bold text-secondary leading-snug mb-3">
+              {lang === "fr" ? "Classement des Pays" : "Country Rankings"}
+            </h2>
+            <p className="text-[0.9375rem] text-muted-foreground max-w-lg mx-auto">
+              {lang === "fr"
+                ? "Classés par score global moyen (Politique + Innovation + Adoption)"
+                : "Ranked by composite score average (Policy + Innovation + Adoption)"}
+            </p>
+          </div>
+
+          {/* Desktop table */}
+          <div className="hidden md:block overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border">
+                  <th className="text-left pb-3 pr-4 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider w-8">#</th>
+                  <th className="text-left pb-3 pr-6 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Pays" : "Country"}</th>
+                  <th className="text-left pb-3 pr-6 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Statut" : "Status"}</th>
+                  <th className="text-right pb-3 pr-6 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Politique" : "Policy"}</th>
+                  <th className="text-right pb-3 pr-6 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Innovation" : "Innovation"}</th>
+                  <th className="text-right pb-3 pr-6 text-[0.75mn] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Adoption" : "Adoption"}</th>
+                  <th className="text-right pb-3 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Score Global" : "Overall"}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(COUNTRY_DATA)
+                  .map(([name, d]) => ({ name, ...d, overall: Math.round((d.policy + d.innovation + d.adoption) / 3) }))
+                  .sort((a, b) => b.overall - a.overall)
+                  .map((c, i) => (
+                    <tr key={c.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                      <td className="py-4 pr-4 text-muted-foreground font-medium">{i + 1}</td>
+                      <td className="py-4 pr-6">
+                        <div className="flex items-center gap-2.5">
+                          <span className="text-[1.125rem]">{c.flag}</span>
+                          <span className="font-semibold text-secondary">{c.name}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 pr-6">
+                        <span
+                          className="inline-flex items-center text-[0.6875rem] font-semibold px-2.5 py-1 rounded-full text-white"
+                          style={{ backgroundColor: STATUS_COLORS[c.status] }}
+                        >
+                          {STATUS_LABELS[lang][c.status]}
+                        </span>
+                      </td>
+                      <td className="py-4 pr-6 text-right">
+                        <span className="font-medium text-foreground">{c.policy}</span>
+                      </td>
+                      <td className="py-4 pr-6 text-right">
+                        <span className="font-medium text-foreground">{c.innovation}</span>
+                      </td>
+                      <td className="py-4 pr-6 text-right">
+                        <span className="font-medium text-foreground">{c.adoption}</span>
+                      </td>
+                      <td className="py-4 text-right">
+                        <span className="font-bold text-[1rem]" style={{ color: STATUS_COLORS[c.status] }}>{c.overall}</span>
+                      </td>
+                    </tr>
+                  ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Mobile cards */}
+          <div className="md:hidden space-y-3">
+            {Object.entries(COUNTRY_DATA)
+              .map(([name, d]) => ({ name, ...d, overall: Math.round((d.policy + d.innovation + d.adoption) / 3) }))
+              .sort((a, b) => b.overall - a.overall)
+              .map((c, i) => (
+                <div key={c.name} className="bg-background border border-border p-4 flex items-center gap-4">
+                  <span className="text-muted-foreground font-bold text-[0.75rem] w-5 flex-shrink-0">{i + 1}</span>
+                  <span className="text-[1.25rem]">{c.flag}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold text-secondary text-[0.9375rem]">{c.name}</p>
+                    <span
+                      className="inline-flex items-center text-[0.625rem] font-semibold px-2 py-0.5 rounded-full text-white mt-1"
+                      style={{ backgroundColor: STATUS_COLORS[c.status] }}
+                    >
+                      {STATUS_LABELS[lang][c.status]}
+                    </span>
+                  </div>
+                  <div className="text-right flex-shrink-0">
+                    <p className="font-bold text-[1.125rem]" style={{ color: STATUS_COLORS[c.status] }}>{c.overall}</p>
+                    <p className="text-[0.6875rem] text-muted-foreground">{lang === "fr" ? "Score" : "Score"}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </div>
+      </section>
 
       {/* Overview */}
       <section className="py-24 lg:py-32 border-b border-border">

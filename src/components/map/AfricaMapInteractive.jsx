@@ -124,7 +124,7 @@ function CountryModal({ name, onClose, lang }) {
                 <button
                   onClick={() => {
                     onClose();
-                    setTimeout(() => document.querySelector("#awpii-contact")?.scrollIntoView({ behavior: "smooth" }), 200);
+                    setTimeout(() => document.querySelector("#rankings")?.scrollIntoView({ behavior: "smooth" }), 200);
                   }}
                   className="flex-1 text-[0.8125rem] font-semibold px-5 py-2.5 border transition-colors"
                   style={{ borderColor: "#0B1437", color: "#0B1437" }}
