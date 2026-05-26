@@ -19,10 +19,10 @@ export default function Home() {
     <>
       <HeroSection />
       <StatsBar />
-     
+      <WhoWeAre />
       <WhatWeDo />
       <FeaturedReport />
-      <WhoWeAre />
+     
       <WhyAfrica />
        <AfricaMapTeaser />
       <Programs />
@@ -30,8 +30,9 @@ export default function Home() {
       <Events />
       <Community />
       <NewsletterStrip />
-      <ContactSection />
+     
       <FinalCTA />
+       <ContactSection />
     </>
   );
 }
