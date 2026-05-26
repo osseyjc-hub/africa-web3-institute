@@ -3,7 +3,8 @@ import { STATUS_COLORS, STATUS, COUNTRY_DATA } from "./africaCountryData";
 
 // More reliable GeoJSON source with proper continent/ISO properties
 const GEOJSON_URL =
-  "https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson";
+  
+    "https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/africa.geojson";
 
 const AFRICAN_ISO_CODES = new Set([
   "DZ","AO","BJ","BW","BF","BI","CV","CM","CF","TD","KM","CD","CG",
