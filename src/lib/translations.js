@@ -79,7 +79,7 @@ export const t = {
               title: "Stablecoin Africa Campus Tour 2026",
               date: "7–21 July 2026",
               location: "12 Universities · 6 Cities · Ghana, Nigeria, Kenya",
-              description: "A continental university roadshow activating the next wave of Web3 talent by connecting students to stablecoins, policy developments, and real career pathways.",
+              description: "A multi-country university roadshow activating the next wave of African Web3 talent by connecting students to stablecoins, policy developments, and real career pathways.",
               outcomes: ["Student onboarding into Web3 ecosystems", "Campus ambassador recruitment", "Talent pipeline creation"],
               ctas: [{ label: "Partner With Us", variant: "primary" }],
             },
