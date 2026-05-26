@@ -48,7 +48,7 @@ const TEAM = [
     role: "Director of Policy & Research",
     country: "🇬🇭 Ghana",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/347e90ce2_FB_IMG_1779722196696.jpg",
-    linkedin: null,
+    linkedin: "linkedin.com/in/adusei-akwasi-4b29419a",
     twitter: null,
   },
    {
@@ -64,7 +64,7 @@ const TEAM = [
     role: "CTO",
     country: "🇦🇷 Argentina",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/d9d834cfa_CarlosJuan.png",
-    linkedin: null,
+    linkedin: "linkedin.com/in/carlosjuana",
     twitter: null,
   },
 ];
