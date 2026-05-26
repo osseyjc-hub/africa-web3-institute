@@ -23,6 +23,19 @@ export default function FeaturedReport() {
   const { lang } = useLang();
   const C = COPY[lang];
 
+  const handleDownload = async () => {
+    const response = await fetch(PDF_URL);
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "State-of-Web3-Africa-Q1-2026.pdf";
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
+
   return (
     <div className="max-w-7xl mx-auto px-6 lg:px-8 py-6 border-b border-border bg-white">
       <div className="rounded-xl border-2 p-6 flex items-center justify-between gap-5 flex-wrap"
@@ -39,17 +52,15 @@ export default function FeaturedReport() {
             <p className="text-[0.75rem] mt-1" style={{ color: "#6B7280" }}>{C.desc}</p>
           </div>
         </div>
-        <a
-          href={PDF_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={handleDownload}
           className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-5 py-2.5 rounded-lg flex-shrink-0 transition-all"
           style={{ backgroundColor: "#D4A017", color: "#fff" }}
           onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
           onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}
         >
           <Download className="w-3.5 h-3.5" /> {C.cta}
-        </a>
+        </button>
       </div>
     </div>
   );
