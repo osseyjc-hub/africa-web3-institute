@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import AfricaMapSVG from "./AfricaMapSVG";
 import { COUNTRY_DATA, STATUS_COLORS, STATUS, STATUS_LABELS } from "./africaCountryData";
@@ -53,15 +54,16 @@ function CountryModal({ name, onClose, lang }) {
     }, 200);
   };
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center"
+      className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center"
       style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
+      onMouseDown={(e) => e.stopPropagation()}
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
       <div
-        className="relative w-full sm:max-w-lg bg-white sm:rounded-lg overflow-hidden"
-        style={{ maxHeight: "90vh", overflowY: "auto" }}
+        className="relative w-full sm:max-w-lg bg-white overflow-hidden rounded-t-2xl sm:rounded-xl"
+        style={{ maxHeight: "85vh", overflowY: "auto" }}
       >
         {/* Header */}
         <div className="px-7 py-5 flex items-start justify-between" style={{ borderBottom: "1px solid hsl(var(--border))" }}>
@@ -153,7 +155,8 @@ function CountryModal({ name, onClose, lang }) {
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 
@@ -188,6 +191,9 @@ export default function AfricaMapInteractive() {
             interactive={true}
             onCountryClick={(name) => setSelectedCountry(name)}
           />
+          {selectedCountry && (
+            <div className="absolute inset-0 z-10" />
+          )}
         </div>
 
         {/* Legend */}
