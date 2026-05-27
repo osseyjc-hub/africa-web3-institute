@@ -57,7 +57,7 @@ const TEAM = [
     country: null,
     photo: null,
     linkedin: "linkedin.com/in/jaraumoses",
-    twitter: null,
+    twitter: "https://x.com/JarauMoses",
   },
   {
     name: "Carlos Juan",
