@@ -21,10 +21,11 @@ export default function Home() {
       <StatsBar />
       <WhoWeAre />
       <WhatWeDo />
+        <AfricaMapTeaser />
       <FeaturedReport />
      
       <WhyAfrica />
-       <AfricaMapTeaser />
+     
       <Programs />
       <Publications />
       <Events />
