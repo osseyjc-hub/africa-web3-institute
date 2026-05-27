@@ -56,7 +56,7 @@ const TEAM = [
     role: "Content & Social Media Lead",
     country: null,
     photo: null,
-    linkedin: null,
+    linkedin: "linkedin.com/in/jaraumoses",
     twitter: null,
   },
   {
