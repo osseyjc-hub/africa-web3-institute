@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import AfricaMapSVG from "./AfricaMapSVG";
-import { STATUS_COLORS, STATUS, STATUS_LABELS } from "./africaCountryData";
+import { STATUS_COLORS, STATUS, STATUS_LABELS } from "@/data/countryData";
 import { useLang } from "@/lib/LanguageContext";
 
 const LEGEND_EN = [
-  { status: STATUS.LEADER, label: "Policy Leader" },
-  { status: STATUS.DEVELOPING, label: "Developing" },
-  { status: STATUS.RESTRICTIVE, label: "Restrictive" },
-  { status: STATUS.NO_DATA, label: "No Data Yet" },
+  { status: STATUS.REGULATED },
+  { status: STATUS.EMERGING },
+  { status: STATUS.RESTRICTED },
+  { status: STATUS.UNDEFINED },
 ];
 
 export default function AfricaMapTeaser() {

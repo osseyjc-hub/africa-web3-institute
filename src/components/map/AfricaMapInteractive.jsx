@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import AfricaMapSVG from "./AfricaMapSVG";
-import { COUNTRY_DATA, STATUS_COLORS, STATUS, STATUS_LABELS } from "./africaCountryData";
+import { COUNTRY_DATA, STATUS_COLORS, STATUS, STATUS_LABELS, getAllCountries } from "@/data/countryData";
 import { useLang } from "@/lib/LanguageContext";
 
 function ScoreBar({ label, value }) {
@@ -36,6 +36,7 @@ function StatusBadge({ status, lang }) {
 
 function CountryModal({ name, onClose, lang }) {
   const data = COUNTRY_DATA[name];
+  const displayName = data?.name || name;
 
   useEffect(() => {
     const handler = (e) => { if (e.key === "Escape") onClose(); };
@@ -70,12 +71,12 @@ function CountryModal({ name, onClose, lang }) {
           <div>
             <div className="flex items-center gap-2.5 mb-2">
               {data?.flag && <span className="text-[1.5rem]">{data.flag}</span>}
-              <h3 className="text-[1.25rem] font-bold" style={{ color: "#0B1437" }}>{name}</h3>
+              <h3 className="text-[1.25rem] font-bold" style={{ color: "#0B1437" }}>{displayName}</h3>
             </div>
             {data ? (
               <StatusBadge status={data.status} lang={lang} />
             ) : (
-              <StatusBadge status={STATUS.NO_DATA} lang={lang} />
+              <StatusBadge status={STATUS.UNDEFINED} lang={lang} />
             )}
           </div>
           <button
@@ -106,7 +107,7 @@ function CountryModal({ name, onClose, lang }) {
                 <p className="text-[0.6875rem] font-semibold tracking-wider uppercase text-muted-foreground mb-2">
                   {lang === "fr" ? "Domaines Clés" : "Key Focus Areas"}
                 </p>
-                <p className="text-[0.875rem] text-foreground">{data.focus}</p>
+                <p className="text-[0.875rem] text-foreground">{Array.isArray(data.focus) ? data.focus.join(", ") : data.focus}</p>
               </div>
 
               {/* CTAs */}
@@ -139,8 +140,8 @@ function CountryModal({ name, onClose, lang }) {
             <>
               <p className="text-[0.9375rem] text-muted-foreground leading-[1.75] mb-6">
                 {lang === "fr"
-                  ? `AWI mène actuellement des recherches sur ${name}. Les données complètes de politique seront disponibles dans le rapport AWPII 2026.`
-                  : `AWI is actively researching ${name}. Full policy data will be available in the 2026 AWPII report.`}
+                  ? `AWI mène actuellement des recherches sur ${displayName}. Les données complètes de politique seront disponibles dans le rapport AWPII 2026.`
+                  : `AWI is actively researching ${displayName}. Full policy data will be available in the 2026 AWPII report.`}
               </p>
               <button
                 onClick={scrollToNewsletter}
@@ -160,7 +161,7 @@ function CountryModal({ name, onClose, lang }) {
   );
 }
 
-const LEGEND_ITEMS = [STATUS.LEADER, STATUS.DEVELOPING, STATUS.RESTRICTIVE, STATUS.NO_DATA];
+const LEGEND_ITEMS = [STATUS.REGULATED, STATUS.EMERGING, STATUS.RESTRICTED, STATUS.UNDEFINED];
 
 export default function AfricaMapInteractive() {
   const [selectedCountry, setSelectedCountry] = useState(null);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { COUNTRY_DATA, STATUS_COLORS, STATUS } from "./africaCountryData";
+import { COUNTRY_DATA, STATUS_COLORS, STATUS } from "@/data/countryData";
 import { MapContainer, GeoJSON, ZoomControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -7,22 +7,26 @@ const AFRICA_GEOJSON_URL =
   "https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/africa.geojson";
 
 const GEO_NAME_TO_KEY = {
-  "Nigeria": "Nigeria",
-  "Rwanda": "Rwanda",
-  "South Africa": "South Africa",
-  "Kenya": "Kenya",
-  "Ghana": "Ghana",
-  "Egypt": "Egypt",
-  "Ethiopia": "Ethiopia",
-  "Senegal": "Senegal",
-  "Tanzania": "Tanzania",
-  "United Republic of Tanzania": "Tanzania",
-  "Morocco": "Morocco",
-  "Cameroon": "Cameroon",
-  "Ivory Coast": "Côte d'Ivoire",
-  "Côte d'Ivoire": "Côte d'Ivoire",
-  "Zimbabwe": "Zimbabwe",
-  "Zambia": "Zambia",
+  "Nigeria": "nigeria",
+  "Rwanda": "rwanda",
+  "South Africa": "southafrica",
+  "Kenya": "kenya",
+  "Ghana": "ghana",
+  "Egypt": "egypt",
+  "Ethiopia": "ethiopia",
+  "Senegal": "senegal",
+  "Tanzania": "tanzania",
+  "United Republic of Tanzania": "tanzania",
+  "Morocco": "morocco",
+  "Cameroon": "cameroon",
+  "Ivory Coast": "cotedivoire",
+  "Côte d'Ivoire": "cotedivoire",
+  "Zimbabwe": "zimbabwe",
+  "Zambia": "zambia",
+  "Algeria": "algeria",
+  "Uganda": "uganda",
+  "Tunisia": "tunisia",
+  "Botswana": "botswana",
 };
 
 function getKeyFromFeature(feature) {
@@ -33,7 +37,7 @@ function getKeyFromFeature(feature) {
 function countryStyle(feature, hoveredKey) {
   const key = getKeyFromFeature(feature);
   const data = COUNTRY_DATA[key];
-  const status = data?.status || STATUS.NO_DATA;
+  const status = data?.status || STATUS.UNDEFINED;
   const fill = STATUS_COLORS[status];
   const isHovered = hoveredKey === key;
   return {

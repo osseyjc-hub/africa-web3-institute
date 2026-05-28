@@ -4,7 +4,7 @@ import { ArrowRight, Download, BarChart3, Globe, Zap, Users, Building2, Mail, Ch
 import AfricaMapInteractive from "../components/map/AfricaMapInteractive";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
-import { COUNTRY_DATA, STATUS_COLORS, STATUS_LABELS, STATUS } from "../components/map/africaCountryData";
+import { STATUS_COLORS, STATUS_LABELS, STATUS, getAllCountries } from "@/data/countryData";
 
 const PILLAR_ICONS = [Building2, BarChart3, Users, Globe];
 
@@ -110,48 +110,48 @@ export default function AWPII() {
                 </tr>
               </thead>
               <tbody>
-                {Object.entries(COUNTRY_DATA)
-                  .map(([name, d]) => ({ name, ...d, overall: Math.round((d.policy + d.innovation + d.adoption) / 3) }))
-                  .sort((a, b) => b.overall - a.overall)
-                  .map((c, i) => (
-                    <tr key={c.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                      <td className="py-4 pr-4 text-muted-foreground font-medium">{i + 1}</td>
-                      <td className="py-4 pr-6">
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-[1.125rem]">{c.flag}</span>
-                          <span className="font-semibold text-secondary">{c.name}</span>
-                        </div>
-                      </td>
-                      <td className="py-4 pr-6">
-                        <span
-                          className="inline-flex items-center text-[0.6875rem] font-semibold px-2.5 py-1 rounded-full text-white"
-                          style={{ backgroundColor: STATUS_COLORS[c.status] }}
-                        >
-                          {STATUS_LABELS[lang][c.status]}
-                        </span>
-                      </td>
-                      <td className="py-4 pr-6 text-right">
-                        <span className="font-medium text-foreground">{c.policy}</span>
-                      </td>
-                      <td className="py-4 pr-6 text-right">
-                        <span className="font-medium text-foreground">{c.innovation}</span>
-                      </td>
-                      <td className="py-4 pr-6 text-right">
-                        <span className="font-medium text-foreground">{c.adoption}</span>
-                      </td>
-                      <td className="py-4 text-right">
-                        <span className="font-bold text-[1rem]" style={{ color: STATUS_COLORS[c.status] }}>{c.overall}</span>
-                      </td>
-                    </tr>
-                  ))}
-              </tbody>
+                {getAllCountries()
+                    .map((d) => ({ ...d, overall: Math.round((d.policy + d.innovation + d.adoption) / 3) }))
+                    .sort((a, b) => b.overall - a.overall)
+                    .map((c, i) => (
+                      <tr key={c.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
+                        <td className="py-4 pr-4 text-muted-foreground font-medium">{i + 1}</td>
+                        <td className="py-4 pr-6">
+                          <div className="flex items-center gap-2.5">
+                            <span className="text-[1.125rem]">{c.flag}</span>
+                            <span className="font-semibold text-secondary">{c.name}</span>
+                          </div>
+                        </td>
+                        <td className="py-4 pr-6">
+                          <span
+                            className="inline-flex items-center text-[0.6875rem] font-semibold px-2.5 py-1 rounded-full text-white"
+                            style={{ backgroundColor: STATUS_COLORS[c.status] }}
+                          >
+                            {STATUS_LABELS[lang][c.status]}
+                          </span>
+                        </td>
+                        <td className="py-4 pr-6 text-right">
+                          <span className="font-medium text-foreground">{c.policy}</span>
+                        </td>
+                        <td className="py-4 pr-6 text-right">
+                          <span className="font-medium text-foreground">{c.innovation}</span>
+                        </td>
+                        <td className="py-4 pr-6 text-right">
+                          <span className="font-medium text-foreground">{c.adoption}</span>
+                        </td>
+                        <td className="py-4 text-right">
+                          <span className="font-bold text-[1rem]" style={{ color: STATUS_COLORS[c.status] }}>{c.overall}</span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
             </table>
           </div>
 
           {/* Mobile cards */}
           <div className="md:hidden space-y-3">
-            {Object.entries(COUNTRY_DATA)
-              .map(([name, d]) => ({ name, ...d, overall: Math.round((d.policy + d.innovation + d.adoption) / 3) }))
+            {getAllCountries()
+              .map((d) => ({ ...d, overall: Math.round((d.policy + d.innovation + d.adoption) / 3) }))
               .sort((a, b) => b.overall - a.overall)
               .map((c, i) => (
                 <div key={c.name} className="bg-background border border-border p-4 flex items-center gap-4">
