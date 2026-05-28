@@ -1,27 +1,20 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 import { Search } from "lucide-react";
 import {
   ENFORCEMENT_EVENTS, ENFORCEMENT_COUNTRIES, ENFORCEMENT_TYPES,
   ENFORCEMENT_YEARS, TYPE_META, SEV_META,
 } from "@/data/enforcementData";
 
-const CATEGORY_EXPLAINERS = [
-  { type: "Outright Ban",         desc: "Complete prohibition on crypto activities within the jurisdiction." },
-  { type: "Exchange Shutdown",    desc: "Forced closure of a specific crypto exchange or platform." },
-  { type: "VASP Compliance",      desc: "Regulatory directive requiring virtual asset providers to meet specific standards." },
-  { type: "Licensing Action",     desc: "Suspension, revocation, or granting of operating licenses." },
-  { type: "Tax Enforcement",      desc: "Actions related to crypto tax obligations and penalties." },
-  { type: "AML/CFT Action",       desc: "Anti-money laundering or counter-terrorism financing enforcement." },
-  { type: "Consumer Warning",     desc: "Public advisory warning consumers about specific risks or platforms." },
-  { type: "Positive Development", desc: "Regulatory actions that open or clarify the market favorably." },
-];
 
-function TypeBadge({ type }) {
+
+function TypeBadge({ type, label }) {
   const m = TYPE_META[type] || { color: "#6b7280", bg: "#f3f4f6", icon: "•" };
   return (
     <span className="inline-flex items-center gap-1 text-[0.6875rem] font-semibold px-2 py-0.5 rounded-full" style={{ backgroundColor: m.bg, color: m.color }}>
-      {m.icon} {type}
+      {m.icon} {label || type}
     </span>
   );
 }
@@ -40,6 +33,32 @@ export default function EnforcementWatch() {
   const [catOpen, setCatOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);
+  const { lang } = useLang();
+  const T = t[lang].enforcement;
+
+  const TYPE_LABEL = useMemo(() => ({
+    "Outright Ban": T.types.ban, "Exchange Shutdown": T.types.shutdown,
+    "VASP Compliance": T.types.vasp, "Licensing Action": T.types.licensing,
+    "Tax Enforcement": T.types.tax, "AML/CFT Action": T.types.aml,
+    "Consumer Warning": T.types.warning, "Positive Development": T.types.positive,
+    "Court Order": T.types.court,
+  }), [T]);
+
+  const SEV_LABEL = useMemo(() => ({
+    Critical: T.severity.critical, High: T.severity.high,
+    Medium: T.severity.medium, Low: T.severity.low,
+  }), [T]);
+
+  const CATEGORY_EXPLAINERS = useMemo(() => [
+    { type: "Outright Ban",         label: T.types.ban,      desc: T.typeDescriptions.ban },
+    { type: "Exchange Shutdown",    label: T.types.shutdown,  desc: T.typeDescriptions.shutdown },
+    { type: "VASP Compliance",      label: T.types.vasp,      desc: T.typeDescriptions.vasp },
+    { type: "Licensing Action",     label: T.types.licensing, desc: T.typeDescriptions.licensing },
+    { type: "Tax Enforcement",      label: T.types.tax,       desc: T.typeDescriptions.tax },
+    { type: "AML/CFT Action",       label: T.types.aml,       desc: T.typeDescriptions.aml },
+    { type: "Consumer Warning",     label: T.types.warning,   desc: T.typeDescriptions.warning },
+    { type: "Positive Development", label: T.types.positive,  desc: T.typeDescriptions.positive },
+  ], [T]);
 
   const filtered = useMemo(() => {
     return ENFORCEMENT_EVENTS.filter(ev => {
@@ -101,7 +120,7 @@ export default function EnforcementWatch() {
   return (
     <div className="bg-background text-foreground" style={{ animation: "fadeIn 0.4s ease" }}>
       <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }`}</style>
-      <title>Enforcement Watch | Africa Web3 Institute</title>
+      <title>{T.pageTitle} | Africa Web3 Institute</title>
 
       {/* Hero */}
       <section style={{ backgroundColor: "#1A1F36" }} className="pt-12 pb-0">
@@ -110,24 +129,24 @@ export default function EnforcementWatch() {
             Live Intelligence
           </span>
           <h1 className="text-[2rem] lg:text-[2.75rem] font-bold text-white leading-tight mb-3">
-            Africa Web3 Enforcement Watch
+            {T.pageTitle}
           </h1>
           <p className="text-[1rem] max-w-2xl mb-5 leading-relaxed" style={{ color: "rgba(255,255,255,0.6)" }}>
-            Tracking regulatory crackdowns, enforcement actions, policy bans, and compliance directives across 18+ African nations
+            {T.pageSubtitle}
           </p>
           <div className="flex flex-wrap gap-3">
             <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium px-3 py-1.5 rounded-full" style={{ backgroundColor: "rgba(220,38,38,0.15)", color: "#f87171", border: "1px solid rgba(220,38,38,0.3)" }}>
-              🔴 Last updated: May 2026
+              🔴 {T.lastUpdated}
             </span>
             <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium px-3 py-1.5 rounded-full" style={{ backgroundColor: "rgba(212,160,23,0.15)", color: "#D4A017", border: "1px solid rgba(212,160,23,0.3)" }}>
-              ⚡ {ENFORCEMENT_EVENTS.length} Enforcement events tracked
+              ⚡ {T.eventsTracked}
             </span>
           </div>
         </div>
         {/* Disclaimer strip */}
         <div style={{ backgroundColor: "#22284A" }} className="px-6 lg:px-8 py-3">
           <p className="max-w-7xl mx-auto text-[0.75rem] leading-relaxed" style={{ color: "rgba(255,255,255,0.45)" }}>
-            This page tracks publicly documented regulatory and enforcement activity. AWI does not provide legal advice. All information is sourced from official government publications and verified news sources.
+            {T.disclaimer}
           </p>
         </div>
       </section>
@@ -137,10 +156,10 @@ export default function EnforcementWatch() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-border">
             {[
-              { label: "Total Actions", value: ENFORCEMENT_EVENTS.length, color: "#dc2626" },
-              { label: "Countries Affected", value: new Set(ENFORCEMENT_EVENTS.map(e => e.country)).size, color: "#D4A017" },
-              { label: "Active Bans", value: ENFORCEMENT_EVENTS.filter(e => e.type === "Outright Ban").length, color: "#dc2626" },
-              { label: "New This Quarter", value: ENFORCEMENT_EVENTS.filter(e => e.date.includes("2026")).length, color: "#16a34a" },
+              { label: T.statTotal, value: ENFORCEMENT_EVENTS.length, color: "#dc2626" },
+              { label: T.statCountries, value: new Set(ENFORCEMENT_EVENTS.map(e => e.country)).size, color: "#D4A017" },
+              { label: T.statBans, value: ENFORCEMENT_EVENTS.filter(e => e.type === "Outright Ban").length, color: "#dc2626" },
+              { label: T.statNew, value: ENFORCEMENT_EVENTS.filter(e => e.date.includes("2026")).length, color: "#16a34a" },
             ].map(s => (
               <div key={s.label} className="px-6 py-7 text-center">
                 <p className="text-[2rem] font-bold leading-none mb-1" style={{ color: s.color }}>{s.value}</p>
@@ -157,33 +176,33 @@ export default function EnforcementWatch() {
           <div className="flex flex-wrap gap-2 items-center">
             <div className="relative flex-1 min-w-[180px] max-w-[220px]">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
-              <input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search enforcement actions..."
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={T.filterSearch}
                 className="w-full pl-8 pr-3 py-2 text-[0.8125rem] border border-border rounded-md bg-background focus:outline-none focus:ring-1 focus:ring-accent" />
             </div>
             <select value={country} onChange={e => setCountry(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none">
-              <option>All Countries</option>
+              <option value="All Countries">{T.filterCountry}</option>
               {ENFORCEMENT_COUNTRIES.map(c => <option key={c}>{c}</option>)}
             </select>
             <select value={severity} onChange={e => setSeverity(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none">
-              {["All","Critical","High","Medium","Low"].map(s => <option key={s}>{s}</option>)}
+              {["All","Critical","High","Medium","Low"].map(s => <option key={s} value={s}>{s === 'All' ? T.filterSeverity : SEV_LABEL[s] || s}</option>)}
             </select>
             <select value={type} onChange={e => setType(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none">
-              {ENFORCEMENT_TYPES.map(t => <option key={t}>{t}</option>)}
+              {ENFORCEMENT_TYPES.map(tp => <option key={tp} value={tp}>{tp === 'All Types' ? T.filterType : TYPE_LABEL[tp] || tp}</option>)}
             </select>
             <select value={year} onChange={e => setYear(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none">
-              {ENFORCEMENT_YEARS.map(y => <option key={y}>{y}</option>)}
+              {ENFORCEMENT_YEARS.map(y => <option key={y} value={y}>{y === 'All Years' ? T.filterYear : y}</option>)}
             </select>
             <button onClick={resetFilters} className="text-[0.8125rem] font-semibold ml-auto transition-colors" style={{ color: "#D4A017" }}
               onMouseEnter={e => e.currentTarget.style.color = "#b8891a"} onMouseLeave={e => e.currentTarget.style.color = "#D4A017"}>
-              Reset Filters
+              {T.resetFilters}
             </button>
           </div>
           <p className="text-[0.75rem] text-muted-foreground mt-2">
-            Showing <strong className="text-foreground">{filtered.length}</strong> of {ENFORCEMENT_EVENTS.length} enforcement actions
+            {T.showing} <strong className="text-foreground">{filtered.length}</strong> {T.of} {ENFORCEMENT_EVENTS.length} {T.actions}
           </p>
         </div>
       </div>
@@ -192,7 +211,7 @@ export default function EnforcementWatch() {
       <section className="max-w-7xl mx-auto px-6 lg:px-8 py-12">
         {filtered.length === 0 ? (
           <div className="py-20 text-center text-muted-foreground">
-            No enforcement actions match your filters. Try adjusting your search.
+            {T.noResults}
           </div>
         ) : (
           <div className="relative">
@@ -229,22 +248,22 @@ export default function EnforcementWatch() {
                       <div className="flex flex-wrap items-center gap-2 mb-2">
                         <span className="text-[1rem]">{ev.flag}</span>
                         <span className="text-[0.875rem] font-bold text-secondary">{ev.country}</span>
-                        <TypeBadge type={ev.type} />
+                        <TypeBadge type={ev.type} label={TYPE_LABEL[ev.type]} />
                         <span className="hidden lg:inline-flex items-center gap-1 text-[0.6875rem] font-medium"
                           style={{ color: SEV_META[ev.severity]?.color || "#6b7280" }}>
-                          <SevDot severity={ev.severity} /> {ev.severity}
+                          <SevDot severity={ev.severity} /> {SEV_LABEL[ev.severity] || ev.severity}
                         </span>
                       </div>
                       <p className="text-[0.9375rem] font-semibold text-secondary mb-2">{ev.title}</p>
                       <p className="text-[0.875rem] text-muted-foreground leading-relaxed mb-3">{ev.description}</p>
                       <div className="flex flex-wrap items-center justify-between gap-2">
-                        <span className="text-[0.75rem] text-muted-foreground/60">Source: {ev.source}</span>
-                        <Link to={`/country-tracker/${toSlug(ev.country)}`}
+                        <span className="text-[0.75rem] text-muted-foreground/60">{T.source}: {ev.source}</span>
+                         <Link to={`/country-tracker/${toSlug(ev.country)}`}
                           className="text-[0.8125rem] font-semibold transition-colors" style={{ color: "#D4A017" }}
                           onMouseEnter={e => e.currentTarget.style.color = "#b8891a"}
                           onMouseLeave={e => e.currentTarget.style.color = "#D4A017"}>
-                          View Country Profile →
-                        </Link>
+                           {T.viewProfile}
+                         </Link>
                       </div>
                     </div>
                   </div>
@@ -259,7 +278,7 @@ export default function EnforcementWatch() {
       <section className="border-t border-border py-14" style={{ backgroundColor: "#F9FAFB" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Intensity</p>
-          <h2 className="text-[1.5rem] font-bold text-secondary mb-8">Enforcement Intensity by Country</h2>
+          <h2 className="text-[1.5rem] font-bold text-secondary mb-8">{T.heatmapTitle}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {countryActions.map(d => {
               const c = heatColor(d);
@@ -270,7 +289,7 @@ export default function EnforcementWatch() {
                   <span className="text-[1.5rem] mb-1">{flagMap[d.name] || "🌍"}</span>
                   <p className="text-[0.75rem] font-semibold text-secondary leading-tight mb-1">{d.name}</p>
                   <p className="text-[1.125rem] font-bold" style={{ color: c.text }}>{d.total}</p>
-                  <p className="text-[0.625rem] text-muted-foreground">actions</p>
+                  <p className="text-[0.625rem] text-muted-foreground">{T.heatmapActions}</p>
                 </Link>
               );
             })}
@@ -284,19 +303,19 @@ export default function EnforcementWatch() {
           <div className="max-w-7xl mx-auto px-6 lg:px-8">
             <button onClick={() => setCatOpen(o => !o)}
               className="w-full flex items-center justify-between py-5 text-[0.9375rem] font-semibold text-white hover:text-white/80 transition-colors">
-              <span>Understanding Enforcement Action Types</span>
+              <span>{T.categoriesTitle}</span>
               <span className="text-[1.25rem] text-white/50">{catOpen ? "−" : "+"}</span>
             </button>
             {catOpen && (
               <div className="pb-10">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {CATEGORY_EXPLAINERS.map(c => {
-                    const m = TYPE_META[c.type] || { icon: "•", color: "#6b7280", bg: "rgba(255,255,255,0.05)" };
-                    return (
-                      <div key={c.type} className="p-5 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                        <span className="text-[1.25rem] block mb-2">{m.icon}</span>
-                        <p className="text-[0.875rem] font-bold mb-1" style={{ color: m.color }}>{c.type}</p>
-                        <p className="text-[0.8125rem] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{c.desc}</p>
+                  const m = TYPE_META[c.type] || { icon: "•", color: "#6b7280", bg: "rgba(255,255,255,0.05)" };
+                  return (
+                    <div key={c.type} className="p-5 rounded-lg" style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                      <span className="text-[1.25rem] block mb-2">{m.icon}</span>
+                      <p className="text-[0.875rem] font-bold mb-1" style={{ color: m.color }}>{c.label}</p>
+                      <p className="text-[0.8125rem] leading-relaxed" style={{ color: "rgba(255,255,255,0.5)" }}>{c.desc}</p>
                       </div>
                     );
                   })}
@@ -311,13 +330,13 @@ export default function EnforcementWatch() {
       <section style={{ backgroundColor: "#1A1F36" }} className="border-t border-white/10 py-14">
         <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center">
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Intelligence Subscription</p>
-          <h2 className="text-[1.5rem] font-bold text-white mb-3">Get Enforcement Alerts in Real Time</h2>
+          <h2 className="text-[1.5rem] font-bold text-white mb-3">{T.ctaTitle}</h2>
           <p className="text-[0.9375rem] mb-8" style={{ color: "rgba(255,255,255,0.55)" }}>
-            Subscribe to AWI's Enforcement Watch newsletter — regulatory actions delivered to your inbox within 24 hours of confirmation
+            {T.ctaSubtitle}
           </p>
           {subscribed ? (
             <div className="inline-flex items-center gap-2 text-[0.9375rem] font-semibold px-6 py-3 rounded-lg" style={{ backgroundColor: "rgba(22,163,74,0.15)", color: "#4ade80", border: "1px solid rgba(22,163,74,0.3)" }}>
-              ✅ You're subscribed to AWI Enforcement Watch alerts.
+              ✅ {T.ctaSuccess}
             </div>
           ) : (
             <form onSubmit={e => { e.preventDefault(); if (email.trim()) setSubscribed(true); }}
@@ -330,11 +349,11 @@ export default function EnforcementWatch() {
                 style={{ backgroundColor: "#D4A017", color: "#fff" }}
                 onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
                 onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}>
-                Subscribe to Alerts
+                {T.ctaButton}
               </button>
             </form>
           )}
-          <p className="text-[0.75rem] mt-4" style={{ color: "rgba(255,255,255,0.3)" }}>Sent only when new enforcement actions are confirmed. No spam.</p>
+          <p className="text-[0.75rem] mt-4" style={{ color: "rgba(255,255,255,0.3)" }}>{T.ctaNote}</p>
         </div>
       </section>
 
@@ -343,9 +362,9 @@ export default function EnforcementWatch() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {[
-              { icon: "📊", label: "View Country Tracker", to: "/country-tracker" },
-              { icon: "🗺️", label: "Explore the Policy Map", to: "/awpii" },
-              { icon: "📥", label: "Download May 2026 Snapshot", to: "/awpii" },
+              { icon: "📊", label: T.relatedTracker, to: "/country-tracker" },
+              { icon: "🗺️", label: T.relatedMap, to: "/awpii" },
+              { icon: "📥", label: T.relatedReport, to: "/awpii" },
             ].map(c => (
               <Link key={c.label} to={c.to}
                 onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}

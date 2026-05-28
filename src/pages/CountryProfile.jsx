@@ -1,5 +1,7 @@
 import React, { useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { ArrowLeft } from "lucide-react";
 
@@ -502,7 +504,7 @@ const RISK_BG     = { Low: "#dcfce7", Medium: "#fef9c3", High: "#fee2e2" };
 const SEV_COLORS  = { Positive: "#16a34a", Neutral: "#6b7280", Restrictive: "#dc2626" };
 const SEV_BG      = { Positive: "#dcfce7", Neutral: "#f3f4f6", Restrictive: "#fee2e2" };
 const TREND_YEARS = ["2022", "2023", "2024", "2025", "2026"];
-const ASSET_LABELS = { crypto: "Cryptocurrency", stablecoins: "Stablecoins", defi: "DeFi Protocols", nfts: "NFTs", cbdc: "CBDCs", p2p: "P2P Trading" };
+
 
 function StatusPill({ status }) {
   const c = STATUS_COLORS[status] || STATUS_COLORS.Undefined;
@@ -549,6 +551,8 @@ function MiniScoreBar({ score }) {
 // ─── Component ───────────────────────────────────────────────────────────────
 export default function CountryProfile() {
   const { country } = useParams();
+  const { lang } = useLang();
+  const T = t[lang].countryProfile;
   const profile = useMemo(() => {
     if (!country) return null;
     const key = country.toLowerCase().replace(/[^a-z0-9]+/g, "-");
@@ -572,9 +576,9 @@ export default function CountryProfile() {
   if (!profile) {
     return (
       <div className="min-h-[60vh] flex flex-col items-center justify-center gap-4 px-6">
-        <p className="text-[1.5rem] font-bold text-secondary">Country profile not found.</p>
+        <p className="text-[1.5rem] font-bold text-secondary">{T.notFound}</p>
         <Link to="/country-tracker" className="text-[0.9375rem] font-semibold" style={{ color: "#D4A017" }}>
-          View all tracked countries →
+          {T.notFoundCta}
         </Link>
       </div>
     );
@@ -590,9 +594,9 @@ export default function CountryProfile() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-[0.75rem] text-white/40 mb-6">
-            <Link to="/" className="hover:text-white/70 transition-colors">Home</Link>
+            <Link to="/" className="hover:text-white/70 transition-colors">{T.breadcrumbHome}</Link>
             <span>/</span>
-            <Link to="/country-tracker" className="hover:text-white/70 transition-colors">Country Tracker</Link>
+            <Link to="/country-tracker" className="hover:text-white/70 transition-colors">{T.breadcrumbTracker}</Link>
             <span>/</span>
             <span className="text-white/70">{profile.name}</span>
           </nav>
@@ -612,9 +616,9 @@ export default function CountryProfile() {
                   </div>
                 </div>
               </div>
-              <p className="text-[0.8125rem] text-white/40">Last updated: {profile.lastUpdated}</p>
+              <p className="text-[0.8125rem] text-white/40">{T.lastUpdated}: {profile.lastUpdated}</p>
               <Link to="/country-tracker" className="inline-flex items-center gap-1.5 text-[0.8125rem] text-white/50 hover:text-white/80 transition-colors mt-4">
-                <ArrowLeft className="w-3.5 h-3.5" /> Back to Tracker
+                <ArrowLeft className="w-3.5 h-3.5" /> {T.backToTracker}
               </Link>
             </div>
             {/* Right: circular score */}
@@ -628,9 +632,9 @@ export default function CountryProfile() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-border">
             {[
-              { label: "Policy Score", value: profile.policy },
-              { label: "Innovation Score", value: profile.innovation },
-              { label: "Adoption Score", value: profile.adoption },
+              { label: T.policyScore, value: profile.policy },
+              { label: T.innovationScore, value: profile.innovation },
+              { label: T.adoptionScore, value: profile.adoption },
             ].map(s => (
               <div key={s.label} className="px-6 py-6">
                 <p className="text-[0.6875rem] font-semibold tracking-wider uppercase text-muted-foreground mb-2">{s.label}</p>
@@ -638,10 +642,10 @@ export default function CountryProfile() {
               </div>
             ))}
             <div className="px-6 py-6">
-              <p className="text-[0.6875rem] font-semibold tracking-wider uppercase text-muted-foreground mb-2">Risk Level</p>
+              <p className="text-[0.6875rem] font-semibold tracking-wider uppercase text-muted-foreground mb-2">{T.riskLevel}</p>
               <div className="flex items-center gap-2 mt-2">
                 <span className="w-3 h-3 rounded-full" style={{ backgroundColor: RISK_COLORS[profile.risk] }} />
-                <span className="text-[1.5rem] font-bold text-secondary">{profile.risk}</span>
+                <span className="text-[1.5rem] font-bold text-secondary">{T.riskLevels[profile.risk] || profile.risk}</span>
               </div>
             </div>
           </div>
@@ -653,13 +657,13 @@ export default function CountryProfile() {
         {/* Policy Summary */}
         <section>
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Overview</p>
-          <h2 className="text-[1.5rem] font-bold text-secondary mb-8">Regulatory Overview</h2>
+          <h2 className="text-[1.5rem] font-bold text-secondary mb-8">{T.regulatoryOverview}</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-4">
               <p className="text-[0.9375rem] text-muted-foreground leading-[1.85]">{profile.summary}</p>
             </div>
             <div className="bg-muted/40 border border-border rounded-lg p-6">
-              <p className="text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground mb-4">Key Focus Areas</p>
+              <p className="text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground mb-4">{T.keyFocusAreas}</p>
               <ul className="space-y-2.5">
                 {profile.focusAreas.map(area => (
                   <li key={area} className="flex items-start gap-2.5">
@@ -675,21 +679,21 @@ export default function CountryProfile() {
         {/* Asset Coverage */}
         <section>
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Regulation</p>
-          <h2 className="text-[1.5rem] font-bold text-secondary mb-6">Asset Classification Status</h2>
+          <h2 className="text-[1.5rem] font-bold text-secondary mb-6">{T.assetClassification}</h2>
           <div className="border border-border rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
                   <tr className="border-b border-border" style={{ backgroundColor: "#F9FAFB" }}>
-                    <th className="text-left px-5 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">Asset Type</th>
-                    <th className="text-left px-5 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">Status</th>
-                    <th className="text-left px-5 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">Notes</th>
+                    <th className="text-left px-5 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">{T.assetType}</th>
+                    <th className="text-left px-5 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">{T.status}</th>
+                    <th className="text-left px-5 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">{T.notes}</th>
                   </tr>
                 </thead>
                 <tbody>
                   {Object.entries(profile.assets).map(([key, val], i) => (
                     <tr key={key} className="border-b border-border/50 last:border-0" style={{ backgroundColor: i % 2 === 0 ? "#fff" : "#F9FAFB" }}>
-                      <td className="px-5 py-3.5 font-semibold text-secondary text-[0.875rem]">{ASSET_LABELS[key]}</td>
+                      <td className="px-5 py-3.5 font-semibold text-secondary text-[0.875rem]">{T.assets[key] || key}</td>
                       <td className="px-5 py-3.5"><StatusPill status={val.status} /></td>
                       <td className="px-5 py-3.5 text-[0.875rem] text-muted-foreground">{val.note}</td>
                     </tr>
@@ -703,7 +707,7 @@ export default function CountryProfile() {
         {/* Timeline */}
         <section>
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>History</p>
-          <h2 className="text-[1.5rem] font-bold text-secondary mb-8">Key Regulatory Events</h2>
+          <h2 className="text-[1.5rem] font-bold text-secondary mb-8">{T.timelineTitle}</h2>
           <div className="relative">
             <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-border" />
             <div className="space-y-8">
@@ -720,7 +724,7 @@ export default function CountryProfile() {
                       <span className="text-[0.8125rem] font-bold" style={{ color: "#D4A017" }}>{ev.date}</span>
                       <span className="text-[0.625rem] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide"
                         style={{ backgroundColor: SEV_BG[ev.severity], color: SEV_COLORS[ev.severity] }}>
-                        {ev.severity}
+                         {T.severity[ev.severity.toLowerCase()] || ev.severity}
                       </span>
                     </div>
                     <p className="text-[0.9375rem] font-semibold text-secondary mb-1">{ev.title}</p>
@@ -735,7 +739,7 @@ export default function CountryProfile() {
         {/* Risk Assessment */}
         <section>
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Risk</p>
-          <h2 className="text-[1.5rem] font-bold text-secondary mb-6">Risk Assessment</h2>
+          <h2 className="text-[1.5rem] font-bold text-secondary mb-6">{T.riskAssessment}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
             {Object.entries(profile.riskScores).map(([key, val]) => (
               <div key={key} className="bg-white border border-border rounded-lg p-6"
@@ -743,22 +747,22 @@ export default function CountryProfile() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: RISK_COLORS[val.level] }} />
                   <span className="text-[0.8125rem] font-bold uppercase tracking-wide"
-                    style={{ color: RISK_COLORS[val.level] }}>{val.level} Risk</span>
+                    style={{ color: RISK_COLORS[val.level] }}>{T.riskLevels[val.level] || val.level} {lang === 'fr' ? 'Risque' : 'Risk'}</span>
                 </div>
-                <p className="text-[0.9375rem] font-semibold text-secondary mb-1 capitalize">{key} Risk</p>
+                <p className="text-[0.9375rem] font-semibold text-secondary mb-1">{key === 'regulatory' ? T.regulatoryRisk : key === 'enforcement' ? T.enforcementRisk : T.marketRisk}</p>
                 <p className="text-[0.875rem] text-muted-foreground leading-relaxed">{val.note}</p>
               </div>
             ))}
           </div>
           <p className="text-[0.75rem] text-muted-foreground/60">
-            Risk assessments are based on AWI research and do not constitute financial or legal advice.
+            {T.riskDisclaimer}
           </p>
         </section>
 
         {/* Trend Chart */}
         <section>
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Trend</p>
-          <h2 className="text-[1.5rem] font-bold text-secondary mb-6">Readiness Score Trend</h2>
+          <h2 className="text-[1.5rem] font-bold text-secondary mb-6">{T.trendTitle}</h2>
           <div className="bg-white border border-border rounded-lg p-6">
             <ResponsiveContainer width="100%" height={220}>
               <LineChart data={trendData} margin={{ top: 10, right: 20, left: 0, bottom: 0 }}>
@@ -779,7 +783,7 @@ export default function CountryProfile() {
         {relatedCountries.length > 0 && (
           <section>
             <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Compare</p>
-            <h2 className="text-[1.5rem] font-bold text-secondary mb-6">Compare with Similar Countries</h2>
+            <h2 className="text-[1.5rem] font-bold text-secondary mb-6">{T.relatedTitle}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {relatedCountries.map(c => (
                 <Link
@@ -810,7 +814,7 @@ export default function CountryProfile() {
       <section style={{ backgroundColor: "#0B1437" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
           <p className="text-[1.05rem] font-semibold text-white">
-            Get the full regulatory intelligence on {profile.name} and 17 other African nations
+            {T.ctaTitle} {profile.name} {T.ctaAnd}
           </p>
           <div className="flex flex-wrap gap-3 flex-shrink-0">
             <Link
@@ -821,7 +825,7 @@ export default function CountryProfile() {
               onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}
             >
-              Download May 2026 Snapshot
+              {T.ctaButton}
             </Link>
             <Link
               to="/country-tracker"
@@ -830,7 +834,7 @@ export default function CountryProfile() {
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.08)"; }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
             >
-              Back to Tracker
+              {T.ctaBack}
             </Link>
           </div>
         </div>

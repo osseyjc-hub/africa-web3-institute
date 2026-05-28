@@ -1,6 +1,8 @@
 import React, { useState, useMemo, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ChevronUp, ChevronDown, ChevronsUpDown, Search, X, ChevronDown as ChevronDownIcon } from "lucide-react";
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 const COUNTRIES = [
   { name: "Nigeria", flag: "🇳🇬", region: "West Africa", status: "Emerging", score: 74, assets: ["Crypto", "Stablecoins", "P2P"], lastUpdate: "Mar 2026", risk: "Medium" },
@@ -40,12 +42,12 @@ const REGIONS = ["All Regions", "West Africa", "East Africa", "North Africa", "C
 const STATUSES = ["All Statuses", "Regulated", "Emerging", "Restricted", "Undefined"];
 const ASSET_TYPES = ["All Assets", "Crypto", "Stablecoins", "DeFi", "NFTs", "CBDCs", "P2P"];
 
-function StatusPill({ status }) {
+function StatusPill({ status, label }) {
   const c = STATUS_COLORS[status] || STATUS_COLORS.Undefined;
   return (
     <span className="inline-flex items-center text-[0.6875rem] font-semibold px-2.5 py-1 rounded-full" style={{ backgroundColor: c.light, color: c.text }}>
       <span className="w-1.5 h-1.5 rounded-full mr-1.5 flex-shrink-0" style={{ backgroundColor: c.bg }} />
-      {status}
+      {label !== undefined ? label : status}
     </span>
   );
 }
@@ -76,6 +78,11 @@ export default function CountryTracker() {
   const [sortCol, setSortCol] = useState("score");
   const [sortDir, setSortDir] = useState("desc");
   const [methodOpen, setMethodOpen] = useState(false);
+  const { lang } = useLang();
+  const T = t[lang].tracker;
+  const regionLabels = { "All Regions": T.regions.all, "West Africa": T.regions.west, "East Africa": T.regions.east, "North Africa": T.regions.north, "Central Africa": T.regions.central, "Southern Africa": T.regions.southern };
+  const statusLabels = { "All Statuses": T.filterStatus, "Regulated": T.statRegulated, "Emerging": T.statEmerging, "Restricted": T.statRestricted, "Undefined": "Undefined" };
+  const riskLabels = { Low: T.riskLevels.low, Medium: T.riskLevels.medium, High: T.riskLevels.high };
 
   const filtered = useMemo(() => {
     let rows = COUNTRIES;
@@ -124,17 +131,17 @@ export default function CountryTracker() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Africa Web3 Institute</p>
           <h1 className="text-[2rem] lg:text-[2.75rem] font-bold text-white leading-tight mb-3">
-            Africa Web3 Regulatory Tracker
+            {T.pageTitle}
           </h1>
           <p className="text-[1rem] max-w-2xl mb-5 leading-relaxed" style={{ color: "rgba(255,255,255,0.65)" }}>
-            Real-time regulatory intelligence across 18+ African nations — policy status, asset classifications, and enforcement activity
+            {T.pageSubtitle}
           </p>
           <div className="flex flex-wrap gap-3">
             <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium px-3 py-1.5 rounded-full" style={{ backgroundColor: "rgba(22,163,74,0.15)", color: "#4ade80", border: "1px solid rgba(22,163,74,0.3)" }}>
-              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> Last updated: May 2026
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" /> {T.lastUpdated}
             </span>
             <span className="inline-flex items-center gap-1.5 text-[0.75rem] font-medium px-3 py-1.5 rounded-full" style={{ backgroundColor: "rgba(212,160,23,0.15)", color: "#D4A017", border: "1px solid rgba(212,160,23,0.3)" }}>
-              📊 18 Countries tracked
+              📊 {T.countriesTracked}
             </span>
           </div>
         </div>
@@ -150,7 +157,7 @@ export default function CountryTracker() {
               <input
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                placeholder="Search country..."
+                placeholder={T.filterSearch}
                 className="w-full pl-8 pr-3 py-2 text-[0.8125rem] border border-border rounded-md bg-background focus:outline-none focus:ring-1 focus:ring-accent"
               />
             </div>
@@ -160,7 +167,7 @@ export default function CountryTracker() {
               onChange={e => setRegion(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent"
             >
-              {REGIONS.map(r => <option key={r}>{r}</option>)}
+              {REGIONS.map(r => <option key={r} value={r}>{regionLabels[r] || r}</option>)}
             </select>
             {/* Status */}
             <select
@@ -168,7 +175,7 @@ export default function CountryTracker() {
               onChange={e => setStatus(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent"
             >
-              {STATUSES.map(s => <option key={s}>{s}</option>)}
+              {STATUSES.map(s => <option key={s} value={s}>{statusLabels[s] || s}</option>)}
             </select>
             {/* Asset */}
             <select
@@ -185,11 +192,11 @@ export default function CountryTracker() {
               onMouseEnter={e => e.currentTarget.style.color = "#b8891a"}
               onMouseLeave={e => e.currentTarget.style.color = "#D4A017"}
             >
-              Reset Filters
+              {T.resetFilters}
             </button>
           </div>
           <p className="text-[0.75rem] text-muted-foreground mt-2">
-            Showing <strong className="text-foreground">{filtered.length}</strong> of {COUNTRIES.length} countries
+            {T.showing} <strong className="text-foreground">{filtered.length}</strong> {T.of} {COUNTRIES.length} {T.countries}
           </p>
         </div>
       </div>
@@ -198,10 +205,10 @@ export default function CountryTracker() {
         {/* Quick Stats */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {[
-            { label: "Regulated", value: stats.regulated, color: "#16a34a", bg: "#dcfce7" },
-            { label: "Emerging", value: stats.emerging, color: "#D4A017", bg: "#fef9c3" },
-            { label: "Restricted", value: stats.restricted, color: "#dc2626", bg: "#fee2e2" },
-            { label: "Avg. Readiness Score", value: stats.avgScore, color: "#0B1437", bg: "#f1f5f9" },
+            { label: T.statRegulated, value: stats.regulated, color: "#16a34a", bg: "#dcfce7" },
+            { label: T.statEmerging, value: stats.emerging, color: "#D4A017", bg: "#fef9c3" },
+            { label: T.statRestricted, value: stats.restricted, color: "#dc2626", bg: "#fee2e2" },
+            { label: T.statAvgScore, value: stats.avgScore, color: "#0B1437", bg: "#f1f5f9" },
           ].map(s => (
             <div key={s.label} className="rounded-lg p-4 border border-border" style={{ backgroundColor: s.bg }}>
               <p className="text-[2rem] font-bold leading-none mb-1" style={{ color: s.color }}>{s.value}</p>
@@ -217,29 +224,29 @@ export default function CountryTracker() {
               <thead>
                 <tr className="border-b border-border" style={{ backgroundColor: "#F9FAFB" }}>
                   <th className={thStyle} style={{ position: "sticky", left: 0, backgroundColor: "#F9FAFB", zIndex: 10 }} onClick={() => handleSort("name")}>
-                    <span className="flex items-center">Country <SortIcon col="name" sortCol={sortCol} sortDir={sortDir} /></span>
+                   <span className="flex items-center">{T.colCountry} <SortIcon col="name" sortCol={sortCol} sortDir={sortDir} /></span>
                   </th>
                   <th className={thStyle} onClick={() => handleSort("status")}>
-                    <span className="flex items-center">Status <SortIcon col="status" sortCol={sortCol} sortDir={sortDir} /></span>
+                   <span className="flex items-center">{T.colStatus} <SortIcon col="status" sortCol={sortCol} sortDir={sortDir} /></span>
                   </th>
                   <th className={thStyle} onClick={() => handleSort("score")}>
-                    <span className="flex items-center">Readiness Score <SortIcon col="score" sortCol={sortCol} sortDir={sortDir} /></span>
+                   <span className="flex items-center">{T.colScore} <SortIcon col="score" sortCol={sortCol} sortDir={sortDir} /></span>
                   </th>
-                  <th className={thStyle}>Asset Coverage</th>
+                  <th className={thStyle}>{T.colAssets}</th>
                   <th className={thStyle} onClick={() => handleSort("lastUpdate")}>
-                    <span className="flex items-center">Last Update <SortIcon col="lastUpdate" sortCol={sortCol} sortDir={sortDir} /></span>
+                   <span className="flex items-center">{T.colUpdated} <SortIcon col="lastUpdate" sortCol={sortCol} sortDir={sortDir} /></span>
                   </th>
                   <th className={thStyle} onClick={() => handleSort("risk")}>
-                    <span className="flex items-center">Risk Level <SortIcon col="risk" sortCol={sortCol} sortDir={sortDir} /></span>
+                   <span className="flex items-center">{T.colRisk} <SortIcon col="risk" sortCol={sortCol} sortDir={sortDir} /></span>
                   </th>
-                  <th className="px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground text-right">Profile</th>
+                  <th className="px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground text-right">{T.colProfile}</th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.length === 0 ? (
                   <tr>
                     <td colSpan={7} className="px-6 py-16 text-center text-muted-foreground text-[0.9375rem]">
-                      No countries match your filters. Try adjusting your search.
+                      {T.noResults}
                     </td>
                   </tr>
                 ) : (
@@ -262,7 +269,7 @@ export default function CountryTracker() {
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-4"><StatusPill status={c.status} /></td>
+                      <td className="px-4 py-4"><StatusPill status={c.status} label={statusLabels[c.status]} /></td>
                       <td className="px-4 py-4"><ScoreBar score={c.score} /></td>
                       <td className="px-4 py-4">
                         <div className="flex flex-wrap gap-1">
@@ -278,7 +285,7 @@ export default function CountryTracker() {
                       <td className="px-4 py-4">
                         <span className="inline-flex items-center gap-1.5 text-[0.8125rem] font-medium">
                           <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: RISK_COLORS[c.risk] }} />
-                          {c.risk}
+                          {riskLabels[c.risk] || c.risk}
                         </span>
                       </td>
                       <td className="px-4 py-4 text-right">
@@ -289,8 +296,8 @@ export default function CountryTracker() {
                           onMouseEnter={e => e.currentTarget.style.color = "#b8891a"}
                           onMouseLeave={e => e.currentTarget.style.color = "#D4A017"}
                         >
-                          View →
-                        </Link>
+                          {T.viewProfile}
+                          </Link>
                       </td>
                     </tr>
                   ))
@@ -306,12 +313,12 @@ export default function CountryTracker() {
             onClick={() => setMethodOpen(o => !o)}
             className="w-full flex items-center justify-between px-6 py-4 text-[0.875rem] font-semibold text-secondary hover:bg-muted/30 transition-colors"
           >
-            <span>How is this data collected?</span>
+            <span>{T.methodologyToggle}</span>
             <span className="text-muted-foreground text-[1rem]">{methodOpen ? "−" : "+"}</span>
           </button>
           {methodOpen && (
             <div className="px-6 pb-5 text-[0.875rem] text-muted-foreground leading-[1.85] border-t border-border pt-4">
-              AWI researchers track regulatory developments across African nations using official government publications, central bank notices, legislative updates, and verified industry sources. Data is reviewed and updated quarterly. Last full review: Q1 2026.
+              {T.methodologyText}
             </div>
           )}
         </div>
@@ -320,7 +327,7 @@ export default function CountryTracker() {
       {/* CTA Strip */}
       <section className="mt-8" style={{ backgroundColor: "#0B1437" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <p className="text-[1.125rem] font-semibold text-white">Want the full regulatory intelligence report?</p>
+          <p className="text-[1.125rem] font-semibold text-white">{T.ctaTitle}</p>
           <div className="flex flex-wrap gap-3 flex-shrink-0">
             <Link
               to="/awpii"
@@ -330,7 +337,7 @@ export default function CountryTracker() {
               onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}
             >
-              Download May 2026 Snapshot
+              {T.ctaButton}
             </Link>
             <a
               href="#contact"
@@ -340,7 +347,7 @@ export default function CountryTracker() {
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.08)"; }}
               onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
             >
-              Subscribe for Updates
+              {T.ctaSubscribe}
             </a>
           </div>
         </div>
