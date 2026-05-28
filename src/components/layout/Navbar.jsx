@@ -72,7 +72,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-5">
+          <div className="hidden lg:flex items-center gap-3">
             {NAV_LINKS.map((link) => (
               <button
                 key={link.label}
@@ -88,8 +88,8 @@ export default function Navbar() {
             <Link
               to="/awpii"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-[0.75rem] font-semibold transition-colors"
-              style={{ color: isAwpii ? "#D4A017" : "#6B7280" }}
+              className="text-[0.7rem] font-semibold transition-colors leading-tight text-center"
+              style={{ color: isAwpii ? "#D4A017" : "#6B7280", maxWidth: "120px" }}
               onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
               onMouseLeave={e => e.currentTarget.style.color = isAwpii ? "#D4A017" : "#6B7280"}
             >
@@ -128,8 +128,8 @@ export default function Navbar() {
             <Link
               to="/francophone-network"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-[0.75rem] font-semibold transition-colors"
-              style={{ color: isFrNetwork ? "#D4A017" : "#6B7280" }}
+              className="text-[0.7rem] font-semibold transition-colors leading-tight text-center"
+              style={{ color: isFrNetwork ? "#D4A017" : "#6B7280", maxWidth: "120px" }}
               onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
               onMouseLeave={e => e.currentTarget.style.color = isFrNetwork ? "#D4A017" : "#6B7280"}
             >
