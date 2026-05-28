@@ -96,6 +96,16 @@ export default function Navbar() {
               {T.awpii}
             </Link>
             <Link
+              to="/country-tracker"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-[0.75rem] font-semibold transition-colors"
+              style={{ color: location.pathname === "/country-tracker" ? "#D4A017" : "#6B7280" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
+              onMouseLeave={e => e.currentTarget.style.color = location.pathname === "/country-tracker" ? "#D4A017" : "#6B7280"}
+            >
+              {T.trackerFull}
+            </Link>
+            <Link
               to="/africa-blockchain-awards"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="text-[0.75rem] font-semibold transition-colors"
@@ -210,6 +220,14 @@ export default function Navbar() {
             style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
           >
             {T.awpii}
+          </Link>
+          <Link
+            to="/country-tracker"
+            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
+            style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
+          >
+            {T.trackerFull}
           </Link>
           <Link
             to="/africa-blockchain-awards"

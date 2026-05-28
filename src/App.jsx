@@ -14,6 +14,7 @@ import About from './pages/About';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import FrancophopeNetwork from './pages/FrancophopeNetwork';
 import TermsOfUse from './pages/TermsOfUse';
+import CountryTracker from './pages/CountryTracker';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -49,6 +50,7 @@ const AuthenticatedApp = () => {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms-of-use" element={<TermsOfUse />} />
         <Route path="/francophone-network" element={<FrancophopeNetwork />} />
+        <Route path="/country-tracker" element={<CountryTracker />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
