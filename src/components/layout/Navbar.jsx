@@ -93,7 +93,7 @@ export default function Navbar() {
               onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
               onMouseLeave={e => e.currentTarget.style.color = isAwpii ? "#D4A017" : "#6B7280"}
             >
-              Africa Web3 Policy<br />& Innovation Index
+              {T.awpii}
             </Link>
             <Link
               to="/africa-blockchain-awards"
@@ -103,18 +103,18 @@ export default function Navbar() {
               onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
               onMouseLeave={e => e.currentTarget.style.color = isAwards ? "#D4A017" : "#6B7280"}
             >
-              Awards
+              {T.awards}
             </Link>
             <Link
-  to="/francophone-network"
-  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-  className="text-[0.75rem] font-semibold transition-colors"
-  style={{ color: location.pathname === "/francophone-network" ? "#D4A017" : "#6B7280" }}
-  onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
-  onMouseLeave={e => e.currentTarget.style.color = location.pathname === "/francophone-network" ? "#D4A017" : "#6B7280"}
->
- Francophone Web3 <br />& Students Network
-</Link>
+              to="/francophone-network"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-[0.75rem] font-semibold transition-colors"
+              style={{ color: isFrNetwork ? "#D4A017" : "#6B7280" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
+              onMouseLeave={e => e.currentTarget.style.color = isFrNetwork ? "#D4A017" : "#6B7280"}
+            >
+              {T.francophopeNetwork}
+            </Link>
             <a
               href="#"
               target="_blank"
@@ -209,7 +209,7 @@ export default function Navbar() {
             className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
             style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
           >
-            Africa Web3 Policy<br />& Innovation Index
+            {T.awpii}
           </Link>
           <Link
             to="/africa-blockchain-awards"
@@ -217,16 +217,16 @@ export default function Navbar() {
             className="block w-full text-left text-[0.875rem] font-semibold py-3"
             style={{ color: "#D4A017" }}
           >
-            Africa Blockchain Awards
+            {T.awards}
           </Link>
           <Link
-  to="/francophone-network"
-  onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-  className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
-  style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
->
-  Francophone Web3 & Students Network
-</Link>
+            to="/francophone-network"
+            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
+            style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
+          >
+            {T.francophopeNetworkFull}
+          </Link>
           <a
             href="#"
             target="_blank"
