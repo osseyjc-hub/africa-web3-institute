@@ -1,0 +1,58 @@
+export const ENFORCEMENT_EVENTS = [
+  { id: 1, date: "May 2026", country: "Nigeria", flag: "🇳🇬", title: "CBN Issues Revised VASP Compliance Circular", type: "VASP Compliance", severity: "Medium", description: "The Central Bank of Nigeria issued a revised circular outlining updated compliance requirements for all licensed virtual asset service providers, including enhanced KYC and transaction reporting thresholds.", source: "Central Bank of Nigeria" },
+  { id: 2, date: "April 2026", country: "Kenya", flag: "🇰🇪", title: "CMA Issues Warning Against Unregistered Crypto Platforms", type: "Consumer Warning", severity: "High", description: "Kenya's Capital Markets Authority published a public warning listing 14 unregistered crypto platforms operating illegally in the country, urging consumers to avoid using them.", source: "Capital Markets Authority Kenya" },
+  { id: 3, date: "March 2026", country: "South Africa", flag: "🇿🇦", title: "FSCA Suspends Two VASP Licenses", type: "Licensing Action", severity: "High", description: "The Financial Sector Conduct Authority suspended the operating licenses of two virtual asset service providers following investigations into inadequate AML/CFT controls and client fund mismanagement.", source: "Financial Sector Conduct Authority" },
+  { id: 4, date: "March 2026", country: "Egypt", flag: "🇪🇬", title: "CBE Reaffirms Crypto Ban — Issues Enforcement Guidance", type: "Outright Ban", severity: "Critical", description: "The Central Bank of Egypt issued formal enforcement guidance to commercial banks directing them to identify and close accounts suspected of facilitating cryptocurrency transactions.", source: "Central Bank of Egypt" },
+  { id: 5, date: "February 2026", country: "Ghana", flag: "🇬🇭", title: "Bank of Ghana Warns Against Unlicensed Crypto Lending", type: "Consumer Warning", severity: "Medium", description: "The Bank of Ghana issued a public advisory warning consumers against using unlicensed crypto lending platforms following a series of retail investor losses.", source: "Bank of Ghana" },
+  { id: 6, date: "February 2026", country: "Rwanda", flag: "🇷🇼", title: "NBR Grants Third Crypto Exchange License", type: "Positive Development", severity: "Low", description: "The National Bank of Rwanda granted its third full operating license to a digital asset exchange under its comprehensive virtual asset regulatory framework.", source: "National Bank of Rwanda" },
+  { id: 7, date: "January 2026", country: "Morocco", flag: "🇲🇦", title: "Office des Changes Prosecutes Crypto Trader", type: "Court Order", severity: "Critical", description: "Morocco's foreign exchange authority secured a criminal prosecution against an individual for facilitating crypto transactions in violation of the country's foreign exchange law.", source: "Office des Changes Morocco" },
+  { id: 8, date: "January 2026", country: "Nigeria", flag: "🇳🇬", title: "EFCC Arrests 792 Crypto Fraud Suspects", type: "AML/CFT Action", severity: "High", description: "Nigeria's Economic and Financial Crimes Commission conducted a major operation arresting 792 suspects linked to crypto-enabled fraud schemes, including romance scam networks using USDT.", source: "Economic and Financial Crimes Commission" },
+  { id: 9, date: "December 2025", country: "Algeria", flag: "🇩🇿", title: "Ministry of Finance Reaffirms Crypto Prohibition", type: "Outright Ban", severity: "Critical", description: "Algeria's Ministry of Finance issued an official statement reaffirming the country's prohibition on cryptocurrency transactions under the 2018 Finance Law.", source: "Ministry of Finance Algeria" },
+  { id: 10, date: "December 2025", country: "Egypt", flag: "🇪🇬", title: "CBE Reaffirms Crypto Ban", type: "Outright Ban", severity: "Critical", description: "Central Bank of Egypt issues statement reaffirming prohibition on virtual currency trading and payments by individuals and institutions.", source: "Central Bank of Egypt" },
+  { id: 11, date: "November 2025", country: "Tanzania", flag: "🇹🇿", title: "Bank of Tanzania Opens Crypto Regulation Consultation", type: "Positive Development", severity: "Low", description: "The Bank of Tanzania opened a formal public consultation on developing a virtual asset regulatory framework, signaling a shift from its previously restrictive stance.", source: "Bank of Tanzania" },
+  { id: 12, date: "October 2025", country: "South Africa", flag: "🇿🇦", title: "FSCA Fines Crypto Exchange R2.3 Million", type: "Licensing Action", severity: "High", description: "The FSCA imposed a R2.3 million administrative penalty on a registered crypto exchange for failure to maintain adequate client asset segregation and reporting standards.", source: "Financial Sector Conduct Authority" },
+  { id: 13, date: "September 2025", country: "Zambia", flag: "🇿🇲", title: "SEC Zambia Opens Crypto Regulatory Consultation", type: "Positive Development", severity: "Low", description: "Zambia's Securities and Exchange Commission opened a public consultation seeking industry input on developing a virtual asset service provider regulatory framework.", source: "Securities and Exchange Commission Zambia" },
+  { id: 14, date: "August 2025", country: "Kenya", flag: "🇰🇪", title: "DCI Investigates Crypto Ponzi Scheme", type: "AML/CFT Action", severity: "High", description: "Kenya's Directorate of Criminal Investigations launched a formal investigation into a crypto investment scheme that defrauded over 3,000 Kenyan investors of an estimated KES 450 million.", source: "Directorate of Criminal Investigations Kenya" },
+  { id: 15, date: "June 2025", country: "Nigeria", flag: "🇳🇬", title: "Binance Executive Released After Detention", type: "Court Order", severity: "Critical", description: "A Binance executive detained by Nigerian authorities was released following diplomatic and legal intervention, concluding a high-profile standoff over tax liabilities and market manipulation allegations.", source: "Federal High Court Nigeria" },
+  { id: 16, date: "May 2025", country: "Cameroon", flag: "🇨🇲", title: "BEAC Issues Virtual Asset Warning", type: "Consumer Warning", severity: "Medium", description: "The Bank of Central African States issued a regional advisory warning consumers in CEMAC member states about the risks of unregulated virtual asset service providers.", source: "Bank of Central African States" },
+  { id: 17, date: "April 2025", country: "Ghana", flag: "🇬🇭", title: "SEC Ghana Shuts Down Unlicensed Crypto Exchange", type: "Exchange Shutdown", severity: "High", description: "Ghana's Securities and Exchange Commission ordered the immediate shutdown of an unlicensed cryptocurrency exchange operating in the country without regulatory approval.", source: "Securities and Exchange Commission Ghana" },
+  { id: 18, date: "February 2025", country: "Nigeria", flag: "🇳🇬", title: "CBN Lifts P2P Trading Restrictions Partially", type: "Positive Development", severity: "Low", description: "The Central Bank of Nigeria partially lifted restrictions on P2P cryptocurrency trading platforms, allowing licensed operators to resume certain cross-border transaction services.", source: "Central Bank of Nigeria" },
+  { id: 19, date: "January 2025", country: "Morocco", flag: "🇲🇦", title: "Government Announces Formal Crypto Regulation Study", type: "Positive Development", severity: "Low", description: "The Moroccan government announced a formal inter-ministerial study into developing a regulatory framework for cryptocurrency, signaling a potential softening of its longstanding ban.", source: "Ministry of Economy Morocco" },
+  { id: 20, date: "November 2024", country: "South Africa", flag: "🇿🇦", title: "FSCA Requires All VASPs to Register by Deadline", type: "VASP Compliance", severity: "High", description: "The FSCA issued a final deadline notice requiring all virtual asset service providers operating in South Africa to complete their licensing registration or face immediate shutdown.", source: "Financial Sector Conduct Authority" },
+  { id: 21, date: "October 2024", country: "Nigeria", flag: "🇳🇬", title: "Binance Fined $10B by Nigerian Government", type: "Tax Enforcement", severity: "Critical", description: "The Nigerian government levied a $10 billion fine against Binance for alleged tax evasion and market manipulation following months of regulatory standoff.", source: "Federal Inland Revenue Service Nigeria" },
+  { id: 22, date: "February 2024", country: "Nigeria", flag: "🇳🇬", title: "Binance Suspends Nigerian Operations", type: "Exchange Shutdown", severity: "Critical", description: "Binance suspended all Nigerian naira trading pairs and services following detention of its executives by Nigerian authorities amid a regulatory dispute.", source: "Binance / Federal Government of Nigeria" },
+  { id: 23, date: "October 2022", country: "South Africa", flag: "🇿🇦", title: "FSCA Classifies Crypto as Financial Product", type: "Positive Development", severity: "Low", description: "South Africa's FSCA formally classified crypto assets as financial products under the FAIS Act, bringing them under regulatory oversight for the first time.", source: "Financial Sector Conduct Authority" },
+  { id: 24, date: "2021", country: "Nigeria", flag: "🇳🇬", title: "CBN Directs Banks to Close Crypto Exchange Accounts", type: "Outright Ban", severity: "Critical", description: "The Central Bank of Nigeria directed all commercial banks to identify and close accounts belonging to cryptocurrency exchanges, effectively cutting off the banking sector from crypto.", source: "Central Bank of Nigeria" },
+  { id: 25, date: "2018", country: "Algeria", flag: "🇩🇿", title: "Algeria Finance Law Bans Cryptocurrency", type: "Outright Ban", severity: "Critical", description: "Algeria's Finance Law of 2018 explicitly prohibited the use, holding, sale, and purchase of virtual currencies by all individuals and institutions.", source: "Ministry of Finance Algeria" },
+];
+
+export const ENFORCEMENT_COUNTRIES = [
+  "Nigeria","Rwanda","South Africa","Kenya","Ghana","Egypt","Ethiopia","Senegal",
+  "Tanzania","Morocco","Cameroon","Côte d'Ivoire","Zimbabwe","Zambia","Algeria","Uganda","Tunisia","Botswana"
+];
+
+export const ENFORCEMENT_TYPES = [
+  "All Types","Outright Ban","Licensing Action","Exchange Shutdown","Tax Enforcement",
+  "VASP Compliance","Consumer Warning","AML/CFT Action","Court Order","Positive Development"
+];
+
+export const ENFORCEMENT_YEARS = ["All Years","2026","2025","2024","2023","2022","2021","2018"];
+
+export const TYPE_META = {
+  "Outright Ban":        { color: "#dc2626", bg: "#fee2e2", icon: "🔴" },
+  "Exchange Shutdown":   { color: "#ea580c", bg: "#ffedd5", icon: "🟠" },
+  "VASP Compliance":     { color: "#0D2C7D", bg: "#dbeafe", icon: "🔵" },
+  "Licensing Action":    { color: "#D4A017", bg: "#fef9c3", icon: "🟡" },
+  "Tax Enforcement":     { color: "#7c3aed", bg: "#ede9fe", icon: "💰" },
+  "AML/CFT Action":      { color: "#0D2C7D", bg: "#dbeafe", icon: "🛡️" },
+  "Consumer Warning":    { color: "#6b7280", bg: "#f3f4f6", icon: "⚠️" },
+  "Court Order":         { color: "#dc2626", bg: "#fee2e2", icon: "⚖️" },
+  "Positive Development":{ color: "#16a34a", bg: "#dcfce7", icon: "✅" },
+};
+
+export const SEV_META = {
+  Critical: { color: "#dc2626", bg: "#fee2e2" },
+  High:     { color: "#ea580c", bg: "#ffedd5" },
+  Medium:   { color: "#D4A017", bg: "#fef9c3" },
+  Low:      { color: "#16a34a", bg: "#dcfce7" },
+};

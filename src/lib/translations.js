@@ -15,6 +15,7 @@ export const t = {
       trackerFull: "Country Tracker",
       francophopeNetwork: "Francophone Web3 & Student Network",
       francophopeNetworkFull: "Francophone Web3 Students Network",
+      enforcementWatch: "Enforcement Watch",
     },
     hero: {
       h1: "Driving Digital Asset Policy, Regulatory Frameworks, and Market Infrastructure for Africa's Web3 Economy",
@@ -475,6 +476,7 @@ export const t = {
       trackerFull: "Suivi des Pays",
       francophopeNetwork: "Réseau des Étudiants & Francophones Web3",
       francophopeNetworkFull: "Réseau Étudiant Web3 Francophone",
+      enforcementWatch: "Surveillance des Sanctions",
     },
     hero: {
       h1: "Piloter les politiques des actifs numériques, les cadres réglementaires et les infrastructures de marché pour l'économie Web3 africaine.",

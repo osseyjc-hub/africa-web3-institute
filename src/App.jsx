@@ -16,6 +16,7 @@ import FrancophopeNetwork from './pages/FrancophopeNetwork';
 import TermsOfUse from './pages/TermsOfUse';
 import CountryTracker from './pages/CountryTracker';
 import CountryProfile from './pages/CountryProfile';
+import EnforcementWatch from './pages/EnforcementWatch';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -53,6 +54,7 @@ const AuthenticatedApp = () => {
         <Route path="/francophone-network" element={<FrancophopeNetwork />} />
         <Route path="/country-tracker" element={<CountryTracker />} />
         <Route path="/country-tracker/:country" element={<CountryProfile />} />
+        <Route path="/enforcement-watch" element={<EnforcementWatch />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
