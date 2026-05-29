@@ -136,9 +136,10 @@ export default function Navbar() {
               {T.francophopeNetwork}
             </Link>
             <a
-              href="#"
+              href="https://media.base44.com/files/public/69f0c79c7957f32b49dcc978/17d283477_MedaKit.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              title="Africa Web3 Institute Media Kit"
               className="inline-flex items-center gap-1.5 text-[0.75rem] font-semibold transition-colors"
               style={{ color: "#6B7280" }}
               onMouseEnter={e => e.currentTarget.style.color = "#111827"}
@@ -264,9 +265,10 @@ export default function Navbar() {
             {T.francophopeNetworkFull}
           </Link>
           <a
-            href="#"
+            href="https://media.base44.com/files/public/69f0c79c7957f32b49dcc978/17d283477_MedaKit.pdf"
             target="_blank"
             rel="noopener noreferrer"
+            title="Africa Web3 Institute Media Kit"
             onClick={() => setOpen(false)}
             className="flex items-center gap-2 w-full text-left text-[0.875rem] font-semibold py-3"
             style={{ color: "#374151" }}
