@@ -1,130 +1,124 @@
-import React, { useState, useMemo, useRef } from "react";
+import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ChevronUp, ChevronDown, ChevronsUpDown, Search, X, ChevronDown as ChevronDownIcon } from "lucide-react";
+import { Search } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
-const COUNTRIES = [
-  { name: "Nigeria", flag: "🇳🇬", region: "West Africa", status: "Emerging", score: 74, assets: ["Crypto", "Stablecoins", "P2P"], lastUpdate: "Mar 2026", risk: "Medium" },
-  { name: "Rwanda", flag: "🇷🇼", region: "East Africa", status: "Regulated", score: 88, assets: ["Crypto", "DeFi", "CBDCs"], lastUpdate: "Jan 2026", risk: "Low" },
-  { name: "South Africa", flag: "🇿🇦", region: "Southern Africa", status: "Regulated", score: 81, assets: ["Crypto", "Stablecoins", "NFTs"], lastUpdate: "Feb 2026", risk: "Low" },
-  { name: "Kenya", flag: "🇰🇪", region: "East Africa", status: "Emerging", score: 70, assets: ["Crypto", "CBDCs"], lastUpdate: "Apr 2026", risk: "Medium" },
-  { name: "Ghana", flag: "🇬🇭", region: "West Africa", status: "Emerging", score: 65, assets: ["Crypto", "CBDCs"], lastUpdate: "Jan 2026", risk: "Medium" },
-  { name: "Egypt", flag: "🇪🇬", region: "North Africa", status: "Restricted", score: 44, assets: [], lastUpdate: "Dec 2025", risk: "High" },
-  { name: "Ethiopia", flag: "🇪🇹", region: "East Africa", status: "Emerging", score: 58, assets: ["Crypto"], lastUpdate: "Nov 2025", risk: "Medium" },
-  { name: "Senegal", flag: "🇸🇳", region: "West Africa", status: "Emerging", score: 62, assets: ["Crypto", "CBDCs"], lastUpdate: "Feb 2026", risk: "Medium" },
-  { name: "Tanzania", flag: "🇹🇿", region: "East Africa", status: "Emerging", score: 55, assets: ["Crypto"], lastUpdate: "Oct 2025", risk: "Medium" },
-  { name: "Morocco", flag: "🇲🇦", region: "North Africa", status: "Restricted", score: 46, assets: [], lastUpdate: "Jan 2026", risk: "High" },
-  { name: "Cameroon", flag: "🇨🇲", region: "Central Africa", status: "Emerging", score: 60, assets: ["Crypto"], lastUpdate: "Dec 2025", risk: "Medium" },
-  { name: "Côte d'Ivoire", flag: "🇨🇮", region: "West Africa", status: "Emerging", score: 58, assets: ["Crypto", "CBDCs"], lastUpdate: "Nov 2025", risk: "Medium" },
-  { name: "Zimbabwe", flag: "🇿🇼", region: "Southern Africa", status: "Emerging", score: 56, assets: ["Crypto", "CBDCs"], lastUpdate: "Mar 2026", risk: "Medium" },
-  { name: "Zambia", flag: "🇿🇲", region: "Southern Africa", status: "Emerging", score: 54, assets: ["Crypto"], lastUpdate: "Sep 2025", risk: "Medium" },
-  { name: "Algeria", flag: "🇩🇿", region: "North Africa", status: "Restricted", score: 38, assets: [], lastUpdate: "Jun 2025", risk: "High" },
-  { name: "Uganda", flag: "🇺🇬", region: "East Africa", status: "Emerging", score: 52, assets: ["Crypto"], lastUpdate: "Aug 2025", risk: "Medium" },
-  { name: "Tunisia", flag: "🇹🇳", region: "North Africa", status: "Emerging", score: 61, assets: ["Crypto", "Stablecoins"], lastUpdate: "Feb 2026", risk: "Medium" },
-  { name: "Botswana", flag: "🇧🇼", region: "Southern Africa", status: "Emerging", score: 63, assets: ["Crypto"], lastUpdate: "Jan 2026", risk: "Medium" },
+const REGULATORY_UPDATES = [
+  { id: 1,  country: "Kenya",        flag: "🇰🇪", region: "East Africa",    title: "CMA Publishes Crypto Licensing Draft",          date: "Apr 2026", category: "Licensing",           status: "Draft",             summary: "Capital Markets Authority releases draft rules for digital asset exchanges, opening a public comment period for industry stakeholders.",                                               source: "Capital Markets Authority of Kenya" },
+  { id: 2,  country: "Nigeria",      flag: "🇳🇬", region: "West Africa",    title: "CBN Issues Updated VASP Guidelines",            date: "Mar 2026", category: "VASP Regulation",     status: "Active",            summary: "Central Bank of Nigeria updates VASP compliance requirements, including enhanced KYC and AML obligations for licensed operators.",                                               source: "Central Bank of Nigeria" },
+  { id: 3,  country: "Zimbabwe",     flag: "🇿🇼", region: "Southern Africa",title: "RBZ Publishes VASP Consultation",               date: "Mar 2026", category: "VASP Regulation",     status: "Consultation",      summary: "Reserve Bank of Zimbabwe opens a public consultation on a formal VASP licensing framework.",                                                                                      source: "Reserve Bank of Zimbabwe" },
+  { id: 4,  country: "South Africa", flag: "🇿🇦", region: "Southern Africa",title: "FSCA Issues Institutional Custody Guidelines",  date: "Feb 2026", category: "Banking Guidance",    status: "Guidance",          summary: "FSCA publishes formal rules for custody of digital assets by banks and licensed financial institutions.",                                                                         source: "Financial Sector Conduct Authority" },
+  { id: 5,  country: "Tunisia",      flag: "🇹🇳", region: "North Africa",   title: "BCT Digital Dinar Pilot Expands",               date: "Feb 2026", category: "CBDC",                status: "Active",            summary: "Banque Centrale de Tunisie expands the digital dinar pilot to include retail payment use cases across the country.",                                                            source: "Banque Centrale de Tunisie" },
+  { id: 6,  country: "Senegal",      flag: "🇸🇳", region: "West Africa",    title: "Dakar Web3 Policy Forum",                      date: "Feb 2026", category: "VASP Regulation",     status: "Policy Update",     summary: "AWI co-hosts the first Francophone Web3 policy roundtable, producing recommendations on VASP licensing for UEMOA member states.",                                               source: "AWI / BCEAO" },
+  { id: 7,  country: "Morocco",      flag: "🇲🇦", region: "North Africa",   title: "Draft Crypto Legalization Bill Tabled",        date: "Jan 2026", category: "VASP Regulation",     status: "Draft",             summary: "Parliament formally introduces legislation to regulate digital assets, signaling a shift from prohibition toward a supervised licensing framework.",                             source: "Parliament of Morocco" },
+  { id: 8,  country: "Botswana",     flag: "🇧🇼", region: "Southern Africa",title: "NBFIRA Crypto Licensing Draft Issued",         date: "Jan 2026", category: "Licensing",           status: "Draft",             summary: "NBFIRA publishes draft licensing rules for digital asset service providers operating in Botswana.",                                                                            source: "NBFIRA Botswana" },
+  { id: 9,  country: "Rwanda",       flag: "🇷🇼", region: "East Africa",    title: "VASP Licensing Framework Updated",             date: "Jan 2026", category: "VASP Regulation",     status: "Active",            summary: "Rwanda updates its VASP compliance requirements to align with the FATF Travel Rule, effective Q1 2026.",                                                                        source: "National Bank of Rwanda" },
+  { id: 10, country: "Ghana",        flag: "🇬🇭", region: "West Africa",    title: "SEC Fintech Regulatory Sandbox Opens",         date: "Jan 2026", category: "Licensing",           status: "Active",            summary: "Ghana SEC opens a regulatory sandbox for digital asset and fintech companies, accepting applications for the first cohort.",                                                  source: "Securities and Exchange Commission Ghana" },
+  { id: 11, country: "Egypt",        flag: "🇪🇬", region: "North Africa",   title: "CBE Issues Crypto Risk Circular",              date: "Dec 2025", category: "Banking Guidance",    status: "Enforcement Action",summary: "Central Bank of Egypt reissues a formal circular on cryptocurrency risks, reaffirming restrictions on bank facilitation of crypto transactions.",                            source: "Central Bank of Egypt" },
+  { id: 12, country: "Cameroon",     flag: "🇨🇲", region: "Central Africa", title: "AWI Francophone Policy Workshop in Yaoundé",   date: "Dec 2025", category: "VASP Regulation",     status: "Policy Update",     summary: "AWI hosts a Web3 policy sensitization workshop for Cameroonian regulators and policymakers on VASP frameworks and AML/CFT obligations.",                                       source: "AWI / BEAC" },
+  { id: 13, country: "Nigeria",      flag: "🇳🇬", region: "West Africa",    title: "SEC Approves First Digital Asset Exchange",    date: "Nov 2025", category: "Licensing",           status: "Active",            summary: "Nigeria's SEC grants the first full operating license to a digital asset exchange under the updated digital assets framework.",                                                source: "Securities and Exchange Commission Nigeria" },
+  { id: 14, country: "Tanzania",     flag: "🇹🇿", region: "East Africa",    title: "BoT Publishes VASP Discussion Paper",          date: "Oct 2025", category: "VASP Regulation",     status: "Consultation",      summary: "Bank of Tanzania releases a public consultation on digital asset oversight and potential VASP licensing requirements.",                                                        source: "Bank of Tanzania" },
+  { id: 15, country: "Tunisia",      flag: "🇹🇳", region: "North Africa",   title: "VASP Consultation Paper Released",             date: "Sep 2025", category: "VASP Regulation",     status: "Consultation",      summary: "Banque Centrale de Tunisie releases consultation on licensing requirements for virtual asset service providers.",                                                             source: "Banque Centrale de Tunisie" },
+  { id: 16, country: "Zambia",       flag: "🇿🇲", region: "Southern Africa",title: "SEC Zambia Publishes Digital Asset Policy",    date: "Sep 2025", category: "Securities Regulation",status: "Proposed",         summary: "Zambia's Securities and Exchange Commission releases draft policy for digital asset classification and licensing requirements.",                                                source: "Securities and Exchange Commission Zambia" },
+  { id: 17, country: "Uganda",       flag: "🇺🇬", region: "East Africa",    title: "CMA Issues Digital Securities Framework",      date: "Aug 2025", category: "Securities Regulation",status: "Active",           summary: "Uganda's Capital Markets Authority publishes rules for tokenized securities offerings, providing the first formal digital asset securities guidance.",                          source: "Capital Markets Authority Uganda" },
+  { id: 18, country: "Cameroon",     flag: "🇨🇲", region: "Central Africa", title: "BEAC Issues Regional Crypto AML/CFT Guidance", date: "Aug 2025", category: "AML/CFT",             status: "Guidance",          summary: "Bank of Central African States issues AML/CFT guidance for member states on virtual asset service providers.",                                                                  source: "BEAC" },
+  { id: 19, country: "Algeria",      flag: "🇩🇿", region: "North Africa",   title: "Finance Ministry Reaffirms Crypto Ban",        date: "Jun 2025", category: "VASP Regulation",     status: "Ban",               summary: "Ministry of Finance reiterates the prohibition on cryptocurrency transactions in response to growing informal market activity.",                                                source: "Ministry of Finance Algeria" },
+  { id: 20, country: "Ghana",        flag: "🇬🇭", region: "West Africa",    title: "e-Cedi CBDC Pilot Expansion",                 date: "Jul 2025", category: "CBDC",                status: "Active",            summary: "Bank of Ghana expands the e-Cedi CBDC pilot to rural and agricultural communities, broadening financial inclusion coverage.",                                                  source: "Bank of Ghana" },
+  { id: 21, country: "Côte d'Ivoire",flag: "🇨🇮", region: "West Africa",    title: "BCEAO VASP Consultation Participation",       date: "Jun 2025", category: "VASP Regulation",     status: "Consultation",      summary: "Côte d'Ivoire participates in the BCEAO regional VASP licensing consultation for UEMOA member states.",                                                                        source: "BCEAO" },
+  { id: 22, country: "Zambia",       flag: "🇿🇲", region: "Southern Africa",title: "Mining Blockchain Pilot Approved",             date: "May 2025", category: "Digital Payments",    status: "Active",            summary: "Government approves a pilot for blockchain-based copper export tracking, supporting supply chain transparency and trade settlement.",                                         source: "Government of Zambia" },
+  { id: 23, country: "South Africa", flag: "🇿🇦", region: "Southern Africa",title: "First CASP Licences Granted",                 date: "Nov 2024", category: "Licensing",           status: "Active",            summary: "FSCA grants the first batch of Crypto Asset Service Provider licences, formally recognizing licensed digital asset operators.",                                              source: "Financial Sector Conduct Authority" },
+  { id: 24, country: "Kenya",        flag: "🇰🇪", region: "East Africa",    title: "Finance Act Introduces Digital Asset Tax",     date: "Mar 2024", category: "Taxation",            status: "Active",            summary: "Kenya's Finance Act imposes a 3% digital asset tax, formally acknowledging cryptocurrency within the national tax framework.",                                                  source: "Kenya Revenue Authority" },
+  { id: 25, country: "Rwanda",       flag: "🇷🇼", region: "East Africa",    title: "Rwanda Enacts Virtual Asset Act",              date: "Mar 2024", category: "VASP Regulation",     status: "Active",            summary: "Comprehensive legislation regulating all classes of digital assets enacted, establishing a full VASP licensing regime.",                                                        source: "National Bank of Rwanda" },
 ];
 
 const STATUS_COLORS = {
-  Regulated: { bg: "#16a34a", light: "#dcfce7", text: "#166534" },
-  Emerging: { bg: "#D4A017", light: "#fef9c3", text: "#854d0e" },
-  Restricted: { bg: "#dc2626", light: "#fee2e2", text: "#991b1b" },
-  Undefined: { bg: "#9ca3af", light: "#f3f4f6", text: "#374151" },
+  Draft:              { bg: "#dbeafe", text: "#1e40af", dot: "#2563eb" },
+  Proposed:           { bg: "#ede9fe", text: "#5b21b6", dot: "#7c3aed" },
+  Active:             { bg: "#dcfce7", text: "#166534", dot: "#16a34a" },
+  Consultation:       { bg: "#fef9c3", text: "#854d0e", dot: "#D4A017" },
+  Licensing:          { bg: "#e0f2fe", text: "#0369a1", dot: "#0284c7" },
+  "Enforcement Action": { bg: "#fee2e2", text: "#991b1b", dot: "#dc2626" },
+  Guidance:           { bg: "#f0fdf4", text: "#14532d", dot: "#22c55e" },
+  "Policy Update":    { bg: "#fef3c7", text: "#92400e", dot: "#f59e0b" },
+  Ban:                { bg: "#fce7f3", text: "#9d174d", dot: "#ec4899" },
 };
 
-const RISK_COLORS = {
-  Low: "#16a34a",
-  Medium: "#D4A017",
-  High: "#dc2626",
+const CATEGORY_COLORS = {
+  "VASP Regulation":     { bg: "#dbeafe", text: "#1e40af" },
+  "Stablecoin Policy":   { bg: "#ede9fe", text: "#5b21b6" },
+  "CBDC":                { bg: "#e0f2fe", text: "#0369a1" },
+  "Taxation":            { bg: "#fef3c7", text: "#92400e" },
+  "Licensing":           { bg: "#dcfce7", text: "#166534" },
+  "AML/CFT":             { bg: "#fee2e2", text: "#991b1b" },
+  "Banking Guidance":    { bg: "#f3f4f6", text: "#374151" },
+  "Securities Regulation": { bg: "#e8e8f0", text: "#1e3a5f" },
+  "Digital Payments":    { bg: "#d1fae5", text: "#065f46" },
 };
 
-const REGIONS = ["All Regions", "West Africa", "East Africa", "North Africa", "Central Africa", "Southern Africa"];
-const STATUSES = ["All Statuses", "Regulated", "Emerging", "Restricted", "Undefined"];
-const ASSET_TYPES = ["All Assets", "Crypto", "Stablecoins", "DeFi", "NFTs", "CBDCs", "P2P"];
-
-function StatusPill({ status, label }) {
-  const c = STATUS_COLORS[status] || STATUS_COLORS.Undefined;
+function StatusPill({ status }) {
+  const c = STATUS_COLORS[status] || { bg: "#f3f4f6", text: "#374151", dot: "#9ca3af" };
   return (
-    <span className="inline-flex items-center text-[0.6875rem] font-semibold px-2.5 py-1 rounded-full" style={{ backgroundColor: c.light, color: c.text }}>
-      <span className="w-1.5 h-1.5 rounded-full mr-1.5 flex-shrink-0" style={{ backgroundColor: c.bg }} />
-      {label !== undefined ? label : status}
+    <span className="inline-flex items-center text-[0.6875rem] font-semibold px-2.5 py-1 rounded-full whitespace-nowrap"
+      style={{ backgroundColor: c.bg, color: c.text }}>
+      <span className="w-1.5 h-1.5 rounded-full mr-1.5 flex-shrink-0" style={{ backgroundColor: c.dot }} />
+      {status}
     </span>
   );
 }
 
-function ScoreBar({ score }) {
+function CategoryBadge({ category }) {
+  const c = CATEGORY_COLORS[category] || { bg: "#f3f4f6", text: "#374151" };
   return (
-    <div className="min-w-[80px]">
-      <span className="text-[0.9375rem] font-bold text-secondary">{score}</span>
-      <div className="h-1 rounded-full bg-border mt-1 overflow-hidden">
-        <div className="h-full rounded-full" style={{ width: `${score}%`, backgroundColor: "#D4A017" }} />
-      </div>
-    </div>
+    <span className="inline-flex text-[0.6875rem] font-medium px-2 py-0.5 rounded whitespace-nowrap"
+      style={{ backgroundColor: c.bg, color: c.text }}>
+      {category}
+    </span>
   );
 }
 
-function SortIcon({ col, sortCol, sortDir }) {
-  if (sortCol !== col) return <ChevronsUpDown className="w-3 h-3 ml-1 opacity-30 flex-shrink-0" />;
-  return sortDir === "asc"
-    ? <ChevronUp className="w-3 h-3 ml-1 text-accent flex-shrink-0" />
-    : <ChevronDown className="w-3 h-3 ml-1 text-accent flex-shrink-0" />;
-}
+const REGIONS = ["All Regions", "West Africa", "East Africa", "North Africa", "Central Africa", "Southern Africa"];
+const CATEGORIES = ["All Categories", "VASP Regulation", "Stablecoin Policy", "CBDC", "Taxation", "Licensing", "AML/CFT", "Banking Guidance", "Securities Regulation", "Digital Payments"];
+const STATUSES_LIST = ["All Statuses", "Draft", "Proposed", "Active", "Consultation", "Licensing", "Enforcement Action", "Guidance", "Policy Update", "Ban"];
 
 export default function CountryTracker() {
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("All Regions");
-  const [status, setStatus] = useState("All Statuses");
-  const [asset, setAsset] = useState("All Assets");
-  const [sortCol, setSortCol] = useState("score");
-  const [sortDir, setSortDir] = useState("desc");
+  const [category, setCategory] = useState("All Categories");
+  const [statusFilter, setStatusFilter] = useState("All Statuses");
   const [methodOpen, setMethodOpen] = useState(false);
   const { lang } = useLang();
   const T = t[lang].tracker;
-  const regionLabels = { "All Regions": T.regions.all, "West Africa": T.regions.west, "East Africa": T.regions.east, "North Africa": T.regions.north, "Central Africa": T.regions.central, "Southern Africa": T.regions.southern };
-  const statusLabels = { "All Statuses": T.filterStatus, "Regulated": T.statRegulated, "Emerging": T.statEmerging, "Restricted": T.statRestricted, "Undefined": "Undefined" };
-  const riskLabels = { Low: T.riskLevels.low, Medium: T.riskLevels.medium, High: T.riskLevels.high };
-
-  const filtered = useMemo(() => {
-    let rows = COUNTRIES;
-    if (search.trim()) rows = rows.filter(c => c.name.toLowerCase().includes(search.toLowerCase()));
-    if (region !== "All Regions") rows = rows.filter(c => c.region === region);
-    if (status !== "All Statuses") rows = rows.filter(c => c.status === status);
-    if (asset !== "All Assets") rows = rows.filter(c => c.assets.includes(asset));
-
-    rows = [...rows].sort((a, b) => {
-      let av = a[sortCol], bv = b[sortCol];
-      if (sortCol === "name" || sortCol === "region" || sortCol === "status" || sortCol === "lastUpdate" || sortCol === "risk") {
-        av = String(av).toLowerCase(); bv = String(bv).toLowerCase();
-        return sortDir === "asc" ? av.localeCompare(bv) : bv.localeCompare(av);
-      }
-      return sortDir === "asc" ? av - bv : bv - av;
-    });
-    return rows;
-  }, [search, region, status, asset, sortCol, sortDir]);
-
-  const handleSort = (col) => {
-    if (sortCol === col) setSortDir(d => d === "asc" ? "desc" : "asc");
-    else { setSortCol(col); setSortDir("asc"); }
+  const regionLabels = {
+    "All Regions": T.regions.all,
+    "West Africa": T.regions.west,
+    "East Africa": T.regions.east,
+    "North Africa": T.regions.north,
+    "Central Africa": T.regions.central,
+    "Southern Africa": T.regions.southern,
   };
 
-  const resetFilters = () => { setSearch(""); setRegion("All Regions"); setStatus("All Statuses"); setAsset("All Assets"); };
+  const filtered = useMemo(() => {
+    return REGULATORY_UPDATES.filter(u => {
+      if (search.trim()) {
+        const q = search.toLowerCase();
+        if (!u.title.toLowerCase().includes(q) && !u.country.toLowerCase().includes(q) && !u.summary.toLowerCase().includes(q) && !u.category.toLowerCase().includes(q)) return false;
+      }
+      if (region !== "All Regions" && u.region !== region) return false;
+      if (category !== "All Categories" && u.category !== category) return false;
+      if (statusFilter !== "All Statuses" && u.status !== statusFilter) return false;
+      return true;
+    });
+  }, [search, region, category, statusFilter]);
 
-  const stats = useMemo(() => {
-    const src = filtered;
-    return {
-      regulated: src.filter(c => c.status === "Regulated").length,
-      emerging: src.filter(c => c.status === "Emerging").length,
-      restricted: src.filter(c => c.status === "Restricted").length,
-      avgScore: src.length ? Math.round(src.reduce((s, c) => s + c.score, 0) / src.length) : 0,
-    };
-  }, [filtered]);
-
-  const thStyle = "text-left px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground select-none cursor-pointer whitespace-nowrap";
+  const resetFilters = () => {
+    setSearch(""); setRegion("All Regions"); setCategory("All Categories"); setStatusFilter("All Statuses");
+  };
 
   return (
     <div className="bg-background text-foreground" style={{ animation: "fadeIn 0.4s ease" }}>
       <style>{`@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }`}</style>
-      <title>Country Tracker | Africa Web3 Institute</title>
+      <title>Regulatory Tracker | Africa Web3 Institute</title>
 
       {/* Hero */}
       <section style={{ backgroundColor: "#0B1437" }} className="py-10 lg:py-14">
@@ -151,153 +145,98 @@ export default function CountryTracker() {
       <div className="sticky top-[3.75rem] z-40 bg-white border-b border-border shadow-sm">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-3">
           <div className="flex flex-wrap gap-2 items-center">
-            {/* Search */}
             <div className="relative flex-1 min-w-[180px] max-w-[240px]">
               <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
-              <input
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder={T.filterSearch}
-                className="w-full pl-8 pr-3 py-2 text-[0.8125rem] border border-border rounded-md bg-background focus:outline-none focus:ring-1 focus:ring-accent"
-              />
+              <input value={search} onChange={e => setSearch(e.target.value)} placeholder={T.filterSearch}
+                className="w-full pl-8 pr-3 py-2 text-[0.8125rem] border border-border rounded-md bg-background focus:outline-none focus:ring-1 focus:ring-accent" />
             </div>
-            {/* Region */}
-            <select
-              value={region}
-              onChange={e => setRegion(e.target.value)}
-              className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent"
-            >
+            <select value={region} onChange={e => setRegion(e.target.value)}
+              className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
               {REGIONS.map(r => <option key={r} value={r}>{regionLabels[r] || r}</option>)}
             </select>
-            {/* Status */}
-            <select
-              value={status}
-              onChange={e => setStatus(e.target.value)}
-              className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent"
-            >
-              {STATUSES.map(s => <option key={s} value={s}>{statusLabels[s] || s}</option>)}
+            <select value={category} onChange={e => setCategory(e.target.value)}
+              className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
+              {CATEGORIES.map(c => <option key={c} value={c}>{c === "All Categories" ? T.filterCategory : c}</option>)}
             </select>
-            {/* Asset */}
-            <select
-              value={asset}
-              onChange={e => setAsset(e.target.value)}
-              className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent"
-            >
-              {ASSET_TYPES.map(a => <option key={a}>{a}</option>)}
+            <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)}
+              className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
+              {STATUSES_LIST.map(s => <option key={s} value={s}>{s === "All Statuses" ? T.filterStatus : s}</option>)}
             </select>
-            <button
-              onClick={resetFilters}
+            <button onClick={resetFilters}
               className="text-[0.8125rem] font-semibold ml-auto transition-colors"
               style={{ color: "#D4A017" }}
               onMouseEnter={e => e.currentTarget.style.color = "#b8891a"}
-              onMouseLeave={e => e.currentTarget.style.color = "#D4A017"}
-            >
+              onMouseLeave={e => e.currentTarget.style.color = "#D4A017"}>
               {T.resetFilters}
             </button>
           </div>
           <p className="text-[0.75rem] text-muted-foreground mt-2">
-            {T.showing} <strong className="text-foreground">{filtered.length}</strong> {T.of} {COUNTRIES.length} {T.countries}
+            {T.showing} <strong className="text-foreground">{filtered.length}</strong> {T.of} {REGULATORY_UPDATES.length} {T.updates}
           </p>
         </div>
       </div>
 
+      {/* Table */}
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
-        {/* Quick Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {[
-            { label: T.statRegulated, value: stats.regulated, color: "#16a34a", bg: "#dcfce7" },
-            { label: T.statEmerging, value: stats.emerging, color: "#D4A017", bg: "#fef9c3" },
-            { label: T.statRestricted, value: stats.restricted, color: "#dc2626", bg: "#fee2e2" },
-            { label: T.statAvgScore, value: stats.avgScore, color: "#0B1437", bg: "#f1f5f9" },
-          ].map(s => (
-            <div key={s.label} className="rounded-lg p-4 border border-border" style={{ backgroundColor: s.bg }}>
-              <p className="text-[2rem] font-bold leading-none mb-1" style={{ color: s.color }}>{s.value}</p>
-              <p className="text-[0.75rem] font-medium" style={{ color: s.color }}>{s.label}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Table */}
         <div className="border border-border rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-sm" style={{ minWidth: "860px" }}>
+            <table className="w-full text-sm" style={{ minWidth: "960px" }}>
               <thead>
                 <tr className="border-b border-border" style={{ backgroundColor: "#F9FAFB" }}>
-                  <th className={thStyle} style={{ position: "sticky", left: 0, backgroundColor: "#F9FAFB", zIndex: 10 }} onClick={() => handleSort("name")}>
-                   <span className="flex items-center">{T.colCountry} <SortIcon col="name" sortCol={sortCol} sortDir={sortDir} /></span>
-                  </th>
-                  <th className={thStyle} onClick={() => handleSort("status")}>
-                   <span className="flex items-center">{T.colStatus} <SortIcon col="status" sortCol={sortCol} sortDir={sortDir} /></span>
-                  </th>
-                  <th className={thStyle} onClick={() => handleSort("score")}>
-                   <span className="flex items-center">{T.colScore} <SortIcon col="score" sortCol={sortCol} sortDir={sortDir} /></span>
-                  </th>
-                  <th className={thStyle}>{T.colAssets}</th>
-                  <th className={thStyle} onClick={() => handleSort("lastUpdate")}>
-                   <span className="flex items-center">{T.colUpdated} <SortIcon col="lastUpdate" sortCol={sortCol} sortDir={sortDir} /></span>
-                  </th>
-                  <th className={thStyle} onClick={() => handleSort("risk")}>
-                   <span className="flex items-center">{T.colRisk} <SortIcon col="risk" sortCol={sortCol} sortDir={sortDir} /></span>
-                  </th>
-                  <th className="px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground text-right">{T.colProfile}</th>
+                  <th className="text-left px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground whitespace-nowrap" style={{ position: "sticky", left: 0, backgroundColor: "#F9FAFB", zIndex: 10 }}>{T.colCountry}</th>
+                  <th className="text-left px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">{T.colTitle}</th>
+                  <th className="text-left px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground whitespace-nowrap">{T.colDate}</th>
+                  <th className="text-left px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground whitespace-nowrap">{T.colCategory}</th>
+                  <th className="text-left px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground whitespace-nowrap">{T.colStatus}</th>
+                  <th className="text-left px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">{T.colSummary}</th>
+                  <th className="text-left px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground">{T.colSource}</th>
+                  <th className="px-4 py-3 text-[0.6875rem] font-bold tracking-wider uppercase text-muted-foreground text-right whitespace-nowrap">{T.colProfile}</th>
                 </tr>
               </thead>
               <tbody>
                 {filtered.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="px-6 py-16 text-center text-muted-foreground text-[0.9375rem]">
+                    <td colSpan={8} className="px-6 py-16 text-center text-muted-foreground text-[0.9375rem]">
                       {T.noResults}
                     </td>
                   </tr>
                 ) : (
-                  filtered.map((c, i) => (
-                    <tr
-                      key={c.name}
+                  filtered.map((u, i) => (
+                    <tr key={u.id}
                       className="border-b border-border/50 transition-colors"
-                      style={{
-                        backgroundColor: i % 2 === 0 ? "#fff" : "#F9FAFB",
-                      }}
+                      style={{ backgroundColor: i % 2 === 0 ? "#fff" : "#F9FAFB" }}
                       onMouseEnter={e => e.currentTarget.style.backgroundColor = "rgba(13,44,125,0.04)"}
-                      onMouseLeave={e => e.currentTarget.style.backgroundColor = i % 2 === 0 ? "#fff" : "#F9FAFB"}
-                    >
-                      <td className="px-4 py-4 font-semibold" style={{ position: "sticky", left: 0, backgroundColor: "inherit", zIndex: 1 }}>
-                        <div className="flex items-center gap-2.5">
-                          <span className="text-[1.125rem] flex-shrink-0">{c.flag}</span>
+                      onMouseLeave={e => e.currentTarget.style.backgroundColor = i % 2 === 0 ? "#fff" : "#F9FAFB"}>
+                      <td className="px-4 py-4" style={{ position: "sticky", left: 0, backgroundColor: "inherit", zIndex: 1 }}>
+                        <div className="flex items-center gap-2">
+                          <span className="text-[1.125rem] flex-shrink-0">{u.flag}</span>
                           <div>
-                            <p className="font-semibold text-secondary text-[0.9375rem] whitespace-nowrap">{c.name}</p>
-                            <p className="text-[0.6875rem] text-muted-foreground">{c.region}</p>
+                            <p className="font-semibold text-secondary text-[0.875rem] whitespace-nowrap">{u.country}</p>
+                            <p className="text-[0.6875rem] text-muted-foreground">{u.region}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-4"><StatusPill status={c.status} label={statusLabels[c.status]} /></td>
-                      <td className="px-4 py-4"><ScoreBar score={c.score} /></td>
-                      <td className="px-4 py-4">
-                        <div className="flex flex-wrap gap-1">
-                          {c.assets.length === 0
-                            ? <span className="text-[0.75rem] text-muted-foreground italic">None</span>
-                            : c.assets.map(a => (
-                              <span key={a} className="text-[0.6875rem] font-medium px-2 py-0.5 rounded border border-border text-muted-foreground bg-muted/40">{a}</span>
-                            ))
-                          }
-                        </div>
+                      <td className="px-4 py-4" style={{ maxWidth: "200px" }}>
+                        <p className="text-[0.875rem] font-semibold text-secondary leading-snug">{u.title}</p>
                       </td>
-                      <td className="px-4 py-4 text-[0.875rem] text-muted-foreground whitespace-nowrap">{c.lastUpdate}</td>
-                      <td className="px-4 py-4">
-                        <span className="inline-flex items-center gap-1.5 text-[0.8125rem] font-medium">
-                          <span className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: RISK_COLORS[c.risk] }} />
-                          {riskLabels[c.risk] || c.risk}
-                        </span>
+                      <td className="px-4 py-4 text-[0.8125rem] text-muted-foreground whitespace-nowrap">{u.date}</td>
+                      <td className="px-4 py-4"><CategoryBadge category={u.category} /></td>
+                      <td className="px-4 py-4"><StatusPill status={u.status} /></td>
+                      <td className="px-4 py-4" style={{ maxWidth: "260px" }}>
+                        <p className="text-[0.8125rem] text-muted-foreground leading-relaxed">{u.summary}</p>
+                      </td>
+                      <td className="px-4 py-4" style={{ maxWidth: "140px" }}>
+                        <p className="text-[0.75rem] text-muted-foreground/70 leading-snug">{u.source}</p>
                       </td>
                       <td className="px-4 py-4 text-right">
                         <Link
-                          to={`/country-tracker/${c.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                          to={`/country-tracker/${u.country.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                           className="text-[0.8125rem] font-semibold transition-colors whitespace-nowrap"
                           style={{ color: "#D4A017" }}
                           onMouseEnter={e => e.currentTarget.style.color = "#b8891a"}
-                          onMouseLeave={e => e.currentTarget.style.color = "#D4A017"}
-                        >
+                          onMouseLeave={e => e.currentTarget.style.color = "#D4A017"}>
                           {T.viewProfile}
-                          </Link>
+                        </Link>
                       </td>
                     </tr>
                   ))
@@ -309,10 +248,8 @@ export default function CountryTracker() {
 
         {/* Methodology Note */}
         <div className="mt-8 border border-border rounded-lg overflow-hidden">
-          <button
-            onClick={() => setMethodOpen(o => !o)}
-            className="w-full flex items-center justify-between px-6 py-4 text-[0.875rem] font-semibold text-secondary hover:bg-muted/30 transition-colors"
-          >
+          <button onClick={() => setMethodOpen(o => !o)}
+            className="w-full flex items-center justify-between px-6 py-4 text-[0.875rem] font-semibold text-secondary hover:bg-muted/30 transition-colors">
             <span>{T.methodologyToggle}</span>
             <span className="text-muted-foreground text-[1rem]">{methodOpen ? "−" : "+"}</span>
           </button>
@@ -329,24 +266,18 @@ export default function CountryTracker() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-12 flex flex-col sm:flex-row items-center justify-between gap-6">
           <p className="text-[1.125rem] font-semibold text-white">{T.ctaTitle}</p>
           <div className="flex flex-wrap gap-3 flex-shrink-0">
-            <Link
-              to="/awpii"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            <Link to="/awpii" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="inline-flex items-center text-[0.8125rem] font-semibold px-5 py-2.5 transition-colors"
               style={{ backgroundColor: "#D4A017", color: "#fff" }}
               onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
-              onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}
-            >
+              onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}>
               {T.ctaButton}
             </Link>
-            <a
-              href="#contact"
-              onClick={e => { e.preventDefault(); document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }); }}
+            <a href="mailto:info@africaweb3institute.org"
               className="inline-flex items-center text-[0.8125rem] font-semibold px-5 py-2.5 border transition-colors"
               style={{ borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}
               onMouseEnter={e => { e.currentTarget.style.backgroundColor = "rgba(255,255,255,0.08)"; }}
-              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}
-            >
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; }}>
               {T.ctaSubscribe}
             </a>
           </div>
