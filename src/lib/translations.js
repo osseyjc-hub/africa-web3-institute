@@ -1069,7 +1069,7 @@ export const t = {
     countryProfile: {
       breadcrumbHome: "Accueil",
       breadcrumbTracker: "Suivi des pays",
-      backToTracker: "← Retour au suivi",
+      backToTracker: "Retour au suivi",
       lastUpdated: "Dernière mise à jour",
       readinessScore: "Score de maturité",
       policyScore: "Score Politique",
