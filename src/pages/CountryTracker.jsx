@@ -205,7 +205,7 @@ export default function CountryTracker() {
                           <span className="text-[1.125rem] flex-shrink-0">{u.flag}</span>
                           <div>
                             <p className="font-semibold text-secondary text-[0.875rem] whitespace-nowrap">{u.country}</p>
-                            <p className="text-[0.6875rem] text-muted-foreground">{T.regions?.[u.region] || u.region}</p>
+                           <p className="text-[0.6875rem] text-muted-foreground">{T.regions?.[u.region] || u.region}</p>
                           </div>
                         </div>
                       </td>
