@@ -56,23 +56,23 @@ const CATEGORY_COLORS = {
   "Digital Payments":    { bg: "#d1fae5", text: "#065f46" },
 };
 
-function StatusPill({ status }) {
+function StatusPill({ status, label }) {
   const c = STATUS_COLORS[status] || { bg: "#f3f4f6", text: "#374151", dot: "#9ca3af" };
   return (
     <span className="inline-flex items-center text-[0.6875rem] font-semibold px-2.5 py-1 rounded-full whitespace-nowrap"
       style={{ backgroundColor: c.bg, color: c.text }}>
       <span className="w-1.5 h-1.5 rounded-full mr-1.5 flex-shrink-0" style={{ backgroundColor: c.dot }} />
-      {status}
+      {label || status}
     </span>
   );
 }
 
-function CategoryBadge({ category }) {
+function CategoryBadge({ category, label }) {
   const c = CATEGORY_COLORS[category] || { bg: "#f3f4f6", text: "#374151" };
   return (
     <span className="inline-flex text-[0.6875rem] font-medium px-2 py-0.5 rounded whitespace-nowrap"
       style={{ backgroundColor: c.bg, color: c.text }}>
-      {category}
+      {label || category}
     </span>
   );
 }
@@ -89,14 +89,7 @@ export default function CountryTracker() {
   const [methodOpen, setMethodOpen] = useState(false);
   const { lang } = useLang();
   const T = t[lang].tracker;
-  const regionLabels = {
-    "All Regions": T.regions.all,
-    "West Africa": T.regions.west,
-    "East Africa": T.regions.east,
-    "North Africa": T.regions.north,
-    "Central Africa": T.regions.central,
-    "Southern Africa": T.regions.southern,
-  };
+
 
   const filtered = useMemo(() => {
     return REGULATORY_UPDATES.filter(u => {
@@ -152,15 +145,15 @@ export default function CountryTracker() {
             </div>
             <select value={region} onChange={e => setRegion(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
-              {REGIONS.map(r => <option key={r} value={r}>{regionLabels[r] || r}</option>)}
+              {REGIONS.map(r => <option key={r} value={r}>{T.regions?.[r] || r}</option>)}
             </select>
             <select value={category} onChange={e => setCategory(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
-              {CATEGORIES.map(c => <option key={c} value={c}>{c === "All Categories" ? T.filterCategory : c}</option>)}
+              {CATEGORIES.map(c => <option key={c} value={c}>{T.categories?.[c] || c}</option>)}
             </select>
             <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
-              {STATUSES_LIST.map(s => <option key={s} value={s}>{s === "All Statuses" ? T.filterStatus : s}</option>)}
+              {STATUSES_LIST.map(s => <option key={s} value={s}>{T.statuses?.[s] || s}</option>)}
             </select>
             <button onClick={resetFilters}
               className="text-[0.8125rem] font-semibold ml-auto transition-colors"
@@ -212,7 +205,7 @@ export default function CountryTracker() {
                           <span className="text-[1.125rem] flex-shrink-0">{u.flag}</span>
                           <div>
                             <p className="font-semibold text-secondary text-[0.875rem] whitespace-nowrap">{u.country}</p>
-                            <p className="text-[0.6875rem] text-muted-foreground">{u.region}</p>
+                            <p className="text-[0.6875rem] text-muted-foreground">{T.regions?.[u.region] || u.region}</p>
                           </div>
                         </div>
                       </td>
@@ -220,8 +213,8 @@ export default function CountryTracker() {
                         <p className="text-[0.875rem] font-semibold text-secondary leading-snug">{u.title}</p>
                       </td>
                       <td className="px-4 py-4 text-[0.8125rem] text-muted-foreground whitespace-nowrap">{u.date}</td>
-                      <td className="px-4 py-4"><CategoryBadge category={u.category} /></td>
-                      <td className="px-4 py-4"><StatusPill status={u.status} /></td>
+                      <td className="px-4 py-4"><CategoryBadge category={u.category} label={T.categories?.[u.category] || u.category} /></td>
+                      <td className="px-4 py-4"><StatusPill status={u.status} label={T.statuses?.[u.status] || u.status} /></td>
                       <td className="px-4 py-4" style={{ maxWidth: "260px" }}>
                         <p className="text-[0.8125rem] text-muted-foreground leading-relaxed">{u.summary}</p>
                       </td>
