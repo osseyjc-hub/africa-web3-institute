@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, Download } from "lucide-react";
+import { Menu, X, Download, ChevronDown } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+  const [mobileExpanded, setMobileExpanded] = useState(null);
   const [scrolled, setScrolled] = useState(false);
   const { lang, setLang } = useLang();
   const T = t[lang].nav;
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
-  const isAwards = location.pathname === "/africa-blockchain-awards";
-  const isAwpii = location.pathname === "/awpii";
-  const isFrNetwork = location.pathname === "/francophone-network";
+  const navRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -22,17 +22,27 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const NAV_LINKS = [
-    { label: T.about, href: "/about", isPage: true },
-    { label: T.programs, href: "#programs" },
-    { label: T.publications, href: "/publications", isPage: true },
-    { label: T.events, href: "#events" },
-    { label: T.community, href: "#community" },
-    { label: T.contact, href: "#contact" },
-  ];
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (navRef.current && !navRef.current.contains(e.target)) {
+        setActiveDropdown(null);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === "Escape") setActiveDropdown(null);
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
 
   const scrollTo = (id) => {
     setOpen(false);
+    setActiveDropdown(null);
     if (!isHome) {
       navigate("/");
       setTimeout(() => {
@@ -47,8 +57,111 @@ export default function Navbar() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const navigateTo = (href) => {
+    setOpen(false);
+    setActiveDropdown(null);
+    navigate(href);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const isActive = (href) => location.pathname === href;
+
+  const INTELLIGENCE_ITEMS = [
+    {
+      section: lang === "fr" ? "Indices & Données" : "Indexes & Data",
+      items: [
+        { label: "AWPII", desc: lang === "fr" ? "Indice Africain des Politiques & de l'Innovation Web3" : "Africa Web3 Policy & Innovation Index", href: "/awpii", icon: "🗺️" },
+        { label: lang === "fr" ? "Suivi Réglementaire" : "Regulatory Tracker", desc: lang === "fr" ? "Mises à jour réglementaires en temps réel sur 18+ nations" : "Live regulatory updates across 18+ African nations", href: "/country-tracker", icon: "📊" },
+        { label: lang === "fr" ? "Surveillance des Sanctions" : "Enforcement Watch", desc: lang === "fr" ? "Suivre les répressions réglementaires et actions coercitives" : "Track regulatory crackdowns and enforcement actions", href: "/enforcement-watch", icon: "⚖️" },
+      ],
+    },
+    {
+      section: lang === "fr" ? "Recherche & Publications" : "Research & Publications",
+      items: [
+        { label: lang === "fr" ? "Publications" : "Publications", desc: lang === "fr" ? "Notes de politique, rapports de recherche et analyses de marché" : "Policy briefs, research reports, and market analysis", href: "/publications", icon: "📄" },
+      ],
+    },
+  ];
+
+  const PROGRAMS_ITEMS = [
+    {
+      section: lang === "fr" ? "Réseaux & Communauté" : "Networks & Community",
+      items: [
+        { label: lang === "fr" ? "Réseau des Étudiants Francophones Web3" : "Francophone Web3 & Students Network", desc: lang === "fr" ? "Connecter les étudiants africains francophones dans le Web3" : "Connecting French-speaking African Web3 students", href: "/francophone-network", icon: "🌍" },
+      ],
+    },
+    {
+      section: lang === "fr" ? "Reconnaissance" : "Recognition",
+      items: [
+        { label: lang === "fr" ? "Africa Blockchain Awards" : "Africa Blockchain Awards", desc: lang === "fr" ? "La plateforme de reconnaissance blockchain de référence du continent" : "The continent's premier blockchain recognition platform", href: "/africa-blockchain-awards", icon: "🏆" },
+      ],
+    },
+    {
+      section: lang === "fr" ? "Événements" : "Events",
+      items: [
+        { label: lang === "fr" ? "Événements & Rencontres" : "Events & Convenings", desc: lang === "fr" ? "Sommets politiques, ateliers et activations universitaires" : "Policy summits, workshops, and campus activations", href: "#events", isScroll: true, icon: "📅" },
+      ],
+    },
+  ];
+
+  const DropdownMenu = ({ sections }) => (
+    <div
+      className="absolute top-full left-0 mt-1 rounded-lg overflow-hidden"
+      style={{
+        backgroundColor: "#fff",
+        border: "1px solid #E5E7EB",
+        boxShadow: "0 8px 24px rgba(0,0,0,0.10)",
+        minWidth: "300px",
+        zIndex: 100,
+        animation: "dropdownFadeIn 0.15s ease",
+      }}
+    >
+      <style>{`
+        @keyframes dropdownFadeIn {
+          from { opacity: 0; transform: translateY(-6px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+      {sections.map((section, si) => (
+        <div key={si} className={si > 0 ? "border-t border-gray-100" : ""}>
+          <p className="px-4 pt-3 pb-1 text-[0.6rem] font-bold tracking-[0.15em] uppercase"
+            style={{ color: "#D4A017" }}>
+            {section.section}
+          </p>
+          {section.items.map((item) => (
+            <button
+              key={item.href}
+              onClick={() => item.isScroll ? scrollTo(item.href) : navigateTo(item.href)}
+              className="w-full text-left px-4 py-2.5 flex items-start gap-3 transition-colors"
+              style={{
+                backgroundColor: isActive(item.href) ? "rgba(212,160,23,0.06)" : "transparent",
+                borderLeft: isActive(item.href) ? "2px solid #D4A017" : "2px solid transparent",
+              }}
+              onMouseEnter={e => e.currentTarget.style.backgroundColor = "rgba(11,20,55,0.04)"}
+              onMouseLeave={e => e.currentTarget.style.backgroundColor = isActive(item.href) ? "rgba(212,160,23,0.06)" : "transparent"}
+            >
+              <span className="text-[1rem] mt-0.5 flex-shrink-0">{item.icon}</span>
+              <div>
+                <p className="text-[0.8125rem] font-semibold leading-snug"
+                  style={{ color: isActive(item.href) ? "#D4A017" : "#111827" }}>
+                  {item.label}
+                </p>
+                <p className="text-[0.6875rem] leading-snug mt-0.5" style={{ color: "#9CA3AF" }}>
+                  {item.desc}
+                </p>
+              </div>
+            </button>
+          ))}
+          {si < sections.length - 1 && <div className="pb-2" />}
+        </div>
+      ))}
+      <div className="pb-2" />
+    </div>
+  );
+
   return (
     <nav
+      ref={navRef}
       className="sticky top-0 z-50 transition-all duration-200"
       style={{
         backgroundColor: "#fff",
@@ -60,7 +173,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-[3.75rem]">
 
           {/* Logo + Name */}
-          <Link to="/" className="flex items-center gap-2.5 flex-shrink-0" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <Link
+            to="/"
+            className="flex items-center gap-2.5 flex-shrink-0"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          >
             <img
               src="https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/23d3c088d_80f640b57_Logo1.png"
               alt="Africa Web3 Institute logo"
@@ -72,80 +189,99 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden lg:flex items-center gap-3">
-            {NAV_LINKS.map((link) => (
+          <div className="hidden lg:flex items-center gap-6">
+
+            {/* About */}
+            <Link
+              to="/about"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="text-[0.8125rem] font-medium transition-colors"
+              style={{ color: isActive("/about") ? "#D4A017" : "#374151" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#111827"}
+              onMouseLeave={e => e.currentTarget.style.color = isActive("/about") ? "#D4A017" : "#374151"}
+            >
+              {lang === "fr" ? "À Propos" : "About"}
+            </Link>
+
+            {/* Intelligence dropdown */}
+            <div className="relative">
               <button
-                key={link.label}
-                onClick={() => link.isPage ? navigate(link.href) : scrollTo(link.href)}
-                className="text-[0.75rem] transition-colors"
-                style={{ color: "#6B7280" }}
-                onMouseEnter={e => e.target.style.color = "#111827"}
-                onMouseLeave={e => e.target.style.color = "#6B7280"}
+                onClick={() => setActiveDropdown(activeDropdown === "intelligence" ? null : "intelligence")}
+                className="flex items-center gap-1 text-[0.8125rem] font-medium transition-colors"
+                style={{
+                  color: ["awpii", "country-tracker", "enforcement-watch", "publications"].some(p => location.pathname.includes(p)) ? "#D4A017" : "#374151"
+                }}
+                onMouseEnter={e => e.currentTarget.style.color = "#111827"}
+                onMouseLeave={e => e.currentTarget.style.color = ["awpii", "country-tracker", "enforcement-watch", "publications"].some(p => location.pathname.includes(p)) ? "#D4A017" : "#374151"}
               >
-                {link.label}
+                {lang === "fr" ? "Intelligence" : "Intelligence"}
+                <ChevronDown
+                  className="w-3.5 h-3.5 transition-transform"
+                  style={{ transform: activeDropdown === "intelligence" ? "rotate(180deg)" : "rotate(0deg)" }}
+                />
               </button>
-            ))}
-            <Link
-              to="/awpii"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-[0.7rem] font-semibold transition-colors leading-tight text-center"
-              style={{ color: isAwpii ? "#D4A017" : "#6B7280", maxWidth: "120px" }}
-              onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
-              onMouseLeave={e => e.currentTarget.style.color = isAwpii ? "#D4A017" : "#6B7280"}
+              {activeDropdown === "intelligence" && (
+                <DropdownMenu sections={INTELLIGENCE_ITEMS} />
+              )}
+            </div>
+
+            {/* Programs dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setActiveDropdown(activeDropdown === "programs" ? null : "programs")}
+                className="flex items-center gap-1 text-[0.8125rem] font-medium transition-colors"
+                style={{
+                  color: ["/francophone-network", "/africa-blockchain-awards"].includes(location.pathname) ? "#D4A017" : "#374151"
+                }}
+                onMouseEnter={e => e.currentTarget.style.color = "#111827"}
+                onMouseLeave={e => e.currentTarget.style.color = ["/francophone-network", "/africa-blockchain-awards"].includes(location.pathname) ? "#D4A017" : "#374151"}
+              >
+                {lang === "fr" ? "Programmes" : "Programs"}
+                <ChevronDown
+                  className="w-3.5 h-3.5 transition-transform"
+                  style={{ transform: activeDropdown === "programs" ? "rotate(180deg)" : "rotate(0deg)" }}
+                />
+              </button>
+              {activeDropdown === "programs" && (
+                <DropdownMenu sections={PROGRAMS_ITEMS} />
+              )}
+            </div>
+
+            {/* Community */}
+            <button
+              onClick={() => scrollTo("#community")}
+              className="text-[0.8125rem] font-medium transition-colors"
+              style={{ color: "#374151" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#111827"}
+              onMouseLeave={e => e.currentTarget.style.color = "#374151"}
             >
-              {T.awpii}
-            </Link>
-            <Link
-              to="/country-tracker"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-[0.75rem] font-semibold transition-colors"
-              style={{ color: location.pathname === "/country-tracker" ? "#D4A017" : "#6B7280" }}
-              onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
-              onMouseLeave={e => e.currentTarget.style.color = location.pathname === "/country-tracker" ? "#D4A017" : "#6B7280"}
+              {lang === "fr" ? "Communauté" : "Community"}
+            </button>
+
+            {/* Contact */}
+            <button
+              onClick={() => scrollTo("#contact")}
+              className="text-[0.8125rem] font-medium transition-colors"
+              style={{ color: "#374151" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#111827"}
+              onMouseLeave={e => e.currentTarget.style.color = "#374151"}
             >
-              {T.trackerFull}
-            </Link>
-            <Link
-              to="/enforcement-watch"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-[0.75rem] font-semibold transition-colors"
-              style={{ color: location.pathname === "/enforcement-watch" ? "#D4A017" : "#6B7280" }}
-              onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
-              onMouseLeave={e => e.currentTarget.style.color = location.pathname === "/enforcement-watch" ? "#D4A017" : "#6B7280"}
-            >
-              {T.enforcementWatch}
-            </Link>
-            <Link
-              to="/africa-blockchain-awards"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-[0.75rem] font-semibold transition-colors"
-              style={{ color: isAwards ? "#D4A017" : "#6B7280" }}
-              onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
-              onMouseLeave={e => e.currentTarget.style.color = isAwards ? "#D4A017" : "#6B7280"}
-            >
-              {T.awards}
-            </Link>
-            <Link
-              to="/francophone-network"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-[0.7rem] font-semibold transition-colors leading-tight text-center"
-              style={{ color: isFrNetwork ? "#D4A017" : "#6B7280", maxWidth: "120px" }}
-              onMouseEnter={e => e.currentTarget.style.color = "#D4A017"}
-              onMouseLeave={e => e.currentTarget.style.color = isFrNetwork ? "#D4A017" : "#6B7280"}
-            >
-              {T.francophopeNetwork}
-            </Link>
+              {lang === "fr" ? "Contact" : "Contact"}
+            </button>
+
+            {/* Media Kit */}
             <a
               href="https://media.base44.com/files/public/69f0c79c7957f32b49dcc978/17d283477_MedaKit.pdf"
               target="_blank"
               rel="noopener noreferrer"
               title="Africa Web3 Institute Media Kit"
-              className="inline-flex items-center gap-1.5 text-[0.75rem] font-semibold transition-colors"
-              style={{ color: "#6B7280" }}
+              className="inline-flex items-center gap-1.5 text-[0.8125rem] font-medium transition-colors"
+              style={{ color: "#374151" }}
               onMouseEnter={e => e.currentTarget.style.color = "#111827"}
-              onMouseLeave={e => e.currentTarget.style.color = "#6B7280"}
+              onMouseLeave={e => e.currentTarget.style.color = "#374151"}
             >
-              <Download className="w-3 h-3" /> Media Kit
+              <Download className="w-3 h-3" />
+              {lang === "fr" ? "Kit Média" : "Media Kit"}
             </a>
           </div>
 
@@ -177,7 +313,7 @@ export default function Navbar() {
               onMouseEnter={e => e.currentTarget.style.backgroundColor = "#b8891a"}
               onMouseLeave={e => e.currentTarget.style.backgroundColor = "#D4A017"}
             >
-              Get Reports
+              {lang === "fr" ? "Obtenir les rapports" : "Get Reports"}
             </Link>
           </div>
 
@@ -213,68 +349,126 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="lg:hidden px-6 py-3 space-y-0.5 border-t" style={{ backgroundColor: "#fff", borderColor: "#F3F4F6" }}>
-          {NAV_LINKS.map((link) => (
+        <div className="lg:hidden border-t" style={{ backgroundColor: "#fff", borderColor: "#F3F4F6" }}>
+
+          {/* About */}
+          <Link
+            to="/about"
+            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+            className="flex items-center px-6 py-3.5 text-[0.875rem] font-medium border-b"
+            style={{ color: isActive("/about") ? "#D4A017" : "#374151", borderColor: "#F3F4F6" }}
+          >
+            {lang === "fr" ? "À Propos" : "About"}
+          </Link>
+
+          {/* Intelligence accordion */}
+          <div className="border-b" style={{ borderColor: "#F3F4F6" }}>
             <button
-              key={link.label}
-              onClick={() => link.isPage ? (setOpen(false), navigate(link.href)) : scrollTo(link.href)}
-              className="block w-full text-left text-[0.875rem] py-3 border-b transition-colors"
-              style={{ color: "#374151", borderColor: "#F3F4F6" }}
+              onClick={() => setMobileExpanded(mobileExpanded === "intelligence" ? null : "intelligence")}
+              className="flex items-center justify-between w-full px-6 py-3.5 text-[0.875rem] font-medium"
+              style={{ color: "#374151" }}
             >
-              {link.label}
+              <span>{lang === "fr" ? "Intelligence" : "Intelligence"}</span>
+              <ChevronDown
+                className="w-4 h-4 transition-transform"
+                style={{ transform: mobileExpanded === "intelligence" ? "rotate(180deg)" : "rotate(0deg)", color: "#9CA3AF" }}
+              />
             </button>
-          ))}
-          <Link
-            to="/awpii"
-            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
-            style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
+            {mobileExpanded === "intelligence" && (
+              <div className="pb-2" style={{ backgroundColor: "#F9FAFB" }}>
+                {INTELLIGENCE_ITEMS.flatMap(s => s.items).map(item => (
+                  <button
+                    key={item.href}
+                    onClick={() => item.isScroll ? scrollTo(item.href) : navigateTo(item.href)}
+                    className="flex items-center gap-3 w-full text-left px-8 py-3 text-[0.875rem]"
+                    style={{
+                      color: isActive(item.href) ? "#D4A017" : "#374151",
+                      borderLeft: isActive(item.href) ? "2px solid #D4A017" : "2px solid transparent",
+                    }}
+                  >
+                    <span>{item.icon}</span>
+                    <span className="font-medium">{item.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Programs accordion */}
+          <div className="border-b" style={{ borderColor: "#F3F4F6" }}>
+            <button
+              onClick={() => setMobileExpanded(mobileExpanded === "programs" ? null : "programs")}
+              className="flex items-center justify-between w-full px-6 py-3.5 text-[0.875rem] font-medium"
+              style={{ color: "#374151" }}
+            >
+              <span>{lang === "fr" ? "Programmes" : "Programs"}</span>
+              <ChevronDown
+                className="w-4 h-4 transition-transform"
+                style={{ transform: mobileExpanded === "programs" ? "rotate(180deg)" : "rotate(0deg)", color: "#9CA3AF" }}
+              />
+            </button>
+            {mobileExpanded === "programs" && (
+              <div className="pb-2" style={{ backgroundColor: "#F9FAFB" }}>
+                {PROGRAMS_ITEMS.flatMap(s => s.items).map(item => (
+                  <button
+                    key={item.href}
+                    onClick={() => item.isScroll ? scrollTo(item.href) : navigateTo(item.href)}
+                    className="flex items-center gap-3 w-full text-left px-8 py-3 text-[0.875rem]"
+                    style={{
+                      color: isActive(item.href) ? "#D4A017" : "#374151",
+                      borderLeft: isActive(item.href) ? "2px solid #D4A017" : "2px solid transparent",
+                    }}
+                  >
+                    <span>{item.icon}</span>
+                    <span className="font-medium">{item.label}</span>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Community */}
+          <button
+            onClick={() => scrollTo("#community")}
+            className="flex items-center w-full px-6 py-3.5 text-[0.875rem] font-medium border-b"
+            style={{ color: "#374151", borderColor: "#F3F4F6" }}
           >
-            {T.awpii}
-          </Link>
-          <Link
-            to="/country-tracker"
-            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
-            style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
+            {lang === "fr" ? "Communauté" : "Community"}
+          </button>
+
+          {/* Contact */}
+          <button
+            onClick={() => scrollTo("#contact")}
+            className="flex items-center w-full px-6 py-3.5 text-[0.875rem] font-medium border-b"
+            style={{ color: "#374151", borderColor: "#F3F4F6" }}
           >
-            {T.trackerFull}
-          </Link>
-          <Link
-            to="/enforcement-watch"
-            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
-            style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
-          >
-            {T.enforcementWatch}
-          </Link>
-          <Link
-            to="/africa-blockchain-awards"
-            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="block w-full text-left text-[0.875rem] font-semibold py-3"
-            style={{ color: "#D4A017" }}
-          >
-            {T.awards}
-          </Link>
-          <Link
-            to="/francophone-network"
-            onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
-            className="block w-full text-left text-[0.875rem] font-semibold py-3 border-b"
-            style={{ color: "#D4A017", borderColor: "#F3F4F6" }}
-          >
-            {T.francophopeNetworkFull}
-          </Link>
+            {lang === "fr" ? "Contact" : "Contact"}
+          </button>
+
+          {/* Media Kit */}
           <a
             href="https://media.base44.com/files/public/69f0c79c7957f32b49dcc978/17d283477_MedaKit.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            title="Africa Web3 Institute Media Kit"
             onClick={() => setOpen(false)}
-            className="flex items-center gap-2 w-full text-left text-[0.875rem] font-semibold py-3"
-            style={{ color: "#374151" }}
+            className="flex items-center gap-2 px-6 py-3.5 text-[0.875rem] font-medium border-b"
+            style={{ color: "#374151", borderColor: "#F3F4F6" }}
           >
-            <Download className="w-4 h-4" style={{ color: "#D4A017" }} /> Media Kit
+            <Download className="w-4 h-4" style={{ color: "#D4A017" }} />
+            {lang === "fr" ? "Kit Média" : "Media Kit"}
           </a>
+
+          {/* Get Reports */}
+          <div className="px-6 py-4">
+            <Link
+              to="/awpii"
+              onClick={() => { setOpen(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+              className="flex items-center justify-center w-full text-[0.875rem] font-semibold px-5 py-2.5 rounded-md"
+              style={{ backgroundColor: "#D4A017", color: "#fff" }}
+            >
+              {lang === "fr" ? "Obtenir les rapports" : "Get Reports"}
+            </Link>
+          </div>
         </div>
       )}
     </nav>
