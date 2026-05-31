@@ -25,7 +25,7 @@ export default function Navbar() {
   const NAV_LINKS = [
     { label: T.about, href: "/about", isPage: true },
     { label: T.programs, href: "#programs" },
-    { label: T.publications, href: "#publications" },
+    { label: T.publications, href: "/publications", isPage: true },
     { label: T.events, href: "#events" },
     { label: T.community, href: "#community" },
     { label: T.contact, href: "#contact" },

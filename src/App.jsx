@@ -15,6 +15,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import FrancophopeNetwork from './pages/FrancophopeNetwork';
 import TermsOfUse from './pages/TermsOfUse';
 import CountryTracker from './pages/CountryTracker';
+import Publications from './pages/Publications';
 import CountryProfile from './pages/CountryProfile';
 import EnforcementWatch from './pages/EnforcementWatch';
 
@@ -53,6 +54,7 @@ const AuthenticatedApp = () => {
         <Route path="/terms-of-use" element={<TermsOfUse />} />
         <Route path="/francophone-network" element={<FrancophopeNetwork />} />
         <Route path="/country-tracker" element={<CountryTracker />} />
+        <Route path="/publications" element={<Publications />} />
         <Route path="/country-tracker/:country" element={<CountryProfile />} />
         <Route path="/enforcement-watch" element={<EnforcementWatch />} />
       </Route>
