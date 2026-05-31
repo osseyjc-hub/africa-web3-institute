@@ -214,7 +214,7 @@ export default function CountryTracker() {
                       </td>
                       <td className="px-4 py-4 text-[0.8125rem] text-muted-foreground whitespace-nowrap">{u.date}</td>
                       <td className="px-4 py-4"><CategoryBadge category={u.category} label={T.categories?.[u.category] || u.category} /></td>
-                      <td className="px-4 py-4"><StatusPill status={u.status} label={T.statuses?.[u.status] || u.status} /></td>
+<td className="px-4 py-4"><StatusPill status={u.status} label={T.statuses?.[u.status] || u.status} /></td>
                       <td className="px-4 py-4" style={{ maxWidth: "260px" }}>
                         <p className="text-[0.8125rem] text-muted-foreground leading-relaxed">{u.summary}</p>
                       </td>
