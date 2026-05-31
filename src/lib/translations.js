@@ -494,7 +494,7 @@ export const t = {
     countryProfile: {
       breadcrumbHome: "Home",
       breadcrumbTracker: "Country Tracker",
-      backToTracker: "← Back to Tracker",
+      backToTracker: "Back to Tracker",
       lastUpdated: "Last updated",
       readinessScore: "Readiness Score",
       policyScore: "Policy Score",
