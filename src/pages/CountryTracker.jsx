@@ -145,15 +145,15 @@ export default function CountryTracker() {
             </div>
             <select value={region} onChange={e => setRegion(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
-           {REGIONS.map(r => <option key={r} value={r}>{T.regions?.[r] || r}</option>)}
+              {REGIONS.map(r => <option key={r} value={r}>{T.regions?.[r] || r}</option>)}
             </select>
             <select value={category} onChange={e => setCategory(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
-             {CATEGORIES.map(c => <option key={c} value={c}>{T.categories?.[c] || c}</option>)}
+              {CATEGORIES.map(c => <option key={c} value={c}>{T.categories?.[c] || c}</option>)}
             </select>
             <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)}
               className="text-[0.8125rem] border border-border rounded-md px-3 py-2 bg-background focus:outline-none focus:ring-1 focus:ring-accent">
-         {STATUSES_LIST.map(s => <option key={s} value={s}>{T.statuses?.[s] || s}</option>)}
+              {STATUSES_LIST.map(s => <option key={s} value={s}>{T.statuses?.[s] || s}</option>)}
             </select>
             <button onClick={resetFilters}
               className="text-[0.8125rem] font-semibold ml-auto transition-colors"
@@ -205,7 +205,7 @@ export default function CountryTracker() {
                           <span className="text-[1.125rem] flex-shrink-0">{u.flag}</span>
                           <div>
                             <p className="font-semibold text-secondary text-[0.875rem] whitespace-nowrap">{u.country}</p>
-                           <p className="text-[0.6875rem] text-muted-foreground">{T.regions?.[u.region] || u.region}</p>
+                            <p className="text-[0.6875rem] text-muted-foreground">{T.regions?.[u.region] || u.region}</p>
                           </div>
                         </div>
                       </td>
@@ -214,7 +214,7 @@ export default function CountryTracker() {
                       </td>
                       <td className="px-4 py-4 text-[0.8125rem] text-muted-foreground whitespace-nowrap">{u.date}</td>
                       <td className="px-4 py-4"><CategoryBadge category={u.category} label={T.categories?.[u.category] || u.category} /></td>
-<td className="px-4 py-4"><StatusPill status={u.status} label={T.statuses?.[u.status] || u.status} /></td>
+                      <td className="px-4 py-4"><StatusPill status={u.status} label={T.statuses?.[u.status] || u.status} /></td>
                       <td className="px-4 py-4" style={{ maxWidth: "260px" }}>
                         <p className="text-[0.8125rem] text-muted-foreground leading-relaxed">{u.summary}</p>
                       </td>
