@@ -102,7 +102,7 @@ export default function CapacityBuilding() {
       <section style={{ backgroundColor: "#0B1437" }} className="py-14 lg:py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>
-            Programs
+            Programmes
           </p>
           <h1 className="text-[2rem] lg:text-[3rem] font-bold text-white leading-tight mb-3">
             Capacity Building
