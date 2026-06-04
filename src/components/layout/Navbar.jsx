@@ -91,6 +91,12 @@ export default function Navbar() {
       ],
     },
     {
+      section: lang === "fr" ? "Éducation & Formation" : "Education & Training",
+      items: [
+        { label: lang === "fr" ? "Renforcement des Capacités" : "Capacity Building", desc: lang === "fr" ? "Formation pour gouvernements, institutions financières et secteur privé" : "Training for governments, financial institutions, and the private sector", href: "/capacity-building", icon: "📚" },
+      ],
+    },
+    {
       section: lang === "fr" ? "Reconnaissance" : "Recognition",
       items: [
         { label: lang === "fr" ? "Africa Blockchain Awards" : "Africa Blockchain Awards", desc: lang === "fr" ? "La plateforme de reconnaissance blockchain de référence du continent" : "The continent's premier blockchain recognition platform", href: "/africa-blockchain-awards", icon: "🏆" },

@@ -18,6 +18,7 @@ import CountryTracker from './pages/CountryTracker';
 import Publications from './pages/Publications';
 import CountryProfile from './pages/CountryProfile';
 import EnforcementWatch from './pages/EnforcementWatch';
+import CapacityBuilding from './pages/CapacityBuilding';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -57,6 +58,7 @@ const AuthenticatedApp = () => {
         <Route path="/publications" element={<Publications />} />
         <Route path="/country-tracker/:country" element={<CountryProfile />} />
         <Route path="/enforcement-watch" element={<EnforcementWatch />} />
+        <Route path="/capacity-building" element={<CapacityBuilding />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
