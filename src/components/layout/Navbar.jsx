@@ -242,7 +242,7 @@ export default function Navbar() {
                 onMouseEnter={e => e.currentTarget.style.color = "#111827"}
                 onMouseLeave={e => e.currentTarget.style.color = ["/francophone-network", "/africa-blockchain-awards"].includes(location.pathname) ? "#D4A017" : "#374151"}
               >
-                {lang === "fr" ? "Programmes" : "Programs"}
+                {lang === "fr" ? "Programmes" : "Programmes"}
                 <ChevronDown
                   className="w-3.5 h-3.5 transition-transform"
                   style={{ transform: activeDropdown === "programmes" ? "rotate(180deg)" : "rotate(0deg)" }}
