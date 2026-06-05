@@ -231,10 +231,10 @@ export default function Navbar() {
               )}
             </div>
 
-            {/* Programs dropdown */}
+            {/* Programmes dropdown */}
             <div className="relative">
               <button
-                onClick={() => setActiveDropdown(activeDropdown === "programs" ? null : "programs")}
+                onClick={() => setActiveDropdown(activeDropdown === "programmes" ? null : "programmes")}
                 className="flex items-center gap-1 text-[0.8125rem] font-medium transition-colors"
                 style={{
                   color: ["/francophone-network", "/africa-blockchain-awards"].includes(location.pathname) ? "#D4A017" : "#374151"
@@ -245,10 +245,10 @@ export default function Navbar() {
                 {lang === "fr" ? "Programmes" : "Programs"}
                 <ChevronDown
                   className="w-3.5 h-3.5 transition-transform"
-                  style={{ transform: activeDropdown === "programs" ? "rotate(180deg)" : "rotate(0deg)" }}
+                  style={{ transform: activeDropdown === "programmes" ? "rotate(180deg)" : "rotate(0deg)" }}
                 />
               </button>
-              {activeDropdown === "programs" && (
+              {activeDropdown === "programmes" && (
                 <DropdownMenu sections={PROGRAMS_ITEMS} />
               )}
             </div>
