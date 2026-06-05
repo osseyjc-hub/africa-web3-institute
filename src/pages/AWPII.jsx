@@ -36,7 +36,7 @@ export default function AWPII() {
           <div className="max-w-3xl">
             <h1 className="text-[2.5rem] lg:text-[3.5rem] font-bold text-white leading-[1.1] tracking-tight mb-4">
   
-              {T.heroCtaPrimary}
+              {T.heroTitle}
             </h1>
             <p className="text-[1.25rem] lg:text-[1.5rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
               {T.heroSubtitle}
