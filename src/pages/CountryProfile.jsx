@@ -516,7 +516,7 @@ function StatusPill({ status }) {
   );
 }
 
-function CircleScore({ score }) {
+function CircleScore({ score, label }) {
   const r = 54, circ = 2 * Math.PI * r;
   const offset = circ - (score / 100) * circ;
   return (
@@ -531,7 +531,7 @@ function CircleScore({ score }) {
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-[2rem] font-bold leading-none" style={{ color: "#D4A017" }}>{score}</span>
-        <span className="text-[0.625rem] font-medium text-white/60 mt-1 uppercase tracking-wide">Readiness</span>
+        <span className="text-[0.625rem] font-medium text-white/60 mt-1 uppercase tracking-wide">{label}</span>
       </div>
     </div>
   );
@@ -622,7 +622,7 @@ export default function CountryProfile() {
               </Link>
             </div>
             {/* Right: circular score */}
-            <CircleScore score={profile.score} />
+            <CircleScore score={profile.score} label={T.readinessScore} />
           </div>
         </div>
       </section>
@@ -656,7 +656,7 @@ export default function CountryProfile() {
 
         {/* Policy Summary */}
         <section>
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Overview</p>
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>{lang === "fr" ? "Aperçu" : "Overview"}</p>
           <h2 className="text-[1.5rem] font-bold text-secondary mb-8">{T.regulatoryOverview}</h2>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-4">
@@ -678,7 +678,7 @@ export default function CountryProfile() {
 
         {/* Asset Coverage */}
         <section>
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Regulation</p>
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>{lang === "fr" ? "Réglementation" : "Regulation"}</p>
           <h2 className="text-[1.5rem] font-bold text-secondary mb-6">{T.assetClassification}</h2>
           <div className="border border-border rounded-lg overflow-hidden">
             <div className="overflow-x-auto">
@@ -706,7 +706,7 @@ export default function CountryProfile() {
 
         {/* Timeline */}
         <section>
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>History</p>
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>{lang === "fr" ? "Historique" : "History"}</p>
           <h2 className="text-[1.5rem] font-bold text-secondary mb-8">{T.timelineTitle}</h2>
           <div className="relative">
             <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-border" />
@@ -738,7 +738,7 @@ export default function CountryProfile() {
 
         {/* Risk Assessment */}
         <section>
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Risk</p>
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>{lang === "fr" ? "Risque" : "Risk"}</p>
           <h2 className="text-[1.5rem] font-bold text-secondary mb-6">{T.riskAssessment}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-4">
             {Object.entries(profile.riskScores).map(([key, val]) => (
@@ -747,7 +747,7 @@ export default function CountryProfile() {
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ backgroundColor: RISK_COLORS[val.level] }} />
                   <span className="text-[0.8125rem] font-bold uppercase tracking-wide"
-                    style={{ color: RISK_COLORS[val.level] }}>{T.riskLevels[val.level] || val.level} {lang === 'fr' ? 'Risque' : 'Risk'}</span>
+                    style={{ color: RISK_COLORS[val.level] }}>{T.riskLevels[val.level] || val.level} {lang === "fr" ? "Risque" : "Risk"}</span>
                 </div>
                 <p className="text-[0.9375rem] font-semibold text-secondary mb-1">{key === 'regulatory' ? T.regulatoryRisk : key === 'enforcement' ? T.enforcementRisk : T.marketRisk}</p>
                 <p className="text-[0.875rem] text-muted-foreground leading-relaxed">{val.note}</p>
@@ -761,7 +761,7 @@ export default function CountryProfile() {
 
         {/* Trend Chart */}
         <section>
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Trend</p>
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>{lang === "fr" ? "Tendance" : "Trend"}</p>
           <h2 className="text-[1.5rem] font-bold text-secondary mb-6">{T.trendTitle}</h2>
           <div className="bg-white border border-border rounded-lg p-6">
             <ResponsiveContainer width="100%" height={220}>
@@ -771,7 +771,7 @@ export default function CountryProfile() {
                 <YAxis domain={[0, 100]} tick={{ fontSize: 12, fill: "#9CA3AF" }} axisLine={false} tickLine={false} />
                 <Tooltip
                   contentStyle={{ border: "1px solid #E5E7EB", borderRadius: "6px", fontSize: "0.8125rem" }}
-                  formatter={(v) => [`${v}`, "Readiness Score"]}
+                  formatter={(v) => [`${v}`, T.readinessScore]}
                 />
                 <Line type="monotone" dataKey="score" stroke="#D4A017" strokeWidth={2.5} dot={{ fill: "#D4A017", r: 4 }} activeDot={{ r: 6 }} />
               </LineChart>
@@ -782,7 +782,7 @@ export default function CountryProfile() {
         {/* Related Countries */}
         {relatedCountries.length > 0 && (
           <section>
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Compare</p>
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>{lang === "fr" ? "Comparer" : "Compare"}</p>
             <h2 className="text-[1.5rem] font-bold text-secondary mb-6">{T.relatedTitle}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {relatedCountries.map(c => (
