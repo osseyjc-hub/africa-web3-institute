@@ -254,8 +254,8 @@ export default function EnforcementWatch() {
                           <SevDot severity={ev.severity} /> {SEV_LABEL[ev.severity] || ev.severity}
                         </span>
                       </div>
-                      <p className="text-[0.9375rem] font-semibold text-secondary mb-2">{ev.title}</p>
-                      <p className="text-[0.875rem] text-muted-foreground leading-relaxed mb-3">{ev.description}</p>
+                      <p className="text-[0.9375rem] font-semibold text-secondary mb-2">{lang === "fr" ? (ev.titleFr || ev.title) : ev.title}</p>
+                      <p className="text-[0.875rem] text-muted-foreground leading-relaxed mb-3">{lang === "fr" ? (ev.descriptionFr || ev.description) : ev.description}</p>
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <span className="text-[0.75rem] text-muted-foreground/60">{T.source}: {ev.source}</span>
                          <Link to={`/country-tracker/${toSlug(ev.country)}`}
