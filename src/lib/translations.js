@@ -252,6 +252,10 @@ export const t = {
       newsletterSuccess: "You're subscribed to AWI Publications updates.",
     },
     awpii: {
+      heroEyebrow: "Africa Web3 Policy & Innovation Index",
+      heroTitle: "Benchmarking Regulatory Clarity and Market Readiness Across the Continent",
+      heroSubtitle: "Africa is rewriting the rules of exchange, identity, and commerce.Regulatory frameworks will determine which markets scale—and which stall.The AWPII is the definitive benchmark evaluating how African jurisdictions regulate, restrict, or enable decentralised technologies. Through rigorous annual analysis and real-time Snapshot updates, we provide clear, data-driven comparisons of continental policy environments.",
+      heroCtaPrimary: "Explore the Interactive Index",
       heroCtaPrimary: "Explore the Interactive Index",
       heroCtaSecondary: "Download May 2026 Snapshot",
       stats: [
