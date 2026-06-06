@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download, BarChart3, Globe, Zap, Users, Building2, Mail, ChevronRight, TrendingUp, Info } from "lucide-react";
-import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from "recharts";
+import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from "recharts";
 import AfricaMapInteractive from "../components/map/AfricaMapInteractive";
+import CountryDeepDive from "../components/awpii/CountryDeepDive";
 import awpiiData from "@/data/awpiiData";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
@@ -34,14 +35,6 @@ export default function AWPII() {
   // Find currently selected country data
   const selectedCountry = awpiiData.find(c => c.key === selectedCountryKey) || awpiiData[0];
 
-  // Radar chart data preparation
-  const radarData = selectedCountry.pillars ? [
-    { subject: lang === "fr" ? "Clarté" : "Clarity", value: selectedCountry.pillars.clarity },
-    { subject: lang === "fr" ? "Soutien" : "Policy Support", value: selectedCountry.pillars.policy_support },
-    { subject: lang === "fr" ? "Innovation" : "Innovation", value: selectedCountry.pillars.innovation },
-    { subject: lang === "fr" ? "Adoption" : "Adoption", value: selectedCountry.pillars.adoption },
-  ] : [];
-
   // Momentum bar chart data (Top 10)
   const momentumData = awpiiData.slice(0, 10).map(c => ({
     name: c.name,
@@ -49,7 +42,6 @@ export default function AWPII() {
     momentum: c.momentum
   }));
 
-  // Grade color badges
   const getGradeBadgeClass = (grade) => {
     if (grade.includes("AA")) return "bg-[#14532d] text-white";
     if (grade.startsWith("A")) return "bg-[#166534] text-white";
@@ -57,7 +49,6 @@ export default function AWPII() {
     if (grade.startsWith("BB")) return "bg-amber-600 text-white";
     return "bg-red-600 text-white";
   };
-
 
   return (
     <div className="bg-background text-foreground">
@@ -151,96 +142,7 @@ export default function AWPII() {
               </div>
 
               {/* Country Deep Dive */}
-              <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl p-6 shadow-sm">
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-100 dark:border-slate-800 pb-5 mb-6 gap-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl">{selectedCountry.flag}</span>
-                    <div>
-                      <h3 className="font-bold text-secondary text-2xl tracking-tight leading-none mb-1.5">{selectedCountry.name}</h3>
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs text-muted-foreground font-medium">Rank #{selectedCountry.rank}</span>
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded ${getGradeBadgeClass(selectedCountry.grade)}`}>
-                          {selectedCountry.grade}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-slate-50 dark:bg-slate-950 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-800 text-right sm:text-left flex sm:flex-col items-center sm:items-start gap-2 sm:gap-0">
-                    <span className="text-[0.6875rem] font-bold text-muted-foreground uppercase tracking-wider">Overall Score</span>
-                    <span className="text-3xl font-extrabold text-secondary leading-none">{selectedCountry.overall_score}</span>
-                  </div>
-                </div>
-
-                {selectedCountry.pillars ? (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                    
-                    {/* Radar Chart */}
-                    <div className="flex flex-col items-center">
-                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">Pillar Distribution</h4>
-                      <div className="w-full h-[260px]">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <RadarChart cx="50%" cy="50%" outerRadius="75%" data={radarData}>
-                            <PolarGrid stroke="#e2e8f0" />
-                            <PolarAngleAxis dataKey="subject" tick={{ fill: 'hsl(var(--foreground))', fontSize: 11, fontWeight: 600 }} />
-                            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
-                            <Radar
-                              name={selectedCountry.name}
-                              dataKey="value"
-                              stroke="hsl(var(--primary))"
-                              fill="hsl(var(--primary))"
-                              fillOpacity={0.2}
-                            />
-                          </RadarChart>
-                        </ResponsiveContainer>
-                      </div>
-                    </div>
-
-                    {/* SWOT Grid */}
-                    <div className="space-y-4">
-                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">SWOT Insights</h4>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <div className="border border-green-100 bg-green-50/10 dark:border-green-950 dark:bg-green-950/5 p-3 rounded-lg">
-                          <p className="text-xs font-extrabold text-green-700 dark:text-green-400 mb-1">Strengths</p>
-                          <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.strengths}</p>
-                        </div>
-                        <div className="border border-red-100 bg-red-50/10 dark:border-red-950 dark:bg-red-950/5 p-3 rounded-lg">
-                          <p className="text-xs font-extrabold text-red-700 dark:text-red-400 mb-1">Weaknesses</p>
-                          <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.weaknesses}</p>
-                        </div>
-                        <div className="border border-amber-100 bg-amber-50/10 dark:border-amber-950 dark:bg-amber-950/5 p-3 rounded-lg">
-                          <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 mb-1">Opportunities</p>
-                          <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.opportunities}</p>
-                        </div>
-                        <div className="border border-slate-200 bg-slate-50/10 dark:border-slate-800 dark:bg-slate-900/5 p-3 rounded-lg">
-                          <p className="text-xs font-extrabold text-secondary dark:text-slate-300 mb-1">Threats</p>
-                          <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.threats}</p>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                ) : (
-                  <div className="py-12 px-6 text-center bg-slate-50 dark:bg-slate-950/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
-                    <p className="text-sm text-muted-foreground font-medium max-w-md mx-auto mb-2">
-                      {lang === "fr"
-                        ? "Les scores détaillés des piliers et SWOT sont publiés pour le Top 10 des pays leaders."
-                        : "Detailed SWOT analyses and pillar scores are published for the Top 10 leading countries."}
-                    </p>
-                    <p className="text-xs text-slate-400 max-w-sm mx-auto">
-                      {lang === "fr"
-                        ? "Les profils complets des marchés émergents seront étendus dans les prochaines mises à jour."
-                        : "Full emerging market profiles will be expanded in the next quarterly snapshots."}
-                    </p>
-                  </div>
-                )}
-
-                {/* Key update note */}
-                <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800 flex gap-2">
-                  <span className="text-xs font-bold text-accent shrink-0">{lang === "fr" ? "Mise à Jour :" : "Key Update :"}</span>
-                  <span className="text-xs text-muted-foreground font-medium">{selectedCountry.key_update}</span>
-                </div>
-
-              </div>
+              <CountryDeepDive selectedCountry={selectedCountry} language={lang} />
 
             </div>
 
@@ -289,22 +191,32 @@ export default function AWPII() {
 
               {/* Momentum Tracker Card */}
               <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl p-5 shadow-sm">
-                <div className="mb-4">
+                <div className="mb-3">
                   <h3 className="font-bold text-secondary text-lg mb-1 flex items-center gap-1.5">
                     <TrendingUp className="w-4 h-4 text-accent" />
                     {lang === "fr" ? "Indicateur de Dynamisme" : "Top 10 Momentum"}
                   </h3>
-                  <p className="text-xs text-muted-foreground">
+                  <p className="text-xs text-muted-foreground mb-2">
                     {lang === "fr" ? "Classé par score (vert = haussier, jaune = stable)" : "Score comparison (green = upward, yellow = stable)"}
                   </p>
+                  <div className="bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 rounded-lg px-3 py-2 text-[11px] text-muted-foreground leading-relaxed">
+                    <span className="font-semibold text-foreground">Momentum</span> reflects the direction of a country's regulatory progress — upward (green) means active positive reforms, stable (yellow) means consistent but static policy, declining (red) signals tightening or reversals. <span className="font-semibold text-accent">Click a bar</span> to load the country's full analysis below.
+                  </div>
                 </div>
 
                 <div className="w-full h-[280px]">
                   <ResponsiveContainer width="100%" height="100%">
                     <BarChart
-                      layout="vertical"
-                      data={momentumData}
-                      margin={{ top: 0, right: 10, left: -25, bottom: 0 }}
+                    layout="vertical"
+                    data={momentumData}
+                    margin={{ top: 0, right: 10, left: -25, bottom: 0 }}
+                    style={{ cursor: 'pointer' }}
+                    onClick={(d) => {
+                      if (d?.activePayload?.length) {
+                        const found = awpiiData.find(c => c.name === d.activePayload[0].payload.name);
+                        if (found) setSelectedCountryKey(found.key);
+                      }
+                    }}
                     >
                       <XAxis type="number" domain={[50, 100]} hide />
                       <YAxis
