@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download, BarChart3, Globe, Zap, Users, Building2, Mail, ChevronRight, TrendingUp, Info } from "lucide-react";
 import AfricaMapInteractive from "../components/map/AfricaMapInteractive";
+import awpiiData from "../data/awpiiData";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 import { STATUS_COLORS, STATUS_LABELS, STATUS, getAllCountries } from "@/data/countryData";
