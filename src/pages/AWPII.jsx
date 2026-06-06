@@ -79,8 +79,8 @@ export default function AWPII() {
               <CTAButton primary onClick={scrollToContact}>
                 {T.heroCtaPrimary} <ArrowRight className="w-4 h-4" />
               </CTAButton>
-              <CTAButton onClick={scrollToContact}>
-                <Download className="w-4 h-4" /> {T.heroCtaSecondary}
+             <CTAButton primary onClick={scrollToContact} className="border-white/80 text-white/80 hover:border-white hover:text-white">
+                <Download className="w-4 h-4 text-white" /> {T.heroCtaSecondary}
               </CTAButton>
             </div>
           </div>
