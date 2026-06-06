@@ -4,6 +4,7 @@ import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { ArrowLeft } from "lucide-react";
+import awpiiData from "@/data/awpiiData";
 
 // ─── Country Data ────────────────────────────────────────────────────────────
 const COUNTRY_PROFILES = {
@@ -556,9 +557,22 @@ export default function CountryProfile() {
   const profile = useMemo(() => {
     if (!country) return null;
     const key = country.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-    if (COUNTRY_PROFILES[key]) return COUNTRY_PROFILES[key];
-    // fallback: try matching by name
-    return Object.values(COUNTRY_PROFILES).find(p => p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-") === key) || null;
+    const base = COUNTRY_PROFILES[key] ||
+      Object.values(COUNTRY_PROFILES).find(p => p.name.toLowerCase().replace(/[^a-z0-9]+/g, "-") === key) ||
+      null;
+    if (!base) return null;
+    // Overlay scores from AWPII (the authoritative source)
+    const awpii = awpiiData.find(a => a.key === country || a.key === key);
+    if (awpii) {
+      return {
+        ...base,
+        score: awpii.overall_score,
+        policy: awpii.pillars?.clarity ?? base.policy,
+        innovation: awpii.pillars?.innovation ?? base.innovation,
+        adoption: awpii.pillars?.adoption ?? base.adoption,
+      };
+    }
+    return base;
   }, [country]);
 
   const trendData = useMemo(() => {
