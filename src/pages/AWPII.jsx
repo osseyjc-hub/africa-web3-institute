@@ -58,6 +58,7 @@ export default function AWPII() {
     return "bg-red-600 text-white";
   };
 
+
   return (
     <div className="bg-background text-foreground">
 
