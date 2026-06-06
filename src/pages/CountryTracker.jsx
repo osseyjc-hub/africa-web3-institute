@@ -3,34 +3,57 @@ import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
+import awpiiData from "@/data/awpiiData";
+import { COUNTRY_DATA } from "@/data/countryData";
 
-const REGULATORY_UPDATES = [
-  { id: 1,  country: "Kenya",        flag: "🇰🇪", region: "East Africa",    title: "CMA Publishes Crypto Licensing Draft",          date: "Apr 2026", category: "Licensing",           status: "Draft",             summary: "Capital Markets Authority releases draft rules for digital asset exchanges, opening a public comment period for industry stakeholders.",                                               source: "Capital Markets Authority of Kenya" },
-  { id: 2,  country: "Nigeria",      flag: "🇳🇬", region: "West Africa",    title: "CBN Issues Updated VASP Guidelines",            date: "Mar 2026", category: "VASP Regulation",     status: "Active",            summary: "Central Bank of Nigeria updates VASP compliance requirements, including enhanced KYC and AML obligations for licensed operators.",                                               source: "Central Bank of Nigeria" },
-  { id: 3,  country: "Zimbabwe",     flag: "🇿🇼", region: "Southern Africa",title: "RBZ Publishes VASP Consultation",               date: "Mar 2026", category: "VASP Regulation",     status: "Consultation",      summary: "Reserve Bank of Zimbabwe opens a public consultation on a formal VASP licensing framework.",                                                                                      source: "Reserve Bank of Zimbabwe" },
-  { id: 4,  country: "South Africa", flag: "🇿🇦", region: "Southern Africa",title: "FSCA Issues Institutional Custody Guidelines",  date: "Feb 2026", category: "Banking Guidance",    status: "Guidance",          summary: "FSCA publishes formal rules for custody of digital assets by banks and licensed financial institutions.",                                                                         source: "Financial Sector Conduct Authority" },
-  { id: 5,  country: "Tunisia",      flag: "🇹🇳", region: "North Africa",   title: "BCT Digital Dinar Pilot Expands",               date: "Feb 2026", category: "CBDC",                status: "Active",            summary: "Banque Centrale de Tunisie expands the digital dinar pilot to include retail payment use cases across the country.",                                                            source: "Banque Centrale de Tunisie" },
-  { id: 6,  country: "Senegal",      flag: "🇸🇳", region: "West Africa",    title: "Dakar Web3 Policy Forum",                      date: "Feb 2026", category: "VASP Regulation",     status: "Policy Update",     summary: "AWI co-hosts the first Francophone Web3 policy roundtable, producing recommendations on VASP licensing for UEMOA member states.",                                               source: "AWI / BCEAO" },
-  { id: 7,  country: "Morocco",      flag: "🇲🇦", region: "North Africa",   title: "Draft Crypto Legalization Bill Tabled",        date: "Jan 2026", category: "VASP Regulation",     status: "Draft",             summary: "Parliament formally introduces legislation to regulate digital assets, signaling a shift from prohibition toward a supervised licensing framework.",                             source: "Parliament of Morocco" },
-  { id: 8,  country: "Botswana",     flag: "🇧🇼", region: "Southern Africa",title: "NBFIRA Crypto Licensing Draft Issued",         date: "Jan 2026", category: "Licensing",           status: "Draft",             summary: "NBFIRA publishes draft licensing rules for digital asset service providers operating in Botswana.",                                                                            source: "NBFIRA Botswana" },
-  { id: 9,  country: "Rwanda",       flag: "🇷🇼", region: "East Africa",    title: "VASP Licensing Framework Updated",             date: "Jan 2026", category: "VASP Regulation",     status: "Active",            summary: "Rwanda updates its VASP compliance requirements to align with the FATF Travel Rule, effective Q1 2026.",                                                                        source: "National Bank of Rwanda" },
-  { id: 10, country: "Ghana",        flag: "🇬🇭", region: "West Africa",    title: "SEC Fintech Regulatory Sandbox Opens",         date: "Jan 2026", category: "Licensing",           status: "Active",            summary: "Ghana SEC opens a regulatory sandbox for digital asset and fintech companies, accepting applications for the first cohort.",                                                  source: "Securities and Exchange Commission Ghana" },
-  { id: 11, country: "Egypt",        flag: "🇪🇬", region: "North Africa",   title: "CBE Issues Crypto Risk Circular",              date: "Dec 2025", category: "Banking Guidance",    status: "Enforcement Action",summary: "Central Bank of Egypt reissues a formal circular on cryptocurrency risks, reaffirming restrictions on bank facilitation of crypto transactions.",                            source: "Central Bank of Egypt" },
-  { id: 12, country: "Cameroon",     flag: "🇨🇲", region: "Central Africa", title: "AWI Francophone Policy Workshop in Yaoundé",   date: "Dec 2025", category: "VASP Regulation",     status: "Policy Update",     summary: "AWI hosts a Web3 policy sensitization workshop for Cameroonian regulators and policymakers on VASP frameworks and AML/CFT obligations.",                                       source: "AWI / BEAC" },
-  { id: 13, country: "Nigeria",      flag: "🇳🇬", region: "West Africa",    title: "SEC Approves First Digital Asset Exchange",    date: "Nov 2025", category: "Licensing",           status: "Active",            summary: "Nigeria's SEC grants the first full operating license to a digital asset exchange under the updated digital assets framework.",                                                source: "Securities and Exchange Commission Nigeria" },
-  { id: 14, country: "Tanzania",     flag: "🇹🇿", region: "East Africa",    title: "BoT Publishes VASP Discussion Paper",          date: "Oct 2025", category: "VASP Regulation",     status: "Consultation",      summary: "Bank of Tanzania releases a public consultation on digital asset oversight and potential VASP licensing requirements.",                                                        source: "Bank of Tanzania" },
-  { id: 15, country: "Tunisia",      flag: "🇹🇳", region: "North Africa",   title: "VASP Consultation Paper Released",             date: "Sep 2025", category: "VASP Regulation",     status: "Consultation",      summary: "Banque Centrale de Tunisie releases consultation on licensing requirements for virtual asset service providers.",                                                             source: "Banque Centrale de Tunisie" },
-  { id: 16, country: "Zambia",       flag: "🇿🇲", region: "Southern Africa",title: "SEC Zambia Publishes Digital Asset Policy",    date: "Sep 2025", category: "Securities Regulation",status: "Proposed",         summary: "Zambia's Securities and Exchange Commission releases draft policy for digital asset classification and licensing requirements.",                                                source: "Securities and Exchange Commission Zambia" },
-  { id: 17, country: "Uganda",       flag: "🇺🇬", region: "East Africa",    title: "CMA Issues Digital Securities Framework",      date: "Aug 2025", category: "Securities Regulation",status: "Active",           summary: "Uganda's Capital Markets Authority publishes rules for tokenized securities offerings, providing the first formal digital asset securities guidance.",                          source: "Capital Markets Authority Uganda" },
-  { id: 18, country: "Cameroon",     flag: "🇨🇲", region: "Central Africa", title: "BEAC Issues Regional Crypto AML/CFT Guidance", date: "Aug 2025", category: "AML/CFT",             status: "Guidance",          summary: "Bank of Central African States issues AML/CFT guidance for member states on virtual asset service providers.",                                                                  source: "BEAC" },
-  { id: 19, country: "Algeria",      flag: "🇩🇿", region: "North Africa",   title: "Finance Ministry Reaffirms Crypto Ban",        date: "Jun 2025", category: "VASP Regulation",     status: "Ban",               summary: "Ministry of Finance reiterates the prohibition on cryptocurrency transactions in response to growing informal market activity.",                                                source: "Ministry of Finance Algeria" },
-  { id: 20, country: "Ghana",        flag: "🇬🇭", region: "West Africa",    title: "e-Cedi CBDC Pilot Expansion",                 date: "Jul 2025", category: "CBDC",                status: "Active",            summary: "Bank of Ghana expands the e-Cedi CBDC pilot to rural and agricultural communities, broadening financial inclusion coverage.",                                                  source: "Bank of Ghana" },
-  { id: 21, country: "Côte d'Ivoire",flag: "🇨🇮", region: "West Africa",    title: "BCEAO VASP Consultation Participation",       date: "Jun 2025", category: "VASP Regulation",     status: "Consultation",      summary: "Côte d'Ivoire participates in the BCEAO regional VASP licensing consultation for UEMOA member states.",                                                                        source: "BCEAO" },
-  { id: 22, country: "Zambia",       flag: "🇿🇲", region: "Southern Africa",title: "Mining Blockchain Pilot Approved",             date: "May 2025", category: "Digital Payments",    status: "Active",            summary: "Government approves a pilot for blockchain-based copper export tracking, supporting supply chain transparency and trade settlement.",                                         source: "Government of Zambia" },
-  { id: 23, country: "South Africa", flag: "🇿🇦", region: "Southern Africa",title: "First CASP Licences Granted",                 date: "Nov 2024", category: "Licensing",           status: "Active",            summary: "FSCA grants the first batch of Crypto Asset Service Provider licences, formally recognizing licensed digital asset operators.",                                              source: "Financial Sector Conduct Authority" },
-  { id: 24, country: "Kenya",        flag: "🇰🇪", region: "East Africa",    title: "Finance Act Introduces Digital Asset Tax",     date: "Mar 2024", category: "Taxation",            status: "Active",            summary: "Kenya's Finance Act imposes a 3% digital asset tax, formally acknowledging cryptocurrency within the national tax framework.",                                                  source: "Kenya Revenue Authority" },
-  { id: 25, country: "Rwanda",       flag: "🇷🇼", region: "East Africa",    title: "Rwanda Enacts Virtual Asset Act",              date: "Mar 2024", category: "VASP Regulation",     status: "Active",            summary: "Comprehensive legislation regulating all classes of digital assets enacted, establishing a full VASP licensing regime.",                                                        source: "National Bank of Rwanda" },
-];
+function inferCategory(title, desc = "") {
+  const text = (title + " " + desc).toLowerCase();
+  if (text.includes("cbdc") || text.includes("digital currency") || text.includes("e-cedi") || text.includes("e-dinar") || text.includes("digital dinar") || text.includes("digital shilling") || text.includes("digital franc") || text.includes("digital birr")) return "CBDC";
+  if (text.includes("aml") || text.includes("cft") || text.includes("fatf") || text.includes("travel rule")) return "AML/CFT";
+  if (text.includes("tax")) return "Taxation";
+  if (text.includes("sandbox") || text.includes("licens")) return "Licensing";
+  if (text.includes("stablecoin")) return "Stablecoin Policy";
+  if (text.includes("securities") || text.includes("tokenized")) return "Securities Regulation";
+  if (text.includes("payment")) return "Digital Payments";
+  if (text.includes("banking") || text.includes("custody")) return "Banking Guidance";
+  return "VASP Regulation";
+}
+
+function inferStatus(severity, title = "") {
+  const tl = title.toLowerCase();
+  if (severity === "Restrictive") {
+    return (tl.includes("ban") || tl.includes("prohibit")) ? "Ban" : "Enforcement Action";
+  }
+  if (severity === "Neutral") return "Consultation";
+  if (tl.includes("draft") || tl.includes("consultation") || tl.includes("opens") || tl.includes("discussion paper") || tl.includes("feasibility")) return "Consultation";
+  if (tl.includes("guidelines") || tl.includes("guidance") || tl.includes("advisory") || tl.includes("roadmap") || tl.includes("circular")) return "Guidance";
+  return "Active";
+}
+
+// Built exclusively from AWPII 20-country list + countryData timelines
+const REGULATORY_UPDATES = awpiiData.flatMap((country) => {
+  const details = COUNTRY_DATA[country.key];
+  const region = details?.region || "Africa";
+  const timeline = details?.timeline || [{
+    date: "2026",
+    title: country.key_update,
+    desc: `${country.name}: ${country.key_update}`,
+    severity: "Positive",
+  }];
+  return timeline.map((event, idx) => ({
+    id: `${country.id}-${idx}`,
+    country: country.name,
+    flag: country.flag,
+    region,
+    title: event.title,
+    date: event.date,
+    category: inferCategory(event.title, event.desc),
+    status: inferStatus(event.severity, event.title),
+    summary: event.desc,
+    awpii_rank: country.rank,
+    countryKey: country.key,
+  }));
+});
 
 const STATUS_COLORS = {
   Draft:              { bg: "#dbeafe", text: "#1e40af", dot: "#2563eb" },
@@ -164,7 +187,7 @@ export default function CountryTracker() {
             </button>
           </div>
           <p className="text-[0.75rem] text-muted-foreground mt-2">
-            {T.showing} <strong className="text-foreground">{filtered.length}</strong> {T.of} {REGULATORY_UPDATES.length} {T.updates}
+            {T.showing} <strong className="text-foreground">{filtered.length}</strong> {T.of} {REGULATORY_UPDATES.length} {T.updates} · {awpiiData.length} AWPII countries
           </p>
         </div>
       </div>
@@ -223,7 +246,7 @@ export default function CountryTracker() {
                       </td>
                       <td className="px-4 py-4 text-right">
                         <Link
-                          to={`/country-tracker/${u.country.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
+                          to={`/country-tracker/${u.countryKey}`}
                           className="text-[0.8125rem] font-semibold transition-colors whitespace-nowrap"
                           style={{ color: "#D4A017" }}
                           onMouseEnter={e => e.currentTarget.style.color = "#b8891a"}
