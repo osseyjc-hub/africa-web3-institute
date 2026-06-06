@@ -10,7 +10,7 @@ import { STATUS_COLORS, STATUS_LABELS, STATUS, getAllCountries } from "@/data/co
 const PILLAR_ICONS = [Building2, BarChart3, Users, Globe];
 
 function CTAButton({ children, primary, href, onClick }) {
-  const base = "inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 transition-colors";
+   const base = "inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 rounded-lg transition-all duration-200 cursor-pointer";
   const style = primary
     ? `${base} bg-secondary text-white hover:bg-secondary/90`
     : `${base} border border-secondary text-secondary hover:bg-secondary hover:text-white`;
