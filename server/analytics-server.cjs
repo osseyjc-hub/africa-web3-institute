@@ -472,6 +472,11 @@ async function broadcastMetrics() {
   if (stats) broadcast('metrics', stats);
 }
 
+// Redirect root or /analytics requests to the Vite frontend dev server
+app.get(['/', '/analytics'], (req, res) => {
+  res.redirect('http://localhost:5173/analytics');
+});
+
 // Ingestion API Route GET (friendly placeholder for browser visits)
 app.get('/api/event', (req, res) => {
   res.status(200).json({
