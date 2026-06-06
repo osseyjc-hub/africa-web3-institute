@@ -12,10 +12,12 @@ const PILLAR_ICONS = [Building2, BarChart3, Users, Globe];
 function CTAButton({ children, primary, href, onClick }) {
    const base = "inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 rounded-lg transition-all duration-200 cursor-pointer";
   const style = primary
-    ? `${base} bg-secondary text-white hover:bg-secondary/90`
-    : `${base} border border-secondary text-secondary hover:bg-secondary hover:text-white`;
+    ? `${base} bg-accent text-accent-foreground hover:bg-accent/90 shadow-sm hover:shadow-md`
+    : `${base} border border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground`;
+  
   if (href) return <a href={href} className={style}>{children}</a>;
   return <button onClick={onClick} className={style}>{children}</button>;
+
 }
 
 export default function AWPII() {
