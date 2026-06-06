@@ -6,7 +6,7 @@ import { t } from "@/lib/translations";
 
 const CATEGORY_ICONS = [Building2, Zap, Leaf, Globe, Shield, Star];
 
-function CTAButton({ children, primary, onClick }) {
+function CTAButton({ children, primary = false, onClick = undefined }) {
   const base = "inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 transition-colors";
   const style = primary
     ? `${base} bg-accent text-white hover:bg-accent/90`
@@ -14,7 +14,7 @@ function CTAButton({ children, primary, onClick }) {
   return <button onClick={onClick} className={style}>{children}</button>;
 }
 
-function CTAButtonLight({ children, primary, onClick }) {
+function CTAButtonLight({ children, primary = false, onClick = undefined }) {
   const base = "inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 transition-colors";
   const style = primary
     ? `${base} bg-secondary text-white hover:bg-secondary/90`

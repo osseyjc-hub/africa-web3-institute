@@ -19,9 +19,14 @@ import Publications from './pages/Publications';
 import CountryProfile from './pages/CountryProfile';
 import EnforcementWatch from './pages/EnforcementWatch';
 import CapacityBuilding from './pages/CapacityBuilding';
+import Analytics from './pages/Analytics';
+import { useTracker } from './hooks/useTracker';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+
+  // Initialize analytics tracking
+  useTracker();
 
   // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
@@ -59,6 +64,7 @@ const AuthenticatedApp = () => {
         <Route path="/country-tracker/:country" element={<CountryProfile />} />
         <Route path="/enforcement-watch" element={<EnforcementWatch />} />
         <Route path="/capacity-building" element={<CapacityBuilding />} />
+        <Route path="/analytics" element={<Analytics />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

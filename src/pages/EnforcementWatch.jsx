@@ -126,7 +126,7 @@ export default function EnforcementWatch() {
       <section style={{ backgroundColor: "#1A1F36" }} className="pt-12 pb-0">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 pb-10">
           <span className="inline-block text-[0.6875rem] font-bold tracking-[0.18em] uppercase px-3 py-1 rounded-full mb-4" style={{ backgroundColor: "rgba(212,160,23,0.15)", color: "#D4A017", border: "1px solid rgba(212,160,23,0.3)" }}>
-            {lang === "fr" ? "Renseignement en direct" : "Live Intelligence"}
+            Live Intelligence
           </span>
           <h1 className="text-[2rem] lg:text-[2.75rem] font-bold text-white leading-tight mb-3">
             {T.pageTitle}
@@ -254,8 +254,8 @@ export default function EnforcementWatch() {
                           <SevDot severity={ev.severity} /> {SEV_LABEL[ev.severity] || ev.severity}
                         </span>
                       </div>
-                      <p className="text-[0.9375rem] font-semibold text-secondary mb-2">{lang === "fr" ? (ev.titleFr || ev.title) : ev.title}</p>
-                      <p className="text-[0.875rem] text-muted-foreground leading-relaxed mb-3">{lang === "fr" ? (ev.descriptionFr || ev.description) : ev.description}</p>
+                      <p className="text-[0.9375rem] font-semibold text-secondary mb-2">{ev.title}</p>
+                      <p className="text-[0.875rem] text-muted-foreground leading-relaxed mb-3">{ev.description}</p>
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <span className="text-[0.75rem] text-muted-foreground/60">{T.source}: {ev.source}</span>
                          <Link to={`/country-tracker/${toSlug(ev.country)}`}
@@ -277,7 +277,7 @@ export default function EnforcementWatch() {
       {/* Heatmap */}
       <section className="border-t border-border py-14" style={{ backgroundColor: "#F9FAFB" }}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>{T.intensityLabel}</p>
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-2" style={{ color: "#D4A017" }}>Intensity</p>
           <h2 className="text-[1.5rem] font-bold text-secondary mb-8">{T.heatmapTitle}</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
             {countryActions.map(d => {
@@ -329,7 +329,7 @@ export default function EnforcementWatch() {
       {/* Subscribe CTA */}
       <section style={{ backgroundColor: "#1A1F36" }} className="border-t border-white/10 py-14">
         <div className="max-w-2xl mx-auto px-6 lg:px-8 text-center">
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>{lang === "fr" ? "Abonnement renseignement" : "Intelligence Subscription"}</p>
+          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Intelligence Subscription</p>
           <h2 className="text-[1.5rem] font-bold text-white mb-3">{T.ctaTitle}</h2>
           <p className="text-[0.9375rem] mb-8" style={{ color: "rgba(255,255,255,0.55)" }}>
             {T.ctaSubtitle}

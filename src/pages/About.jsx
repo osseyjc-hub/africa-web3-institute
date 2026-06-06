@@ -2,7 +2,7 @@ import React from "react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 import { Link } from "react-router-dom";
-import { Linkedin, Twitter, Globe, BookOpen, GraduationCap, Scale, Mail } from "lucide-react";
+import { Linkedin, Twitter, Globe, BookOpen, GraduationCap, Mail } from "lucide-react";
 
 const TEAM = [
   {

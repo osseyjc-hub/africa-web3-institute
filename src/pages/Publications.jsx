@@ -1,5 +1,4 @@
 import React, { useState, useMemo } from "react";
-import { Link } from "react-router-dom";
 import { Search } from "lucide-react";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
@@ -89,7 +88,7 @@ const PUBLICATIONS = [
     id: 9,
     category: "Policy Brief",
     title: "CBDCs and Financial Inclusion in Sub-Saharan Africa",
-    description: "Analysis of active and pilot CBDC programmes across Sub-Saharan Africa and their potential to accelerate financial inclusion.",
+    description: "Analysis of active and pilot CBDC programs across Sub-Saharan Africa and their potential to accelerate financial inclusion.",
     date: "February 2026",
     author: "AWI Policy Team",
     downloadUrl: "#",
@@ -159,7 +158,7 @@ const PUBLICATIONS = [
     id: 16,
     category: "Published Research",
     title: "DeFi Adoption Patterns in Sub-Saharan Africa",
-    description: "Empirical research on decentralised finance usage patterns, barriers to adoption, and opportunities across Sub-Saharan African markets.",
+    description: "Empirical research on decentralized finance usage patterns, barriers to adoption, and opportunities across Sub-Saharan African markets.",
     date: "October 2025",
     author: "AWI Research Team",
     downloadUrl: "#",

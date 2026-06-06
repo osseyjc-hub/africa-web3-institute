@@ -73,6 +73,7 @@ export default function Navbar() {
         { label: "AWPII", desc: lang === "fr" ? "Indice Africain des Politiques & de l'Innovation Web3" : "Africa Web3 Policy & Innovation Index", href: "/awpii", icon: "🗺️" },
         { label: lang === "fr" ? "Suivi Réglementaire" : "Regulatory Tracker", desc: lang === "fr" ? "Mises à jour réglementaires en temps réel sur 18+ nations" : "Live regulatory updates across 18+ African nations", href: "/country-tracker", icon: "📊" },
         { label: lang === "fr" ? "Surveillance des Sanctions" : "Enforcement Watch", desc: lang === "fr" ? "Suivre les répressions réglementaires et actions coercitives" : "Track regulatory crackdowns and enforcement actions", href: "/enforcement-watch", icon: "⚖️" },
+        { label: lang === "fr" ? "Flux de Données Live" : "Live Data Blueprint", desc: lang === "fr" ? "Visualisation de l'ingestion de télémétrie en temps réel" : "Real-time telemetry ingestion and pipeline blueprint", href: "/analytics", icon: "⚡" },
       ],
     },
     {
@@ -215,10 +216,10 @@ export default function Navbar() {
                 onClick={() => setActiveDropdown(activeDropdown === "intelligence" ? null : "intelligence")}
                 className="flex items-center gap-1 text-[0.8125rem] font-medium transition-colors"
                 style={{
-                  color: ["awpii", "country-tracker", "enforcement-watch", "publications"].some(p => location.pathname.includes(p)) ? "#D4A017" : "#374151"
+                  color: ["awpii", "country-tracker", "enforcement-watch", "publications", "analytics"].some(p => location.pathname.includes(p)) ? "#D4A017" : "#374151"
                 }}
                 onMouseEnter={e => e.currentTarget.style.color = "#111827"}
-                onMouseLeave={e => e.currentTarget.style.color = ["awpii", "country-tracker", "enforcement-watch", "publications"].some(p => location.pathname.includes(p)) ? "#D4A017" : "#374151"}
+                onMouseLeave={e => e.currentTarget.style.color = ["awpii", "country-tracker", "enforcement-watch", "publications", "analytics"].some(p => location.pathname.includes(p)) ? "#D4A017" : "#374151"}
               >
                 {lang === "fr" ? "Intelligence" : "Intelligence"}
                 <ChevronDown

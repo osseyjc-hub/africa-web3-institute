@@ -34,8 +34,8 @@ export default function AfricaMapTeaser() {
         </div>
 
         {/* Map */}
-        <div className="max-w-[700px] mx-auto">
-          <AfricaMapSVG interactive={false} />
+        <div className="max-w-[700px] mx-auto relative z-0">
+          <AfricaMapSVG interactive={true} />
         </div>
 
         {/* Legend */}

@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Download, BarChart3, Globe, Zap, Users, Building2, Mail, ChevronRight } from "lucide-react";
+import { ArrowRight, Download, BarChart3, Globe, Zap, Users, Building2, Mail, ChevronRight, TrendingUp, Info } from "lucide-react";
+import { ResponsiveContainer, RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, BarChart, Bar, XAxis, YAxis, Tooltip, Cell } from "recharts";
 import AfricaMapInteractive from "../components/map/AfricaMapInteractive";
+import awpiiData from "@/data/awpiiData";
 import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
-import { STATUS_COLORS, STATUS_LABELS, STATUS, getAllCountries } from "@/data/countryData";
 
-const PILLAR_ICONS = [Building2, BarChart3, Users, Globe];
-
-function CTAButton({ children, primary, href, onClick }) {
+function CTAButton({ children, primary = false, href = null, onClick = null }) {
   const base = "inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 transition-colors";
   const style = primary
     ? `${base} bg-secondary text-white hover:bg-secondary/90`
@@ -20,9 +19,39 @@ function CTAButton({ children, primary, href, onClick }) {
 export default function AWPII() {
   const { lang } = useLang();
   const T = t[lang].awpii;
+  
+  // State for the selected country in the dashboard
+  const [selectedCountryKey, setSelectedCountryKey] = useState("southafrica");
 
   const scrollToContact = () => {
     document.querySelector("#awpii-contact")?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  // Find currently selected country data
+  const selectedCountry = awpiiData.find(c => c.key === selectedCountryKey) || awpiiData[0];
+
+  // Radar chart data preparation
+  const radarData = selectedCountry.pillars ? [
+    { subject: lang === "fr" ? "Clarté" : "Clarity", value: selectedCountry.pillars.clarity },
+    { subject: lang === "fr" ? "Soutien" : "Policy Support", value: selectedCountry.pillars.policy_support },
+    { subject: lang === "fr" ? "Innovation" : "Innovation", value: selectedCountry.pillars.innovation },
+    { subject: lang === "fr" ? "Adoption" : "Adoption", value: selectedCountry.pillars.adoption },
+  ] : [];
+
+  // Momentum bar chart data (Top 10)
+  const momentumData = awpiiData.slice(0, 10).map(c => ({
+    name: c.name,
+    score: c.overall_score,
+    momentum: c.momentum
+  }));
+
+  // Grade color badges
+  const getGradeBadgeClass = (grade) => {
+    if (grade.includes("AA")) return "bg-[#14532d] text-white";
+    if (grade.startsWith("A")) return "bg-[#166534] text-white";
+    if (grade.startsWith("BBB")) return "bg-yellow-600 text-white";
+    if (grade.startsWith("BB")) return "bg-amber-600 text-white";
+    return "bg-red-600 text-white";
   };
 
   return (
@@ -35,7 +64,6 @@ export default function AWPII() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
           <div className="max-w-3xl">
             <h1 className="text-[2.5rem] lg:text-[3.5rem] font-bold text-white leading-[1.1] tracking-tight mb-4">
-  
               {T.heroTitle}
             </h1>
             <p className="text-[1.25rem] lg:text-[1.5rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
@@ -77,108 +105,248 @@ export default function AWPII() {
         </div>
       </section>
 
-      <AfricaMapInteractive />
-
-      {/* Rankings Table */}
-      <section id="rankings" className="py-24 lg:py-32 border-b border-border bg-muted/20">
+      {/* Unified May 2026 Interactive Dashboard */}
+      <section id="dashboard" className="py-24 lg:py-32 border-b border-border bg-slate-50/50 dark:bg-slate-900/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12">
+          
+          {/* Section Header */}
+          <div className="max-w-3xl mb-16">
             <p className="text-xs font-semibold tracking-[0.18em] uppercase text-accent mb-4">
-              {lang === "fr" ? "Classements" : "Rankings"}
+              {lang === "fr" ? "Tableau de Bord Interactif" : "Interactive Dashboard"}
             </p>
-            <h2 className="text-[1.75rem] lg:text-[2rem] font-bold text-secondary leading-snug mb-3">
-              {lang === "fr" ? "Classement des Pays" : "Country Rankings"}
+            <h2 className="text-[2rem] lg:text-[2.5rem] font-bold text-secondary tracking-tight leading-none mb-4">
+              {lang === "fr" ? "Indice de Politique & d'Innovation Web3" : "Web3 Policy & Innovation Index"}
             </h2>
-            <p className="text-[0.9375rem] text-muted-foreground max-w-lg mx-auto">
+            <p className="text-[1.125rem] text-muted-foreground leading-relaxed">
               {lang === "fr"
-                ? "Classés par score global moyen (Politique + Innovation + Adoption)"
-                : "Ranked by composite score average (Policy + Innovation + Adoption)"}
+                ? "Bilan de mai 2026 : Analyse d'impact des cadres réglementaires et de l'adoption dans 20 pays africains clés."
+                : "May 2026 Snapshot: Authority analysis measuring Web3 framework maturity, enabling environments, and market readiness across 20 countries."}
             </p>
           </div>
 
-          {/* Desktop table */}
-          <div className="hidden md:block overflow-x-auto">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left pb-3 pr-4 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider w-8">#</th>
-                  <th className="text-left pb-3 pr-6 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Pays" : "Country"}</th>
-                  <th className="text-left pb-3 pr-6 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Statut" : "Status"}</th>
-                  <th className="text-right pb-3 pr-6 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Politique" : "Policy"}</th>
-                  <th className="text-right pb-3 pr-6 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Innovation" : "Innovation"}</th>
-                  <th className="text-right pb-3 pr-6 text-[0.75mn] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Adoption" : "Adoption"}</th>
-                  <th className="text-right pb-3 text-[0.75rem] font-semibold text-muted-foreground uppercase tracking-wider">{lang === "fr" ? "Score Global" : "Overall"}</th>
-                </tr>
-              </thead>
-              <tbody>
-                {getAllCountries()
-                    .map((d) => ({ ...d, overall: Math.round((d.policy + d.innovation + d.adoption) / 3) }))
-                    .sort((a, b) => b.overall - a.overall)
-                    .map((c, i) => (
-                      <tr key={c.name} className="border-b border-border/50 hover:bg-muted/30 transition-colors">
-                        <td className="py-4 pr-4 text-muted-foreground font-medium">{i + 1}</td>
-                        <td className="py-4 pr-6">
-                          <div className="flex items-center gap-2.5">
-                            <span className="text-[1.125rem]">{c.flag}</span>
-                            <span className="font-semibold text-secondary">{c.name}</span>
-                          </div>
-                        </td>
-                        <td className="py-4 pr-6">
-                          <span
-                            className="inline-flex items-center text-[0.6875rem] font-semibold px-2.5 py-1 rounded-full text-white"
-                            style={{ backgroundColor: STATUS_COLORS[c.status] }}
-                          >
-                            {STATUS_LABELS[lang][c.status]}
-                          </span>
-                        </td>
-                        <td className="py-4 pr-6 text-right">
-                          <span className="font-medium text-foreground">{c.policy}</span>
-                        </td>
-                        <td className="py-4 pr-6 text-right">
-                          <span className="font-medium text-foreground">{c.innovation}</span>
-                        </td>
-                        <td className="py-4 pr-6 text-right">
-                          <span className="font-medium text-foreground">{c.adoption}</span>
-                        </td>
-                        <td className="py-4 text-right">
-                          <span className="font-bold text-[1rem]" style={{ color: STATUS_COLORS[c.status] }}>{c.overall}</span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-            </table>
-          </div>
-
-          {/* Mobile cards */}
-          <div className="md:hidden space-y-3">
-            {getAllCountries()
-              .map((d) => ({ ...d, overall: Math.round((d.policy + d.innovation + d.adoption) / 3) }))
-              .sort((a, b) => b.overall - a.overall)
-              .map((c, i) => (
-                <div key={c.name} className="bg-background border border-border p-4 flex items-center gap-4">
-                  <span className="text-muted-foreground font-bold text-[0.75rem] w-5 flex-shrink-0">{i + 1}</span>
-                  <span className="text-[1.25rem]">{c.flag}</span>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-secondary text-[0.9375rem]">{c.name}</p>
-                    <span
-                      className="inline-flex items-center text-[0.625rem] font-semibold px-2 py-0.5 rounded-full text-white mt-1"
-                      style={{ backgroundColor: STATUS_COLORS[c.status] }}
-                    >
-                      {STATUS_LABELS[lang][c.status]}
-                    </span>
-                  </div>
-                  <div className="text-right flex-shrink-0">
-                    <p className="font-bold text-[1.125rem]" style={{ color: STATUS_COLORS[c.status] }}>{c.overall}</p>
-                    <p className="text-[0.6875rem] text-muted-foreground">{lang === "fr" ? "Score" : "Score"}</p>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            
+            {/* Left/Middle Column (Map + Deep Dive) */}
+            <div className="lg:col-span-2 space-y-8">
+              
+              {/* Map Card */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+                <div className="flex justify-between items-center mb-4">
+                  <h3 className="font-bold text-secondary text-lg">
+                    {lang === "fr" ? "Carte de Chaleur Politique" : "Pan-African Policy Shading Map"}
+                  </h3>
+                  <div className="text-xs text-muted-foreground flex items-center gap-1">
+                    <Info className="w-3.5 h-3.5" />
+                    <span>{lang === "fr" ? "Cliquez sur un pays" : "Click a country to select"}</span>
                   </div>
                 </div>
-              ))}
+                <AfricaMapInteractive 
+                  onCountrySelect={setSelectedCountryKey} 
+                />
+              </div>
+
+              {/* Country Deep Dive */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl p-6 shadow-sm">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-slate-100 dark:border-slate-800 pb-5 mb-6 gap-4">
+                  <div className="flex items-center gap-3">
+                    <span className="text-3xl">{selectedCountry.flag}</span>
+                    <div>
+                      <h3 className="font-bold text-secondary text-2xl tracking-tight leading-none mb-1.5">{selectedCountry.name}</h3>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-muted-foreground font-medium">Rank #{selectedCountry.rank}</span>
+                        <span className={`text-xs font-bold px-2 py-0.5 rounded ${getGradeBadgeClass(selectedCountry.grade)}`}>
+                          {selectedCountry.grade}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-slate-50 dark:bg-slate-950 px-4 py-2 rounded-lg border border-slate-100 dark:border-slate-800 text-right sm:text-left flex sm:flex-col items-center sm:items-start gap-2 sm:gap-0">
+                    <span className="text-[0.6875rem] font-bold text-muted-foreground uppercase tracking-wider">Overall Score</span>
+                    <span className="text-3xl font-extrabold text-secondary leading-none">{selectedCountry.overall_score}</span>
+                  </div>
+                </div>
+
+                {selectedCountry.pillars ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    
+                    {/* Radar Chart */}
+                    <div className="flex flex-col items-center">
+                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-4">Pillar Distribution</h4>
+                      <div className="w-full h-[260px]">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <RadarChart cx="50%" cy="50%" outerRadius="75%" data={radarData}>
+                            <PolarGrid stroke="#e2e8f0" />
+                            <PolarAngleAxis dataKey="subject" tick={{ fill: 'hsl(var(--foreground))', fontSize: 11, fontWeight: 600 }} />
+                            <PolarRadiusAxis angle={30} domain={[0, 100]} tick={false} axisLine={false} />
+                            <Radar
+                              name={selectedCountry.name}
+                              dataKey="value"
+                              stroke="hsl(var(--primary))"
+                              fill="hsl(var(--primary))"
+                              fillOpacity={0.2}
+                            />
+                          </RadarChart>
+                        </ResponsiveContainer>
+                      </div>
+                    </div>
+
+                    {/* SWOT Grid */}
+                    <div className="space-y-4">
+                      <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">SWOT Insights</h4>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div className="border border-green-100 bg-green-50/10 dark:border-green-950 dark:bg-green-950/5 p-3 rounded-lg">
+                          <p className="text-xs font-extrabold text-green-700 dark:text-green-400 mb-1">Strengths</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.strengths}</p>
+                        </div>
+                        <div className="border border-red-100 bg-red-50/10 dark:border-red-950 dark:bg-red-950/5 p-3 rounded-lg">
+                          <p className="text-xs font-extrabold text-red-700 dark:text-red-400 mb-1">Weaknesses</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.weaknesses}</p>
+                        </div>
+                        <div className="border border-amber-100 bg-amber-50/10 dark:border-amber-950 dark:bg-amber-950/5 p-3 rounded-lg">
+                          <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 mb-1">Opportunities</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.opportunities}</p>
+                        </div>
+                        <div className="border border-slate-200 bg-slate-50/10 dark:border-slate-800 dark:bg-slate-900/5 p-3 rounded-lg">
+                          <p className="text-xs font-extrabold text-secondary dark:text-slate-300 mb-1">Threats</p>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.threats}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                ) : (
+                  <div className="py-12 px-6 text-center bg-slate-50 dark:bg-slate-950/50 rounded-xl border border-dashed border-slate-200 dark:border-slate-800">
+                    <p className="text-sm text-muted-foreground font-medium max-w-md mx-auto mb-2">
+                      {lang === "fr"
+                        ? "Les scores détaillés des piliers et SWOT sont publiés pour le Top 10 des pays leaders."
+                        : "Detailed SWOT analyses and pillar scores are published for the Top 10 leading countries."}
+                    </p>
+                    <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                      {lang === "fr"
+                        ? "Les profils complets des marchés émergents seront étendus dans les prochaines mises à jour."
+                        : "Full emerging market profiles will be expanded in the next quarterly snapshots."}
+                    </p>
+                  </div>
+                )}
+
+                {/* Key update note */}
+                <div className="mt-6 pt-5 border-t border-slate-100 dark:border-slate-800 flex gap-2">
+                  <span className="text-xs font-bold text-accent shrink-0">{lang === "fr" ? "Mise à Jour :" : "Key Update :"}</span>
+                  <span className="text-xs text-muted-foreground font-medium">{selectedCountry.key_update}</span>
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* Right Column (Rankings List + Momentum Tracker) */}
+            <div className="space-y-8">
+              
+              {/* Rankings List Card */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl p-5 shadow-sm flex flex-col">
+                <div className="mb-4">
+                  <h3 className="font-bold text-secondary text-lg mb-1">
+                    {lang === "fr" ? "Classement Complet" : "Full Top 20 Rankings"}
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    {lang === "fr" ? "Cliquez sur un pays pour voir les détails" : "Click a country to view details"}
+                  </p>
+                </div>
+                
+                <div className="space-y-2 max-h-[500px] overflow-y-auto pr-1">
+                  {awpiiData.map((country) => (
+                    <button
+                      key={country.id}
+                      onClick={() => setSelectedCountryKey(country.key)}
+                      className={`w-full flex items-center justify-between p-3 rounded-lg transition-all text-left border ${
+                        selectedCountryKey === country.key
+                          ? "bg-slate-900 text-white border-slate-900 dark:bg-slate-850 dark:border-slate-700 shadow-sm font-semibold scale-[1.01]"
+                          : "bg-slate-50/50 hover:bg-slate-50 border-slate-100 dark:bg-slate-950/40 dark:border-slate-850 dark:hover:bg-slate-950/80 text-foreground"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className={`text-xs font-bold w-5 shrink-0 ${selectedCountryKey === country.key ? "text-accent" : "text-muted-foreground"}`}>
+                          #{country.rank}
+                        </span>
+                        <span className="text-base shrink-0">{country.flag}</span>
+                        <span className="text-sm truncate max-w-[120px]">{country.name}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${getGradeBadgeClass(country.grade)}`}>
+                          {country.grade}
+                        </span>
+                        <span className="text-sm font-extrabold">{country.overall_score}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Momentum Tracker Card */}
+              <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-xl p-5 shadow-sm">
+                <div className="mb-4">
+                  <h3 className="font-bold text-secondary text-lg mb-1 flex items-center gap-1.5">
+                    <TrendingUp className="w-4 h-4 text-accent" />
+                    {lang === "fr" ? "Indicateur de Dynamisme" : "Top 10 Momentum"}
+                  </h3>
+                  <p className="text-xs text-muted-foreground">
+                    {lang === "fr" ? "Classé par score (vert = haussier, jaune = stable)" : "Score comparison (green = upward, yellow = stable)"}
+                  </p>
+                </div>
+
+                <div className="w-full h-[280px]">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                      layout="vertical"
+                      data={momentumData}
+                      margin={{ top: 0, right: 10, left: -25, bottom: 0 }}
+                    >
+                      <XAxis type="number" domain={[50, 100]} hide />
+                      <YAxis
+                        type="category"
+                        dataKey="name"
+                        tick={{ fill: 'hsl(var(--foreground))', fontSize: 10, fontWeight: 600 }}
+                        width={90}
+                        axisLine={false}
+                        tickLine={false}
+                      />
+                      <Tooltip
+                        cursor={{ fill: 'rgba(0,0,0,0.02)' }}
+                        content={({ active, payload }) => {
+                          if (active && payload && payload.length) {
+                            const data = payload[0].payload;
+                            return (
+                              <div className="bg-slate-900 text-white p-2 rounded shadow text-xs border border-white/10">
+                                <p className="font-bold">{data.name}</p>
+                                <p>Score: {data.score}</p>
+                                <p>Momentum: {data.momentum}</p>
+                              </div>
+                            );
+                          }
+                          return null;
+                        }}
+                      />
+                      <Bar dataKey="score" radius={[0, 4, 4, 0]} barSize={12}>
+                        {momentumData.map((entry, index) => {
+                          const isUpward = entry.momentum.includes("Upward");
+                          const isStable = entry.momentum.includes("Stable");
+                          const fill = isUpward ? "#16a34a" : isStable ? "#ca8a04" : "#dc2626";
+                          return <Cell key={`cell-${index}`} fill={fill} />;
+                        })}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* Overview */}
-      <section className="py-24 lg:py-32 border-b border-border">
+      <section className="py-24 lg:py-32 border-b border-border bg-slate-50/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
             <div>
@@ -255,7 +423,7 @@ export default function AWPII() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
             {T.pillars.map((pillar, i) => {
-              const Icon = PILLAR_ICONS[i];
+              const Icon = [Building2, BarChart3, Users, Globe][i] || Globe;
               return (
                 <div key={pillar.number} className="bg-background p-10 flex flex-col gap-6">
                   <div className="flex items-start gap-5">
