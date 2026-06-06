@@ -5,7 +5,7 @@ module.exports = {
   theme: {
   	extend: {
   		fontFamily: {
-  			sans: ['var(--font-sans)'],
+  			sans: ['var(--font-sans)', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', 'Segoe UI Symbol', 'sans-serif'],
   			display: ['var(--font-display)'],
   		},
   		borderRadius: {
