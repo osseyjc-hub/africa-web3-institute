@@ -28,6 +28,34 @@ export default function AWPII() {
     document.querySelector("#awpii-contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Find currently selected country data
+  const selectedCountry = awpiiData.find(c => c.key === selectedCountryKey) || awpiiData[0];
+
+  // Radar chart data preparation
+  const radarData = selectedCountry.pillars ? [
+    { subject: language === "fr" ? "Clarté" : "Clarity", value: selectedCountry.pillars.clarity },
+    { subject: language === "fr" ? "Soutien" : "Policy Support", value: selectedCountry.pillars.policy_support },
+    { subject: language === "fr" ? "Innovation" : "Innovation", value: selectedCountry.pillars.innovation },
+    { subject: language === "fr" ? "Adoption" : "Adoption", value: selectedCountry.pillars.adoption },
+  ] : [];
+
+  // Momentum bar chart data (Top 10)
+  const momentumData = awpiiData.slice(0, 10).map(c => ({
+    name: c.name,
+    score: c.overall_score,
+    momentum: c.momentum
+  }));
+
+  // Grade color badges
+  const getGradeBadgeClass = (grade) => {
+    if (grade.includes("AA")) return "bg-[#14532d] text-white";
+    if (grade.startsWith("A")) return "bg-[#166534] text-white";
+    if (grade.startsWith("BBB")) return "bg-yellow-600 text-white";
+    if (grade.startsWith("BB")) return "bg-amber-600 text-white";
+    return "bg-red-600 text-white";
+  };
+
+
   return (
     <div className="bg-background text-foreground">
 
