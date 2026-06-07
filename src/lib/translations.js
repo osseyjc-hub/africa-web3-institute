@@ -943,7 +943,7 @@ export const t = {
       newsletterSuccess: "Vous êtes abonné aux mises à jour des publications AWI.",
     },
     awpii: {
-      heroTitle: "Indice africain des politiques et de l'innovation Web3",
+      heroTitle: "Évaluer la clarté réglementaire et la préparation des marchés à travers l'Afrique",
       heroSubtitle: "Évaluation de la clarté réglementaire et de la maturité des marchés à travers le continent",
       heroPara1: "L'Afrique réécrit les règles de l'échange, de l'identité et du commerce.",
       heroPara2: "Les cadres réglementaires détermineront quels marchés prendront de l'ampleur — et lesquels stagneront.",
