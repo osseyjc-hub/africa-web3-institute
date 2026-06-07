@@ -943,9 +943,9 @@ export const t = {
       newsletterSuccess: "Vous êtes abonné aux mises à jour des publications AWI.",
     },
     awpii: {
-      heroTitle: "Évaluer la clarté réglementaire et la préparation des marchés à travers l'Afrique",
+      heroTitle: "Évaluer la clarté réglementaire et la préparation des marchés à travers l'Afrique.",
       heroSubtitle: "L'Afrique redéfinit l'avenir des échanges, de l'identité et du commerce. Les décisions réglementaires prises aujourd'hui détermineront quels marchés prospéreront et lesquels prendront du retard.",
-       heroSubtitle1: "Évaluation de la clarté réglementaire et de la maturité des marchés à travers le continent",
+       heroSubtitle1: "L'Indice africain des politiques et de l'innovation Web3 (AWPII) est la référence continentale pour évaluer la manière dont les juridictions réglementent, restreignent ou favorisent les technologies décentralisées. Grâce à une analyse annuelle rigoureuse et à des mises à jour Snapshot en temps réel, l'Indice fournit des comparaisons claires et fondées sur des données probantes des environnements politiques et réglementaires à travers l'Afrique.",
       heroPara1: "L'Afrique réécrit les règles de l'échange, de l'identité et du commerce.",
       heroPara2: "Les cadres réglementaires détermineront quels marchés prendront de l'ampleur — et lesquels stagneront.",
       heroPara3: "L'AWPII est la référence définitive évaluant la façon dont les juridictions africaines réglementent, restreignent ou permettent les technologies décentralisées. Grâce à une analyse annuelle rigoureuse et à des mises à jour Snapshot en temps réel, nous fournissons des comparaisons claires et fondées sur des données des environnements politiques continentaux.",
