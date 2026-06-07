@@ -59,7 +59,7 @@ export default function AWPII() {
           style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
           <div className="max-w-3xl">
-            <h1 className="text-[2.5rem] lg:text-[3.5rem] font-bold text-white leading-[1.1] tracking-tight mb-4">
+            <h1 className="text-[2.5rem] lg:text-[2.75rem] font-bold text-white leading-[1.1] tracking-tight mb-4">
               {T.heroTitle}
             </h1>
             <p className="text-[1.25rem] lg:text-[1.5rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
