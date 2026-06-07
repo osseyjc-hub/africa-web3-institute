@@ -163,7 +163,7 @@ export default function About() {
 
       {/* A. HERO */}
       <section className="py-20 lg:py-28" style={{ backgroundColor: "#0B1437" }}>
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>About Us</p>
           <h1 className="text-[2.25rem] lg:text-[3.25rem] font-bold text-white leading-snug mb-5">
            {T.heroTitle}
