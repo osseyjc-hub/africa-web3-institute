@@ -114,6 +114,12 @@ export default function Navbar() {
       ],
     },
     {
+      section: lang === "fr" ? "Engagement Politique" : "Policy Engagement",
+      items: [
+        { label: "The Indaba Series", desc: lang === "fr" ? "Le programme phare d'engagement politique de l'AWI" : "AWI's flagship policy engagement programme", href: "/indaba-series", icon: "🗣️" },
+      ],
+    },
+    {
       section: lang === "fr" ? "Événements" : "Events",
       items: [
         { label: lang === "fr" ? "Événements & Rencontres" : "Events & Convenings", desc: lang === "fr" ? "Sommets politiques, ateliers et activations universitaires" : "Policy summits, workshops, and campus activations", href: "#events", isScroll: true, icon: "📅" },
@@ -259,10 +265,10 @@ export default function Navbar() {
                 onClick={() => setActiveDropdown(activeDropdown === "programmes" ? null : "programmes")}
                 className="flex items-center gap-1 text-[0.8125rem] font-medium transition-colors"
                 style={{
-                  color: ["/francophone-network", "/africa-blockchain-awards"].includes(location.pathname) ? "#D4A017" : "#374151"
-                }}
-                onMouseEnter={e => e.currentTarget.style.color = "#111827"}
-                onMouseLeave={e => e.currentTarget.style.color = ["/francophone-network", "/africa-blockchain-awards"].includes(location.pathname) ? "#D4A017" : "#374151"}
+                  color: ["/francophone-network", "/africa-blockchain-awards", "/capacity-building", "/indaba-series"].includes(location.pathname) ? "#D4A017" : "#374151"
+                                   }}
+                                   onMouseEnter={e => e.currentTarget.style.color = "#111827"}
+                                   onMouseLeave={e => e.currentTarget.style.color = ["/francophone-network", "/africa-blockchain-awards", "/capacity-building", "/indaba-series"].includes(location.pathname) ? "#D4A017" : "#374151"}
               >
                 {lang === "fr" ? "Programmes" : "Programmes"}
                 <ChevronDown
