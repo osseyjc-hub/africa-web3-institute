@@ -162,13 +162,16 @@ export default function About() {
       <title>About Us | Africa Web3 Institute</title>
 
       {/* A. HERO */}
-      <section className="py-20 lg:py-28" style={{ backgroundColor: "#0B1437" }}>
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>About Us</p>
-          <h1 className="text-[2.25rem] lg:text-[3.25rem] font-bold text-white leading-snug mb-5">
+         <section className="relative bg-secondary overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
+           <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Africa Web3 Institute</p>
+          {/*<p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>About Us</p>*/}
+          <h1 className="text-[2.25rem] lg:text-[3.25rem] font-bold text-white leading-snug mb-5" >
            {T.heroTitle}
           </h1>
-          <p className="text-[1.1rem] leading-[1.85] max-w-2xl" style={{ color: "rgba(255,255,255,0.6)" }}>
+          <p className="text-[1.1rem] leading-[1.85] max-w-2xl" style={{ color: "#D4A017" }}>
            {T.heroSubtitle}
           </p>
         </div>
