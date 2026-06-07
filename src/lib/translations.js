@@ -447,7 +447,7 @@ export const t = {
     },
     about: {
       heroTitle: "Building the Foundations for Africa's Web3 Future",
-      heroSubtitle: "Building the policy, research, and education infrastructure for Africa's decentralised future",
+      heroSubtitle: "Africa Web3 Institute is an independent think tank advancing research, shaping policy and delivering education to support the responsible growth of decentralised technologies across Africa.",
       whoWeAreTitle: "Who We Are",
       whoWeAreText: "Founded in 2017 as Africa Blockchain University, Africa Web3 Institute (AWI) is the continent's leading independent research and policy organisation dedicated to blockchain governance, Web3 policy, and digital economy development across all 54 African nations.",
       founded: "Founded",
