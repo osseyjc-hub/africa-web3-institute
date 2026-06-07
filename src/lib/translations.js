@@ -944,7 +944,7 @@ export const t = {
     },
     awpii: {
       heroTitle: "Évaluer la clarté réglementaire et la préparation des marchés à travers l'Afrique",
-      heroSubtitle: "Évaluation de la clarté réglementaire et de la maturité des marchés à travers le continent",
+      heroSubtitle: "L'Afrique redéfinit l'avenir des échanges, de l'identité et du commerce. Les décisions réglementaires prises aujourd'hui détermineront quels marchés prospéreront et lesquels prendront du retard.",
        heroSubtitle1: "Évaluation de la clarté réglementaire et de la maturité des marchés à travers le continent",
       heroPara1: "L'Afrique réécrit les règles de l'échange, de l'identité et du commerce.",
       heroPara2: "Les cadres réglementaires détermineront quels marchés prendront de l'ampleur — et lesquels stagneront.",
