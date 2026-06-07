@@ -945,6 +945,7 @@ export const t = {
     awpii: {
       heroTitle: "Évaluer la clarté réglementaire et la préparation des marchés à travers l'Afrique",
       heroSubtitle: "Évaluation de la clarté réglementaire et de la maturité des marchés à travers le continent",
+       heroSubtitle1: "Évaluation de la clarté réglementaire et de la maturité des marchés à travers le continent",
       heroPara1: "L'Afrique réécrit les règles de l'échange, de l'identité et du commerce.",
       heroPara2: "Les cadres réglementaires détermineront quels marchés prendront de l'ampleur — et lesquels stagneront.",
       heroPara3: "L'AWPII est la référence définitive évaluant la façon dont les juridictions africaines réglementent, restreignent ou permettent les technologies décentralisées. Grâce à une analyse annuelle rigoureuse et à des mises à jour Snapshot en temps réel, nous fournissons des comparaisons claires et fondées sur des données des environnements politiques continentaux.",
