@@ -154,6 +154,7 @@ function TeamCard({ member }) {
   );
 }
 
+
 export default function About() {
   const { lang } = useLang();
   const T = t[lang].about;
