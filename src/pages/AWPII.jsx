@@ -54,21 +54,18 @@ export default function AWPII() {
     <div className="bg-background text-foreground">
 
       {/* Hero */}
-      <section className="relative bg-secondary overflow-hidden">
+     <section className="relative bg-secondary overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04]"
           style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24">
-          <div className="max-w-3xl">
-            <h1 className="text-[2.5rem] lg:text-[2.75rem] font-bold text-white leading-[1.1] tracking-tight mb-4">
+        
+            <h1 className="text-[2.5rem] lg:text-[2.5rem] font-bold text-white leading-[1.1] tracking-tight mb-6">
               {T.heroTitle}
             </h1>
-            <p className="text-[1.25rem] lg:text-[1.75rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
+            <p className="text-[1.25rem] lg:text-[1.0rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
               {T.heroSubtitle}
             </p>
-              <p className="text-[1.25rem] lg:text-[1.75rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
-              {T.heroSubtitle1}
-            </p>
-            <div className="w-16 h-px bg-accent mb-8" />
+              <div className="w-16 h-px bg-accent mb-8" />
             <p className="text-[1rem] text-white/80 leading-[1.85] mb-4 max-w-2xl">
               {T.heroPara1}
             </p>
@@ -78,17 +75,20 @@ export default function AWPII() {
             <p className="text-[1rem] text-white/70 leading-[1.85] mb-10 max-w-2xl">
               {T.heroPara3}
             </p>
+            
+          
             <div className="flex flex-wrap gap-4">
               <CTAButton primary onClick={scrollToContact}>
                 {T.heroCtaPrimary} <ArrowRight className="w-4 h-4" />
               </CTAButton>
-             <CTAButton primary onClick={scrollToContact} className="border-white/80 text-white/80 hover:border-white hover:text-white">
+              <CTAButton primary onClick={scrollToContact} className="border-white/80 text-white/80 hover:border-white hover:text-white">
                 <Download className="w-4 h-4 text-white" /> {T.heroCtaSecondary}
               </CTAButton>
             </div>
           </div>
-        </div>
+       
       </section>
+
 
       {/* Stats Strip */}
       <section className="border-b border-border bg-muted/40">
