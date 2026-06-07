@@ -315,20 +315,127 @@ const functional = TEAM.filter(
       </section>
 
       {/* F. MEET THE TEAM */}
-      <section className="py-20 border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Our People</p>
-            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">{T.teamTitle}</h2>
-            <p className="text-muted-foreground">{T.teamSubtitle}</p>
+    <section className="py-20 border-b border-border">
+  <div className="max-w-6xl mx-auto px-6 lg:px-8">
+
+    <div className="text-center mb-16">
+      <p
+        className="text-xs font-semibold tracking-[0.18em] uppercase mb-3"
+        style={{ color: "#D4A017" }}
+      >
+        Our People
+      </p>
+
+      <h2 className="text-[1.75rem] font-bold text-secondary mb-3">
+        {T.teamTitle}
+      </h2>
+
+      <p className="text-muted-foreground">
+        {T.teamSubtitle}
+      </p>
+    </div>
+
+    {/* Executive Director */}
+    {founder && (
+      <div className="max-w-3xl mx-auto mb-16">
+        <div
+          className="bg-white p-8 md:p-10 text-center"
+          style={{
+            border: "2px solid #D4A017",
+            boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
+          }}
+        >
+          <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6">
+            <img
+              src={founder.photo}
+              alt={founder.name}
+              className="w-full h-full object-cover"
+            />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {TEAM.map((member) => (
-              <TeamCard key={member.name} member={member} />
-            ))}
+
+          <p
+            className="text-xs uppercase tracking-[0.18em] font-semibold mb-3"
+            style={{ color: "#D4A017" }}
+          >
+            Executive Director
+          </p>
+
+          <h3 className="text-[1.75rem] font-bold text-secondary mb-2">
+            {founder.name}
+          </h3>
+
+          <p className="text-muted-foreground mb-4">
+            {founder.country}
+          </p>
+
+          <div className="flex justify-center gap-3">
+            {founder.linkedin && (
+              <a
+                href={founder.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center"
+              >
+                <Linkedin />
+              </a>
+            )}
+
+            {founder.twitter && (
+              <a
+                href={founder.twitter}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full border border-border flex items-center justify-center"
+              >
+                <Twitter />
+              </a>
+            )}
           </div>
         </div>
-      </section>
+      </div>
+    )}
+
+    {/* Executive Leadership */}
+    <div className="mb-16">
+      <h3 className="text-xl font-bold text-secondary mb-8 text-center">
+        Executive Leadership
+      </h3>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {executives.map((member) => (
+          <TeamCard key={member.name} member={member} />
+        ))}
+      </div>
+    </div>
+
+    {/* Core Management */}
+    <div className="mb-16">
+      <h3 className="text-xl font-bold text-secondary mb-8 text-center">
+        Core Management
+      </h3>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {management.map((member) => (
+          <TeamCard key={member.name} member={member} />
+        ))}
+      </div>
+    </div>
+
+    {/* Programs & Communications */}
+    <div>
+      <h3 className="text-xl font-bold text-secondary mb-8 text-center">
+        Programs & Communications
+      </h3>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        {functional.map((member) => (
+          <TeamCard key={member.name} member={member} />
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
 
       {/* G. PARTNERS */}
       <section className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
