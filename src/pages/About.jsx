@@ -315,7 +315,7 @@ const functional = TEAM.filter(
       </section>
 
       {/* F. MEET THE TEAM */}
-    <section className="py-20 border-b border-border">
+    <section id="team" className="py-20 border-b border-border">
   <div className="max-w-6xl mx-auto px-6 lg:px-8">
 
     <div className="text-center mb-16">

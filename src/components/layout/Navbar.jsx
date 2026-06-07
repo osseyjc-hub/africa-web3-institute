@@ -64,6 +64,16 @@ export default function Navbar() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const navigateToSection = (path, id) => {
+    setOpen(false);
+    setActiveDropdown(null);
+    navigate(path);
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth" });
+    }, 150);
+  };
+
   const isActive = (href) => location.pathname === href;
 
   const INTELLIGENCE_ITEMS = [
@@ -209,6 +219,17 @@ export default function Navbar() {
             >
               {lang === "fr" ? "À Propos" : "About"}
             </Link>
+
+            {/* Team */}
+            <button
+              onClick={() => navigateToSection("/about", "team")}
+              className="text-[0.8125rem] font-medium transition-colors"
+              style={{ color: "#374151" }}
+              onMouseEnter={e => e.currentTarget.style.color = "#111827"}
+              onMouseLeave={e => e.currentTarget.style.color = "#374151"}
+            >
+              {lang === "fr" ? "Équipe" : "Team"}
+            </button>
 
             {/* Intelligence dropdown */}
             <div className="relative">
@@ -367,6 +388,15 @@ export default function Navbar() {
           >
             {lang === "fr" ? "À Propos" : "About"}
           </Link>
+
+          {/* Team */}
+          <button
+            onClick={() => navigateToSection("/about", "team")}
+            className="flex items-center px-6 py-3.5 text-[0.875rem] font-medium border-b w-full text-left"
+            style={{ color: "#374151", borderColor: "#F3F4F6" }}
+          >
+            👥 {lang === "fr" ? "Équipe" : "Team"}
+          </button>
 
           {/* Intelligence accordion */}
           <div className="border-b" style={{ borderColor: "#F3F4F6" }}>
