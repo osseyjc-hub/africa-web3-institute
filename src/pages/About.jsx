@@ -88,11 +88,7 @@ const PILLAR_KEYS = [
   { titleKey: "pillar3Title", descKey: "pillar3Desc" },
 ];
 
-const IMPACT_STATS = [
-  { icon: "🌍", stat: "Fastest-growing", label: "Crypto adoption rate globally" },
-  { icon: "📱", stat: "12%+", label: "Of Africans use crypto as of 2025" },
-  { icon: "💸", stat: "$48.2M", label: "Daily stablecoin P2P volume in Nigeria alone" },
-];
+
 
 const PARTNER_SLOTS = Array(6).fill(null);
 
