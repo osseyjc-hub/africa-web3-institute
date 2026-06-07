@@ -163,6 +163,20 @@ export default function About() {
     title: T[titleKey],
     desc: T[descKey],
   }));
+
+    const founder = TEAM.find((m) => m.level === "founder");
+
+const executives = TEAM.filter(
+  (m) => m.level === "executive"
+);
+
+const management = TEAM.filter(
+  (m) => m.level === "management"
+);
+
+const functional = TEAM.filter(
+  (m) => m.level === "functional"
+);
   const IMPACT_STATS_T = [
     { icon: "🌍", stat: "Fastest-growing", label: T.stat1 },
     { icon: "📱", stat: "12%+", label: T.stat2 },
