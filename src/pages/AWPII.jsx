@@ -62,7 +62,7 @@ export default function AWPII() {
             <h1 className="text-[2.5rem] lg:text-[2.75rem] font-bold text-white leading-[1.1] tracking-tight mb-4">
               {T.heroTitle}
             </h1>
-            <p className="text-[1.25rem] lg:text-[1.5rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
+            <p className="text-[1.25rem] lg:text-[1.75rem] font-medium mb-8 leading-snug" style={{ color: "hsl(40 78% 50%)" }}>
               {T.heroSubtitle}
             </p>
             <div className="w-16 h-px bg-accent mb-8" />
