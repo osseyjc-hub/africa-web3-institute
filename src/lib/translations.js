@@ -255,7 +255,7 @@ export const t = {
       heroEyebrow: "Africa Web3 Policy & Innovation Index",
       heroTitle: "Benchmarking Regulatory Clarity and Market Readiness Across Africa",
       heroSubtitle: "Africa is redefining the future of exchange, identity and commerce. The regulatory choices made today will determine which markets thrive and which fall behind.",
-      heroSubtitle1: "Africa is redefining the future of exchange, identity and commerce. The regulatory choices made today will determine which markets thrive and which fall behind.",
+      heroSubtitle1: "The Africa Web3 Policy and Innovation Index (AWPII) is the continent's definitive benchmark for assessing how jurisdictions regulate, restrict and enable decentralised technologies. Through rigorous annual analysis and real-time Snapshot updates, the Index delivers clear, evidence-based comparisons of policy and regulatory environments across Africa.",
       heroCtaPrimary: "Explore the Interactive Index",
       heroCtaPrimary: "Explore the Interactive Index",
       heroCtaSecondary: "Download May 2026 Snapshot",
