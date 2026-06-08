@@ -36,7 +36,7 @@ export default function Programs() {
                 <p className="text-[0.875rem] text-muted-foreground leading-[1.8] flex-1">{program.description}</p>
                 <div className="mt-8 pt-6 border-t border-border">
                   <span className="text-[0.75rem] font-semibold tracking-wider uppercase" style={{ color: "#D4A017" }}>
-                    Learn more →
+                 {T.buttonCTA}
                   </span>
                 </div>
               </div>
