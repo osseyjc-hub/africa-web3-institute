@@ -150,6 +150,7 @@ export const t = {
             },
             {
               title: "State of Web3 Africa 2026 — Q3 Launch",
+               country: "South Africa",
               date: "25 September 2026",
               location: "Marriott Bonvoy, Johannesburg, South Africa",
               description: "Tracking what is scaling, what is stalling, and where Africa captures value next.",
