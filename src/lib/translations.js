@@ -726,14 +726,14 @@ subheading: "Le principal laboratoire d'idées sur le Web3 en Afrique",
       cta3: "Devenir partenaire (à venir)",
     },
     trustStrip: ["Recherche en politique", "Éducation & Capacités", "Développement de l'écosystème", "Incubation de startups"],
-    whoWeAre: {
+   whoWeAre: {
       eyebrow: "Qui sommes-nous",
       heading: "À l'intersection de la technologie, de la politique et de la société",
       p1: "L'Africa Web3 Institute opère à l'intersection de la technologie, de la politique et de la société. Il traduit les technologies émergentes complexes en orientations politiques claires, en formations pratiques et en cadres opérationnels pour l'économie numérique africaine.",
       p2: "Nos travaux rapprochent les innovateurs, les régulateurs et les communautés afin de bâtir une transformation numérique africaine inclusive, maîtrisée et souveraine.",
-      buttonCTA: "En savoir plus sur AWI →",
+    buttonCTA: "En savoir plus sur AWI →",
      tags: ["Recherche Politique", "Éducation Blockchain", "Incubation d'Écosystème"],
-     },
+    },
     whatWeDo: {
       eyebrow: "Ce que nous faisons",
       heading: "Quatre piliers d'impact",
