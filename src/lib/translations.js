@@ -756,6 +756,7 @@ subheading: "Le principal laboratoire d'idées sur le Web3 en Afrique",
       eyebrow: "Programmes",
       heading: "Nos Programmes",
       cta: "Explorer les programmes (à venir)",
+       buttonCTA:"Apprendre encore plus→",
       items: [
         { title: "Politique & Réglementation", description: "Élaboration de cadres réglementaires via des conseils techniques, des concertations multipartites et la rédaction de modèles de politiques avec les gouvernements africains." },
         { title: "Éducation & Renforcement des capacités", description: "Programmes de formation structurés, ateliers exécutifs et certifications pour les décideurs, développeurs et responsables institutionnels." },
