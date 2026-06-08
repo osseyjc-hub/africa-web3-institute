@@ -33,6 +33,8 @@ export const t = {
       heading: "At the intersection of technology, policy, and society",
       p1: "Africa Web3 Institute sits at the intersection of technology, policy, and society. It translates complex emerging technologies into clear policy insights, practical education, and actionable frameworks for Africa's digital economy.",
       p2: "Our work bridges the gap between innovators, regulators, and communities — ensuring that Africa's digital transformation is inclusive, informed, and sovereign.",
+    buttonCTA:" Learn more about Africa Web3 Institute →",
+    tags: ["Policy Research", "Blockchain Education", "Ecosystem Incubation"],
     },
     whatWeDo: {
       eyebrow: "What We Do",
