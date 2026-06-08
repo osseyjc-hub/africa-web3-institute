@@ -27,17 +27,17 @@ export default function WhoWeAre() {
               onMouseEnter={(e) => e.currentTarget.style.backgroundColor = "#1a2a5e"}
               onMouseLeave={(e) => e.currentTarget.style.backgroundColor = "#0B1437"}>
                 
-                Learn more about Africa Web3 Institute →
+               {T.buttonCTA}
               </Link>
             </div>
-            <div className="mt-6 flex flex-wrap gap-6">
-              {["Policy Research", "Blockchain Education", "Ecosystem Incubation"].map((tag) =>
-              <div key={tag} className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#D4A017" }} />
-                  <span className="text-[0.8125rem] font-medium text-muted-foreground">{tag}</span>
-                </div>
-              )}
-            </div>
+                  <div className="mt-6 flex flex-wrap gap-6">
+      {T.tags.map((tag) => (
+        <div key={tag} className="flex items-center gap-2">
+          <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#D4A017" }} />
+          <span className="text-[0.8125rem] font-medium text-muted-foreground">{tag}</span>
+        </div>
+      ))}
+    </div>
           </div>
           <div className="relative">
             <div
