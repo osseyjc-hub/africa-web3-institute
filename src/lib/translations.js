@@ -18,6 +18,8 @@ export const t = {
       enforcementWatch: "Enforcement Watch",
     },
     hero: {
+       established: " ✦ Established in 2017 as Africa Blockchain University",
+        subheading: "Africa's leading Web3 think tank",
       h1: "Driving Digital Asset Policy, Regulatory Frameworks, and Market Infrastructure for Africa's Web3 Economy",
       tagline: "",
       intro: "A Pan-African public policy think tank advancing blockchain innovation through research, education, policy development, and ecosystem growth.",
