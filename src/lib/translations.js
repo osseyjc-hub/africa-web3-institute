@@ -714,6 +714,8 @@ export const t = {
       enforcementWatch: "Surveillance des Sanctions",
     },
     hero: {
+            established: "✦ Créé en 2017 sous le nom d'Africa Blockchain University",
+subheading: "Le principal laboratoire d'idées sur le Web3 en Afrique",
       h1: "Piloter les politiques des actifs numériques, les cadres réglementaires et les infrastructures de marché pour l'économie Web3 africaine.",
       tagline: "",
       intro: "Un think tank panafricain de politiques publiques qui fait progresser l'innovation blockchain à travers la recherche, l'éducation, le développement des politiques et la croissance de l'écosystème.",
