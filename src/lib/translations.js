@@ -846,6 +846,7 @@ export const t = {
             },
             {
               title: "État du Web3 en Afrique 2026 — Lancement T3",
+               country: "Afrique du Sud",
               date: "25 septembre 2026",
               location: "Marriott Bonvoy, Johannesburg, Afrique du Sud",
               description: "Suivre ce qui se développe, ce qui stagne et où l'Afrique capte la valeur ensuite.",
