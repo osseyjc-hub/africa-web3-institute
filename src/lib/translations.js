@@ -55,6 +55,7 @@ export const t = {
       eyebrow: "Programs",
       heading: "Our core programs",
       cta: "Explore Programmes (Coming Soon)",
+      buttonCTA:" Learn more →",
       items: [
         { title: "Policy & Regulation", description: "Shaping regulatory frameworks through technical advisory, stakeholder convenings, and model policy drafting with governments across Africa." },
         { title: "Education & Capacity Building", description: "Delivering structured training programmes, executive workshops, and certification pathways for policymakers, developers, students, and institutional leaders." },
