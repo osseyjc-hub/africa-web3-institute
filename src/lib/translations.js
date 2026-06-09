@@ -218,45 +218,38 @@ export const t = {
       cta2: "Partner With Us",
     },
     footer: {
-  description:
-    "A pan-African public policy and educational think tank advancing blockchain innovation through research, regulation, education, and ecosystem building.",
-
-  copyright: `© ${new Date().getFullYear()} Africa Web3 Institute. All rights reserved.`,
-
-  badge: "Independent & Non-Partisan",
-
-  explore: {
-    title: "Explore",
-    links: [
-      { label: "About Us", to: "/about" },
-      { label: "Our Team", to: "/about#team" },
-      { label: "Research", to: "/#publications" },
-      { label: "Programs", to: "/capacity-building" },
-      { label: "Contact", to: "/#contact" },
-    ],
-  },
-
-  resources: {
-    title: "Resources",
-    links: [
-      { label: "Publications", to: "/publications" },
-      { label: "Events", to: "/#events" },
-      { label: "Media Kit", to: "/media" },
-      { label: "Annual Report", to: "/awpii" },
-    ],
-  },
-
-  connect: {
-    title: "Connect",
-    links: [
-      { label: "Partnerships", to: "/partnerships" },
-      { label: "Careers", to: "/careers" },
-    ],
-  },
-
-  privacy: "Privacy Policy",
-  terms: "Terms of Use",
-},
+      description: "A pan-African public policy and educational think tank advancing blockchain innovation through research, regulation, education, and ecosystem building.",
+      copyright: `© ${new Date().getFullYear()} Africa Web3 Institute. All rights reserved.`,
+      badge: "Independent & Non-Partisan",
+      explore: {
+        title: "Explore",
+        links: [
+          { label: "About Us", to: "/about" },
+          { label: "Our Team", to: "/about#team" },
+          { label: "Research", to: "/#publications" },
+          { label: "Programs", to: "/capacity-building" },
+          { label: "Contact", to: "/#contact" },
+        ],
+      },
+      resources: {
+        title: "Resources",
+        links: [
+          { label: "Publications", to: "/publications" },
+          { label: "Events", to: "/#events" },
+          { label: "Media Kit", to: "/media" },
+          { label: "Annual Report", to: "/awpii" },
+        ],
+      },
+      connect: {
+        title: "Connect",
+        links: [
+          { label: "Partnerships", to: "/partnerships" },
+          { label: "Careers", to: "/careers" },
+        ],
+      },
+      privacy: "Privacy Policy",
+      terms: "Terms of Use",
+    },
     publicationsPage: {
       heroEyebrow: "Research & Publications",
       heroTitle: "AWI Publications Library",
@@ -947,16 +940,37 @@ subheading: "Le principal laboratoire d'idées sur le Web3 en Afrique",
       cta2: "Devenir partenaire",
     },
     footer: {
-      description: "Un think tank panafricain de politique publique et d'éducation, dédié à l'avancement de l'innovation blockchain par la recherche, la réglementation, l'éducation et le développement de l'écosystème.",
+      description: "Un laboratoire d'idées panafricain de politique publique et d'éducation qui fait avancer l'innovation blockchain par la recherche, la réglementation, l'éducation et le développement de l'écosystème.",
       copyright: `© ${new Date().getFullYear()} Africa Web3 Institute. Tous droits réservés.`,
-      privacy: "Politique de confidentialité",
-      terms: "Conditions d'utilisation",
-      links: {
-        Institut: ["À propos", "Notre équipe", "Gouvernance", "Rapport annuel"],
-        Programmes: ["Politique & Réglementation", "Éducation", "Incubation de startups"],
-        Ressources: ["Publications", "Événements", "Blog", "Kit média"],
-        Contact: ["Nous contacter", "Partenariats", "Carrières"],
+      badge: "Indépendant & Non-Partisan",
+      explore: {
+        title: "Explorer",
+        links: [
+          { label: "À Propos de Nous", to: "/about" },
+          { label: "Notre Équipe", to: "/about#team" },
+          { label: "Recherche", to: "/#publications" },
+          { label: "Programmes", to: "/capacity-building" },
+          { label: "Contact", to: "/#contact" },
+        ],
       },
+      resources: {
+        title: "Ressources",
+        links: [
+          { label: "Publications", to: "/publications" },
+          { label: "Événements", to: "/#events" },
+          { label: "Kit Médias", to: "/media" },
+          { label: "Rapport Annuel", to: "/awpii" },
+        ],
+      },
+      connect: {
+        title: "Connecter",
+        links: [
+          { label: "Partenariats", to: "/partnerships" },
+          { label: "Carrières", to: "/careers" },
+        ],
+      },
+      privacy: "Politique de Confidentialité",
+      terms: "Conditions d'Utilisation",
     },
     publicationsPage: {
       heroEyebrow: "Recherche & Publications",
