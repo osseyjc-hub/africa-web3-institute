@@ -8,6 +8,27 @@ export default function Footer() {
   const { lang } = useLang();
   const T = t[lang].footer;
 
+  const renderLinks = (section) => (
+  <div>
+    <h4 className="text-xs font-bold tracking-widest uppercase text-[#D4A017] mb-5">
+      {section.title}
+    </h4>
+
+    <ul className="space-y-3">
+      {section.links.map((link) => (
+        <li key={link.to}>
+          <Link
+            to={link.to}
+            className="text-sm text-white/40 hover:text-white transition-colors"
+          >
+            {link.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
   return (
     <footer style={{ backgroundColor: "#0B1437", borderTop: "1px solid rgba(212,160,23,0.15)" }}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-10">
