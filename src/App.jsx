@@ -19,7 +19,7 @@ import Publications from './pages/Publications';
 import CountryProfile from './pages/CountryProfile';
 import EnforcementWatch from './pages/EnforcementWatch';
 import CapacityBuilding from './pages/CapacityBuilding';
-import Analytics from './pages/Analytics';
+//import Analytics from './pages/Analytics';
 import IndabaSeries from './pages/IndabaSeries';
 import { useTracker } from './hooks/useTracker';
 
@@ -65,7 +65,7 @@ const AuthenticatedApp = () => {
         <Route path="/country-tracker/:country" element={<CountryProfile />} />
         <Route path="/enforcement-watch" element={<EnforcementWatch />} />
         <Route path="/capacity-building" element={<CapacityBuilding />} />
-        <Route path="/analytics" element={<Analytics />} />
+        //<Route path="/analytics" element={<Analytics />} />
         <Route path="/indaba-series" element={<IndabaSeries />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
