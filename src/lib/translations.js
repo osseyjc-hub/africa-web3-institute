@@ -743,7 +743,7 @@ export const t = {
     },
     hero: {
             established: "✦ Créé en 2017 sous le nom d'Africa Blockchain University",
-subheading: "Le principal laboratoire d'idées sur le Web3 en Afrique",
+      subheading: "Le principal laboratoire d'idées sur le Web3 en Afrique",
       h1: "Piloter les politiques des actifs numériques, les cadres réglementaires et les infrastructures de marché pour l'économie Web3 africaine.",
       tagline: "",
       intro: "Un think tank panafricain de politiques publiques qui fait progresser l'innovation blockchain à travers la recherche, l'éducation, le développement des politiques et la croissance de l'écosystème.",
@@ -757,8 +757,8 @@ subheading: "Le principal laboratoire d'idées sur le Web3 en Afrique",
       heading: "À l'intersection de la technologie, de la politique et de la société",
       p1: "L'Africa Web3 Institute opère à l'intersection de la technologie, de la politique et de la société. Il traduit les technologies émergentes complexes en orientations politiques claires, en formations pratiques et en cadres opérationnels pour l'économie numérique africaine.",
       p2: "Nos travaux rapprochent les innovateurs, les régulateurs et les communautés afin de bâtir une transformation numérique africaine inclusive, maîtrisée et souveraine.",
-    buttonCTA: "En savoir plus sur AWI →",
-     tags: ["Recherche Politique", "Éducation Blockchain", "Incubation d'Écosystème"],
+      buttonCTA: "En savoir plus sur AWI →",
+      tags: ["Recherche Politique", "Éducation Blockchain", "Incubation d'Écosystème"],
     },
     whatWeDo: {
       eyebrow: "Ce que nous faisons",
@@ -944,7 +944,7 @@ subheading: "Le principal laboratoire d'idées sur le Web3 en Afrique",
     footer: {
       description: "Un laboratoire d'idées panafricain de politique publique et d'éducation qui fait avancer l'innovation blockchain par la recherche, la réglementation, l'éducation et le développement de l'écosystème.",
       copyright: `© ${new Date().getFullYear()} Africa Web3 Institute. Tous droits réservés.`,
-      badge: "Indépendant & Non-Partisan",
+      badge: "Indépendant et non partisan",
       explore: {
         title: "Explorer",
         links: [
