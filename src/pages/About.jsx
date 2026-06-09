@@ -211,7 +211,7 @@ const functional = TEAM.filter(
                 {T.whoWeAreText}
               </p>
               <p className="text-muted-foreground leading-[1.85] mb-8">
-                Africa is home to the world's fastest-growing crypto adoption rates, yet African voices remain underrepresented in global Web3 policy conversations. AWI exists to change that — equipping governments, institutions, and communities with the knowledge and frameworks needed to harness blockchain technology responsibly.
+               {T.whoWeAreText1}
               </p>
               {/* Inline stats */}
               <div className="grid grid-cols-2 gap-4">
