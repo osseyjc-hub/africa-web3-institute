@@ -65,7 +65,7 @@ const AuthenticatedApp = () => {
         <Route path="/country-tracker/:country" element={<CountryProfile />} />
         <Route path="/enforcement-watch" element={<EnforcementWatch />} />
         <Route path="/capacity-building" element={<CapacityBuilding />} />
-        //<Route path="/analytics" element={<Analytics />} />
+        {/* <Route path="/analytics" element={<Analytics />} /> */}
         <Route path="/indaba-series" element={<IndabaSeries />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
