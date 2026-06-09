@@ -205,7 +205,7 @@ const functional = TEAM.filter(
             <div>
               <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-4" style={{ color: "#D4A017" }}>{T.whoWeAreTitle}</p>
               <h2 className="text-[1.75rem] font-bold text-secondary leading-snug mb-5">
-                Africa's Dedicated Web3 Think Tank
+              {T.whoWeAreSubtitle}
               </h2>
               <p className="text-muted-foreground leading-[1.85] mb-4">
                 {T.whoWeAreText}
