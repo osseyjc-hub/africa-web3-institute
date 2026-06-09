@@ -218,17 +218,45 @@ export const t = {
       cta2: "Partner With Us",
     },
     footer: {
-      description: "A pan-African public policy and educational think tank advancing blockchain innovation through research, regulation, education, and ecosystem building.",
-      copyright: `© ${new Date().getFullYear()} Africa Web3 Institute. All rights reserved.`,
-      privacy: "Privacy Policy",
-      terms: "Terms of Use",
-      links: {
-        Institute: ["About Us", "Our Team", "Governance", "Annual Report"],
-        Programmes: ["Policy & Regulation", "Education", "Startup Incubation"],
-        Resources: ["Publications", "Events", "Blog", "Media Kit"],
-        Connect: ["Contact Us", "Partnerships", "Careers"],
-      },
-    },
+  description:
+    "A pan-African public policy and educational think tank advancing blockchain innovation through research, regulation, education, and ecosystem building.",
+
+  copyright: `© ${new Date().getFullYear()} Africa Web3 Institute. All rights reserved.`,
+
+  badge: "Independent & Non-Partisan",
+
+  explore: {
+    title: "Explore",
+    links: [
+      { label: "About Us", to: "/about" },
+      { label: "Our Team", to: "/about#team" },
+      { label: "Research", to: "/#publications" },
+      { label: "Programs", to: "/capacity-building" },
+      { label: "Contact", to: "/#contact" },
+    ],
+  },
+
+  resources: {
+    title: "Resources",
+    links: [
+      { label: "Publications", to: "/publications" },
+      { label: "Events", to: "/#events" },
+      { label: "Media Kit", to: "/media" },
+      { label: "Annual Report", to: "/awpii" },
+    ],
+  },
+
+  connect: {
+    title: "Connect",
+    links: [
+      { label: "Partnerships", to: "/partnerships" },
+      { label: "Careers", to: "/careers" },
+    ],
+  },
+
+  privacy: "Privacy Policy",
+  terms: "Terms of Use",
+},
     publicationsPage: {
       heroEyebrow: "Research & Publications",
       heroTitle: "AWI Publications Library",
