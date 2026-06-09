@@ -100,6 +100,8 @@ const CONTACTS = [
 
 function TeamCard({ member }) {
   const [hovered, setHovered] = React.useState(false);
+  const {lang}=useLang();
+  const T=t[lang].about;
   return (
     <div
       onMouseEnter={() => setHovered(true)}
@@ -121,7 +123,7 @@ function TeamCard({ member }) {
         )}
       </div>
       <p className="text-[0.9375rem] font-bold text-secondary mb-1">{member.name}</p>
-      <p className="text-[0.8125rem] text-muted-foreground mb-1">{member.role}</p>
+      <p className="text-[0.8125rem] text-muted-foreground mb-1">  {T.roles[member.role] || member.role}</p>
       {member.country ? <p className="text-[0.8125rem] mb-3" style={{ color: "#D4A017" }}>{member.country}</p> : <div className="mb-3" />}
       <div className="flex gap-3 mt-auto">
         {member.linkedin && (
@@ -247,8 +249,8 @@ const functional = TEAM.filter(
       <section className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Our Purpose</p>
-            <h2 className="text-[1.75rem] font-bold text-secondary">Mission &amp; Vision</h2>
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>{T.missionTag}</p>
+            <h2 className="text-[1.75rem] font-bold text-secondary">{T.missionHeading}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="bg-white p-8" style={{ borderLeft: "4px solid #D4A017" }}>
@@ -274,7 +276,7 @@ const functional = TEAM.filter(
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>{T.whatWeDoTitle}</p>
-            <h2 className="text-[1.75rem] font-bold text-secondary">Three Core Pillars</h2>
+            <h2 className="text-[1.75rem] font-bold text-secondary">{T.corePillars}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
             {PILLARS.map(({ icon: Icon, title, desc }) => (
@@ -295,7 +297,7 @@ const functional = TEAM.filter(
       <section className="py-20 border-b border-border" style={{ backgroundColor: "#0B1437" }}>
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Context</p>
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>{T.whyMattersTag}</p>
             <h2 className="text-[1.75rem] font-bold text-white">{T.whyMattersTitle}</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -309,8 +311,7 @@ const functional = TEAM.filter(
             ))}
           </div>
           <p className="text-[1rem] leading-[1.85] text-center max-w-3xl mx-auto" style={{ color: "rgba(255,255,255,0.6)" }}>
-            Africa's Web3 revolution is already underway. Without strong policy frameworks, credible research, and educated leadership, the continent risks repeating the mistakes of previous digital waves — where adoption outpaced governance and ordinary citizens bore the cost. Africa Web3 Institute is here to ensure that doesn't happen.
-          </p>
+            {T.whyMattersText1}</p>
         </div>
       </section>
 
@@ -323,7 +324,7 @@ const functional = TEAM.filter(
         className="text-xs font-semibold tracking-[0.18em] uppercase mb-3"
         style={{ color: "#D4A017" }}
       >
-        Our People
+        {T.tamTag}
       </p>
 
       <h2 className="text-[1.75rem] font-bold text-secondary mb-3">
@@ -357,7 +358,7 @@ const functional = TEAM.filter(
             className="text-xs uppercase tracking-[0.18em] font-semibold mb-3"
             style={{ color: "#D4A017" }}
           >
-            Executive Director
+             {T.executiveDirector}
           </p>
 
           <h3 className="text-[1.75rem] font-bold text-secondary mb-2">
@@ -398,7 +399,7 @@ const functional = TEAM.filter(
     {/* Executive Leadership */}
     <div className="mb-16">
       <h3 className="text-xl font-bold text-secondary mb-8 text-center">
-        Executive Leadership
+       {T.executiveLeadership}
       </h3>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -411,7 +412,7 @@ const functional = TEAM.filter(
     {/* Core Management */}
     <div className="mb-16">
       <h3 className="text-xl font-bold text-secondary mb-8 text-center">
-        Core Management
+         {T.coreManagement}
       </h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -424,7 +425,7 @@ const functional = TEAM.filter(
     {/* Programs & Communications */}
     <div>
       <h3 className="text-xl font-bold text-secondary mb-8 text-center">
-        Programs & Communications
+        {T.programsComms}
       </h3>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -441,7 +442,7 @@ const functional = TEAM.filter(
       <section className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Ecosystem</p>
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>{T.partnersTag}</p>
             <h2 className="text-[1.75rem] font-bold text-secondary mb-3">{T.partnersTitle}</h2>
             <p className="text-muted-foreground">{T.partnersSubtitle}</p>
           </div>
@@ -459,7 +460,7 @@ const functional = TEAM.filter(
       <section className="py-16 border-b border-border" style={{ background: "hsl(220 14% 96%)" }}>
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <p className="text-[2rem] mb-5">⚖️</p>
-          <h2 className="text-[1.25rem] font-bold text-secondary mb-4">Independent &amp; Non-Partisan</h2>
+          <h2 className="text-[1.25rem] font-bold text-secondary mb-4">{T.independentTag}</h2>
           <p className="text-muted-foreground leading-[1.85] max-w-2xl mx-auto">
             {T.independentText}
           </p>
@@ -470,7 +471,7 @@ const functional = TEAM.filter(
       <section className="py-20 border-b border-border">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>Contact</p>
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>{T.contactTag}</p>
             <h2 className="text-[1.75rem] font-bold text-secondary mb-3">{T.contactTitle}</h2>
             <p className="text-muted-foreground">{T.contactSubtitle}</p>
           </div>
