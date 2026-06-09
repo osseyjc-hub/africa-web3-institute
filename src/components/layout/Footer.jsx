@@ -85,80 +85,15 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Dynamic link columns from translations */}
-          {Object.entries(T.links).map(([heading, items]) => (
-            <div key={heading}>
-              <h4
-                className="text-[0.6875rem] font-bold tracking-[0.18em] uppercase mb-5"
-                style={{ color: "#D4A017" }}
-              >
-                {heading}
-              </h4>
-              <ul className="space-y-3">
-                {items.map((item) => (
-                  <li key={item}>
-                    <span
-                      className="text-[0.8125rem] cursor-pointer transition-colors"
-                      style={{ color: "rgba(255,255,255,0.4)" }}
-                      onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
-                      onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
-                    >
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+        
+          {/* EXPLORE */}
+          {renderLinks(T.explore)}
 
-          {/* Company column */}
-          <div>
-            <h4 className="text-[0.6875rem] font-bold tracking-[0.18em] uppercase mb-5" style={{ color: "#D4A017" }}>
-              Company
-            </h4>
-            <ul className="space-y-3">
-              <li>
-                <Link to="/about"
-                  className="text-[0.8125rem] transition-colors"
-                  style={{ color: "rgba(255,255,255,0.4)" }}
-                  onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
-                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
-                >
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link to="/privacy-policy"
-                  className="text-[0.8125rem] transition-colors"
-                  style={{ color: "rgba(255,255,255,0.4)" }}
-                  onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
-                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link to="/terms-of-use"
-                  className="text-[0.8125rem] transition-colors"
-                  style={{ color: "rgba(255,255,255,0.4)" }}
-                  onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
-                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
-                >
-                  Terms of Use
-                </Link>
-              </li>
-              <li>
-                <a href="mailto:info@africaweb3institute.org"
-                  className="text-[0.8125rem] transition-colors"
-                  style={{ color: "rgba(255,255,255,0.4)" }}
-                  onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.8)"}
-                  onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
-                >
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-          </div>
+          {/* RESOURCES */}
+          {renderLinks(T.resources)}
+
+          {/* CONNECT */}
+          {renderLinks(T.connect)}
         </div>
 
         <div className="pt-7 flex flex-col sm:flex-row justify-between items-center gap-4">
