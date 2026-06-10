@@ -6,6 +6,8 @@ import { t } from "@/lib/translations";
 
 export default function AdvisoryBoardCard({ member }) {
   const [hovered, setHovered] = React.useState(false);
+   const { lang } = useLang();
+  const T = t[lang].about;
 
   return (
     <div
