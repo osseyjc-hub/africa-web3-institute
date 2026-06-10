@@ -3,6 +3,7 @@ import { useLang } from "@/lib/LanguageContext";
 import { t } from "@/lib/translations";
 import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Globe, BookOpen, GraduationCap, Mail } from "lucide-react";
+import AdvisoryBoardCard from "@/components/about/AdvisoryBoardCard";
 
 const TEAM = [
   {
@@ -89,6 +90,21 @@ const PILLAR_KEYS = [
 ];
 
 
+
+const ADVISORY_BOARD = [
+  {
+    name: "Prof. Fredrick Ndalamani Nonde",
+    country: "🇿🇲 Zambia",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/aa3c6d347_FNNJRCEO.png",
+    linkedin: "https://linkedin.com/in/fredrick-ndalamani-nonde-jr-mba-web3-ecosystem-builder-730b16105",
+  },
+  {
+    name: "Prof. (Dr) h.c. Joerg Molt",
+    country: "🇩🇪 Germany",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/23e1e2951_image_20260608_165401b9457012-8de9-4030-bb7d-ce54f57f0f0b-7.jpg",
+    linkedin: "https://linkedin.com/in/prof-dr-h-c-joerg-m-268882132",
+  },
+];
 
 const PARTNERS = [
   {
@@ -453,6 +469,26 @@ const functional = TEAM.filter(
 
   </div>
 </section>
+
+      {/* F2. ADVISORY BOARD */}
+      <section className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
+        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>
+              Leadership
+            </p>
+            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">Advisory Board</h2>
+            <p className="text-muted-foreground max-w-xl mx-auto">
+              Distinguished experts guiding AWI's strategic direction across policy, technology, and international affairs.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+            {ADVISORY_BOARD.map((member) => (
+              <AdvisoryBoardCard key={member.name} member={member} />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* G. PARTNERS */}
       <section className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
