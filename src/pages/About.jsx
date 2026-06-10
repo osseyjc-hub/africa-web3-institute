@@ -90,7 +90,23 @@ const PILLAR_KEYS = [
 
 
 
-const PARTNER_SLOTS = Array(6).fill(null);
+const PARTNERS = [
+  {
+    name: "Smart World Education",
+    logo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/b09e70dd4_SmartWorldEducationLogo.jpg",
+    url: "https://www.swedu.me/"
+  },
+  {
+    name: "Decentrix Africa",
+    logo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/9e8e906bc_IMG-20260530-WA00011.jpg",
+    url: "https://decentrix.africa/"
+  },
+  {
+    name: "Almstins",
+    logo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/0e14ec7cc_IMG_20260610_145916_072.jpg",
+    url: "https://almstins.com/login"
+  }
+];
 
 const CONTACTS = [
   { icon: "📧", labelKey: "generalEnquiries", email: "info@africaweb3institute.org" },
@@ -447,8 +463,21 @@ const functional = TEAM.filter(
             <p className="text-muted-foreground">{T.partnersSubtitle}</p>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {PARTNER_SLOTS.map((_, i) => (
-              <div key={i} className="aspect-[3/2] flex items-center justify-center bg-white border border-border">
+            {PARTNERS.map((partner, i) => (
+              <a
+                key={i}
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="aspect-[3/2] flex items-center justify-center bg-white border border-border p-3 transition-all hover:scale-105"
+                onMouseEnter={e => e.currentTarget.style.borderColor = "#D4A017"}
+                onMouseLeave={e => e.currentTarget.style.borderColor = ""}
+              >
+                <img src={partner.logo} alt={partner.name} className="max-h-full max-w-full object-contain" />
+              </a>
+            ))}
+            {Array(6 - PARTNERS.length).fill(null).map((_, i) => (
+              <div key={`empty-${i}`} className="aspect-[3/2] flex items-center justify-center bg-white border border-border">
                 <p className="text-[0.75rem] text-muted-foreground/50 text-center px-2">Partner Logo</p>
               </div>
             ))}
