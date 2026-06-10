@@ -17,7 +17,7 @@ export default function AdvisoryBoardCard({ member }) {
     >
       {/* Photo */}
       <div className="w-full aspect-square overflow-hidden"
-        style={{ maxHeight: "240px" }}>
+        style={{ maxHeight: "360px" }}>
         {member.photo ? (
           <img
             src={member.photo}
