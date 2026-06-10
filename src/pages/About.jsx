@@ -475,11 +475,11 @@ const functional = TEAM.filter(
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>
-              Industry Experts
+              {T.advisoryTag}
             </p>
-            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">Advisory Board</h2>
+            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">{T.advisoryTitle}</h2>
             <p className="text-muted-foreground max-w-xl mx-auto">
-              Distinguished experts guiding AWI's strategic direction across policy, technology, and international affairs.
+             {T.advisoryText}
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
