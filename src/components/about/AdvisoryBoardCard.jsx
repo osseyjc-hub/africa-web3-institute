@@ -1,6 +1,7 @@
 import React from "react";
 import { Linkedin } from "lucide-react";
-import {useLang} from "@/lib/LanguaheContext";
+import { useLang } from "@/lib/LanguageContext";
+import { t } from "@/lib/translations";
 
 
 export default function AdvisoryBoardCard({ member }) {
@@ -42,7 +43,7 @@ export default function AdvisoryBoardCard({ member }) {
           className="text-[0.625rem] font-bold tracking-[0.15em] uppercase px-2.5 py-1 mb-3"
           style={{ backgroundColor: "rgba(212,160,23,0.1)", color: "#D4A017", border: "1px solid rgba(212,160,23,0.3)" }}
         >
-          Advisory Board
+          {T.advisoryTitle}
         </span>
 
         <p className="text-[1rem] font-bold text-secondary mb-1 leading-snug">{member.name}</p>
