@@ -1,5 +1,7 @@
 import React from "react";
 import { Linkedin } from "lucide-react";
+import {useLang} from "@/lib/LanguaheContext";
+
 
 export default function AdvisoryBoardCard({ member }) {
   const [hovered, setHovered] = React.useState(false);
