@@ -93,7 +93,7 @@ const PILLAR_KEYS = [
 const PARTNERS = [
   {
     name: "Smart World Education",
-    logo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/b09e70dd4_SmartWorldEducationLogo.jpg",
+    logo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/8e996d543_smartworldlogo1.png",
     url: "https://www.swedu.me/"
   },
   {
