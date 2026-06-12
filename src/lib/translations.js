@@ -550,6 +550,7 @@ export const t = {
       generalEnquiries: "General Enquiries",
       partnerships: "Partnerships",
       media: "Media & Press",
+      backHome: "← Back to Africa Web3 Institute homepage",
     },
     tracker: {
       pageTitle: "Africa Web3 Regulatory Tracker",
@@ -1303,6 +1304,7 @@ roles: {
       generalEnquiries: "Renseignements Généraux",
       partnerships: "Partenariats",
       media: "Médias",
+      backHome: "← Retour à la page d'accueil de l'Africa Web3 Institute",
     },
     tracker: {
       pageTitle: "Suivi Réglementaire Web3 Afrique",
