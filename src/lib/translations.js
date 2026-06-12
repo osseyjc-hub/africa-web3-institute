@@ -1423,7 +1423,7 @@ roles: {
       heroBody: "L'Africa Web3 Institute (AWI) fournit la formation dont les gouvernements, les entreprises et les institutions académiques ont besoin pour opérer dans un système financier en mutation. Nous allons au-delà du battage médiatique pour nous concentrer sur la mise en œuvre pratique.",
       audienceEyebrow: "Public cible",
       audienceHeading: "Qui nous formons",
-      focusLabel: "Focus",
+      focusLabel: "faire le point",
       groups: [
         { icon: "🏛️", title: "Gouvernement & Secteur public", desc: "Les ministères, banques centrales et régulateurs doivent intégrer les nouvelles technologies en toute sécurité tout en maintenant la confiance publique.", focus: "Fondamentaux Web3, réglementation des actifs numériques, politique stablecoin, Monnaies Numériques de Banque Centrale (MNBC), identité numérique et intégration ZLECAf." },
         { icon: "🏦", title: "Institutions financières", desc: "Les banques, fintechs et gestionnaires d'actifs adoptent les paiements programmables et la finance tokenisée. Nous les guidons dans cette transition.", focus: "Intégration VASP, garde d'actifs numériques, conformité LBC/FT et titres tokenisés." },
