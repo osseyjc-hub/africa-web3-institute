@@ -67,11 +67,11 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Restrictions partially lifted in 2025" },
     },
     timeline: [
-      { date: "March 2026", title: "CBN Issues Updated VASP Guidelines", desc: "Central Bank updates virtual asset service provider compliance requirements.", severity: "Positive" },
-      { date: "November 2025", title: "SEC Approves First Digital Asset Exchange", desc: "Nigeria's SEC grants first full operating license to a digital asset exchange.", severity: "Positive" },
-      { date: "June 2025", title: "P2P Trading Restrictions Partially Lifted", desc: "CBN eases restrictions on P2P crypto trading platforms.", severity: "Neutral" },
-      { date: "February 2024", title: "Binance Exits Nigerian Market", desc: "Binance suspends Nigerian operations following regulatory standoff.", severity: "Restrictive" },
-      { date: "February 2021", title: "CBN Bans Banks from Servicing Crypto", desc: "Central Bank directs banks to close accounts of crypto exchanges.", severity: "Restrictive" },
+      { date: "March 2026", title: "CBN Issues Updated VASP Guidelines", desc: "Central Bank updates virtual asset service provider compliance requirements.", severity: "Positive", content: { en: { title: "CBN Issues Updated VASP Guidelines", desc: "Central Bank updates virtual asset service provider compliance requirements." }, fr: { title: "La CBN publie des directives VASP mises à jour", desc: "La Banque centrale met à jour les exigences de conformité pour les prestataires de services sur actifs virtuels." } } },
+      { date: "November 2025", title: "SEC Approves First Digital Asset Exchange", desc: "Nigeria's SEC grants first full operating license to a digital asset exchange.", severity: "Positive", content: { en: { title: "SEC Approves First Digital Asset Exchange", desc: "Nigeria's SEC grants first full operating license to a digital asset exchange." }, fr: { title: "La SEC approuve la première bourse d'actifs numériques", desc: "La SEC du Nigeria accorde la première licence d'exploitation complète à une bourse d'actifs numériques." } } },
+      { date: "June 2025", title: "P2P Trading Restrictions Partially Lifted", desc: "CBN eases restrictions on P2P crypto trading platforms.", severity: "Neutral", content: { en: { title: "P2P Trading Restrictions Partially Lifted", desc: "CBN eases restrictions on P2P crypto trading platforms." }, fr: { title: "Levée partielle des restrictions sur le trading P2P", desc: "La CBN assouplit les restrictions sur les plateformes de trading crypto P2P." } } },
+      { date: "February 2024", title: "Binance Exits Nigerian Market", desc: "Binance suspends Nigerian operations following regulatory standoff.", severity: "Restrictive", content: { en: { title: "Binance Exits Nigerian Market", desc: "Binance suspends Nigerian operations following regulatory standoff." }, fr: { title: "Binance quitte le marché nigérian", desc: "Binance suspend ses opérations au Nigeria suite à un bras de fer réglementaire." } } },
+      { date: "February 2021", title: "CBN Bans Banks from Servicing Crypto", desc: "Central Bank directs banks to close accounts of crypto exchanges.", severity: "Restrictive", content: { en: { title: "CBN Bans Banks from Servicing Crypto", desc: "Central Bank directs banks to close accounts of crypto exchanges." }, fr: { title: "La CBN interdit aux banques de servir les cryptos", desc: "La Banque centrale ordonne aux banques de fermer les comptes des plateformes d'échange crypto." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Evolving framework with some enforcement unpredictability" },
@@ -104,10 +104,10 @@ export const COUNTRY_DATA = {
       p2p: { status: "Regulated", note: "Allowed under licensed exchange framework" },
     },
     timeline: [
-      { date: "January 2026", title: "Rwanda Issues Comprehensive Crypto Regulations", desc: "National Bank of Rwanda publishes full virtual asset regulatory framework.", severity: "Positive" },
-      { date: "August 2025", title: "Second Crypto Exchange Licensed", desc: "Rwanda grants its second full crypto exchange operating license.", severity: "Positive" },
-      { date: "March 2024", title: "Blockchain Innovation Hub Launched", desc: "Government opens dedicated blockchain innovation center in Kigali.", severity: "Positive" },
-      { date: "2022", title: "First Regulatory Sandbox Approved", desc: "Rwanda becomes first African country to approve crypto regulatory sandbox.", severity: "Positive" },
+      { date: "January 2026", title: "Rwanda Issues Comprehensive Crypto Regulations", desc: "National Bank of Rwanda publishes full virtual asset regulatory framework.", severity: "Positive", content: { en: { title: "Rwanda Issues Comprehensive Crypto Regulations", desc: "National Bank of Rwanda publishes full virtual asset regulatory framework." }, fr: { title: "Le Rwanda publie une réglementation crypto complète", desc: "La Banque nationale du Rwanda publie le cadre réglementaire complet des actifs virtuels." } } },
+      { date: "August 2025", title: "Second Crypto Exchange Licensed", desc: "Rwanda grants its second full crypto exchange operating license.", severity: "Positive", content: { en: { title: "Second Crypto Exchange Licensed", desc: "Rwanda grants its second full crypto exchange operating license." }, fr: { title: "Deuxième licence de plateforme d'échange crypto accordée", desc: "Le Rwanda accorde sa deuxième licence complète d'exploitation de plateforme d'échange crypto." } } },
+      { date: "March 2024", title: "Blockchain Innovation Hub Launched", desc: "Government opens dedicated blockchain innovation center in Kigali.", severity: "Positive", content: { en: { title: "Blockchain Innovation Hub Launched", desc: "Government opens dedicated blockchain innovation center in Kigali." }, fr: { title: "Lancement du hub d'innovation blockchain", desc: "Le gouvernement ouvre un centre dédié à l'innovation blockchain à Kigali." } } },
+      { date: "2022", title: "First Regulatory Sandbox Approved", desc: "Rwanda becomes first African country to approve crypto regulatory sandbox.", severity: "Positive", content: { en: { title: "First Regulatory Sandbox Approved", desc: "Rwanda becomes first African country to approve crypto regulatory sandbox." }, fr: { title: "Premier bac à sable réglementaire approuvé", desc: "Le Rwanda devient le premier pays africain à approuver un bac à sable réglementaire crypto." } } },
     ],
     risks: {
       regulatory: { level: "Low", note: "Clear and stable regulatory framework in place" },
@@ -140,9 +140,9 @@ export const COUNTRY_DATA = {
       p2p: { status: "Regulated", note: "Allowed under VASP framework" },
     },
     timeline: [
-      { date: "February 2026", title: "FSCA Issues VASP Compliance Update", desc: "Updated compliance requirements for registered virtual asset providers.", severity: "Positive" },
-      { date: "June 2023", title: "First VASP Licenses Issued", desc: "FSCA begins issuing licenses to crypto service providers.", severity: "Positive" },
-      { date: "October 2022", title: "Crypto Declared Financial Product", desc: "FSCA formally classifies crypto assets as financial products under FAIS Act.", severity: "Positive" },
+      { date: "February 2026", title: "FSCA Issues VASP Compliance Update", desc: "Updated compliance requirements for registered virtual asset providers.", severity: "Positive", content: { en: { title: "FSCA Issues VASP Compliance Update", desc: "Updated compliance requirements for registered virtual asset providers." }, fr: { title: "La FSCA publie une mise à jour de conformité VASP", desc: "Exigences de conformité mises à jour pour les prestataires d'actifs virtuels enregistrés." } } },
+      { date: "June 2023", title: "First VASP Licenses Issued", desc: "FSCA begins issuing licenses to crypto service providers.", severity: "Positive", content: { en: { title: "First VASP Licenses Issued", desc: "FSCA begins issuing licenses to crypto service providers." }, fr: { title: "Premières licences VASP délivrées", desc: "La FSCA commence à délivrer des licences aux prestataires de services crypto." } } },
+      { date: "October 2022", title: "Crypto Declared Financial Product", desc: "FSCA formally classifies crypto assets as financial products under FAIS Act.", severity: "Positive", content: { en: { title: "Crypto Declared Financial Product", desc: "FSCA formally classifies crypto assets as financial products under FAIS Act." }, fr: { title: "Les cryptos déclarées produits financiers", desc: "La FSCA classe officiellement les actifs crypto comme produits financiers en vertu de la loi FAIS." } } },
     ],
     risks: {
       regulatory: { level: "Low", note: "Most mature regulatory framework in Southern Africa" },
@@ -175,9 +175,9 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Active P2P market with no specific regulation" },
     },
     timeline: [
-      { date: "April 2026", title: "CMA Publishes Draft Crypto Regulations", desc: "Capital Markets Authority releases draft framework for public comment.", severity: "Positive" },
-      { date: "January 2026", title: "Digital Shilling Feasibility Study Released", desc: "Central Bank of Kenya publishes findings on CBDC feasibility.", severity: "Neutral" },
-      { date: "2024", title: "M-Pesa Crypto Integration Piloted", desc: "Safaricom pilots crypto on/off ramp via M-Pesa network.", severity: "Positive" },
+      { date: "April 2026", title: "CMA Publishes Draft Crypto Regulations", desc: "Capital Markets Authority releases draft framework for public comment.", severity: "Positive", content: { en: { title: "CMA Publishes Draft Crypto Regulations", desc: "Capital Markets Authority releases draft framework for public comment." }, fr: { title: "La CMA publie un projet de réglementation crypto", desc: "L'Autorité des marchés de capitaux publie un projet de cadre pour consultation publique." } } },
+      { date: "January 2026", title: "Digital Shilling Feasibility Study Released", desc: "Central Bank of Kenya publishes findings on CBDC feasibility.", severity: "Neutral", content: { en: { title: "Digital Shilling Feasibility Study Released", desc: "Central Bank of Kenya publishes findings on CBDC feasibility." }, fr: { title: "Publication de l'étude de faisabilité du shilling numérique", desc: "La Banque centrale du Kenya publie les conclusions sur la faisabilité d'une MNBC." } } },
+      { date: "2024", title: "M-Pesa Crypto Integration Piloted", desc: "Safaricom pilots crypto on/off ramp via M-Pesa network.", severity: "Positive", content: { en: { title: "M-Pesa Crypto Integration Piloted", desc: "Safaricom pilots crypto on/off ramp via M-Pesa network." }, fr: { title: "Projet pilote d'intégration crypto M-Pesa", desc: "Safaricom teste une rampe d'accès crypto via le réseau M-Pesa." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Framework in development, uncertainty remains" },
@@ -210,8 +210,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Active but unregulated" },
     },
     timeline: [
-      { date: "January 2026", title: "SEC Ghana Issues Crypto Advisory", desc: "Securities and Exchange Commission issues investor advisory on crypto assets.", severity: "Neutral" },
-      { date: "2022", title: "e-Cedi CBDC Pilot Launched", desc: "Bank of Ghana launches pilot of digital cedi with selected institutions.", severity: "Positive" },
+      { date: "January 2026", title: "SEC Ghana Issues Crypto Advisory", desc: "Securities and Exchange Commission issues investor advisory on crypto assets.", severity: "Neutral", content: { en: { title: "SEC Ghana Issues Crypto Advisory", desc: "Securities and Exchange Commission issues investor advisory on crypto assets." }, fr: { title: "La SEC du Ghana publie un avis sur les cryptos", desc: "La Commission des valeurs mobilières publie un avis aux investisseurs sur les actifs crypto." } } },
+      { date: "2022", title: "e-Cedi CBDC Pilot Launched", desc: "Bank of Ghana launches pilot of digital cedi with selected institutions.", severity: "Positive", content: { en: { title: "e-Cedi CBDC Pilot Launched", desc: "Bank of Ghana launches pilot of digital cedi with selected institutions." }, fr: { title: "Lancement du projet pilote e-Cedi", desc: "La Banque du Ghana lance le projet pilote du cedi numérique avec des institutions sélectionnées." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Framework developing but no clear timeline" },
@@ -244,9 +244,9 @@ export const COUNTRY_DATA = {
       p2p: { status: "Restricted", note: "Officially prohibited" },
     },
     timeline: [
-      { date: "December 2025", title: "CBE Reaffirms Crypto Ban", desc: "Central Bank of Egypt issues statement reaffirming prohibition on crypto.", severity: "Restrictive" },
-      { date: "2022", title: "Religious Authority Issues Crypto Fatwa", desc: "Dar al-Ifta issues ruling on crypto compatibility with Islamic finance.", severity: "Restrictive" },
-      { date: "2020", title: "Banking Law Prohibits Crypto", desc: "Egypt's banking law formally prohibits unlicensed virtual currencies.", severity: "Restrictive" },
+      { date: "December 2025", title: "CBE Reaffirms Crypto Ban", desc: "Central Bank of Egypt issues statement reaffirming prohibition on crypto.", severity: "Restrictive", content: { en: { title: "CBE Reaffirms Crypto Ban", desc: "Central Bank of Egypt issues statement reaffirming prohibition on crypto." }, fr: { title: "La CBE réaffirme l'interdiction des cryptos", desc: "La Banque centrale d'Égypte publie une déclaration réaffirmant l'interdiction des cryptomonnaies." } } },
+      { date: "2022", title: "Religious Authority Issues Crypto Fatwa", desc: "Dar al-Ifta issues ruling on crypto compatibility with Islamic finance.", severity: "Restrictive", content: { en: { title: "Religious Authority Issues Crypto Fatwa", desc: "Dar al-Ifta issues ruling on crypto compatibility with Islamic finance." }, fr: { title: "L'autorité religieuse émet une fatwa sur les cryptos", desc: "Dar al-Ifta émet un avis sur la compatibilité des cryptos avec la finance islamique." } } },
+      { date: "2020", title: "Banking Law Prohibits Crypto", desc: "Egypt's banking law formally prohibits unlicensed virtual currencies.", severity: "Restrictive", content: { en: { title: "Banking Law Prohibits Crypto", desc: "Egypt's banking law formally prohibits unlicensed virtual currencies." }, fr: { title: "La loi bancaire interdit les cryptos", desc: "La loi bancaire égyptienne interdit formellement les monnaies virtuelles non autorisées." } } },
     ],
     risks: {
       regulatory: { level: "High", note: "Active prohibition with legal consequences" },
@@ -279,8 +279,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Undefined", note: "Unregulated grey area" },
     },
     timeline: [
-      { date: "November 2025", title: "Land Registry Blockchain Pilot Expands", desc: "Ethiopian government expands blockchain land registry pilot to 3 regions.", severity: "Positive" },
-      { date: "2023", title: "National Blockchain Strategy Published", desc: "Ethiopia publishes national strategy for blockchain adoption in public services.", severity: "Positive" },
+      { date: "November 2025", title: "Land Registry Blockchain Pilot Expands", desc: "Ethiopian government expands blockchain land registry pilot to 3 regions.", severity: "Positive", content: { en: { title: "Land Registry Blockchain Pilot Expands", desc: "Ethiopian government expands blockchain land registry pilot to 3 regions." }, fr: { title: "Expansion du projet pilote blockchain du cadastre", desc: "Le gouvernement éthiopien étend le projet pilote de cadastre blockchain à 3 régions." } } },
+      { date: "2023", title: "National Blockchain Strategy Published", desc: "Ethiopia publishes national strategy for blockchain adoption in public services.", severity: "Positive", content: { en: { title: "National Blockchain Strategy Published", desc: "Ethiopia publishes national strategy for blockchain adoption in public services." }, fr: { title: "Publication de la stratégie nationale blockchain", desc: "L'Éthiopie publie sa stratégie nationale pour l'adoption de la blockchain dans les services publics." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "No hostile regulation but significant uncertainty" },
@@ -313,8 +313,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Active market under general financial regulation" },
     },
     timeline: [
-      { date: "February 2026", title: "BCEAO Issues Updated Crypto Guidance", desc: "Regional central bank updates guidance for virtual asset activities.", severity: "Neutral" },
-      { date: "2023", title: "e-CFA CBDC Pilot Launched", desc: "BCEAO launches digital CFA franc pilot across WAEMU member states.", severity: "Positive" },
+      { date: "February 2026", title: "BCEAO Issues Updated Crypto Guidance", desc: "Regional central bank updates guidance for virtual asset activities.", severity: "Neutral", content: { en: { title: "BCEAO Issues Updated Crypto Guidance", desc: "Regional central bank updates guidance for virtual asset activities." }, fr: { title: "La BCEAO publie des directives crypto mises à jour", desc: "La banque centrale régionale met à jour ses directives pour les activités d'actifs virtuels." } } },
+      { date: "2023", title: "e-CFA CBDC Pilot Launched", desc: "BCEAO launches digital CFA franc pilot across WAEMU member states.", severity: "Positive", content: { en: { title: "e-CFA CBDC Pilot Launched", desc: "BCEAO launches digital CFA franc pilot across WAEMU member states." }, fr: { title: "Lancement du projet pilote e-CFA", desc: "La BCEAO lance le projet pilote du franc CFA numérique dans les États membres de l'UEMOA." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Dependent on BCEAO regional decisions" },
@@ -347,9 +347,9 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Unofficial but tolerated" },
     },
     timeline: [
-      { date: "October 2025", title: "Bank of Tanzania Opens Crypto Consultation", desc: "Central bank opens public consultation on virtual asset regulation.", severity: "Positive" },
-      { date: "2021", title: "President Urges Crypto Preparation", desc: "President Samia Suluhu Hassan urges central bank to prepare for crypto.", severity: "Positive" },
-      { date: "2019", title: "BOT Issues Crypto Warning", desc: "Bank of Tanzania warns public against cryptocurrency use.", severity: "Restrictive" },
+      { date: "October 2025", title: "Bank of Tanzania Opens Crypto Consultation", desc: "Central bank opens public consultation on virtual asset regulation.", severity: "Positive", content: { en: { title: "Bank of Tanzania Opens Crypto Consultation", desc: "Central bank opens public consultation on virtual asset regulation." }, fr: { title: "La Banque de Tanzanie ouvre une consultation crypto", desc: "La banque centrale ouvre une consultation publique sur la réglementation des actifs virtuels." } } },
+      { date: "2021", title: "President Urges Crypto Preparation", desc: "President Samia Suluhu Hassan urges central bank to prepare for crypto.", severity: "Positive", content: { en: { title: "President Urges Crypto Preparation", desc: "President Samia Suluhu Hassan urges central bank to prepare for crypto." }, fr: { title: "La Présidente appelle à se préparer pour les cryptos", desc: "La Présidente Samia Suluhu Hassan appelle la banque centrale à se préparer pour les cryptomonnaies." } } },
+      { date: "2019", title: "BOT Issues Crypto Warning", desc: "Bank of Tanzania warns public against cryptocurrency use.", severity: "Restrictive", content: { en: { title: "BOT Issues Crypto Warning", desc: "Bank of Tanzania warns public against cryptocurrency use." }, fr: { title: "La BOT émet un avertissement sur les cryptos", desc: "La Banque de Tanzanie met en garde le public contre l'utilisation des cryptomonnaies." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Framework in early stages" },
@@ -382,9 +382,9 @@ export const COUNTRY_DATA = {
       p2p: { status: "Restricted", note: "Officially prohibited" },
     },
     timeline: [
-      { date: "January 2026", title: "Government Announces Crypto Regulation Study", desc: "Morocco announces formal study into developing crypto regulatory framework.", severity: "Positive" },
-      { date: "2023", title: "Digital Dirham CBDC Study Begins", desc: "Bank Al-Maghrib launches study on central bank digital currency.", severity: "Positive" },
-      { date: "2017", title: "Office des Changes Issues Crypto Ban", desc: "Foreign exchange authority prohibits crypto transactions.", severity: "Restrictive" },
+      { date: "January 2026", title: "Government Announces Crypto Regulation Study", desc: "Morocco announces formal study into developing crypto regulatory framework.", severity: "Positive", content: { en: { title: "Government Announces Crypto Regulation Study", desc: "Morocco announces formal study into developing crypto regulatory framework." }, fr: { title: "Le gouvernement annonce une étude sur la réglementation crypto", desc: "Le Maroc annonce une étude formelle pour développer un cadre réglementaire crypto." } } },
+      { date: "2023", title: "Digital Dirham CBDC Study Begins", desc: "Bank Al-Maghrib launches study on central bank digital currency.", severity: "Positive", content: { en: { title: "Digital Dirham CBDC Study Begins", desc: "Bank Al-Maghrib launches study on central bank digital currency." }, fr: { title: "Début de l'étude sur le dirham numérique", desc: "Bank Al-Maghrib lance une étude sur la monnaie numérique de banque centrale." } } },
+      { date: "2017", title: "Office des Changes Issues Crypto Ban", desc: "Foreign exchange authority prohibits crypto transactions.", severity: "Restrictive", content: { en: { title: "Office des Changes Issues Crypto Ban", desc: "Foreign exchange authority prohibits crypto transactions." }, fr: { title: "L'Office des Changes interdit les cryptos", desc: "L'autorité de contrôle des changes interdit les transactions en cryptomonnaies." } } },
     ],
     risks: {
       regulatory: { level: "High", note: "Active prohibition though softening stance" },
@@ -417,8 +417,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Active community trading" },
     },
     timeline: [
-      { date: "December 2025", title: "First National Blockchain Conference", desc: "Government hosts first national conference on blockchain and digital economy.", severity: "Positive" },
-      { date: "2023", title: "BEAC Issues Virtual Asset Guidance", desc: "Regional central bank issues first guidance on virtual asset activities.", severity: "Neutral" },
+      { date: "December 2025", title: "First National Blockchain Conference", desc: "Government hosts first national conference on blockchain and digital economy.", severity: "Positive", content: { en: { title: "First National Blockchain Conference", desc: "Government hosts first national conference on blockchain and digital economy." }, fr: { title: "Première conférence nationale sur la blockchain", desc: "Le gouvernement organise la première conférence nationale sur la blockchain et l'économie numérique." } } },
+      { date: "2023", title: "BEAC Issues Virtual Asset Guidance", desc: "Regional central bank issues first guidance on virtual asset activities.", severity: "Neutral", content: { en: { title: "BEAC Issues Virtual Asset Guidance", desc: "Regional central bank issues first guidance on virtual asset activities." }, fr: { title: "La BEAC publie des directives sur les actifs virtuels", desc: "La banque centrale régionale publie ses premières directives sur les activités d'actifs virtuels." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Dependent on BEAC regional policy" },
@@ -451,8 +451,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Growing P2P market" },
     },
     timeline: [
-      { date: "November 2025", title: "Abidjan Fintech Forum Highlights Blockchain", desc: "Major fintech conference spotlights blockchain adoption in Francophone Africa.", severity: "Positive" },
-      { date: "2023", title: "e-CFA Pilot Includes Côte d'Ivoire", desc: "Country included in BCEAO regional digital currency pilot.", severity: "Positive" },
+      { date: "November 2025", title: "Abidjan Fintech Forum Highlights Blockchain", desc: "Major fintech conference spotlights blockchain adoption in Francophone Africa.", severity: "Positive", content: { en: { title: "Abidjan Fintech Forum Highlights Blockchain", desc: "Major fintech conference spotlights blockchain adoption in Francophone Africa." }, fr: { title: "Le Forum Fintech d'Abidjan met en avant la blockchain", desc: "Une grande conférence fintech met en lumière l'adoption de la blockchain en Afrique francophone." } } },
+      { date: "2023", title: "e-CFA Pilot Includes Côte d'Ivoire", desc: "Country included in BCEAO regional digital currency pilot.", severity: "Positive", content: { en: { title: "e-CFA Pilot Includes Côte d'Ivoire", desc: "Country included in BCEAO regional digital currency pilot." }, fr: { title: "Le projet pilote e-CFA inclut la Côte d'Ivoire", desc: "Le pays est inclus dans le projet pilote de monnaie numérique régionale de la BCEAO." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Regional framework provides some clarity" },
@@ -485,8 +485,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "High adoption driven by inflation concerns" },
     },
     timeline: [
-      { date: "March 2026", title: "RBZ Expands Digital Token Program", desc: "Reserve Bank expands gold-backed digital token to retail investors.", severity: "Positive" },
-      { date: "2023", title: "Gold-Backed Digital Token Launched", desc: "RBZ launches ZiG gold-backed digital currency.", severity: "Positive" },
+      { date: "March 2026", title: "RBZ Expands Digital Token Program", desc: "Reserve Bank expands gold-backed digital token to retail investors.", severity: "Positive", content: { en: { title: "RBZ Expands Digital Token Program", desc: "Reserve Bank expands gold-backed digital token to retail investors." }, fr: { title: "La RBZ étend le programme de jetons numériques", desc: "La Banque de réserve étend le jeton numérique adossé à l'or aux investisseurs particuliers." } } },
+      { date: "2023", title: "Gold-Backed Digital Token Launched", desc: "RBZ launches ZiG gold-backed digital currency.", severity: "Positive", content: { en: { title: "Gold-Backed Digital Token Launched", desc: "RBZ launches ZiG gold-backed digital currency." }, fr: { title: "Lancement du jeton numérique adossé à l'or", desc: "La RBZ lance le ZiG, une monnaie numérique adossée à l'or." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Framework developing but economic instability adds risk" },
@@ -519,7 +519,7 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Growing youth-driven P2P market" },
     },
     timeline: [
-      { date: "September 2025", title: "SEC Zambia Opens Crypto Consultation", desc: "Securities regulator opens public consultation on virtual asset regulation.", severity: "Positive" },
+      { date: "September 2025", title: "SEC Zambia Opens Crypto Consultation", desc: "Securities regulator opens public consultation on virtual asset regulation.", severity: "Positive", content: { en: { title: "SEC Zambia Opens Crypto Consultation", desc: "Securities regulator opens public consultation on virtual asset regulation." }, fr: { title: "La SEC de Zambie ouvre une consultation crypto", desc: "Le régulateur des valeurs mobilières ouvre une consultation publique sur la réglementation des actifs virtuels." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Framework at very early stage" },
@@ -552,8 +552,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Restricted", note: "Illegal under current law" },
     },
     timeline: [
-      { date: "June 2025", title: "Algeria Reaffirms Crypto Prohibition", desc: "Ministry of Finance reaffirms prohibition on cryptocurrency transactions.", severity: "Restrictive" },
-      { date: "2018", title: "Finance Law Bans Crypto", desc: "Algeria's finance law explicitly prohibits the use of virtual currencies.", severity: "Restrictive" },
+      { date: "June 2025", title: "Algeria Reaffirms Crypto Prohibition", desc: "Ministry of Finance reaffirms prohibition on cryptocurrency transactions.", severity: "Restrictive", content: { en: { title: "Algeria Reaffirms Crypto Prohibition", desc: "Ministry of Finance reaffirms prohibition on cryptocurrency transactions." }, fr: { title: "L'Algérie réaffirme l'interdiction des cryptos", desc: "Le Ministère des Finances réaffirme l'interdiction des transactions en cryptomonnaies." } } },
+      { date: "2018", title: "Finance Law Bans Crypto", desc: "Algeria's finance law explicitly prohibits the use of virtual currencies.", severity: "Restrictive", content: { en: { title: "Finance Law Bans Crypto", desc: "Algeria's finance law explicitly prohibits the use of virtual currencies." }, fr: { title: "La loi de finances interdit les cryptos", desc: "La loi de finances algérienne interdit explicitement l'utilisation des monnaies virtuelles." } } },
     ],
     risks: {
       regulatory: { level: "High", note: "Explicit legal prohibition in force" },
@@ -586,7 +586,7 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Active P2P market" },
     },
     timeline: [
-      { date: "August 2025", title: "CMA Uganda Signals Crypto Framework", desc: "Capital Markets Authority announces plans to develop crypto regulation.", severity: "Positive" },
+      { date: "August 2025", title: "CMA Uganda Signals Crypto Framework", desc: "Capital Markets Authority announces plans to develop crypto regulation.", severity: "Positive", content: { en: { title: "CMA Uganda Signals Crypto Framework", desc: "Capital Markets Authority announces plans to develop crypto regulation." }, fr: { title: "La CMA ougandaise annonce un cadre crypto", desc: "L'Autorité des marchés de capitaux annonce son intention de développer une réglementation crypto." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "No hostile regulation but significant uncertainty" },
@@ -619,8 +619,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Growing market with some oversight" },
     },
     timeline: [
-      { date: "February 2026", title: "BCT Publishes Digital Asset Roadmap", desc: "Central bank publishes roadmap for comprehensive digital asset regulation.", severity: "Positive" },
-      { date: "2020", title: "E-Dinar CBDC Issued", desc: "Tunisia issues E-Dinar becoming one of Africa's first CBDC issuers.", severity: "Positive" },
+      { date: "February 2026", title: "BCT Publishes Digital Asset Roadmap", desc: "Central bank publishes roadmap for comprehensive digital asset regulation.", severity: "Positive", content: { en: { title: "BCT Publishes Digital Asset Roadmap", desc: "Central bank publishes roadmap for comprehensive digital asset regulation." }, fr: { title: "La BCT publie une feuille de route sur les actifs numériques", desc: "La banque centrale publie une feuille de route pour une réglementation complète des actifs numériques." } } },
+      { date: "2020", title: "E-Dinar CBDC Issued", desc: "Tunisia issues E-Dinar becoming one of Africa's first CBDC issuers.", severity: "Positive", content: { en: { title: "E-Dinar CBDC Issued", desc: "Tunisia issues E-Dinar becoming one of Africa's first CBDC issuers." }, fr: { title: "Émission du E-Dinar MNBC", desc: "La Tunisie émet le E-Dinar, devenant l'un des premiers émetteurs de MNBC en Afrique." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Progressive but incomplete framework" },
@@ -653,8 +653,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Emerging", note: "Growing market" },
     },
     timeline: [
-      { date: "January 2026", title: "NBFIRA Issues Crypto Guidelines", desc: "Non-bank financial regulator issues guidelines for virtual asset providers.", severity: "Positive" },
-      { date: "2022", title: "NBFIRA Opens Crypto Consultation", desc: "Regulator opens public consultation on virtual asset regulation.", severity: "Positive" },
+      { date: "January 2026", title: "NBFIRA Issues Crypto Guidelines", desc: "Non-bank financial regulator issues guidelines for virtual asset providers.", severity: "Positive", content: { en: { title: "NBFIRA Issues Crypto Guidelines", desc: "Non-bank financial regulator issues guidelines for virtual asset providers." }, fr: { title: "La NBFIRA publie des directives crypto", desc: "Le régulateur financier non bancaire publie des directives pour les prestataires d'actifs virtuels." } } },
+      { date: "2022", title: "NBFIRA Opens Crypto Consultation", desc: "Regulator opens public consultation on virtual asset regulation.", severity: "Positive", content: { en: { title: "NBFIRA Opens Crypto Consultation", desc: "Regulator opens public consultation on virtual asset regulation." }, fr: { title: "La NBFIRA ouvre une consultation crypto", desc: "Le régulateur ouvre une consultation publique sur la réglementation des actifs virtuels." } } },
     ],
     risks: {
       regulatory: { level: "Medium", note: "Framework developing in stable environment" },
@@ -687,8 +687,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Regulated", note: "Allowed under licensed framework" },
     },
     timeline: [
-      { date: "2024", title: "VAITOS Framework Reaffirmed", desc: "Financial Services Commission reconfirms Mauritius's position as a leading offshore crypto hub with mature VASP licensing classes.", severity: "Positive" },
-      { date: "2022", title: "VASP Licensing Classes Formalized", desc: "FSC formalizes multiple VASP license categories providing full regulatory clarity for crypto businesses operating in or from Mauritius.", severity: "Positive" },
+      { date: "2024", title: "VAITOS Framework Reaffirmed", desc: "Financial Services Commission reconfirms Mauritius's position as a leading offshore crypto hub with mature VASP licensing classes.", severity: "Positive", content: { en: { title: "VAITOS Framework Reaffirmed", desc: "Financial Services Commission reconfirms Mauritius's position as a leading offshore crypto hub with mature VASP licensing classes." }, fr: { title: "Réaffirmation du cadre VAITOS", desc: "La Commission des services financiers confirme la position de Maurice comme hub crypto offshore de premier plan avec des classes de licences VASP matures." } } },
+      { date: "2022", title: "VASP Licensing Classes Formalized", desc: "FSC formalizes multiple VASP license categories providing full regulatory clarity for crypto businesses operating in or from Mauritius.", severity: "Positive", content: { en: { title: "VASP Licensing Classes Formalized", desc: "FSC formalizes multiple VASP license categories providing full regulatory clarity for crypto businesses operating in or from Mauritius." }, fr: { title: "Formalisation des classes de licences VASP", desc: "La FSC formalise plusieurs catégories de licences VASP offrant une clarté réglementaire complète pour les entreprises crypto opérant à Maurice." } } },
     ],
     risks: {
       regulatory: { level: "Low", note: "Mature and stable VAITOS framework" },
@@ -721,7 +721,7 @@ export const COUNTRY_DATA = {
       p2p: { status: "Regulated", note: "Allowed under licensed framework" },
     },
     timeline: [
-      { date: "2025", title: "Offshore VASP Licensing Framework Active", desc: "Seychelles continues to attract international VASPs with flexible licensing regime under the Financial Services Authority.", severity: "Positive" },
+      { date: "2025", title: "Offshore VASP Licensing Framework Active", desc: "Seychelles continues to attract international VASPs with flexible licensing regime under the Financial Services Authority.", severity: "Positive", content: { en: { title: "Offshore VASP Licensing Framework Active", desc: "Seychelles continues to attract international VASPs with flexible licensing regime under the Financial Services Authority." }, fr: { title: "Cadre de licences VASP offshore actif", desc: "Les Seychelles continuent d'attirer les VASP internationaux avec un régime de licences flexible sous l'Autorité des services financiers." } } },
     ],
     risks: {
       regulatory: { level: "Low", note: "Stable flexible framework in place" },
@@ -754,8 +754,8 @@ export const COUNTRY_DATA = {
       p2p: { status: "Regulated", note: "Allowed under licensed framework" },
     },
     timeline: [
-      { date: "2026", title: "Virtual Assets Act Full Implementation", desc: "Namibia advances full implementation of its FATF-aligned Virtual Assets Act, with NAMFISA as the primary VASP licensing authority.", severity: "Positive" },
-      { date: "2024", title: "NAMFISA Issues VASP Guidelines", desc: "Namibia Financial Institutions Supervisory Authority publishes detailed compliance guidelines for virtual asset service providers.", severity: "Positive" },
+      { date: "2026", title: "Virtual Assets Act Full Implementation", desc: "Namibia advances full implementation of its FATF-aligned Virtual Assets Act, with NAMFISA as the primary VASP licensing authority.", severity: "Positive", content: { en: { title: "Virtual Assets Act Full Implementation", desc: "Namibia advances full implementation of its FATF-aligned Virtual Assets Act, with NAMFISA as the primary VASP licensing authority." }, fr: { title: "Mise en œuvre complète de la loi sur les actifs virtuels", desc: "La Namibie progresse dans la mise en œuvre complète de sa loi sur les actifs virtuels alignée sur le GAFI, avec NAMFISA comme autorité principale de licences VASP." } } },
+      { date: "2024", title: "NAMFISA Issues VASP Guidelines", desc: "Namibia Financial Institutions Supervisory Authority publishes detailed compliance guidelines for virtual asset service providers.", severity: "Positive", content: { en: { title: "NAMFISA Issues VASP Guidelines", desc: "Namibia Financial Institutions Supervisory Authority publishes detailed compliance guidelines for virtual asset service providers." }, fr: { title: "NAMFISA publie des directives VASP", desc: "L'Autorité de supervision des institutions financières de Namibie publie des directives détaillées de conformité pour les prestataires de services sur actifs virtuels." } } },
     ],
     risks: {
       regulatory: { level: "Low", note: "Clear framework under Virtual Assets Act" },

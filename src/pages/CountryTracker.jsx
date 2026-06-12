@@ -106,11 +106,11 @@ export default function CountryTracker() {
         country: c.name,
         flag: country.flag,
         region,
-        title: event.title,
+        title: event.content?.[lang]?.title || event.title,
         date: event.date,
         category: inferCategory(event.title, event.desc),
         status: inferStatus(event.severity, event.title),
-        summary: event.desc,
+        summary: event.content?.[lang]?.desc || event.desc,
         awpii_rank: country.rank,
         countryKey: country.key,
       }));
