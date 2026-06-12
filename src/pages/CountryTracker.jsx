@@ -30,30 +30,7 @@ function inferStatus(severity, title = "") {
   return "Active";
 }
 
-// Built exclusively from AWPII 20-country list + countryData timelines
-const REGULATORY_UPDATES = awpiiData.flatMap((country) => {
-  const details = COUNTRY_DATA[country.key];
-  const region = details?.region || "Africa";
-  const timeline = details?.timeline || [{
-    date: "2026",
-    title: country.key_update,
-    desc: `${country.name}: ${country.key_update}`,
-    severity: "Positive",
-  }];
-  return timeline.map((event, idx) => ({
-    id: `${country.id}-${idx}`,
-    country: country.name,
-    flag: country.flag,
-    region,
-    title: event.title,
-    date: event.date,
-    category: inferCategory(event.title, event.desc),
-    status: inferStatus(event.severity, event.title),
-    summary: event.desc,
-    awpii_rank: country.rank,
-    countryKey: country.key,
-  }));
-});
+// REGULATORY_UPDATES is now built inside the component (useMemo) to support bilingual content
 
 const STATUS_COLORS = {
   Draft:              { bg: "#dbeafe", text: "#1e40af", dot: "#2563eb" },
@@ -112,6 +89,33 @@ export default function CountryTracker() {
   const [methodOpen, setMethodOpen] = useState(false);
   const { lang } = useLang();
   const T = t[lang].tracker;
+
+  const REGULATORY_UPDATES = useMemo(() => {
+    return awpiiData.flatMap((country) => {
+      const details = COUNTRY_DATA[country.key];
+      const region = details?.region || "Africa";
+      const c = country.content[lang] || country.content.en;
+      const timeline = details?.timeline || [{
+        date: "2026",
+        title: c.key_update,
+        desc: `${c.name}: ${c.key_update}`,
+        severity: "Positive",
+      }];
+      return timeline.map((event, idx) => ({
+        id: `${country.id}-${idx}`,
+        country: c.name,
+        flag: country.flag,
+        region,
+        title: event.title,
+        date: event.date,
+        category: inferCategory(event.title, event.desc),
+        status: inferStatus(event.severity, event.title),
+        summary: event.desc,
+        awpii_rank: country.rank,
+        countryKey: country.key,
+      }));
+    });
+  }, [lang]);
 
 
   const filtered = useMemo(() => {

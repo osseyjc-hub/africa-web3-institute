@@ -60,7 +60,7 @@ function countryStyle(feature, hoveredKey) {
   };
 }
 
-export default function AfricaMapSVG({ onCountryClick = null, interactive = false }) {
+export default function AfricaMapSVG({ onCountryClick = null, interactive = false, language = "en" }) {
   const [geoData, setGeoData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -91,15 +91,16 @@ export default function AfricaMapSVG({ onCountryClick = null, interactive = fals
       const country = awpiiData.find(c => c.key === key);
       let tooltipContent = `<div style="font-size:12px; padding:6px 10px; line-height:1.4;">`;
       if (country) {
+        const c = country.content[language] || country.content.en;
         tooltipContent += `
           <div style="font-weight:700; font-size:13px; margin-bottom:2px; display:flex; align-items:center; gap:6px;">
-            <span>${country.flag}</span> <span>${country.name}</span>
+            <span>${country.flag}</span> <span>${c.name}</span>
           </div>
           <div style="color:rgba(255,255,255,0.85); font-weight:600;">
-            Score: <span style="color:#ca8a04;">${country.overall_score}</span> | Grade: <span style="color:#ca8a04;">${country.grade}</span>
+            ${language === "fr" ? "Score" : "Score"}: <span style="color:#ca8a04;">${country.overall_score}</span> | ${language === "fr" ? "Note" : "Grade"}: <span style="color:#ca8a04;">${country.grade}</span>
           </div>
           <div style="color:rgba(255,255,255,0.6); font-size:11px; margin-top:3px; max-width:180px; font-style:italic;">
-            ${country.key_update}
+            ${c.key_update}
           </div>
         `;
       } else {

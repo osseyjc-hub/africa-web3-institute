@@ -40,7 +40,7 @@ export default function CountryDeepDive({ selectedCountry, language }) {
         <div className="flex items-center gap-3">
           <span className="text-3xl">{selectedCountry.flag}</span>
           <div>
-            <h3 className="font-bold text-secondary text-2xl tracking-tight leading-none mb-1.5">{selectedCountry.name}</h3>
+            <h3 className="font-bold text-secondary text-2xl tracking-tight leading-none mb-1.5">{selectedCountry.content[language].name}</h3>
             <div className="flex items-center gap-2">
               <span className="text-xs text-muted-foreground font-medium">Rank #{selectedCountry.rank}</span>
               <span className={`text-xs font-bold px-2 py-0.5 rounded ${getGradeBadgeClass(selectedCountry.grade)}`}>
@@ -68,7 +68,7 @@ export default function CountryDeepDive({ selectedCountry, language }) {
         <span className="text-xs font-bold text-accent shrink-0">
           {language === "fr" ? "Mise à Jour :" : "Key Update:"}
         </span>
-        <span className="text-xs text-muted-foreground font-medium leading-relaxed">{selectedCountry.key_update}</span>
+        <span className="text-xs text-muted-foreground font-medium leading-relaxed">{selectedCountry.content[language].key_update}</span>
       </div>
 
       {selectedCountry.pillars ? (
@@ -93,20 +93,20 @@ export default function CountryDeepDive({ selectedCountry, language }) {
               <h4 className="text-xs font-bold text-muted-foreground uppercase tracking-wider">SWOT Insights</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="border border-green-100 bg-green-50/10 dark:border-green-950 dark:bg-green-950/5 p-3 rounded-lg">
-                  <p className="text-xs font-extrabold text-green-700 dark:text-green-400 mb-1">Strengths</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.strengths}</p>
+                  <p className="text-xs font-extrabold text-green-700 dark:text-green-400 mb-1">{language === "fr" ? "Forces" : "Strengths"}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.content[language].swot.strengths}</p>
                 </div>
                 <div className="border border-red-100 bg-red-50/10 dark:border-red-950 dark:bg-red-950/5 p-3 rounded-lg">
-                  <p className="text-xs font-extrabold text-red-700 dark:text-red-400 mb-1">Weaknesses</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.weaknesses}</p>
+                  <p className="text-xs font-extrabold text-red-700 dark:text-red-400 mb-1">{language === "fr" ? "Faiblesses" : "Weaknesses"}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.content[language].swot.weaknesses}</p>
                 </div>
                 <div className="border border-amber-100 bg-amber-50/10 dark:border-amber-950 dark:bg-amber-950/5 p-3 rounded-lg">
-                  <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 mb-1">Opportunities</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.opportunities}</p>
+                  <p className="text-xs font-extrabold text-amber-700 dark:text-amber-400 mb-1">{language === "fr" ? "Opportunités" : "Opportunities"}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.content[language].swot.opportunities}</p>
                 </div>
                 <div className="border border-slate-200 bg-slate-50/10 dark:border-slate-800 dark:bg-slate-900/5 p-3 rounded-lg">
-                  <p className="text-xs font-extrabold text-secondary dark:text-slate-300 mb-1">Threats</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.swot.threats}</p>
+                  <p className="text-xs font-extrabold text-secondary dark:text-slate-300 mb-1">{language === "fr" ? "Menaces" : "Threats"}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed">{selectedCountry.content[language].swot.threats}</p>
                 </div>
               </div>
             </div>

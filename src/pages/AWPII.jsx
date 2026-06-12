@@ -37,7 +37,7 @@ export default function AWPII() {
 
   // Momentum bar chart data (Top 10)
   const momentumData = awpiiData.slice(0, 10).map(c => ({
-    name: c.name,
+    name: c.content[lang].name,
     score: c.overall_score,
     momentum: c.momentum
   }));
@@ -143,7 +143,8 @@ export default function AWPII() {
                   </div>
                 </div>
                 <AfricaMapInteractive 
-                  onCountrySelect={setSelectedCountryKey} 
+                  onCountrySelect={setSelectedCountryKey}
+                  language={lang}
                 />
               </div>
 
@@ -182,7 +183,7 @@ export default function AWPII() {
                           #{country.rank}
                         </span>
                         <span className="text-base shrink-0">{country.flag}</span>
-                        <span className="text-sm truncate max-w-[120px]">{country.name}</span>
+                        <span className="text-sm truncate max-w-[120px]">{country.content[lang].name}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${getGradeBadgeClass(country.grade)}`}>

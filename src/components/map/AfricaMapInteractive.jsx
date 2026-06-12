@@ -1,11 +1,12 @@
 import React from "react";
 import AfricaMapSVG from "./AfricaMapSVG";
 
-export default function AfricaMapInteractive({ onCountrySelect }) {
+export default function AfricaMapInteractive({ onCountrySelect, language = "en" }) {
   return (
     <div className="w-full relative z-0 h-[600px] rounded-xl overflow-hidden shadow-inner border border-border bg-slate-950">
       <AfricaMapSVG
         interactive={true}
+        language={language}
         onCountryClick={(key) => {
           if (onCountrySelect) {
             onCountrySelect(key);
