@@ -565,7 +565,7 @@ const functional = TEAM.filter(
       <div className="border-t border-border py-6 bg-muted/20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <Link to="/" className="text-[0.8125rem] text-muted-foreground hover:text-secondary transition-colors">
-            ← Back to Africa Web3 Institute homepage
+       {T.backHome}
           </Link>
         </div>
       </div>
