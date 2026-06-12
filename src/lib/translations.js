@@ -277,6 +277,8 @@ export const t = {
       newsletterSubtitle: "Get AWI research and policy briefs delivered to your inbox",
       newsletterBtn: "Subscribe",
       newsletterSuccess: "You're subscribed to AWI Publications updates.",
+      stayInformed: "Stay Informed",
+      noResults: "No publications match your search.",
     },
     awpii: {
       heroEyebrow: "Africa Web3 Policy & Innovation Index",
@@ -1036,6 +1038,8 @@ export const t = {
       newsletterSubtitle: "Recevez les recherches et notes de politique d'AWI dans votre boîte de réception",
       newsletterBtn: "S'abonner",
       newsletterSuccess: "Vous êtes abonné aux mises à jour des publications AWI.",
+      stayInformed: "Restez Informé",
+      noResults: "Aucune publication ne correspond à votre recherche.",
     },
     awpii: {
       heroTitle: "Évaluer la clarté réglementaire et la préparation des marchés à travers l'Afrique.",
