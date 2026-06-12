@@ -753,6 +753,8 @@ export const t = {
         positive: "Regulatory actions that open or clarify the market favourably.",
       },
       severity: { critical: "Critical", high: "High", medium: "Medium", low: "Low" },
+      liveIntelligence: "Live Intelligence",
+      subscribeEyebrow: "Intelligence Subscription",
     },
   },
 
@@ -1507,6 +1509,8 @@ roles: {
         positive: "Actions réglementaires qui ouvrent ou clarifient favorablement le marché.",
       },
       severity: { critical: "Critique", high: "Élevé", medium: "Moyen", low: "Faible" },
+      liveIntelligence: "Intelligence en Direct",
+      subscribeEyebrow: "Abonnement Intelligence",
     },
   },
 };
