@@ -1,0 +1,24 @@
+{
+  "name": "Registrations",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Registrant's full name"
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "description": "Registrant's email address"
+    },
+    "event_title": {
+      "type": "string",
+      "description": "Title of the event they registered for"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "event_title"
+  ]
+}

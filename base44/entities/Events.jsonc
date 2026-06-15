@@ -1,0 +1,34 @@
+{
+  "name": "Events",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Event title/name"
+    },
+    "date": {
+      "type": "string",
+      "description": "Event date or date range"
+    },
+    "location": {
+      "type": "string",
+      "description": "Event location (city, venue, or online)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Full event description"
+    },
+    "audience": {
+      "type": "string",
+      "description": "Who the event is for"
+    },
+    "registration_link": {
+      "type": "string",
+      "description": "Optional external registration URL"
+    }
+  },
+  "required": [
+    "title",
+    "date"
+  ]
+}
