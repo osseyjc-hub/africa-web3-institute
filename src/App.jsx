@@ -21,6 +21,7 @@ import EnforcementWatch from './pages/EnforcementWatch';
 import CapacityBuilding from './pages/CapacityBuilding';
 //import Analytics from './pages/Analytics';
 import IndabaSeries from './pages/IndabaSeries';
+import EventsAssistant from './pages/EventsAssistant';
 import { useTracker } from './hooks/useTracker';
 
 const AuthenticatedApp = () => {
@@ -67,6 +68,7 @@ const AuthenticatedApp = () => {
         <Route path="/capacity-building" element={<CapacityBuilding />} />
         {/* <Route path="/analytics" element={<Analytics />} /> */}
         <Route path="/indaba-series" element={<IndabaSeries />} />
+        <Route path="/events-assistant" element={<EventsAssistant />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
