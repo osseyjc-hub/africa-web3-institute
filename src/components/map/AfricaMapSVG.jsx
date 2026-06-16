@@ -27,6 +27,7 @@ const GEO_NAME_TO_KEY = {
   "Uganda": "uganda",
   "Tunisia": "tunisia",
   "Botswana": "botswana",
+  "Madagasca" :"madagasca"
 };
 
 function getKeyFromFeature(feature) {
