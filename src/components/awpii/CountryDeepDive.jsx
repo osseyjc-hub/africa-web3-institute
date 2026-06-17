@@ -121,7 +121,7 @@ export default function CountryDeepDive({ selectedCountry, language }) {
                   <div key={idx} className="flex gap-3 items-start">
                     <span className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${SEVERITY_DOT[event.severity] || "bg-slate-400"}`} />
                     <div>
-                      <span className="text-xs font-semibold text-foreground">{event.title}</span>
+                      <span className="text-xs font-semibold text-foreground">{event.content?.[language]?.title || event.title}</span>
                       <span className="text-xs text-muted-foreground ml-2">{event.date}</span>
                     </div>
                   </div>
@@ -150,7 +150,7 @@ export default function CountryDeepDive({ selectedCountry, language }) {
                   <div key={idx} className="flex gap-3 items-start">
                     <span className={`mt-1.5 w-2 h-2 rounded-full shrink-0 ${SEVERITY_DOT[event.severity] || "bg-slate-400"}`} />
                     <div>
-                      <span className="text-xs font-semibold text-foreground">{event.title}</span>
+                      <span className="text-xs font-semibold text-foreground">{event.content?.[language]?.title || event.title}</span>
                       <span className="text-xs text-muted-foreground ml-2">{event.date}</span>
                     </div>
                   </div>
