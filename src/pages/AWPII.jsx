@@ -28,6 +28,9 @@ export default function AWPII() {
   // State for the selected country in the dashboard
   const [selectedCountryKey, setSelectedCountryKey] = useState("southafrica");
 
+  const scrollToDashboard = () => {
+    document.querySelector("#dashboard")?.scrollIntoView({ behavior: "smooth" });
+  };
   const scrollToContact = () => {
     document.querySelector("#awpii-contact")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -81,12 +84,16 @@ export default function AWPII() {
             
           
             <div className="flex flex-wrap gap-4">
-              <CTAButton primary onClick={scrollToContact}>
+              <CTAButton primary onClick={scrollToDashboard}>
                 {T.heroCtaPrimary} <ArrowRight className="w-4 h-4" />
               </CTAButton>
-              <CTAButton primary onClick={scrollToContact} className="border-white/80 text-white/80 hover:border-white hover:text-white">
-                <Download className="w-4 h-4 text-white" /> {T.heroCtaSecondary}
-              </CTAButton>
+              <a
+                href="https://media.base44.com/files/public/69f0c79c7957f32b49dcc978/59df44ac1_Q1Report.pdf"
+                target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[0.8125rem] font-semibold px-6 py-3 rounded-lg transition-all duration-200 border border-white/80 text-white/80 hover:bg-white/10 hover:text-white"
+              >
+                <Download className="w-4 h-4" /> {T.heroCtaSecondary}
+              </a>
             </div>
           </div>
        
@@ -201,13 +208,13 @@ export default function AWPII() {
                 <div className="mb-3">
                   <h3 className="font-bold text-secondary text-lg mb-1 flex items-center gap-1.5">
                     <TrendingUp className="w-4 h-4 text-accent" />
-                    {lang === "fr" ? "Indicateur de Dynamisme" : "Top 10 Momentum"}
+                    {T.momentumTitle}
                   </h3>
                   <p className="text-xs text-muted-foreground mb-2">
-                    {lang === "fr" ? "Classé par score (vert = haussier, jaune = stable)" : "Score comparison (green = upward, yellow = stable)"}
+                    {T.momentumDesc}
                   </p>
                   <div className="bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-slate-800 rounded-lg px-3 py-2 text-[11px] text-muted-foreground leading-relaxed">
-                    <span className="font-semibold text-foreground">Momentum</span> reflects the direction of a country's regulatory progress — upward (green) means active positive reforms, stable (yellow) means consistent but static policy, declining (red) signals tightening or reversals. <span className="font-semibold text-accent">Click a bar</span> to load the country's full analysis below.
+                    <span className="font-semibold text-foreground">{T.momentumHelper}</span>
                   </div>
                 </div>
 
@@ -242,8 +249,8 @@ export default function AWPII() {
                             return (
                               <div className="bg-slate-900 text-white p-2 rounded shadow text-xs border border-white/10">
                                 <p className="font-bold">{data.name}</p>
-                                <p>Score: {data.score}</p>
-                                <p>Momentum: {data.momentum}</p>
+                                <p>{T.momentumScoreLabel}: {data.score}</p>
+                                <p>{data.momentum}</p>
                               </div>
                             );
                           }
@@ -402,7 +409,7 @@ export default function AWPII() {
             <p className="text-[1rem] text-muted-foreground leading-[1.85] mb-4">{T.marketPara1}</p>
             <p className="text-[1rem] text-muted-foreground leading-[1.85] mb-10">{T.marketPara2}</p>
             <div className="flex flex-wrap gap-4">
-              <CTAButton primary onClick={scrollToContact}>
+              <CTAButton primary onClick={scrollToDashboard}>
                 {T.marketCta1} <ArrowRight className="w-4 h-4" />
               </CTAButton>
               <CTAButton onClick={scrollToContact}>{T.marketCta2}</CTAButton>

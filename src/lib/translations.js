@@ -288,8 +288,6 @@ export const t = {
         heroPara1: "",
       heroPara2: "",
       heroPara3: "",
-      heroCtaPrimary: "Explorer l'index interactif",
-      heroCtaPrimary: "Explore the Interactive Index",
       heroCtaPrimary: "Explore the Interactive Index",
       heroCtaSecondary: "Download May 2026 Snapshot",
       stats: [
@@ -354,6 +352,10 @@ export const t = {
       contactHeading: "An active platform for institutional progress",
       contactPara1: "The AWPII functions as an active platform for institutional progress. We collaborate with central banks, ministries of finance, continental bodies, financial institutions, and international development agencies to design frameworks that safeguard financial stability while encouraging technological growth.",
       contactPara2: "To explore data integration, customised country assessments, or capacity-building workshops:",
+      momentumTitle: "Top 10 Momentum",
+      momentumDesc: "Score comparison (green = upward, yellow = stable)",
+      momentumHelper: "Momentum reflects the direction of a country's regulatory progress — upward (green) means active positive reforms, stable (yellow) means consistent but static policy, declining (red) signals tightening or reversals. Click a bar to load the country's full analysis below.",
+      momentumScoreLabel: "Score",
       backHome: "← Back to Africa Web3 Institute",
     },
     francophoneNetwork: {
@@ -1170,6 +1172,10 @@ export const t = {
       contactHeading: "Une plateforme active pour le progrès institutionnel",
       contactPara1: "L'AWPII fonctionne comme une plateforme active pour le progrès institutionnel. Nous collaborons avec des banques centrales, des ministères des finances, des organes continentaux, des institutions financières et des agences de développement international pour concevoir des cadres qui préservent la stabilité financière tout en encourageant la croissance technologique.",
       contactPara2: "Pour explorer l'intégration de données, les évaluations pays personnalisées ou les ateliers de renforcement des capacités :",
+      momentumTitle: "Top 10 — Dynamisme",
+      momentumDesc: "Comparaison des scores (vert = haussier, jaune = stable)",
+      momentumHelper: "Le dynamisme reflète la direction du progrès réglementaire d'un pays — haussier (vert) signifie des réformes positives actives, stable (jaune) signifie une politique cohérente mais statique, en déclin (rouge) signale un resserrement ou des revirements. Cliquez sur une barre pour charger l'analyse complète du pays ci-dessous.",
+      momentumScoreLabel: "Score",
       backHome: "← Retour à l'Africa Web3 Institute",
     },
     francophoneNetwork: {
