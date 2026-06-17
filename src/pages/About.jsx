@@ -5,11 +5,10 @@ import { Link } from "react-router-dom";
 import { Linkedin, Twitter, Globe, BookOpen, GraduationCap, Mail } from "lucide-react";
 import AdvisoryBoardCard from "@/components/about/AdvisoryBoardCard";
 
-const TEAM = [
+const CORE_TEAM = [
   {
     name: "Afrikanus Kofi Akosah Adusei",
     role: "Executive Director",
-     level: "founder",
     country: "🇬🇭 Ghana",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/5b37f2043_9edbdc2d-86b7-4581-bb79-f31189960de2.jpg",
     linkedin: "https://linkedin.com/in/afrikanus-kofi-akosah-adusei-ba25aa88",
@@ -18,68 +17,59 @@ const TEAM = [
   {
     name: "Adusei Akwasi",
     role: "Director of Policy & Research",
-    level: "executive",
     country: "🇬🇭 Ghana",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/347e90ce2_FB_IMG_1779722196696.jpg",
     linkedin: "linkedin.com/in/adusei-akwasi-4b29419a",
     twitter: null,
   },
-    {
+  {
     name: "Carlos Juan",
     role: "CTO",
-    level: "executive",
     country: "🇦🇷 Argentina",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/d9d834cfa_CarlosJuan.png",
     linkedin: "linkedin.com/in/carlosjuana",
     twitter: null,
   },
   {
+    name: "Jean Cedric Ossey",
+    role: "Francophone Lead",
+    country: "🇨🇮 Côte d'Ivoire",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/a15daee7d_IMG_3255.png",
+    linkedin: "https://linkedin.com/in/osseyjc",
+    twitter: "https://x.com/osseyjc",
+  },
+  {
     name: "Gloria Achieng",
     role: "Operations Lead",
-    level: "management",
     country: "🇺🇬 Uganda",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/fbf4dc09c_ChatGPTImageMay25202611_07_17AM.png",
     linkedin: "https://linkedin.com/in/gloria-achieng-74388b108",
     twitter: "https://x.com/gloriaachieng14",
   },
   {
-    name: "Jean Cedric Ossey",
-    role: "Francophone Lead",
-    level: "management",
-    country: "🇨🇮 Côte d'Ivoire",
-    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/a15daee7d_IMG_3255.png",
-    linkedin: "https://linkedin.com/in/osseyjc",
-    twitter: "https://x.com/osseyjc",
-  },
-
-  {
-    name: "Abdul Rahaman",
-    role: "Comms and Partnerships Lead",
-    country: "🇬🇭 Ghana",
-    level: "management",
-    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/71ba35058_IMG_8862.jpg",
-    linkedin: "https://linkedin.com/in/abdulganiwu",
-    twitter: "https://x.com/phrozendon?s=21",
-  },
-    {
     name: "Asang Nehemiah Forgwe",
     role: "Events and Programs Manager",
     country: "🇨🇲 Cameroon",
-    level: "functional",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/dd836029e_ChatGPTImageMay21202607_53_59AM.png",
     linkedin: "https://www.linkedin.com/in/asang-nehemiah-forgwe-094067193",
     twitter: "https://x.com/asangnehemiah?s=21",
   },
   {
+    name: "Abdul Rahaman",
+    role: "Comms and Partnerships Lead",
+    country: "🇬🇭 Ghana",
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/71ba35058_IMG_8862.jpg",
+    linkedin: "https://linkedin.com/in/abdulganiwu",
+    twitter: "https://x.com/phrozendon?s=21",
+  },
+  {
     name: "Jarau Moses",
     role: "Content & Social Media Lead",
     country: "🇺🇬 Uganda",
-    level: "functional",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/ea434ea86_A4B9E1C4-DF44-4067-A712-5A915C1FB4FA.png",
     linkedin: "linkedin.com/in/jaraumoses",
     twitter: "https://x.com/JarauMoses",
   },
-
 ];
 
 const PILLAR_ICONS = [Globe, BookOpen, GraduationCap];
@@ -194,20 +184,7 @@ export default function About() {
     desc: T[descKey],
   }));
 
-    const founder = TEAM.find((m) => m.level === "founder");
-
-const executives = TEAM.filter(
-  (m) => m.level === "executive"
-);
-
-const management = TEAM.filter(
-  (m) => m.level === "management"
-);
-
-const functional = TEAM.filter(
-  (m) => m.level === "functional"
-);
-  const IMPACT_STATS_T = [
+    const IMPACT_STATS_T = [
     { icon: "🌍", stat: "Fastest-growing", label: T.stat1 },
     { icon: "📱", stat: "12%+", label: T.stat2 },
     { icon: "💸", stat: "$48.2M", label: T.stat3 },
@@ -347,148 +324,42 @@ const functional = TEAM.filter(
         </div>
       </section>
 
-          {/* F2. ADVISORY BOARD */}
-      <section className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
+      {/* F. TEAM — Advisory Board first, then Core Team */}
+      <section id="team" className="py-20 border-b border-border" style={{ background: "hsl(220 14% 97%)" }}>
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="text-center mb-12">
+
+          {/* Section header */}
+          <div className="text-center mb-16">
             <p className="text-xs font-semibold tracking-[0.18em] uppercase mb-3" style={{ color: "#D4A017" }}>
-              {T.advisoryTag}
+              {T.teamTag}
             </p>
-            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">{T.advisoryTitle}</h2>
-            <p className="text-muted-foreground max-w-xl mx-auto">
-             {T.advisoryText}
-            </p>
+            <h2 className="text-[1.75rem] font-bold text-secondary mb-3">{T.teamTitle}</h2>
+            <p className="text-muted-foreground">{T.teamSubtitle}</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-            {ADVISORY_BOARD.map((member) => (
-              <AdvisoryBoardCard key={member.name} member={member} />
-            ))}
+
+          {/* Advisory Board */}
+          <div className="mb-20">
+            <h3 className="text-xl font-bold text-secondary mb-3 text-center">{T.advisoryTitle}</h3>
+            <p className="text-muted-foreground max-w-xl mx-auto text-center mb-10">{T.advisoryText}</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
+              {ADVISORY_BOARD.map((member) => (
+                <AdvisoryBoardCard key={member.name} member={member} />
+              ))}
+            </div>
           </div>
+
+          {/* Core Team */}
+          <div>
+            <h3 className="text-xl font-bold text-secondary mb-10 text-center">Core Team</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {CORE_TEAM.map((member) => (
+                <TeamCard key={member.name} member={member} />
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
-
-      {/* F. MEET THE TEAM */}
-    <section id="team" className="py-20 border-b border-border">
-  <div className="max-w-6xl mx-auto px-6 lg:px-8">
-
-    <div className="text-center mb-16">
-      <p
-        className="text-xs font-semibold tracking-[0.18em] uppercase mb-3"
-        style={{ color: "#D4A017" }}
-      >
-        {T.tamTag}
-      </p>
-
-      <h2 className="text-[1.75rem] font-bold text-secondary mb-3">
-        {T.teamTitle}
-      </h2>
-
-      <p className="text-muted-foreground">
-        {T.teamSubtitle}
-      </p>
-    </div>
-
-    {/* Executive Director */}
-    {founder && (
-      <div className="max-w-3xl mx-auto mb-16">
-        <div
-          className="bg-white p-8 md:p-10 text-center"
-          style={{
-            border: "2px solid #D4A017",
-            boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
-          }}
-        >
-          <div className="w-32 h-32 rounded-full overflow-hidden mx-auto mb-6">
-            <img
-              src={founder.photo}
-              alt={founder.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <p
-            className="text-xs uppercase tracking-[0.18em] font-semibold mb-3"
-            style={{ color: "#D4A017" }}
-          >
-             {T.executiveDirector}
-          </p>
-
-          <h3 className="text-[1.75rem] font-bold text-secondary mb-2">
-            {founder.name}
-          </h3>
-
-          <p className="text-muted-foreground mb-4">
-            {founder.country}
-          </p>
-
-          <div className="flex justify-center gap-3">
-            {founder.linkedin && (
-              <a
-                href={founder.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center"
-              >
-                <Linkedin />
-              </a>
-            )}
-
-            {founder.twitter && (
-              <a
-                href={founder.twitter}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center"
-              >
-                <Twitter />
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    )}
-
-    {/* Executive Leadership */}
-    <div className="mb-16">
-      <h3 className="text-xl font-bold text-secondary mb-8 text-center">
-       {T.executiveLeadership}
-      </h3>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {executives.map((member) => (
-          <TeamCard key={member.name} member={member} />
-        ))}
-      </div>
-    </div>
-
-    {/* Core Management */}
-    <div className="mb-16">
-      <h3 className="text-xl font-bold text-secondary mb-8 text-center">
-         {T.coreManagement}
-      </h3>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {management.map((member) => (
-          <TeamCard key={member.name} member={member} />
-        ))}
-      </div>
-    </div>
-
-    {/* Programs & Communications */}
-    <div>
-      <h3 className="text-xl font-bold text-secondary mb-8 text-center">
-        {T.programsComms}
-      </h3>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
-        {functional.map((member) => (
-          <TeamCard key={member.name} member={member} />
-        ))}
-      </div>
-    </div>
-
-  </div>
-</section>
 
   
 
