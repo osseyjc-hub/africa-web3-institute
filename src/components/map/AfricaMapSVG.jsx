@@ -1,10 +1,13 @@
 // @ts-nocheck
 import React, { useState, useEffect, useRef } from "react";
-import { MapContainer, GeoJSON, ZoomControl } from "react-leaflet";
+import { MapContainer, GeoJSON, ZoomControl,CircleMarker,Tooltip } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import awpiiData from "@/data/awpiiData";
 
 const AFRICA_GEOJSON_URL =
-  "https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/africa.geojson";
+  //"https://raw.githubusercontent.com/codeforgermany/click_that_hood/main/public/data/africa.geojson";
+     "https://raw.githubusercontent.com/nvkelso/natural-earth-vector/master/geojson/ne_50m_admin_0_countries.geojson";
+
 
 const GEO_NAME_TO_KEY = {
   "Nigeria": "nigeria",
@@ -16,10 +19,8 @@ const GEO_NAME_TO_KEY = {
   "Ethiopia": "ethiopia",
   "Senegal": "senegal",
   "Tanzania": "tanzania",
-  "United Republic of Tanzania": "tanzania",
   "Morocco": "morocco",
   "Cameroon": "cameroon",
-  "Ivory Coast": "cotedivoire",
   "Côte d'Ivoire": "cotedivoire",
   "Zimbabwe": "zimbabwe",
   "Zambia": "zambia",
@@ -27,15 +28,35 @@ const GEO_NAME_TO_KEY = {
   "Uganda": "uganda",
   "Tunisia": "tunisia",
   "Botswana": "botswana",
-  "Madagasca" :"madagasca"
+  "Madagascar": "madagascar",
+  "Cabo Verde": "capeverde",
+  "Comoros": "comoros",
+  "Seychelles": "seychelles",
+  "Mauritius": "mauritius",
+  "São Tomé and Principe": "saotome",
+   "S. Sudan": "southsudan",
+  "Sudan": "sudan",
+  "Somalia": "somalia",
+  "Sierra Leone": "sierraleone",
+  "eSwatini": "eswatini",
 };
+
+// Centroids for islands too small to see/click at low zoom
+const SMALL_ISLAND_CENTROIDS = {
+  "Cabo Verde": [16.0, -24.0],
+  "Comoros": [-11.875, 43.872],
+  "Mauritius": [-20.348, 57.552],
+  "Seychelles": [-4.679, 55.492],
+  "São Tomé and Principe": [0.328, 6.613],
+};
+
 
 function getKeyFromFeature(feature) {
   const name = feature.properties?.name || feature.properties?.NAME || "";
   return GEO_NAME_TO_KEY[name] || name;
 }
 
-import awpiiData from "@/data/awpiiData";
+
 
 function getShadingColor(key) {
   const country = awpiiData.find(c => c.key === key);
@@ -67,11 +88,42 @@ export default function AfricaMapSVG({ onCountryClick = null, interactive = fals
   const [error, setError] = useState(false);
   const [hoveredKey, setHoveredKey] = useState(null);
   const geoJsonRef = useRef(null);
+    const [islandMarkers, setIslandMarkers] = useState([]);
 
   useEffect(() => {
     fetch(AFRICA_GEOJSON_URL)
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
-      .then(data => { setGeoData(data); setLoading(false); })
+     .then(data => {
+        const AFRICAN_ISLAND_FALLBACKS = new Set(["Seychelles", "Mauritius"]);
+        const africaOnly = {
+          ...data,
+        features: data.features.filter(f => {
+  const continent =
+    f.properties?.CONTINENT ||
+    f.properties?.continent;
+
+  const name =
+    f.properties?.NAME ||
+    f.properties?.name;
+
+  return (
+    continent === "Africa" ||
+    AFRICAN_ISLAND_FALLBACKS.has(name)
+  );
+}),
+        };
+ 
+        setGeoData(africaOnly);
+          setIslandMarkers(
+    Object.entries(SMALL_ISLAND_CENTROIDS).map(([name, latlng]) => ({
+      name,
+      key: GEO_NAME_TO_KEY[name] || name,
+      latlng,
+    }))
+  );
+        setLoading(false);
+        console.log(data.features.map(f => f.properties.NAME));
+      })
       .catch(err => { console.error("Map fetch failed:", err); setError(true); setLoading(false); });
   }, []);
 
@@ -83,6 +135,7 @@ export default function AfricaMapSVG({ onCountryClick = null, interactive = fals
 
   const onEachFeature = (feature, layer) => {
     const key = getKeyFromFeature(feature);
+  
     layer.on({
       mouseover: () => interactive && setHoveredKey(key),
       mouseout: () => interactive && setHoveredKey(null),
@@ -161,6 +214,30 @@ export default function AfricaMapSVG({ onCountryClick = null, interactive = fals
             onEachFeature={onEachFeature}
           />
         )}
+               {islandMarkers.map(({ name, key, latlng }) => (
+  <CircleMarker
+    key={key}
+    center={latlng}
+    radius={6}
+    pathOptions={{
+      fillColor: getShadingColor(key),
+      fillOpacity: hoveredKey === key ? 1 : 0.85,
+      color: "#0B1437",
+      weight: 1,
+    }}
+    eventHandlers={{
+      mouseover: () => interactive && setHoveredKey(key),
+      mouseout: () => interactive && setHoveredKey(null),
+      click: () => interactive && onCountryClick && onCountryClick(key),
+    }}
+  >
+    {interactive && (
+      <Tooltip sticky opacity={1} direction="top">
+        <div style={{ fontSize: 12, padding: "4px 6px" }}>{name}</div>
+      </Tooltip>
+    )}
+  </CircleMarker>
+))}
       </MapContainer>
     </>
   );
