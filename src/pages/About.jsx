@@ -39,8 +39,16 @@ const CORE_TEAM = [
     twitter: "https://x.com/osseyjc",
   },
   {
-    name: "Gloria Achieng",
+    name: "Kate Acheampong",
     role: "Operations Lead",
+    country: null,
+    photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/548db4b39_efa940b1-4bc3-4d7d-9960-6ddf7a4cb336.jpg",
+    linkedin: "https://www.linkedin.com/in/kate-acheampong-b289a8419",
+    twitter: null,
+  },
+  {
+    name: "Gloria Achieng",
+    role: "Head of Education",
     country: "🇺🇬 Uganda",
     photo: "https://media.base44.com/images/public/69f0c79c7957f32b49dcc978/fbf4dc09c_ChatGPTImageMay25202611_07_17AM.png",
     linkedin: "https://linkedin.com/in/gloria-achieng-74388b108",
